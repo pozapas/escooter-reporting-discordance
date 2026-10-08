@@ -1,0 +1,43 @@
+% Generated table; it uses the manuscript preamble's macros (\hltint, \hcell, \altrow, PanelBg).
+\begin{table}[pos=htbp]
+\tableserif
+\centering
+\begin{threeparttable}
+\hllabelcolour{HlD}
+\caption{\hltint{HlD}{The cues excluded by the event rule, in a post hoc refit.}}
+\label{tab:a_excluded}
+\footnotesize
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X rrr r c r r}
+\toprule
+\headerrow
+\hcell{Cue or fit} & \hcell{O} & \hcell{BC} & \hcell{KA} & \hcell{Coef.} & \hcell{Odds ratio [95\% CI]} & \hcell{LR $p$} & \hcell{Holm $p$} \\
+\midrule
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{8}{l}{\textbf{Panel A. The four excluded cues added to M1 (model MX)}} \\
+\addlinespace[2pt]
+Driveway or alley entry & 5 & 95 & 10 & 0.393 & 1.48 [0.84, 2.60] & 0.149 & 0.149 \\
+\altrow
+Distraction or impairment & 6 & 48 & 18 & 0.901 & 2.46 [1.39, 4.37] & 0.003 & 0.011 \\
+Swerve or loss of control & 9 & 37 & 1 & $-$0.788 & 0.45 [0.23, 0.90] & 0.035 & 0.105 \\
+\altrow
+Wrong-way riding & 10 & 21 & 5 & $-$0.815 & 0.44 [0.19, 1.01] & 0.050 & 0.105 \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{8}{l}{\textbf{Panel B. Distraction or impairment under alternative fits of MX}} \\
+\addlinespace[2pt]
+Ordered logit & -- & -- & -- & 0.901 & 2.46 [1.39, 4.37] & 0.003 & -- \\
+\altrow
+With narrative length & -- & -- & -- & 0.824 & 2.28 [1.28, 4.06] & 0.005 & -- \\
+Without fatal riders & 6 & 48 & 14 & 0.768 & 2.15 [1.18, 3.94] & 0.013 & -- \\
+\altrow
+Firth-type penalty & -- & -- & -- & 0.876 & 2.40 [1.37, 4.21] & -- & -- \\
+Normal(0, 1) prior & -- & -- & -- & 0.836 & 2.31 [1.32, 4.09] & -- & -- \\
+\bottomrule
+\end{tabularx}
+\begin{tablenotes}[flushleft]\footnotesize
+\item \textit{Note:} O, BC and KA count the riders with the cue in each coded class. Coefficients are on the log-odds scale of the ordered logit, positive toward KA. LR $p$ tests the cue against M1 alone, or against MX without it for the fit with narrative length or without fatal riders, and Holm $p$ adjusts it across the four cues of Panel A. The fit without fatal riders holds 511 riders, and its counts are those of the cue in each class after the 11 K riders are removed. The Firth-type and Bayesian fits are those of Table~\ref{tab:a_shrinkage} applied to MX; for the prior the coefficient is the posterior mean and the interval the 95\% credible interval. The analysis was specified after the primary results and is reported as exploratory.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

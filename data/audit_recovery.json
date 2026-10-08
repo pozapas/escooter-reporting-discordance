@@ -1,0 +1,71 @@
+[
+  {
+    "effect_size": 0.25,
+    "n": 522,
+    "planted_at": {
+      "transition": 1,
+      "variable": "eth_black"
+    },
+    "posterior_mean": 0.4497,
+    "ci95": [
+      -0.161,
+      1.1243
+    ],
+    "covers_truth": true,
+    "excludes_zero": false,
+    "recovered": false,
+    "interval_width": 1.2853,
+    "false_positives_among_47_true_zeros": 2,
+    "diagnostics": {
+      "max_r_hat": 1.0051,
+      "min_ess_bulk": 1069,
+      "divergences": 16
+    }
+  },
+  {
+    "effect_size": 0.5,
+    "n": 522,
+    "planted_at": {
+      "transition": 1,
+      "variable": "eth_black"
+    },
+    "posterior_mean": 0.7486,
+    "ci95": [
+      0.1382,
+      1.3992
+    ],
+    "covers_truth": true,
+    "excludes_zero": true,
+    "recovered": true,
+    "interval_width": 1.261,
+    "false_positives_among_47_true_zeros": 2,
+    "diagnostics": {
+      "max_r_hat": 1.0065,
+      "min_ess_bulk": 804,
+      "divergences": 13
+    }
+  },
+  {
+    "effect_size": 1.0,
+    "n": 522,
+    "planted_at": {
+      "transition": 1,
+      "variable": "eth_black"
+    },
+    "posterior_mean": 1.696,
+    "ci95": [
+      1.087,
+      2.4226
+    ],
+    "covers_truth": false,
+    "excludes_zero": true,
+    "recovered": false,
+    "interval_width": 1.3356,
+    "false_positives_among_47_true_zeros": 2,
+    "diagnostics": {
+      "max_r_hat": 1.0053,
+      "min_ess_bulk": 1053,
+      "divergences": 19
+    }
+  }
+]

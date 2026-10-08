@@ -1,0 +1,20 @@
+{
+  "tiger_vintage": 2023,
+  "tiger_url": "https://www2.census.gov/geo/tiger/TIGER2023/BG/tl_2023_48_bg.zip",
+  "acs_primary_vintage": "2019 to 2023",
+  "acs_sensitivity_vintage": "2017 to 2021",
+  "poverty_numerator": "B17021_002E",
+  "poverty_denominator": "B17021_001E",
+  "b17021_available_at_block_group": true,
+  "b17021_block_group_check_date": "2026-09-14",
+  "located_crashes": 444,
+  "points_not_matched_to_a_block_group": 0,
+  "poverty_missing_primary": 8,
+  "poverty_missing_acs2021": 8,
+  "poverty_share_median": 0.11599954794147171,
+  "poverty_share_iqr": [
+    0.04899272296034346,
+    0.2515692358503685
+  ],
+  "rows_written": 444
+}

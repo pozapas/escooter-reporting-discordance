@@ -1,0 +1,62 @@
+% Generated table; it uses the manuscript preamble's macros (\hltint, \hcell, \altrow, PanelBg).
+\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}X r r r r r}
+\caption{\hltint{HlM}{Threshold-specific coefficients of the freed covariates.}}\label{tab:a_ppocoef}\\
+\toprule
+\headerrow
+\hcell{Covariate} & \hcell{BC or KA vs O} & \hcell{SE} & \hcell{KA vs O or BC} & \hcell{SE} & \hcell{Ordered logit} \\
+\midrule
+\endfirsthead
+\multicolumn{6}{l}{\cellcolor{HeaderGold}\textcolor{HeaderText}{\textbf{\tablename\ \thetable{} \textit{(continued)}}}} \\
+\toprule
+\headerrow
+\hcell{Covariate} & \hcell{BC or KA vs O} & \hcell{SE} & \hcell{KA vs O or BC} & \hcell{SE} & \hcell{Ordered logit} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{6}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\multicolumn{6}{p{0.97\linewidth}}{\footnotesize \textit{Note:} Coefficients are on the log-odds scale of the more severe side, and bold marks a coefficient or marginal effect whose 95\% interval excludes zero. Standard errors come from the inverse Hessian at the constrained optimum, so for riders on the boundary of the constraint they are approximate. The marginal effects in Panel~C are discrete changes in the probability of each outcome, with Krinsky and Robb intervals.}\\
+\endlastfoot
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{6}{l}{\textbf{Panel A. Brant set, without correction, 12 covariates freed}} \\
+\addlinespace[2pt]
+Speed limit 45 mph or above & $-$0.748 & 0.434 & 0.406 & 0.397 & $-$0.052 \\
+\altrow
+Dark or light not recorded & 0.107 & 0.394 & 0.432 & 0.348 & 0.270 \\
+Ethnicity other or not recorded & $-$0.510 & 0.494 & 0.134 & 0.471 & $-$0.235 \\
+\altrow
+Rider gender not recorded & $-$0.666 & 0.802 & $-$0.869 & 1.331 & $-$1.279 \\
+Rider 45 or above & $-$0.688 & 0.441 & 0.442 & 0.388 & 0.022 \\
+\altrow
+Rider under 25 & $-$0.122 & 0.346 & $-$0.368 & 0.306 & $-$0.265 \\
+Rider age not recorded & \textbf{$-$2.031} & 0.713 & $-$0.247 & 0.977 & $-$1.603 \\
+\altrow
+Traffic signal present & $-$0.046 & 0.384 & 0.375 & 0.336 & 0.081 \\
+Night & $-$0.113 & 0.504 & 0.417 & 0.432 & 0.304 \\
+\altrow
+Crash coordinates absent & $-$0.353 & 0.538 & \textbf{$-$1.647} & 0.697 & $-$0.758 \\
+Officer cited rider failed to yield & $-$0.441 & 0.402 & 0.495 & 0.363 & 0.128 \\
+\altrow
+Cue, sidewalk to roadway transition & 0.589 & 0.404 & $-$0.306 & 0.358 & 0.101 \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{6}{l}{\textbf{Panel B. Holm set, 2 covariates freed}} \\
+\addlinespace[2pt]
+Rider age not recorded & \textbf{$-$2.263} & 0.655 & 0.483 & 0.719 & $-$1.603 \\
+\altrow
+Speed limit 45 mph or above & \textbf{$-$0.935} & 0.427 & 0.575 & 0.385 & $-$0.052 \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{6}{l}{\textbf{Panel C. Average marginal effect of unrecorded rider age with 95\% interval}} \\
+\addlinespace[2pt]
+\midrule
+\headerrow
+\hcell{Outcome} & \multicolumn{3}{c}{\hcell{Partial proportional odds, Holm set}} & \multicolumn{2}{c}{\hcell{Ordered logit, M1}} \\
+\midrule
+P(O) & \multicolumn{3}{c}{\textbf{0.370 [0.139, 0.602]}} & \multicolumn{2}{c}{\textbf{0.236 [0.018, 0.508]}} \\
+\altrow
+P(BC) & \multicolumn{3}{c}{\textbf{$-$0.459 [$-$0.654, $-$0.293]}} & \multicolumn{2}{c}{$-$0.117 [$-$0.351, 0.003]} \\
+P(KA) & \multicolumn{3}{c}{0.089 [$-$0.079, 0.356]} & \multicolumn{2}{c}{\textbf{$-$0.119 [$-$0.178, $-$0.024]}} \\
+\end{xltabular}

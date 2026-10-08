@@ -1,0 +1,110 @@
+% Generated table; it uses the manuscript preamble's macros (\hltint, \hcell, \altrow, PanelBg).
+\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}X rrr c rrrr}
+\caption{\hltint{HlM}{Performance of each automated route against the coders' majority vote.}}\label{tab:a_routes}\\
+\toprule
+\headerrow
+\hcell{Label} & \hcell{P} & \hcell{R} & \hcell{$F_1$} & \hcell{$F_1$ 95\% CI} & \hcell{TP} & \hcell{FP} & \hcell{FN} & \hcell{TN} \\
+\midrule
+\endfirsthead
+\multicolumn{9}{l}{\cellcolor{HeaderGold}\textcolor{HeaderText}{\textbf{\tablename\ \thetable{} \textit{(continued)}}}} \\
+\toprule
+\headerrow
+\hcell{Label} & \hcell{P} & \hcell{R} & \hcell{$F_1$} & \hcell{$F_1$ 95\% CI} & \hcell{TP} & \hcell{FP} & \hcell{FN} & \hcell{TN} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{9}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\multicolumn{9}{p{0.97\linewidth}}{\footnotesize \textit{Note:} P is precision and R is recall, each computed against the coders' majority vote. TP, FP, FN and TN are the true positive, false positive, false negative and true negative counts, so any cell can be recomputed. Route A reads the masked narrative and is scored on the pre-crash cues only. The repeated-run route labels a cue positive when more than half of the repeated runs are positive. The macro rows average $F_1$ over the cues of the pass, and the injury-cue macro mean was not bootstrapped, so it has no interval.}\\
+\endlastfoot
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{9}{l}{\textbf{Route A, deterministic lexical rules}} \\
+\addlinespace[2pt]
+Wrong-way riding & 0.500 & 0.100 & 0.167 & [0.071, 0.381] & 2 & 2 & 18 & 128 \\
+\altrow
+Sidewalk to roadway transition & 0.429 & 0.600 & 0.500 & [0.222, 0.727] & 6 & 8 & 4 & 132 \\
+Driveway or alley entry & 0.909 & 0.714 & 0.800 & [0.689, 0.889] & 30 & 3 & 12 & 105 \\
+\altrow
+Failure to yield & 0.929 & 0.897 & 0.912 & [0.821, 0.982] & 26 & 2 & 3 & 119 \\
+Signal violation & 1.000 & 0.615 & 0.762 & [0.600, 0.885] & 16 & 0 & 10 & 124 \\
+\altrow
+Swerve or loss of control & 0.688 & 0.458 & 0.550 & [0.350, 0.727] & 11 & 5 & 13 & 121 \\
+Dooring & 1.000 & 1.000 & 1.000 & [1.000, 1.000] & 2 & 0 & 0 & 148 \\
+\altrow
+Distraction or impairment & 0.667 & 0.444 & 0.533 & [0.333, 0.700] & 12 & 6 & 15 & 117 \\
+Vehicle turning across & 0.756 & 0.646 & 0.697 & [0.571, 0.797] & 31 & 10 & 17 & 92 \\
+\altrow
+Lane positioning & 0.864 & 0.432 & 0.576 & [0.421, 0.706] & 19 & 3 & 25 & 103 \\
+\textit{Macro $F_1$, pre-crash cues} & & & 0.650 & [0.589, 0.720] & & & & \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{9}{l}{\textbf{Route B, language-model reference run}} \\
+\addlinespace[2pt]
+Wrong-way riding & 0.714 & 1.000 & 0.833 & [0.700, 0.936] & 20 & 8 & 0 & 122 \\
+\altrow
+Sidewalk to roadway transition & 0.250 & 1.000 & 0.400 & [0.216, 0.566] & 10 & 30 & 0 & 110 \\
+Driveway or alley entry & 0.932 & 0.976 & 0.953 & [0.900, 0.990] & 41 & 3 & 1 & 105 \\
+\altrow
+Failure to yield & 0.475 & 1.000 & 0.644 & [0.514, 0.747] & 29 & 32 & 0 & 89 \\
+Signal violation & 0.806 & 0.962 & 0.877 & [0.769, 0.955] & 25 & 6 & 1 & 118 \\
+\altrow
+Swerve or loss of control & 0.826 & 0.792 & 0.809 & [0.667, 0.917] & 19 & 4 & 5 & 122 \\
+Dooring & 0.500 & 1.000 & 0.667 & [0.333, 1.000] & 2 & 2 & 0 & 146 \\
+\altrow
+Distraction or impairment & 0.657 & 0.852 & 0.742 & [0.603, 0.852] & 23 & 12 & 4 & 111 \\
+Vehicle turning across & 0.828 & 1.000 & 0.906 & [0.838, 0.961] & 48 & 10 & 0 & 92 \\
+\altrow
+Lane positioning & 0.976 & 0.932 & 0.953 & [0.901, 0.990] & 41 & 1 & 3 & 105 \\
+Transported to hospital & 0.971 & 1.000 & 0.985 & [0.947, 1.000] & 33 & 1 & 0 & 116 \\
+\altrow
+Unconsciousness & 1.000 & 1.000 & 1.000 & [1.000, 1.000] & 2 & 0 & 0 & 148 \\
+Fracture & 0.800 & 0.800 & 0.800 & [0.444, 1.000] & 4 & 1 & 1 & 144 \\
+\altrow
+Fatality & 1.000 & 1.000 & 1.000 & [1.000, 1.000] & 5 & 0 & 0 & 145 \\
+Explicit no injury & 0.800 & 0.471 & 0.593 & [0.333, 0.786] & 8 & 2 & 9 & 131 \\
+\altrow
+\textit{Macro $F_1$, pre-crash cues} & & & 0.778 & [0.726, 0.828] & & & & \\
+\textit{Macro $F_1$, injury cues} & & & 0.876 & -- & & & & \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{9}{l}{\textbf{Route B, majority of the repeated runs}} \\
+\addlinespace[2pt]
+Wrong-way riding & 0.714 & 1.000 & 0.833 & [0.700, 0.936] & 20 & 8 & 0 & 122 \\
+\altrow
+Sidewalk to roadway transition & 0.250 & 1.000 & 0.400 & [0.217, 0.571] & 10 & 30 & 0 & 110 \\
+Driveway or alley entry & 0.930 & 0.952 & 0.941 & [0.880, 0.987] & 40 & 3 & 2 & 105 \\
+\altrow
+Failure to yield & 0.500 & 1.000 & 0.667 & [0.541, 0.773] & 29 & 29 & 0 & 92 \\
+Signal violation & 0.781 & 0.962 & 0.862 & [0.754, 0.947] & 25 & 7 & 1 & 117 \\
+\altrow
+Swerve or loss of control & 0.826 & 0.792 & 0.809 & [0.667, 0.917] & 19 & 4 & 5 & 122 \\
+Dooring & 0.500 & 1.000 & 0.667 & [0.333, 1.000] & 2 & 2 & 0 & 146 \\
+\altrow
+Distraction or impairment & 0.657 & 0.852 & 0.742 & [0.597, 0.852] & 23 & 12 & 4 & 111 \\
+Vehicle turning across & 0.828 & 1.000 & 0.906 & [0.843, 0.959] & 48 & 10 & 0 & 92 \\
+\altrow
+Lane positioning & 0.976 & 0.909 & 0.941 & [0.883, 0.987] & 40 & 1 & 4 & 105 \\
+\textit{Macro $F_1$, pre-crash cues} & & & 0.777 & [0.725, 0.827] & & & & \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{9}{l}{\textbf{Automated fusion of the two routes}} \\
+\addlinespace[2pt]
+Wrong-way riding & 0.714 & 1.000 & 0.833 & [0.700, 0.936] & 20 & 8 & 0 & 122 \\
+\altrow
+Sidewalk to roadway transition & 0.250 & 1.000 & 0.400 & [0.216, 0.566] & 10 & 30 & 0 & 110 \\
+Driveway or alley entry & 0.932 & 0.976 & 0.953 & [0.900, 0.990] & 41 & 3 & 1 & 105 \\
+\altrow
+Failure to yield & 0.475 & 1.000 & 0.644 & [0.514, 0.747] & 29 & 32 & 0 & 89 \\
+Signal violation & 0.806 & 0.962 & 0.877 & [0.769, 0.955] & 25 & 6 & 1 & 118 \\
+\altrow
+Swerve or loss of control & 0.826 & 0.792 & 0.809 & [0.667, 0.917] & 19 & 4 & 5 & 122 \\
+Dooring & 0.500 & 1.000 & 0.667 & [0.333, 1.000] & 2 & 2 & 0 & 146 \\
+\altrow
+Distraction or impairment & 0.657 & 0.852 & 0.742 & [0.603, 0.852] & 23 & 12 & 4 & 111 \\
+Vehicle turning across & 0.828 & 1.000 & 0.906 & [0.838, 0.961] & 48 & 10 & 0 & 92 \\
+\altrow
+Lane positioning & 0.976 & 0.932 & 0.953 & [0.901, 0.990] & 41 & 1 & 3 & 105 \\
+\textit{Macro $F_1$, pre-crash cues} & & & 0.778 & [0.726, 0.828] & & & & \\
+\end{xltabular}

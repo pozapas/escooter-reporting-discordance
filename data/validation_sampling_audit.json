@@ -1,0 +1,60 @@
+{
+  "seed": 20260915,
+  "n": 150,
+  "per_mechanism_target": 15,
+  "eligible_n": 470,
+  "pilot_excluded_n": 50,
+  "dooring_all_n": 4,
+  "stratum_sizes": {
+    "wrong_way": {
+      "pool": 42,
+      "drawn": 15
+    },
+    "sidewalk_transition": {
+      "pool": 139,
+      "drawn": 15
+    },
+    "driveway_alley": {
+      "pool": 96,
+      "drawn": 15
+    },
+    "failure_to_yield": {
+      "pool": 178,
+      "drawn": 15
+    },
+    "signal_violation": {
+      "pool": 76,
+      "drawn": 15
+    },
+    "swerve_loss_control": {
+      "pool": 33,
+      "drawn": 15
+    },
+    "distraction_impairment": {
+      "pool": 55,
+      "drawn": 15
+    },
+    "vehicle_turning_across": {
+      "pool": 126,
+      "drawn": 15
+    },
+    "lane_positioning": {
+      "pool": 68,
+      "drawn": 15
+    }
+  },
+  "random_fill_n": 11,
+  "stratum_counts": {
+    "positive_driveway_alley": 15,
+    "positive_distraction_impairment": 15,
+    "positive_failure_to_yield": 15,
+    "positive_sidewalk_transition": 15,
+    "positive_vehicle_turning_across": 15,
+    "positive_signal_violation": 15,
+    "positive_wrong_way": 15,
+    "positive_lane_positioning": 15,
+    "positive_swerve_loss_control": 15,
+    "random_fill": 11,
+    "dooring_all": 4
+  }
+}

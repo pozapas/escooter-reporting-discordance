@@ -1,0 +1,86 @@
+{
+  "raw_rows": 527,
+  "raw_cols": 152,
+  "unique_crash_ids_raw": 525,
+  "crashes_with_multiple_scooter_riders": [
+    19738411,
+    19838154
+  ],
+  "n_crashes_with_multiple_scooter_riders": 2,
+  "crash_sev_raw_counts": {
+    "Non-Incapacitating": 260,
+    "Possible Injury": 103,
+    "Not Injured": 77,
+    "Incapacitating Injury": 71,
+    "Killed": 11,
+    "Unknown": 5
+  },
+  "dropped_unknown_severity": 5,
+  "dropped_unknown_severity_values": [
+    "Unknown"
+  ],
+  "modeled_rows": 522,
+  "modeled_unique_crashes": 520,
+  "sev_kabco_counts": {
+    "B": 260,
+    "C": 103,
+    "O": 77,
+    "A": 71,
+    "K": 11
+  },
+  "sev3_counts": {
+    "O": 77,
+    "BC": 363,
+    "KA": 82
+  },
+  "sev4_counts": {
+    "O": 77,
+    "C": 103,
+    "B": 260,
+    "KA": 82
+  },
+  "unit_desc_2_counts": {
+    "Motor Vehicle": 522
+  },
+  "second_unit_motor_vehicle": 522,
+  "unit_desc_1_counts": {
+    "Motorized Conveyance": 427,
+    "Other (Explain In Narrative)": 95
+  },
+  "rider_severity_comparable_n": 490,
+  "rider_severity_equals_crash_severity": 484,
+  "rider_severity_missing_or_unknown": 32,
+  "narrative_missing_or_empty": 0,
+  "narrative_chars_median": 523.0,
+  "narrative_chars_q1": 383.25,
+  "narrative_chars_q3": 750.75,
+  "crash_year_counts": {
+    "2021": 30,
+    "2022": 79,
+    "2023": 114,
+    "2024": 127,
+    "2025": 172
+  },
+  "crash_hour_missing": 0,
+  "coord_missing": 76,
+  "coord_present": 446,
+  "age_missing": 34,
+  "gender_counts": {
+    "Male": 371,
+    "Female": 125,
+    "NaN": 20,
+    "Unknown": 6
+  },
+  "ethnicity_counts": {
+    "White": 195,
+    "Hispanic": 127,
+    "Black": 126,
+    "Asian": 29,
+    "NaN": 23,
+    "Unknown": 14,
+    "Other": 4,
+    "Amer. Indian/Alaskan Native": 4
+  },
+  "output_rows": 522,
+  "output_path": "data\\base_frame.csv"
+}

@@ -1,0 +1,45 @@
+% Generated table; it uses the manuscript preamble's macros (\hltint, \hcell, \altrow, PanelBg).
+\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{3.4cm}*{5}{>{\centering\arraybackslash}X}>{\centering\arraybackslash}p{1.5cm}>{\centering\arraybackslash}p{2.1cm}}
+\caption{\hltint{HlM}{The latent-class-weighted model M2 under each weight definition.}}\label{tab:a_m2}\\
+\toprule
+\headerrow
+\hcell{Specification} & \hcell{Rider age not recorded} & \hcell{Night} & \hcell{Crash coordinates absent} & \hcell{Poverty share, block group} & \hcell{Inside an urban area of 200,000 or more} & \hcell{FMI median (max)} & \hcell{O / BC / KA} \\
+\midrule
+\endfirsthead
+\multicolumn{8}{l}{\cellcolor{HeaderGold}\textcolor{HeaderText}{\textbf{\tablename\ \thetable{} \textit{(continued)}}}} \\
+\toprule
+\endhead
+\midrule
+\multicolumn{8}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\multicolumn{8}{p{0.97\linewidth}}{\footnotesize \textit{Note:} Bold marks an estimate whose 95\% interval excludes zero. Standard errors are rider-clustered sandwich errors except in the first row. FMI is the fraction of missing information across the posterior draws, given as the median over the coefficients with the maximum in parentheses. The class sizes are the coded counts for M1, the expected counts under the posterior weights, or the modal counts. The coded-class weights sum to 372.61, with an effective sample size of 444.3. A dash marks a quantity that is not defined for the specification, and Panel~B omits the fits without marginal effects.}\\
+\endlastfoot
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{6}{l}{\textbf{Panel A. Coefficients, with standard errors in parentheses}} \\
+\addlinespace[2pt]
+M1, model-based errors & \textbf{$-$1.603 (0.694)} & 0.304 (0.368) & $-$0.758 (0.423) & \textbf{$-$1.692 (0.511)} & $-$0.325 (0.256) & -- & 77 / 363 / 82 \\
+\altrow
+M1, rider-clustered sandwich & $-$1.604 (0.989) & 0.303 (0.408) & $-$0.758 (0.420) & \textbf{$-$1.692 (0.495)} & $-$0.325 (0.250) & -- & 77 / 363 / 82 \\
+M2, expected likelihood, pooled & $-$0.592 (0.775) & 0.481 (0.357) & \textbf{$-$0.721 (0.350)} & \textbf{$-$0.784 (0.383)} & \textbf{$-$0.355 (0.165)} & 0.069 (0.152) & 100.4 / 390.3 / 31.4 \\
+\altrow
+M2, posterior-mean weights & $-$0.544 (0.699) & 0.463 (0.318) & \textbf{$-$0.690 (0.301)} & \textbf{$-$0.758 (0.330)} & \textbf{$-$0.348 (0.147)} & -- & 97.5 / 392.6 / 31.8 \\
+M2, coded-class weight & $-$1.496 (1.192) & 0.551 (0.575) & \textbf{$-$1.006 (0.505)} & \textbf{$-$1.516 (0.554)} & $-$0.365 (0.251) & -- & -- \\
+\altrow
+M2, modal reassignment & $-$0.077 (1.351) & \textbf{1.198 (0.606)} & \textbf{$-$1.366 (0.614)} & $-$0.808 (0.649) & \textbf{$-$0.626 (0.277)} & -- & 44 / 456 / 22 \\
+M2, weak-prior weights & $-$0.545 (0.855) & 0.516 (0.401) & \textbf{$-$0.787 (0.400)} & \textbf{$-$0.797 (0.403)} & \textbf{$-$0.370 (0.178)} & 0.079 (0.247) & -- \\
+\altrow
+M2, estimated-dependence weights & $-$0.237 (0.719) & 0.586 (0.397) & $-$0.920 (0.551) & $-$1.129 (0.751) & $-$0.274 (0.215) & 0.180 (0.655) & -- \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{6}{l}{\textbf{Panel B. Average marginal effects on the KA probability, with 95\% intervals}} \\
+\addlinespace[2pt]
+M1, model-based errors & \textbf{$-$0.119 [$-$0.178, $-$0.024]} & 0.041 [$-$0.047, 0.157] & $-$0.080 [$-$0.147, 0.014] & \textbf{$-$0.212 [$-$0.345, $-$0.091]} & $-$0.043 [$-$0.117, 0.019] & & \\
+\altrow
+M1, rider-clustered sandwich & $-$0.119 [$-$0.187, 0.058] & 0.040 [$-$0.058, 0.162] & $-$0.080 [$-$0.152, 0.006] & \textbf{$-$0.212 [$-$0.333, $-$0.093]} & $-$0.043 [$-$0.112, 0.024] & & \\
+M2, expected likelihood, pooled & $-$0.026 [$-$0.075, 0.074] & 0.031 [$-$0.012, 0.106] & \textbf{$-$0.033 [$-$0.073, $-$0.002]} & $-$0.044 [$-$0.108, 0.0002] & \textbf{$-$0.022 [$-$0.051, $-$0.002]} & & \\
+\altrow
+M2, coded-class weight & $-$0.056 [$-$0.110, 0.079] & 0.042 [$-$0.035, 0.192] & \textbf{$-$0.051 [$-$0.108, $-$0.003]} & \textbf{$-$0.099 [$-$0.212, $-$0.039]} & $-$0.026 [$-$0.072, 0.010] & & \\
+M2, modal reassignment & $-$0.006 [$-$0.067, 0.238] & \textbf{0.065 [0.005, 0.186]} & \textbf{$-$0.036 [$-$0.081, $-$0.007]} & $-$0.031 [$-$0.113, 0.018] & \textbf{$-$0.027 [$-$0.066, $-$0.005]} & & \\
+\end{xltabular}

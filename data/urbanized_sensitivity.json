@@ -1,0 +1,1126 @@
+{
+  "generated": "2026-10-06T02:35:13+00:00",
+  "script": "src/urbanized_sensitivity.py",
+  "inputs": {
+    "model_frame": "data/model_frame.csv",
+    "base_frame": "data/base_frame.csv",
+    "screening": "data/screening.json",
+    "severity_primary": "data/severity.json",
+    "data_extra": "data/data_extra.json",
+    "previous_primary_without_indicator": "data/backup_pre_urbanized/severity.json",
+    "urban_areas": [
+      "data/shapefiles/tl_2020_us_uac20.shp",
+      "data/shapefiles/ua_list_all.txt"
+    ],
+    "prespec": "docs/prespec.md"
+  },
+  "settings": {
+    "kr_draws": 1000,
+    "kr_seed": 20260917,
+    "kr_seed_check": [
+      20260917,
+      20260918,
+      20260919,
+      20260920
+    ],
+    "ua_population_threshold": 200000,
+    "min_events_rule": 10,
+    "max_vif_rule": 5.0
+  },
+  "direction": "reverse sensitivity: the indicator is a screened covariate of the primary M1, and the comparison model is M1 without it",
+  "primary_check": {
+    "loglik_refit": -393.9275,
+    "loglik_stored": -393.9275,
+    "matches": true,
+    "stored_primary_model": "ordered logit (BIC did not confirm the partial proportional-odds model)",
+    "n_covariates": 35,
+    "converged": true
+  },
+  "prespec": "section 2.1 lists Urbanized as a roadway and environment candidate; section 3 gives the inclusion rules, applied in model_frame.screen",
+  "indicator": {
+    "ua_population_threshold": 200000,
+    "urban_areas_at_or_above_threshold_nationally": 179,
+    "located_rows": 446,
+    "located_inside": 345,
+    "located_outside": 101,
+    "unlocated_rows": 76,
+    "unlocated_resolved_by_city_lookup": 58,
+    "unlocated_unresolved_fallback_rural_flag": 18,
+    "city_lookup_rule": "a record without coordinates takes 1 if at least half the located records of its City_ID fall inside a qualifying urban area; 'Not Listed' or a city with no located record falls back to the CRIS rural flag",
+    "urban_areas_hit": {
+      "Houston, TX": 94,
+      "Austin, TX": 80,
+      "Dallas--Fort Worth--Arlington, TX": 71,
+      "San Antonio, TX": 53,
+      "Lubbock, TX": 13,
+      "Denton--Lewisville, TX": 11,
+      "El Paso, TX--NM": 8,
+      "Corpus Christi, TX": 6,
+      "Killeen, TX": 4,
+      "McAllen, TX": 3,
+      "Laredo, TX": 2
+    },
+    "counts_by_severity": {
+      "inside_ua_200k": {
+        "O": 62,
+        "BC": 282,
+        "KA": 60
+      },
+      "outside": {
+        "O": 15,
+        "BC": 81,
+        "KA": 22
+      }
+    },
+    "frame_column_matches_construction": true,
+    "reproduces_data_extra": true,
+    "construction": "model_frame.py with data_extra._urbanized_area: point-in-polygon against the 2020 Census Urban Areas of population 200,000 or more; a record without coordinates takes the majority value of the located records of its City_ID, and a record whose city cannot be placed takes the CRIS rural flag",
+    "column": "urban_area_200k"
+  },
+  "screening": {
+    "screening_entry": {
+      "candidate": "urban_area_200k",
+      "binary": true,
+      "events_by_severity": {
+        "O": 62,
+        "BC": 282,
+        "KA": 60
+      },
+      "min_cell": 60,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.252,
+      "disposition": "included"
+    },
+    "event_rule": {
+      "indicator_equal_1_by_severity": {
+        "O": 62,
+        "BC": 282,
+        "KA": 60
+      },
+      "indicator_equal_0_by_severity": {
+        "O": 15,
+        "BC": 81,
+        "KA": 22
+      },
+      "smallest_cell_indicator_1": 60,
+      "smallest_cell_indicator_0": 15,
+      "min_events_rule": 10,
+      "meets_event_rule": true,
+      "reference_side_meets_event_rule": true,
+      "rule_as_applied": "model_frame.screen counts the rows where the indicator is 1 in each severity class; the reference side is reported too"
+    },
+    "vif_rule_pooled_screening_design": {
+      "design": "every screening candidate meeting the event rule (model_frame.screen), complete cases",
+      "n_columns": 35,
+      "vif_indicator": 1.252,
+      "max_vif_rule": 5.0,
+      "meets_vif_rule": true
+    },
+    "disposition": "included",
+    "in_primary_specification": true,
+    "conceptual_role": "Urbanized area is the conventional urban and rural context covariate of police-record severity models and stands for the speed environment, trauma care access and reporting practice that differ between large urban areas and the rest; its role is the one prespec section 2.1 assigns it",
+    "auxiliary_collinearity": {
+      "note": "auxiliary diagnostics, not the prespec rule: the large-city indicator is not an M1 covariate, and the M1-design VIF is computed on the 35 M1 covariates rather than the pooled screening design",
+      "vif_in_m1_design": {
+        "urban_area_200k": 1.252,
+        "poverty_share": 1.108,
+        "road_density_km_100m": 1.254,
+        "coord_missing": 2.375,
+        "road_not_city_street": 2.105
+      },
+      "vif_in_m1_design_without_indicator": {
+        "road_not_city_street": 2.021,
+        "coord_missing": 2.346,
+        "road_density_km_100m": 1.202,
+        "poverty_share": 1.086
+      },
+      "large_city_definition": "City_ID in Austin, Houston, San Antonio, Dallas, Fort Worth, El Paso (random_parameters.LARGE_CITIES, the spatial split of transferability.spatial_test)",
+      "phi_with_large_city": 0.532,
+      "crosstab_indicator_by_large_city": {
+        "urban_area_200k=0": {
+          "large_city=0": 118,
+          "large_city=1": 0
+        },
+        "urban_area_200k=1": {
+          "large_city=0": 147,
+          "large_city=1": 257
+        }
+      },
+      "large_city_rows_outside_ua200k": 0,
+      "correlation_all_rows": {
+        "poverty_share": -0.126,
+        "road_density_km_100m": 0.211,
+        "coord_missing": 0.002,
+        "road_not_city_street": -0.188,
+        "_rural": -0.264
+      },
+      "correlation_located_rows": {
+        "poverty_share": -0.127,
+        "road_density_km_100m": 0.192
+      },
+      "unlocated_rows": 76,
+      "unlocated_rows_city_level_fill": "For the records without coordinates, poverty share and road density take the median of the city (model_frame.py) and the indicator takes the majority value of the city's located records or the CRIS rural flag, so on those records all three are functions of City_ID and move together by construction",
+      "correlation_unlocated_rows": {
+        "poverty_share": -0.13,
+        "road_density_km_100m": 0.559
+      }
+    }
+  },
+  "primary_with_indicator": {
+    "columns": [
+      "speed_35to40",
+      "speed_ge45",
+      "speed_unknown",
+      "light_dark_or_unknown",
+      "eth_black",
+      "eth_hispanic",
+      "eth_other_or_unknown",
+      "gender_female",
+      "gender_unknown",
+      "age_45plus",
+      "age_under25",
+      "age_unknown",
+      "veh_other_unknown",
+      "veh_pickup_truck_van",
+      "veh_suv",
+      "coll_other",
+      "coll_single_mv_straight",
+      "coll_turning",
+      "intx_intersection_or_driveway",
+      "ctrl_signal",
+      "ctrl_stop_sign",
+      "road_not_city_street",
+      "weekend",
+      "nighttime",
+      "coord_missing",
+      "road_density_km_100m",
+      "poverty_share",
+      "urban_area_200k",
+      "cf_rider_failed_to_yield",
+      "cf_driver_inattention",
+      "sidewalk_transition",
+      "failure_to_yield",
+      "signal_violation",
+      "vehicle_turning_across",
+      "lane_positioning"
+    ],
+    "n_covariates": 35,
+    "fit": {
+      "loglik": -393.9275,
+      "n_parameters": 37,
+      "n": 522,
+      "rho2": 0.086,
+      "adjusted_rho2": 0.0002,
+      "aic": 861.855,
+      "bic": 1019.389,
+      "converged": true
+    },
+    "coefficient": {
+      "coef": -0.325459,
+      "se": 0.255656,
+      "z": -1.273,
+      "p": 0.203006,
+      "ci95": [
+        -0.826535,
+        0.175617
+      ],
+      "excludes_zero": false
+    },
+    "odds_ratio": 0.7222,
+    "ame": {
+      "O": {
+        "ame": 0.03362,
+        "ci95": [
+          -0.01782,
+          0.08244
+        ],
+        "excludes_zero": false
+      },
+      "BC": {
+        "ame": 0.00936,
+        "ci95": [
+          -0.002,
+          0.03756
+        ],
+        "excludes_zero": false
+      },
+      "KA": {
+        "ame": -0.04297,
+        "ci95": [
+          -0.11678,
+          0.01889
+        ],
+        "excludes_zero": false
+      }
+    },
+    "excludes_zero": {
+      "O": [
+        "age_unknown",
+        "poverty_share"
+      ],
+      "BC": [
+        "age_under25"
+      ],
+      "KA": [
+        "age_unknown",
+        "poverty_share"
+      ]
+    }
+  },
+  "without_indicator": {
+    "columns": [
+      "speed_35to40",
+      "speed_ge45",
+      "speed_unknown",
+      "light_dark_or_unknown",
+      "eth_black",
+      "eth_hispanic",
+      "eth_other_or_unknown",
+      "gender_female",
+      "gender_unknown",
+      "age_45plus",
+      "age_under25",
+      "age_unknown",
+      "veh_other_unknown",
+      "veh_pickup_truck_van",
+      "veh_suv",
+      "coll_other",
+      "coll_single_mv_straight",
+      "coll_turning",
+      "intx_intersection_or_driveway",
+      "ctrl_signal",
+      "ctrl_stop_sign",
+      "road_not_city_street",
+      "weekend",
+      "nighttime",
+      "coord_missing",
+      "road_density_km_100m",
+      "poverty_share",
+      "cf_rider_failed_to_yield",
+      "cf_driver_inattention",
+      "sidewalk_transition",
+      "failure_to_yield",
+      "signal_violation",
+      "vehicle_turning_across",
+      "lane_positioning"
+    ],
+    "n_covariates": 34,
+    "fit": {
+      "loglik": -394.737,
+      "n_parameters": 36,
+      "n": 522,
+      "rho2": 0.0842,
+      "adjusted_rho2": 0.0006,
+      "aic": 861.474,
+      "bic": 1014.75,
+      "converged": true
+    },
+    "converged": true,
+    "separation": {
+      "max_abs_coefficient": 1.6045,
+      "max_standard_error": 0.7925,
+      "any_coefficient_above_10": false,
+      "any_standard_error_above_10": false,
+      "max_abs_t": 3.177,
+      "suggests_separation": false
+    },
+    "reproduces_previous_primary": {
+      "loglik_previous_primary": -394.737,
+      "columns_match": true,
+      "loglik_matches": true
+    },
+    "bic_minus_primary": -4.639,
+    "aic_minus_primary": -0.381,
+    "lr_indicator": {
+      "lr_chi2": 1.619,
+      "df": 1,
+      "p": 0.203235
+    },
+    "excludes_zero": {
+      "O": [
+        "age_unknown",
+        "coord_missing",
+        "poverty_share"
+      ],
+      "BC": [
+        "age_under25"
+      ],
+      "KA": [
+        "age_unknown",
+        "coord_missing",
+        "poverty_share"
+      ]
+    },
+    "conclusion_changes_when_removed": {
+      "O": {
+        "gained": [
+          "coord_missing"
+        ],
+        "lost": []
+      },
+      "BC": {
+        "gained": [],
+        "lost": []
+      },
+      "KA": {
+        "gained": [
+          "coord_missing"
+        ],
+        "lost": []
+      }
+    },
+    "any_other_conclusion_changes": true,
+    "max_abs_ka_ame_shift_other_covariates": 0.01064,
+    "max_shift_covariate": "poverty_share",
+    "sign_flips_among_significant": [],
+    "ka_ame_requested": {
+      "poverty_share": {
+        "without_indicator": {
+          "ame": -0.20131,
+          "ci95": [
+            -0.33642,
+            -0.07287
+          ],
+          "excludes_zero": true
+        },
+        "primary": {
+          "ame": -0.21195,
+          "ci95": [
+            -0.34473,
+            -0.09128
+          ],
+          "excludes_zero": true
+        }
+      },
+      "coord_missing": {
+        "without_indicator": {
+          "ame": -0.08549,
+          "ci95": [
+            -0.15084,
+            -0.00013
+          ],
+          "excludes_zero": true
+        },
+        "primary": {
+          "ame": -0.08035,
+          "ci95": [
+            -0.14749,
+            0.01352
+          ],
+          "excludes_zero": false
+        }
+      },
+      "age_unknown": {
+        "without_indicator": {
+          "ame": -0.1193,
+          "ci95": [
+            -0.17252,
+            -0.02358
+          ],
+          "excludes_zero": true
+        },
+        "primary": {
+          "ame": -0.11902,
+          "ci95": [
+            -0.17817,
+            -0.02425
+          ],
+          "excludes_zero": true
+        }
+      },
+      "sidewalk_transition": {
+        "without_indicator": {
+          "ame": 0.01278,
+          "ci95": [
+            -0.04406,
+            0.07953
+          ],
+          "excludes_zero": false
+        },
+        "primary": {
+          "ame": 0.01287,
+          "ci95": [
+            -0.04706,
+            0.08385
+          ],
+          "excludes_zero": false
+        }
+      },
+      "failure_to_yield": {
+        "without_indicator": {
+          "ame": 0.00036,
+          "ci95": [
+            -0.05043,
+            0.05602
+          ],
+          "excludes_zero": false
+        },
+        "primary": {
+          "ame": -0.00074,
+          "ci95": [
+            -0.05551,
+            0.05515
+          ],
+          "excludes_zero": false
+        }
+      },
+      "signal_violation": {
+        "without_indicator": {
+          "ame": 0.00511,
+          "ci95": [
+            -0.06529,
+            0.08605
+          ],
+          "excludes_zero": false
+        },
+        "primary": {
+          "ame": 0.00147,
+          "ci95": [
+            -0.06227,
+            0.08882
+          ],
+          "excludes_zero": false
+        }
+      },
+      "vehicle_turning_across": {
+        "without_indicator": {
+          "ame": -0.01012,
+          "ci95": [
+            -0.07718,
+            0.06614
+          ],
+          "excludes_zero": false
+        },
+        "primary": {
+          "ame": -0.00683,
+          "ci95": [
+            -0.06905,
+            0.06582
+          ],
+          "excludes_zero": false
+        }
+      },
+      "lane_positioning": {
+        "without_indicator": {
+          "ame": 0.02891,
+          "ci95": [
+            -0.04123,
+            0.10363
+          ],
+          "excludes_zero": false
+        },
+        "primary": {
+          "ame": 0.02933,
+          "ci95": [
+            -0.03812,
+            0.10537
+          ],
+          "excludes_zero": false
+        }
+      }
+    }
+  },
+  "kr_seed_check": {
+    "seeds": [
+      20260917,
+      20260918,
+      20260919,
+      20260920
+    ],
+    "draws": 1000,
+    "primary": {
+      "poverty_share": {
+        "20260917": {
+          "ci95": [
+            -0.34473,
+            -0.09128
+          ],
+          "excludes_zero": true
+        },
+        "20260918": {
+          "ci95": [
+            -0.34657,
+            -0.08703
+          ],
+          "excludes_zero": true
+        },
+        "20260919": {
+          "ci95": [
+            -0.34398,
+            -0.09064
+          ],
+          "excludes_zero": true
+        },
+        "20260920": {
+          "ci95": [
+            -0.35018,
+            -0.09358
+          ],
+          "excludes_zero": true
+        }
+      },
+      "coord_missing": {
+        "20260917": {
+          "ci95": [
+            -0.14749,
+            0.01352
+          ],
+          "excludes_zero": false
+        },
+        "20260918": {
+          "ci95": [
+            -0.1464,
+            0.0094
+          ],
+          "excludes_zero": false
+        },
+        "20260919": {
+          "ci95": [
+            -0.14436,
+            0.01402
+          ],
+          "excludes_zero": false
+        },
+        "20260920": {
+          "ci95": [
+            -0.15008,
+            0.00641
+          ],
+          "excludes_zero": false
+        }
+      },
+      "age_unknown": {
+        "20260917": {
+          "ci95": [
+            -0.17817,
+            -0.02425
+          ],
+          "excludes_zero": true
+        },
+        "20260918": {
+          "ci95": [
+            -0.17878,
+            -0.03299
+          ],
+          "excludes_zero": true
+        },
+        "20260919": {
+          "ci95": [
+            -0.17865,
+            -0.0183
+          ],
+          "excludes_zero": true
+        },
+        "20260920": {
+          "ci95": [
+            -0.17745,
+            -0.02898
+          ],
+          "excludes_zero": true
+        }
+      },
+      "sidewalk_transition": {
+        "20260917": {
+          "ci95": [
+            -0.04706,
+            0.08385
+          ],
+          "excludes_zero": false
+        },
+        "20260918": {
+          "ci95": [
+            -0.04549,
+            0.08523
+          ],
+          "excludes_zero": false
+        },
+        "20260919": {
+          "ci95": [
+            -0.04586,
+            0.07949
+          ],
+          "excludes_zero": false
+        },
+        "20260920": {
+          "ci95": [
+            -0.04507,
+            0.07746
+          ],
+          "excludes_zero": false
+        }
+      },
+      "failure_to_yield": {
+        "20260917": {
+          "ci95": [
+            -0.05551,
+            0.05515
+          ],
+          "excludes_zero": false
+        },
+        "20260918": {
+          "ci95": [
+            -0.05649,
+            0.06221
+          ],
+          "excludes_zero": false
+        },
+        "20260919": {
+          "ci95": [
+            -0.05407,
+            0.06037
+          ],
+          "excludes_zero": false
+        },
+        "20260920": {
+          "ci95": [
+            -0.04826,
+            0.06143
+          ],
+          "excludes_zero": false
+        }
+      },
+      "signal_violation": {
+        "20260917": {
+          "ci95": [
+            -0.06227,
+            0.08882
+          ],
+          "excludes_zero": false
+        },
+        "20260918": {
+          "ci95": [
+            -0.0639,
+            0.08943
+          ],
+          "excludes_zero": false
+        },
+        "20260919": {
+          "ci95": [
+            -0.06227,
+            0.085
+          ],
+          "excludes_zero": false
+        },
+        "20260920": {
+          "ci95": [
+            -0.06469,
+            0.08037
+          ],
+          "excludes_zero": false
+        }
+      },
+      "vehicle_turning_across": {
+        "20260917": {
+          "ci95": [
+            -0.06905,
+            0.06582
+          ],
+          "excludes_zero": false
+        },
+        "20260918": {
+          "ci95": [
+            -0.067,
+            0.06661
+          ],
+          "excludes_zero": false
+        },
+        "20260919": {
+          "ci95": [
+            -0.06972,
+            0.06124
+          ],
+          "excludes_zero": false
+        },
+        "20260920": {
+          "ci95": [
+            -0.06975,
+            0.06346
+          ],
+          "excludes_zero": false
+        }
+      },
+      "lane_positioning": {
+        "20260917": {
+          "ci95": [
+            -0.03812,
+            0.10537
+          ],
+          "excludes_zero": false
+        },
+        "20260918": {
+          "ci95": [
+            -0.0371,
+            0.10972
+          ],
+          "excludes_zero": false
+        },
+        "20260919": {
+          "ci95": [
+            -0.03226,
+            0.10604
+          ],
+          "excludes_zero": false
+        },
+        "20260920": {
+          "ci95": [
+            -0.03396,
+            0.10784
+          ],
+          "excludes_zero": false
+        }
+      },
+      "urban_area_200k": {
+        "20260917": {
+          "ci95": [
+            -0.11678,
+            0.01889
+          ],
+          "excludes_zero": false
+        },
+        "20260918": {
+          "ci95": [
+            -0.1161,
+            0.02554
+          ],
+          "excludes_zero": false
+        },
+        "20260919": {
+          "ci95": [
+            -0.1168,
+            0.01993
+          ],
+          "excludes_zero": false
+        },
+        "20260920": {
+          "ci95": [
+            -0.1172,
+            0.02252
+          ],
+          "excludes_zero": false
+        }
+      }
+    },
+    "without_indicator": {
+      "poverty_share": {
+        "20260917": {
+          "ci95": [
+            -0.33642,
+            -0.07287
+          ],
+          "excludes_zero": true
+        },
+        "20260918": {
+          "ci95": [
+            -0.32799,
+            -0.08264
+          ],
+          "excludes_zero": true
+        },
+        "20260919": {
+          "ci95": [
+            -0.33519,
+            -0.08471
+          ],
+          "excludes_zero": true
+        },
+        "20260920": {
+          "ci95": [
+            -0.33309,
+            -0.08741
+          ],
+          "excludes_zero": true
+        }
+      },
+      "coord_missing": {
+        "20260917": {
+          "ci95": [
+            -0.15084,
+            -0.00013
+          ],
+          "excludes_zero": true
+        },
+        "20260918": {
+          "ci95": [
+            -0.15262,
+            0.00378
+          ],
+          "excludes_zero": false
+        },
+        "20260919": {
+          "ci95": [
+            -0.15173,
+            0.00352
+          ],
+          "excludes_zero": false
+        },
+        "20260920": {
+          "ci95": [
+            -0.1497,
+            5e-05
+          ],
+          "excludes_zero": false
+        }
+      },
+      "age_unknown": {
+        "20260917": {
+          "ci95": [
+            -0.17252,
+            -0.02358
+          ],
+          "excludes_zero": true
+        },
+        "20260918": {
+          "ci95": [
+            -0.17607,
+            -0.01687
+          ],
+          "excludes_zero": true
+        },
+        "20260919": {
+          "ci95": [
+            -0.1773,
+            -0.02217
+          ],
+          "excludes_zero": true
+        },
+        "20260920": {
+          "ci95": [
+            -0.1778,
+            -0.02458
+          ],
+          "excludes_zero": true
+        }
+      },
+      "sidewalk_transition": {
+        "20260917": {
+          "ci95": [
+            -0.04406,
+            0.07953
+          ],
+          "excludes_zero": false
+        },
+        "20260918": {
+          "ci95": [
+            -0.04337,
+            0.08579
+          ],
+          "excludes_zero": false
+        },
+        "20260919": {
+          "ci95": [
+            -0.04719,
+            0.08114
+          ],
+          "excludes_zero": false
+        },
+        "20260920": {
+          "ci95": [
+            -0.04485,
+            0.07936
+          ],
+          "excludes_zero": false
+        }
+      },
+      "failure_to_yield": {
+        "20260917": {
+          "ci95": [
+            -0.05043,
+            0.05602
+          ],
+          "excludes_zero": false
+        },
+        "20260918": {
+          "ci95": [
+            -0.05279,
+            0.05695
+          ],
+          "excludes_zero": false
+        },
+        "20260919": {
+          "ci95": [
+            -0.05258,
+            0.05862
+          ],
+          "excludes_zero": false
+        },
+        "20260920": {
+          "ci95": [
+            -0.05232,
+            0.06003
+          ],
+          "excludes_zero": false
+        }
+      },
+      "signal_violation": {
+        "20260917": {
+          "ci95": [
+            -0.06529,
+            0.08605
+          ],
+          "excludes_zero": false
+        },
+        "20260918": {
+          "ci95": [
+            -0.06401,
+            0.08916
+          ],
+          "excludes_zero": false
+        },
+        "20260919": {
+          "ci95": [
+            -0.06314,
+            0.08926
+          ],
+          "excludes_zero": false
+        },
+        "20260920": {
+          "ci95": [
+            -0.05958,
+            0.08852
+          ],
+          "excludes_zero": false
+        }
+      },
+      "vehicle_turning_across": {
+        "20260917": {
+          "ci95": [
+            -0.07718,
+            0.06614
+          ],
+          "excludes_zero": false
+        },
+        "20260918": {
+          "ci95": [
+            -0.07504,
+            0.06549
+          ],
+          "excludes_zero": false
+        },
+        "20260919": {
+          "ci95": [
+            -0.07824,
+            0.06483
+          ],
+          "excludes_zero": false
+        },
+        "20260920": {
+          "ci95": [
+            -0.07799,
+            0.06596
+          ],
+          "excludes_zero": false
+        }
+      },
+      "lane_positioning": {
+        "20260917": {
+          "ci95": [
+            -0.04123,
+            0.10363
+          ],
+          "excludes_zero": false
+        },
+        "20260918": {
+          "ci95": [
+            -0.03619,
+            0.10607
+          ],
+          "excludes_zero": false
+        },
+        "20260919": {
+          "ci95": [
+            -0.03615,
+            0.09823
+          ],
+          "excludes_zero": false
+        },
+        "20260920": {
+          "ci95": [
+            -0.03567,
+            0.10258
+          ],
+          "excludes_zero": false
+        }
+      }
+    },
+    "comparison": {
+      "poverty_share": {
+        "primary_excludes_zero_seeds": 4,
+        "without_indicator_excludes_zero_seeds": 4,
+        "stable_across_seeds_primary": true,
+        "stable_across_seeds_without_indicator": true
+      },
+      "coord_missing": {
+        "primary_excludes_zero_seeds": 0,
+        "without_indicator_excludes_zero_seeds": 1,
+        "stable_across_seeds_primary": true,
+        "stable_across_seeds_without_indicator": false
+      },
+      "age_unknown": {
+        "primary_excludes_zero_seeds": 4,
+        "without_indicator_excludes_zero_seeds": 4,
+        "stable_across_seeds_primary": true,
+        "stable_across_seeds_without_indicator": true
+      },
+      "sidewalk_transition": {
+        "primary_excludes_zero_seeds": 0,
+        "without_indicator_excludes_zero_seeds": 0,
+        "stable_across_seeds_primary": true,
+        "stable_across_seeds_without_indicator": true
+      },
+      "failure_to_yield": {
+        "primary_excludes_zero_seeds": 0,
+        "without_indicator_excludes_zero_seeds": 0,
+        "stable_across_seeds_primary": true,
+        "stable_across_seeds_without_indicator": true
+      },
+      "signal_violation": {
+        "primary_excludes_zero_seeds": 0,
+        "without_indicator_excludes_zero_seeds": 0,
+        "stable_across_seeds_primary": true,
+        "stable_across_seeds_without_indicator": true
+      },
+      "vehicle_turning_across": {
+        "primary_excludes_zero_seeds": 0,
+        "without_indicator_excludes_zero_seeds": 0,
+        "stable_across_seeds_primary": true,
+        "stable_across_seeds_without_indicator": true
+      },
+      "lane_positioning": {
+        "primary_excludes_zero_seeds": 0,
+        "without_indicator_excludes_zero_seeds": 0,
+        "stable_across_seeds_primary": true,
+        "stable_across_seeds_without_indicator": true
+      },
+      "urban_area_200k": {
+        "primary_excludes_zero_seeds": 0
+      }
+    },
+    "covariates_unstable_across_seeds": [
+      "coord_missing"
+    ],
+    "changed_ka_bound_nearest_zero_by_seed": {
+      "coord_missing": {
+        "bound": "upper",
+        "primary_range": [
+          0.00641,
+          0.01402
+        ],
+        "without_indicator_range": [
+          -0.00013,
+          0.00378
+        ],
+        "seed_ranges_overlap": false,
+        "seed_fragile": true
+      }
+    },
+    "ka_changes_within_seed_variation": [],
+    "ka_changes_beyond_seed_variation": [
+      "coord_missing"
+    ],
+    "reading": {
+      "coord_missing": "KA interval excludes zero on 0 of 4 seeds in M1 and on 1 of 4 without the indicator. The upper bound ranges over [0.00641, 0.01402] in M1 and [-0.00013, 0.00378] without the indicator; the ranges do not overlap, so the indicator moves the interval by more than the seeds do"
+    },
+    "note": "The two models differ by one parameter, so the same seed gives different Krinsky-Robb draws. A KA conclusion that changes between them is compared on the bound nearest zero across the four seeds in each model; overlapping seed ranges mean the change is Monte Carlo variation, separated ranges mean the indicator moved it."
+  }
+}

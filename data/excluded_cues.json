@@ -1,0 +1,383 @@
+{
+  "generated": "2026-10-07T18:55:37+00:00",
+  "status": "post hoc sensitivity, specified after the primary results and after the raw cue-by-severity table was seen",
+  "inputs": [
+    "data/model_frame.csv",
+    "data/screening.json"
+  ],
+  "excluded_cues_fitted": [
+    "driveway_alley",
+    "distraction_impairment",
+    "swerve_loss_control",
+    "wrong_way"
+  ],
+  "dooring_left_out": "2 riders",
+  "counts": {
+    "driveway_alley": {
+      "events_by_severity": {
+        "O": 5,
+        "BC": 95,
+        "KA": 10
+      },
+      "disposition": "excluded: smallest severity cell below 10"
+    },
+    "distraction_impairment": {
+      "events_by_severity": {
+        "O": 6,
+        "BC": 48,
+        "KA": 18
+      },
+      "disposition": "excluded: smallest severity cell below 10"
+    },
+    "swerve_loss_control": {
+      "events_by_severity": {
+        "O": 9,
+        "BC": 37,
+        "KA": 1
+      },
+      "disposition": "excluded: smallest severity cell below 10"
+    },
+    "wrong_way": {
+      "events_by_severity": {
+        "O": 10,
+        "BC": 21,
+        "KA": 5
+      },
+      "disposition": "excluded: smallest severity cell below 10"
+    },
+    "dooring": {
+      "events_by_severity": {
+        "O": 1,
+        "BC": 0,
+        "KA": 1
+      },
+      "disposition": "excluded: smallest severity cell below 10"
+    }
+  },
+  "ordered_logit": {
+    "model": "MX = M1 plus the four excluded cues, ordered logit",
+    "n_covariates": 39,
+    "loglik": -384.075,
+    "loglik_M1": -393.927,
+    "loglik_M0c": -394.326,
+    "lr_four_vs_M1": {
+      "lr_chi2": 19.7058,
+      "df": 4,
+      "p": 0.000571
+    },
+    "lr_nine_cues_vs_M0c": {
+      "lr_chi2": 20.5022,
+      "df": 9,
+      "p": 0.015054
+    },
+    "single_cue_lr_vs_M1": {
+      "driveway_alley": {
+        "lr_chi2": 2.0834,
+        "df": 1,
+        "p": 0.14891
+      },
+      "distraction_impairment": {
+        "lr_chi2": 9.0516,
+        "df": 1,
+        "p": 0.002625
+      },
+      "swerve_loss_control": {
+        "lr_chi2": 4.4491,
+        "df": 1,
+        "p": 0.034919
+      },
+      "wrong_way": {
+        "lr_chi2": 3.843,
+        "df": 1,
+        "p": 0.049953
+      }
+    },
+    "single_cue_holm_p": {
+      "distraction_impairment": 0.0105,
+      "swerve_loss_control": 0.1048,
+      "wrong_way": 0.1048,
+      "driveway_alley": 0.1489
+    },
+    "coefficients": {
+      "driveway_alley": {
+        "coef": 0.393,
+        "se": 0.287,
+        "ci95": [
+          -0.17,
+          0.955
+        ],
+        "odds_ratio": 1.48,
+        "or_ci95": [
+          0.84,
+          2.6
+        ],
+        "wald_p": 0.1714
+      },
+      "distraction_impairment": {
+        "coef": 0.901,
+        "se": 0.293,
+        "ci95": [
+          0.327,
+          1.474
+        ],
+        "odds_ratio": 2.46,
+        "or_ci95": [
+          1.39,
+          4.37
+        ],
+        "wald_p": 0.0021
+      },
+      "swerve_loss_control": {
+        "coef": -0.788,
+        "se": 0.351,
+        "ci95": [
+          -1.475,
+          -0.101
+        ],
+        "odds_ratio": 0.45,
+        "or_ci95": [
+          0.23,
+          0.9
+        ],
+        "wald_p": 0.0246
+      },
+      "wrong_way": {
+        "coef": -0.815,
+        "se": 0.42,
+        "ci95": [
+          -1.639,
+          0.009
+        ],
+        "odds_ratio": 0.44,
+        "or_ci95": [
+          0.19,
+          1.01
+        ],
+        "wald_p": 0.0524
+      }
+    },
+    "admitted_cues_in_MX": {
+      "sidewalk_transition": {
+        "coef": 0.084,
+        "se": 0.256,
+        "ci95": [
+          -0.417,
+          0.586
+        ],
+        "odds_ratio": 1.09,
+        "or_ci95": [
+          0.66,
+          1.8
+        ],
+        "wald_p": 0.7422
+      },
+      "failure_to_yield": {
+        "coef": -0.043,
+        "se": 0.231,
+        "ci95": [
+          -0.496,
+          0.409
+        ],
+        "odds_ratio": 0.96,
+        "or_ci95": [
+          0.61,
+          1.51
+        ],
+        "wald_p": 0.8507
+      },
+      "signal_violation": {
+        "coef": 0.078,
+        "se": 0.305,
+        "ci95": [
+          -0.521,
+          0.676
+        ],
+        "odds_ratio": 1.08,
+        "or_ci95": [
+          0.59,
+          1.97
+        ],
+        "wald_p": 0.7989
+      },
+      "vehicle_turning_across": {
+        "coef": -0.116,
+        "se": 0.279,
+        "ci95": [
+          -0.664,
+          0.431
+        ],
+        "odds_ratio": 0.89,
+        "or_ci95": [
+          0.51,
+          1.54
+        ],
+        "wald_p": 0.6774
+      },
+      "lane_positioning": {
+        "coef": 0.403,
+        "se": 0.276,
+        "ci95": [
+          -0.137,
+          0.943
+        ],
+        "odds_ratio": 1.5,
+        "or_ci95": [
+          0.87,
+          2.57
+        ],
+        "wald_p": 0.1431
+      }
+    },
+    "focus_ame": {
+      "covariate": "distraction_impairment",
+      "KA": {
+        "ame": 0.13138,
+        "ci95": [
+          0.03364,
+          0.22857
+        ],
+        "excludes_zero": true
+      },
+      "O": {
+        "ame": -0.07801,
+        "ci95": [
+          -0.11979,
+          -0.02642
+        ],
+        "excludes_zero": true
+      },
+      "BC": {
+        "ame": -0.05336,
+        "ci95": [
+          -0.11703,
+          -0.00573
+        ],
+        "excludes_zero": true
+      }
+    }
+  },
+  "narrative_length": {
+    "control": "narrative_chars_z",
+    "coefficient": {
+      "coef": 0.824,
+      "se": 0.295,
+      "ci95": [
+        0.246,
+        1.402
+      ],
+      "odds_ratio": 2.28,
+      "or_ci95": [
+        1.28,
+        4.06
+      ],
+      "wald_p": 0.0052
+    },
+    "lr_focus": {
+      "lr_chi2": 7.7601,
+      "df": 1,
+      "p": 0.005341
+    }
+  },
+  "excluding_fatal": {
+    "rule": "riders coded K removed; the KA class then holds A riders only",
+    "n_riders": 511,
+    "n_fatal_removed": 11,
+    "fatal_with_focus_cue": 4,
+    "focus_cells": {
+      "O": 6,
+      "BC": 48,
+      "KA": 14
+    },
+    "coefficient": {
+      "coef": 0.768,
+      "se": 0.308,
+      "ci95": [
+        0.165,
+        1.37
+      ],
+      "odds_ratio": 2.15,
+      "or_ci95": [
+        1.18,
+        3.94
+      ],
+      "wald_p": 0.0125
+    },
+    "lr_focus": {
+      "lr_chi2": 6.1718,
+      "df": 1,
+      "p": 0.01298
+    },
+    "ame_KA": {
+      "ame": 0.10135,
+      "ci95": [
+        0.01721,
+        0.19485
+      ],
+      "excludes_zero": true
+    }
+  },
+  "firth": {
+    "coef": 0.876,
+    "se": 0.286,
+    "ci95": [
+      0.314,
+      1.437
+    ],
+    "odds_ratio": 2.4,
+    "or_ci95": [
+      1.37,
+      4.21
+    ],
+    "converged": true
+  },
+  "bayes": {
+    "prior": "normal(0, 1) on every slope, raw coding",
+    "posterior_mean": 0.836,
+    "ci95": [
+      0.276,
+      1.409
+    ],
+    "odds_ratio": 2.31,
+    "or_ci95": [
+      1.32,
+      4.09
+    ],
+    "prob_positive": 0.999,
+    "diagnostics": {
+      "max_r_hat": 1.003,
+      "min_ess_bulk": 1137,
+      "min_ess_tail": 1519,
+      "divergences": 0,
+      "n_parameters_summarized": 41,
+      "healthy": true,
+      "seconds": 6.7
+    }
+  },
+  "cv": {
+    "repeats": 10,
+    "folds": 5,
+    "seed": 20260918,
+    "mean_log_loss": {
+      "M0c": 0.8356,
+      "M1": 0.849,
+      "MX": 0.8414
+    },
+    "paired": {
+      "MX_minus_M0c": {
+        "mean_difference": 0.0058,
+        "folds_first_better": 24,
+        "folds": 50
+      },
+      "MX_minus_M1": {
+        "mean_difference": -0.0076,
+        "folds_first_better": 32,
+        "folds": 50
+      },
+      "M1_minus_M0c": {
+        "mean_difference": 0.0134,
+        "folds_first_better": 0,
+        "folds": 50
+      }
+    }
+  }
+}

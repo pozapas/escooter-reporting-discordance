@@ -1,0 +1,89 @@
+{
+  "batch1_human_labelled": 150,
+  "batch2_human_labelled": 37,
+  "narratives": 520,
+  "by_source": {
+    "automated": 333,
+    "human": 187
+  },
+  "human_share": 0.3596,
+  "automated_source": "route_b_reference",
+  "why_not_fusion": "the fusion rule scores 0.779 macro F1 against the human labels against Route B's 0.811, so using it where no human label exists would choose the weaker measurement; its role was to select the adjudication set, which it did",
+  "rate_by_label": {
+    "wrong_way": {
+      "human_subset": 0.1123,
+      "automated_subset": 0.045,
+      "overall": 0.0692
+    },
+    "sidewalk_transition": {
+      "human_subset": 0.0642,
+      "automated_subset": 0.3003,
+      "overall": 0.2154
+    },
+    "driveway_alley": {
+      "human_subset": 0.246,
+      "automated_subset": 0.1922,
+      "overall": 0.2115
+    },
+    "failure_to_yield": {
+      "human_subset": 0.1979,
+      "automated_subset": 0.3994,
+      "overall": 0.3269
+    },
+    "signal_violation": {
+      "human_subset": 0.1711,
+      "automated_subset": 0.1712,
+      "overall": 0.1712
+    },
+    "swerve_loss_control": {
+      "human_subset": 0.1497,
+      "automated_subset": 0.0541,
+      "overall": 0.0885
+    },
+    "dooring": {
+      "human_subset": 0.0107,
+      "automated_subset": 0.0,
+      "overall": 0.0038
+    },
+    "distraction_impairment": {
+      "human_subset": 0.1872,
+      "automated_subset": 0.1111,
+      "overall": 0.1385
+    },
+    "vehicle_turning_across": {
+      "human_subset": 0.3048,
+      "automated_subset": 0.3423,
+      "overall": 0.3288
+    },
+    "lane_positioning": {
+      "human_subset": 0.2674,
+      "automated_subset": 0.1712,
+      "overall": 0.2058
+    },
+    "transported_hospital": {
+      "human_subset": 0.2246,
+      "automated_subset": 0.2252,
+      "overall": 0.225
+    },
+    "unconsciousness": {
+      "human_subset": 0.016,
+      "automated_subset": 0.015,
+      "overall": 0.0154
+    },
+    "fracture": {
+      "human_subset": 0.0267,
+      "automated_subset": 0.021,
+      "overall": 0.0231
+    },
+    "fatality": {
+      "human_subset": 0.0267,
+      "automated_subset": 0.012,
+      "overall": 0.0173
+    },
+    "explicit_no_injury": {
+      "human_subset": 0.1176,
+      "automated_subset": 0.0751,
+      "overall": 0.0904
+    }
+  }
+}

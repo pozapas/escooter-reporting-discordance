@@ -1,0 +1,41 @@
+% Generated table; it uses the manuscript preamble's macros (\hltint, \hcell, \altrow, PanelBg).
+\begin{table}[pos=htbp]
+\tableserif
+\centering
+\begin{threeparttable}
+\hllabelcolour{HlM}
+\caption{\hltint{HlM}{Proportional-odds tests and selection under multiplicity corrections.}}
+\label{tab:a_ordinal}
+\footnotesize
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\textwidth}{Xrrrl}
+\toprule
+\headerrow
+\hcell{Test} & \hcell{$\chi^2$} & \hcell{d.f.} & \hcell{$p$} & \hcell{Conclusion} \\
+\midrule
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{5}{l}{\textbf{Panel A. Tests of proportional odds}} \\
+\addlinespace[2pt]
+Omnibus likelihood ratio & 74.68 & 35 & $<0.001$ & Rejects \\
+\altrow
+Wald form, for comparison & 30.54 & 35 & 0.683 & Does not reject \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{5}{l}{\textbf{Panel B. Selection under each multiplicity correction}} \\
+\addlinespace[2pt]
+\midrule
+\headerrow
+\hcell{Correction} & \hcell{Coefficients freed} & \hcell{$\Delta$BIC} & \hcell{} & \hcell{Selected model} \\
+\midrule
+None & 12 & 14.28 & & Ordered logit \\
+\altrow
+Benjamini and Hochberg & 9 & 8.83 & & Ordered logit \\
+Holm & 2 & $-$14.64 & & Partial proportional odds \\
+\bottomrule
+\end{tabularx}
+\begin{tablenotes}[flushleft]\footnotesize
+\item \textit{Note:} A negative $\Delta$BIC favors the partial proportional-odds model over the ordered logit.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

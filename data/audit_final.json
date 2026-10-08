@@ -1,0 +1,4937 @@
+{
+  "generated": "2026-10-05T13:52:43",
+  "script": "src/audit_final.py",
+  "inputs": [
+    "data/model_frame.csv",
+    "data/narrative_indicator.csv",
+    "data/final_labels.csv",
+    "data/numbers.json",
+    "data/audit_stage1.json"
+  ],
+  "outputs": [
+    "data/audit_final.json",
+    "data/audit_posterior_classprobs.npz"
+  ],
+  "settings": {
+    "draws": 1000,
+    "tune": 2000,
+    "chains": 4,
+    "seed": 20260914,
+    "target_accept": 0.95,
+    "sampler": "nutpie",
+    "prior_sets": {
+      "moderate": {
+        "n_diag": 4.0,
+        "n_off": 1.0,
+        "shift_sd": 1.0,
+        "class_sd": 3.0
+      },
+      "weak": {
+        "n_diag": 1.5,
+        "n_off": 1.0,
+        "shift_sd": 2.5,
+        "class_sd": 3.0
+      }
+    },
+    "n_posterior_draws_saved": 100,
+    "draw_thinning": "evenly spaced over all chains and draws",
+    "sensitivity_fits": {
+      "draws": 4000,
+      "tune": 4000,
+      "when": "every sensitivity fit; the long run is the reported one"
+    }
+  },
+  "input_check": {
+    "rows": 522,
+    "distinct_crashes": 520,
+    "row_order_matches": true,
+    "indicator_rebuilt_from_final_labels_agrees": "522/522",
+    "indicator_is_current": true
+  },
+  "observed_table": {
+    "rows": [
+      "O",
+      "C",
+      "B",
+      "A",
+      "K"
+    ],
+    "columns": [
+      "no cue",
+      "O-consistent",
+      "BC-consistent",
+      "KA-consistent"
+    ],
+    "counts": [
+      [
+        50,
+        21,
+        6,
+        0
+      ],
+      [
+        69,
+        7,
+        26,
+        1
+      ],
+      [
+        185,
+        16,
+        51,
+        8
+      ],
+      [
+        43,
+        0,
+        17,
+        11
+      ],
+      [
+        2,
+        0,
+        0,
+        9
+      ]
+    ]
+  },
+  "crosstab_vs_numbers_json": {
+    "cross_tab_kabco": {
+      "n_compared": 50,
+      "n_differences": 0,
+      "max_abs_numeric_difference": 0.0,
+      "identical": true,
+      "differences": []
+    },
+    "cross_tab_sev3": {
+      "n_compared": 32,
+      "n_differences": 0,
+      "max_abs_numeric_difference": 0.0,
+      "identical": true,
+      "differences": []
+    }
+  },
+  "reproduction": {
+    "moderate_vs_numbers_json_audit_stage1": {
+      "n_compared": 62,
+      "n_differences": 0,
+      "max_abs_numeric_difference": 0.0,
+      "identical": true,
+      "differences": []
+    },
+    "weak_vs_audit_stage1": {
+      "n_compared": 105,
+      "n_differences": 0,
+      "max_abs_numeric_difference": 0.0,
+      "identical": true,
+      "differences": []
+    },
+    "moderate_vs_audit_stage1": {
+      "n_compared": 105,
+      "n_differences": 0,
+      "max_abs_numeric_difference": 0.0,
+      "identical": true,
+      "differences": []
+    }
+  },
+  "primary": {
+    "moderate": {
+      "prior_set": "moderate",
+      "priors": {
+        "n_diag": 4.0,
+        "n_off": 1.0,
+        "shift_sd": 1.0,
+        "class_sd": 3.0
+      },
+      "dependence_fixed_at": 0.0,
+      "dependence_posterior": null,
+      "n": 522,
+      "diagnostics": {
+        "max_r_hat": 1.0042,
+        "min_ess_bulk": 1200,
+        "min_ess_tail": 1410,
+        "divergences": 0,
+        "n_parameters_summarized": 22,
+        "healthy": true
+      },
+      "fit_against_raw_table": {
+        "max_abs_count_error": 6.68,
+        "total_abs_count_error": 56.37,
+        "max_abs_pearson_residual": 2.224,
+        "observed": [
+          [
+            50,
+            21,
+            6,
+            0
+          ],
+          [
+            69,
+            7,
+            26,
+            1
+          ],
+          [
+            185,
+            16,
+            51,
+            8
+          ],
+          [
+            43,
+            0,
+            17,
+            11
+          ],
+          [
+            2,
+            0,
+            0,
+            9
+          ]
+        ],
+        "implied": [
+          [
+            48.5,
+            15.5,
+            11.4,
+            1.4
+          ],
+          [
+            69.5,
+            12.6,
+            19.3,
+            2.0
+          ],
+          [
+            179.1,
+            14.6,
+            56.2,
+            7.1
+          ],
+          [
+            43.5,
+            2.4,
+            13.8,
+            12.5
+          ],
+          [
+            4.8,
+            0.4,
+            1.4,
+            5.9
+          ]
+        ],
+        "reproduces_raw_table": false,
+        "note": "A Pearson residual above about 2 in any cell means the measurement layer cannot represent the observed table, which is a parameterization problem and not a finding."
+      },
+      "class_alignment": {
+        "kabco_measurement": {
+          "O": {
+            "O": 0.4048,
+            "BC": 0.568,
+            "KA": 0.0272
+          },
+          "BC": {
+            "O": 0.0984,
+            "BC": 0.7629,
+            "KA": 0.1387
+          },
+          "KA": {
+            "O": 0.0026,
+            "BC": 0.1189,
+            "KA": 0.8785
+          }
+        },
+        "kabco_measurement_five_level": {
+          "O": {
+            "O": 0.4048,
+            "C": 0.3001,
+            "B": 0.268,
+            "A": 0.0259,
+            "K": 0.0014
+          },
+          "BC": {
+            "O": 0.0984,
+            "C": 0.1858,
+            "B": 0.5771,
+            "A": 0.1308,
+            "K": 0.0079
+          },
+          "KA": {
+            "O": 0.0026,
+            "C": 0.0068,
+            "B": 0.1121,
+            "A": 0.5707,
+            "K": 0.3078
+          }
+        },
+        "p_severe_given_class": {
+          "O": 0.0272,
+          "BC": 0.1387,
+          "KA": 0.8785
+        },
+        "p_no_injury_given_class": {
+          "O": 0.4048,
+          "BC": 0.0984,
+          "KA": 0.0026
+        },
+        "severity_ordering_holds": true,
+        "class_with_most_severe_mass": "KA",
+        "aligned": true
+      },
+      "latent_prevalence": {
+        "O": {
+          "mean": 0.1876,
+          "ci95": [
+            0.0805,
+            0.3794
+          ]
+        },
+        "BC": {
+          "mean": 0.7498,
+          "ci95": [
+            0.5599,
+            0.8622
+          ]
+        },
+        "KA": {
+          "mean": 0.0626,
+          "ci95": [
+            0.0316,
+            0.1111
+          ]
+        }
+      },
+      "narrative_measurement": {
+        "O": {
+          "no cue": 0.5058,
+          "O-consistent": 0.4209,
+          "BC-consistent": 0.054,
+          "KA-consistent": 0.0194
+        },
+        "BC": {
+          "no cue": 0.7213,
+          "O-consistent": 0.0184,
+          "BC-consistent": 0.2417,
+          "KA-consistent": 0.0185
+        },
+        "KA": {
+          "no cue": 0.2715,
+          "O-consistent": 0.0283,
+          "BC-consistent": 0.0681,
+          "KA-consistent": 0.6321
+        }
+      },
+      "run_seconds": 18.2,
+      "draws_per_chain": 1000,
+      "tune": 2000,
+      "class_probability_cells": [
+        {
+          "kabco": "O",
+          "narrative": "no cue",
+          "n_riders": 50,
+          "posterior_mean": {
+            "O": 0.4103,
+            "BC": 0.5891,
+            "KA": 0.0006
+          },
+          "ci95": {
+            "O": [
+              0.0871,
+              0.7949
+            ],
+            "BC": [
+              0.2047,
+              0.9119
+            ],
+            "KA": [
+              0.0,
+              0.0032
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "O",
+          "narrative": "O-consistent",
+          "n_riders": 21,
+          "posterior_mean": {
+            "O": 0.9489,
+            "BC": 0.0509,
+            "KA": 0.0002
+          },
+          "ci95": {
+            "O": [
+              0.8153,
+              0.9982
+            ],
+            "BC": [
+              0.0017,
+              0.1846
+            ],
+            "KA": [
+              0.0,
+              0.001
+            ]
+          },
+          "modal_class": "O"
+        },
+        {
+          "kabco": "O",
+          "narrative": "BC-consistent",
+          "n_riders": 6,
+          "posterior_mean": {
+            "O": 0.1825,
+            "BC": 0.8168,
+            "KA": 0.0007
+          },
+          "ci95": {
+            "O": [
+              0.0047,
+              0.628
+            ],
+            "BC": [
+              0.3718,
+              0.9946
+            ],
+            "KA": [
+              0.0,
+              0.0042
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "O",
+          "narrative": "KA-consistent",
+          "n_riders": 0,
+          "posterior_mean": {
+            "O": 0.4218,
+            "BC": 0.5175,
+            "KA": 0.0607
+          },
+          "ci95": {
+            "O": [
+              0.019,
+              0.8876
+            ],
+            "BC": [
+              0.0423,
+              0.9527
+            ],
+            "KA": [
+              0.0018,
+              0.3499
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "C",
+          "narrative": "no cue",
+          "n_riders": 69,
+          "posterior_mean": {
+            "O": 0.2345,
+            "BC": 0.7644,
+            "KA": 0.0011
+          },
+          "ci95": {
+            "O": [
+              0.0393,
+              0.6125
+            ],
+            "BC": [
+              0.3866,
+              0.9599
+            ],
+            "KA": [
+              0.0,
+              0.0056
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "C",
+          "narrative": "O-consistent",
+          "n_riders": 7,
+          "posterior_mean": {
+            "O": 0.8785,
+            "BC": 0.121,
+            "KA": 0.0006
+          },
+          "ci95": {
+            "O": [
+              0.5808,
+              0.996
+            ],
+            "BC": [
+              0.0036,
+              0.4182
+            ],
+            "KA": [
+              0.0,
+              0.0033
+            ]
+          },
+          "modal_class": "O"
+        },
+        {
+          "kabco": "C",
+          "narrative": "BC-consistent",
+          "n_riders": 26,
+          "posterior_mean": {
+            "O": 0.093,
+            "BC": 0.9059,
+            "KA": 0.0011
+          },
+          "ci95": {
+            "O": [
+              0.002,
+              0.4009
+            ],
+            "BC": [
+              0.5989,
+              0.9972
+            ],
+            "KA": [
+              0.0,
+              0.0065
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "C",
+          "narrative": "KA-consistent",
+          "n_riders": 1,
+          "posterior_mean": {
+            "O": 0.2569,
+            "BC": 0.6378,
+            "KA": 0.1053
+          },
+          "ci95": {
+            "O": [
+              0.0067,
+              0.7458
+            ],
+            "BC": [
+              0.0785,
+              0.9648
+            ],
+            "KA": [
+              0.0033,
+              0.5612
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "B",
+          "narrative": "no cue",
+          "n_riders": 185,
+          "posterior_mean": {
+            "O": 0.0861,
+            "BC": 0.9068,
+            "KA": 0.0071
+          },
+          "ci95": {
+            "O": [
+              0.0107,
+              0.284
+            ],
+            "BC": [
+              0.7085,
+              0.9845
+            ],
+            "KA": [
+              0.0003,
+              0.0317
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "B",
+          "narrative": "O-consistent",
+          "n_riders": 16,
+          "posterior_mean": {
+            "O": 0.6974,
+            "BC": 0.2945,
+            "KA": 0.008
+          },
+          "ci95": {
+            "O": [
+              0.2036,
+              0.9838
+            ],
+            "BC": [
+              0.0109,
+              0.7851
+            ],
+            "KA": [
+              0.0001,
+              0.0453
+            ]
+          },
+          "modal_class": "O"
+        },
+        {
+          "kabco": "B",
+          "narrative": "BC-consistent",
+          "n_riders": 51,
+          "posterior_mean": {
+            "O": 0.0307,
+            "BC": 0.9632,
+            "KA": 0.0061
+          },
+          "ci95": {
+            "O": [
+              0.0005,
+              0.1454
+            ],
+            "BC": [
+              0.8438,
+              0.9982
+            ],
+            "KA": [
+              0.0,
+              0.037
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "B",
+          "narrative": "KA-consistent",
+          "n_riders": 8,
+          "posterior_mean": {
+            "O": 0.0756,
+            "BC": 0.5794,
+            "KA": 0.345
+          },
+          "ci95": {
+            "O": [
+              0.0011,
+              0.3316
+            ],
+            "BC": [
+              0.0361,
+              0.9481
+            ],
+            "KA": [
+              0.0237,
+              0.9125
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "A",
+          "narrative": "no cue",
+          "n_riders": 43,
+          "posterior_mean": {
+            "O": 0.0338,
+            "BC": 0.8399,
+            "KA": 0.1263
+          },
+          "ci95": {
+            "O": [
+              0.0038,
+              0.1164
+            ],
+            "BC": [
+              0.6264,
+              0.9564
+            ],
+            "KA": [
+              0.023,
+              0.3286
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "A",
+          "narrative": "O-consistent",
+          "n_riders": 0,
+          "posterior_mean": {
+            "O": 0.4353,
+            "BC": 0.3697,
+            "KA": 0.195
+          },
+          "ci95": {
+            "O": [
+              0.0617,
+              0.8695
+            ],
+            "BC": [
+              0.0189,
+              0.8348
+            ],
+            "KA": [
+              0.0067,
+              0.5722
+            ]
+          },
+          "modal_class": "O"
+        },
+        {
+          "kabco": "A",
+          "narrative": "BC-consistent",
+          "n_riders": 17,
+          "posterior_mean": {
+            "O": 0.0117,
+            "BC": 0.8889,
+            "KA": 0.0994
+          },
+          "ci95": {
+            "O": [
+              0.0002,
+              0.0574
+            ],
+            "BC": [
+              0.6091,
+              0.992
+            ],
+            "KA": [
+              0.0027,
+              0.3788
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "A",
+          "narrative": "KA-consistent",
+          "n_riders": 11,
+          "posterior_mean": {
+            "O": 0.0043,
+            "BC": 0.0887,
+            "KA": 0.907
+          },
+          "ci95": {
+            "O": [
+              0.0,
+              0.0208
+            ],
+            "BC": [
+              0.0033,
+              0.2808
+            ],
+            "KA": [
+              0.7141,
+              0.9936
+            ]
+          },
+          "modal_class": "KA"
+        },
+        {
+          "kabco": "K",
+          "narrative": "no cue",
+          "n_riders": 2,
+          "posterior_mean": {
+            "O": 0.0156,
+            "BC": 0.4572,
+            "KA": 0.5272
+          },
+          "ci95": {
+            "O": [
+              0.0013,
+              0.0581
+            ],
+            "BC": [
+              0.1072,
+              0.8059
+            ],
+            "KA": [
+              0.1743,
+              0.8869
+            ]
+          },
+          "modal_class": "KA"
+        },
+        {
+          "kabco": "K",
+          "narrative": "O-consistent",
+          "n_riders": 0,
+          "posterior_mean": {
+            "O": 0.2009,
+            "BC": 0.2012,
+            "KA": 0.5979
+          },
+          "ci95": {
+            "O": [
+              0.0136,
+              0.6877
+            ],
+            "BC": [
+              0.0045,
+              0.6976
+            ],
+            "KA": [
+              0.0511,
+              0.958
+            ]
+          },
+          "modal_class": "KA"
+        },
+        {
+          "kabco": "K",
+          "narrative": "BC-consistent",
+          "n_riders": 0,
+          "posterior_mean": {
+            "O": 0.0066,
+            "BC": 0.5783,
+            "KA": 0.4151
+          },
+          "ci95": {
+            "O": [
+              0.0001,
+              0.0329
+            ],
+            "BC": [
+              0.1343,
+              0.9644
+            ],
+            "KA": [
+              0.0269,
+              0.8632
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "K",
+          "narrative": "KA-consistent",
+          "n_riders": 9,
+          "posterior_mean": {
+            "O": 0.0005,
+            "BC": 0.0096,
+            "KA": 0.9899
+          },
+          "ci95": {
+            "O": [
+              0.0,
+              0.0026
+            ],
+            "BC": [
+              0.0007,
+              0.0322
+            ],
+            "KA": [
+              0.9673,
+              0.9989
+            ]
+          },
+          "modal_class": "KA"
+        }
+      ],
+      "reassignment": {
+        "coded_counts": {
+          "O": 77,
+          "BC": 363,
+          "KA": 82
+        },
+        "modal_counts": {
+          "O": 44,
+          "BC": 456,
+          "KA": 22
+        },
+        "riders_whose_modal_class_differs_from_coded": 139,
+        "share_modal_differs": 0.266,
+        "coded_by_modal": {
+          "O": {
+            "O": 21,
+            "BC": 56,
+            "KA": 0
+          },
+          "BC": {
+            "O": 23,
+            "BC": 340,
+            "KA": 0
+          },
+          "KA": {
+            "O": 0,
+            "BC": 60,
+            "KA": 22
+          }
+        },
+        "posterior_prob_of_coded_class": {
+          "mean": 0.7138,
+          "min": 0.0994,
+          "median": 0.9068,
+          "by_coded_class": {
+            "O": 0.5394,
+            "BC": 0.8375,
+            "KA": 0.33
+          }
+        }
+      },
+      "model_implied_class_share": {
+        "O": {
+          "mean": 0.1868,
+          "ci95": [
+            0.0861,
+            0.3783
+          ]
+        },
+        "BC": {
+          "mean": 0.7522,
+          "ci95": [
+            0.5702,
+            0.8566
+          ]
+        },
+        "KA": {
+          "mean": 0.061,
+          "ci95": [
+            0.039,
+            0.101
+          ]
+        }
+      }
+    },
+    "weak": {
+      "prior_set": "weak",
+      "priors": {
+        "n_diag": 1.5,
+        "n_off": 1.0,
+        "shift_sd": 2.5,
+        "class_sd": 3.0
+      },
+      "dependence_fixed_at": 0.0,
+      "dependence_posterior": null,
+      "n": 522,
+      "diagnostics": {
+        "max_r_hat": 1.0031,
+        "min_ess_bulk": 1152,
+        "min_ess_tail": 1310,
+        "divergences": 0,
+        "n_parameters_summarized": 22,
+        "healthy": true
+      },
+      "fit_against_raw_table": {
+        "max_abs_count_error": 6.82,
+        "total_abs_count_error": 52.71,
+        "max_abs_pearson_residual": 2.415,
+        "observed": [
+          [
+            50,
+            21,
+            6,
+            0
+          ],
+          [
+            69,
+            7,
+            26,
+            1
+          ],
+          [
+            185,
+            16,
+            51,
+            8
+          ],
+          [
+            43,
+            0,
+            17,
+            11
+          ],
+          [
+            2,
+            0,
+            0,
+            9
+          ]
+        ],
+        "implied": [
+          [
+            48.0,
+            15.1,
+            11.9,
+            1.5
+          ],
+          [
+            69.5,
+            12.5,
+            19.2,
+            2.0
+          ],
+          [
+            181.0,
+            14.7,
+            54.5,
+            7.1
+          ],
+          [
+            43.2,
+            2.6,
+            14.2,
+            12.5
+          ],
+          [
+            4.1,
+            0.4,
+            1.7,
+            6.3
+          ]
+        ],
+        "reproduces_raw_table": false,
+        "note": "A Pearson residual above about 2 in any cell means the measurement layer cannot represent the observed table, which is a parameterization problem and not a finding."
+      },
+      "class_alignment": {
+        "kabco_measurement": {
+          "O": {
+            "O": 0.403,
+            "BC": 0.5689,
+            "KA": 0.0281
+          },
+          "BC": {
+            "O": 0.098,
+            "BC": 0.7583,
+            "KA": 0.1436
+          },
+          "KA": {
+            "O": 0.0025,
+            "BC": 0.114,
+            "KA": 0.8834
+          }
+        },
+        "kabco_measurement_five_level": {
+          "O": {
+            "O": 0.403,
+            "C": 0.2987,
+            "B": 0.2702,
+            "A": 0.0267,
+            "K": 0.0014
+          },
+          "BC": {
+            "O": 0.098,
+            "C": 0.1831,
+            "B": 0.5752,
+            "A": 0.1352,
+            "K": 0.0084
+          },
+          "KA": {
+            "O": 0.0025,
+            "C": 0.0066,
+            "B": 0.1074,
+            "A": 0.5598,
+            "K": 0.3236
+          }
+        },
+        "p_severe_given_class": {
+          "O": 0.0281,
+          "BC": 0.1436,
+          "KA": 0.8834
+        },
+        "p_no_injury_given_class": {
+          "O": 0.403,
+          "BC": 0.098,
+          "KA": 0.0025
+        },
+        "severity_ordering_holds": true,
+        "class_with_most_severe_mass": "KA",
+        "aligned": true
+      },
+      "latent_prevalence": {
+        "O": {
+          "mean": 0.189,
+          "ci95": [
+            0.0672,
+            0.4373
+          ]
+        },
+        "BC": {
+          "mean": 0.7531,
+          "ci95": [
+            0.5076,
+            0.88
+          ]
+        },
+        "KA": {
+          "mean": 0.058,
+          "ci95": [
+            0.0293,
+            0.1063
+          ]
+        }
+      },
+      "narrative_measurement": {
+        "O": {
+          "no cue": 0.4665,
+          "O-consistent": 0.4333,
+          "BC-consistent": 0.0778,
+          "KA-consistent": 0.0225
+        },
+        "BC": {
+          "no cue": 0.7319,
+          "O-consistent": 0.0194,
+          "BC-consistent": 0.2299,
+          "KA-consistent": 0.0188
+        },
+        "KA": {
+          "no cue": 0.1745,
+          "O-consistent": 0.0345,
+          "BC-consistent": 0.0986,
+          "KA-consistent": 0.6924
+        }
+      },
+      "run_seconds": 13.9,
+      "draws_per_chain": 1000,
+      "tune": 2000,
+      "class_probability_cells": [
+        {
+          "kabco": "O",
+          "narrative": "no cue",
+          "n_riders": 50,
+          "posterior_mean": {
+            "O": 0.3885,
+            "BC": 0.6112,
+            "KA": 0.0004
+          },
+          "ci95": {
+            "O": [
+              0.0313,
+              0.8331
+            ],
+            "BC": [
+              0.1669,
+              0.9676
+            ],
+            "KA": [
+              0.0,
+              0.0021
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "O",
+          "narrative": "O-consistent",
+          "n_riders": 21,
+          "posterior_mean": {
+            "O": 0.9449,
+            "BC": 0.0549,
+            "KA": 0.0002
+          },
+          "ci95": {
+            "O": [
+              0.8028,
+              0.9985
+            ],
+            "BC": [
+              0.0013,
+              0.1971
+            ],
+            "KA": [
+              0.0,
+              0.0012
+            ]
+          },
+          "modal_class": "O"
+        },
+        {
+          "kabco": "O",
+          "narrative": "BC-consistent",
+          "n_riders": 6,
+          "posterior_mean": {
+            "O": 0.2432,
+            "BC": 0.7559,
+            "KA": 0.0009
+          },
+          "ci95": {
+            "O": [
+              0.0072,
+              0.7683
+            ],
+            "BC": [
+              0.2315,
+              0.9923
+            ],
+            "KA": [
+              0.0,
+              0.0055
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "O",
+          "narrative": "KA-consistent",
+          "n_riders": 0,
+          "posterior_mean": {
+            "O": 0.4388,
+            "BC": 0.5049,
+            "KA": 0.0563
+          },
+          "ci95": {
+            "O": [
+              0.0237,
+              0.9071
+            ],
+            "BC": [
+              0.0394,
+              0.9481
+            ],
+            "KA": [
+              0.0016,
+              0.3043
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "C",
+          "narrative": "no cue",
+          "n_riders": 69,
+          "posterior_mean": {
+            "O": 0.2284,
+            "BC": 0.771,
+            "KA": 0.0007
+          },
+          "ci95": {
+            "O": [
+              0.0137,
+              0.6868
+            ],
+            "BC": [
+              0.3131,
+              0.986
+            ],
+            "KA": [
+              0.0,
+              0.0038
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "C",
+          "narrative": "O-consistent",
+          "n_riders": 7,
+          "posterior_mean": {
+            "O": 0.8706,
+            "BC": 0.1288,
+            "KA": 0.0006
+          },
+          "ci95": {
+            "O": [
+              0.5547,
+              0.9966
+            ],
+            "BC": [
+              0.0029,
+              0.44
+            ],
+            "KA": [
+              0.0,
+              0.0039
+            ]
+          },
+          "modal_class": "O"
+        },
+        {
+          "kabco": "C",
+          "narrative": "BC-consistent",
+          "n_riders": 26,
+          "posterior_mean": {
+            "O": 0.135,
+            "BC": 0.8636,
+            "KA": 0.0014
+          },
+          "ci95": {
+            "O": [
+              0.0029,
+              0.5915
+            ],
+            "BC": [
+              0.4058,
+              0.996
+            ],
+            "KA": [
+              0.0,
+              0.0089
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "C",
+          "narrative": "KA-consistent",
+          "n_riders": 1,
+          "posterior_mean": {
+            "O": 0.2735,
+            "BC": 0.6272,
+            "KA": 0.0993
+          },
+          "ci95": {
+            "O": [
+              0.0089,
+              0.7796
+            ],
+            "BC": [
+              0.0792,
+              0.9615
+            ],
+            "KA": [
+              0.003,
+              0.5009
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "B",
+          "narrative": "no cue",
+          "n_riders": 185,
+          "posterior_mean": {
+            "O": 0.0858,
+            "BC": 0.9099,
+            "KA": 0.0043
+          },
+          "ci95": {
+            "O": [
+              0.0043,
+              0.3528
+            ],
+            "BC": [
+              0.6437,
+              0.9929
+            ],
+            "KA": [
+              0.0001,
+              0.0242
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "B",
+          "narrative": "O-consistent",
+          "n_riders": 16,
+          "posterior_mean": {
+            "O": 0.6856,
+            "BC": 0.3056,
+            "KA": 0.0088
+          },
+          "ci95": {
+            "O": [
+              0.2006,
+              0.9847
+            ],
+            "BC": [
+              0.0094,
+              0.7884
+            ],
+            "KA": [
+              0.0001,
+              0.0495
+            ]
+          },
+          "modal_class": "O"
+        },
+        {
+          "kabco": "B",
+          "narrative": "BC-consistent",
+          "n_riders": 51,
+          "posterior_mean": {
+            "O": 0.0485,
+            "BC": 0.9431,
+            "KA": 0.0084
+          },
+          "ci95": {
+            "O": [
+              0.0008,
+              0.2457
+            ],
+            "BC": [
+              0.7417,
+              0.9973
+            ],
+            "KA": [
+              0.0001,
+              0.0495
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "B",
+          "narrative": "KA-consistent",
+          "n_riders": 8,
+          "posterior_mean": {
+            "O": 0.0844,
+            "BC": 0.58,
+            "KA": 0.3356
+          },
+          "ci95": {
+            "O": [
+              0.0014,
+              0.366
+            ],
+            "BC": [
+              0.0442,
+              0.945
+            ],
+            "KA": [
+              0.0209,
+              0.8919
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "A",
+          "narrative": "no cue",
+          "n_riders": 43,
+          "posterior_mean": {
+            "O": 0.0346,
+            "BC": 0.887,
+            "KA": 0.0785
+          },
+          "ci95": {
+            "O": [
+              0.0017,
+              0.1449
+            ],
+            "BC": [
+              0.6578,
+              0.9814
+            ],
+            "KA": [
+              0.0051,
+              0.2915
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "A",
+          "narrative": "O-consistent",
+          "n_riders": 0,
+          "posterior_mean": {
+            "O": 0.4196,
+            "BC": 0.3778,
+            "KA": 0.2025
+          },
+          "ci95": {
+            "O": [
+              0.0648,
+              0.8758
+            ],
+            "BC": [
+              0.0159,
+              0.8459
+            ],
+            "KA": [
+              0.0067,
+              0.584
+            ]
+          },
+          "modal_class": "O"
+        },
+        {
+          "kabco": "A",
+          "narrative": "BC-consistent",
+          "n_riders": 17,
+          "posterior_mean": {
+            "O": 0.018,
+            "BC": 0.8552,
+            "KA": 0.1268
+          },
+          "ci95": {
+            "O": [
+              0.0003,
+              0.0956
+            ],
+            "BC": [
+              0.5329,
+              0.989
+            ],
+            "KA": [
+              0.0034,
+              0.4464
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "A",
+          "narrative": "KA-consistent",
+          "n_riders": 11,
+          "posterior_mean": {
+            "O": 0.0048,
+            "BC": 0.0929,
+            "KA": 0.9023
+          },
+          "ci95": {
+            "O": [
+              0.0001,
+              0.0239
+            ],
+            "BC": [
+              0.0039,
+              0.2945
+            ],
+            "KA": [
+              0.6976,
+              0.9927
+            ]
+          },
+          "modal_class": "KA"
+        },
+        {
+          "kabco": "K",
+          "narrative": "no cue",
+          "n_riders": 2,
+          "posterior_mean": {
+            "O": 0.0191,
+            "BC": 0.5898,
+            "KA": 0.3911
+          },
+          "ci95": {
+            "O": [
+              0.0008,
+              0.0808
+            ],
+            "BC": [
+              0.149,
+              0.9375
+            ],
+            "KA": [
+              0.0415,
+              0.8447
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "K",
+          "narrative": "O-consistent",
+          "n_riders": 0,
+          "posterior_mean": {
+            "O": 0.1862,
+            "BC": 0.2026,
+            "KA": 0.6112
+          },
+          "ci95": {
+            "O": [
+              0.0138,
+              0.6468
+            ],
+            "BC": [
+              0.0035,
+              0.7167
+            ],
+            "KA": [
+              0.0546,
+              0.9622
+            ]
+          },
+          "modal_class": "KA"
+        },
+        {
+          "kabco": "K",
+          "narrative": "BC-consistent",
+          "n_riders": 0,
+          "posterior_mean": {
+            "O": 0.009,
+            "BC": 0.5106,
+            "KA": 0.4804
+          },
+          "ci95": {
+            "O": [
+              0.0001,
+              0.0487
+            ],
+            "BC": [
+              0.105,
+              0.9496
+            ],
+            "KA": [
+              0.0379,
+              0.8934
+            ]
+          },
+          "modal_class": "BC"
+        },
+        {
+          "kabco": "K",
+          "narrative": "KA-consistent",
+          "n_riders": 9,
+          "posterior_mean": {
+            "O": 0.0005,
+            "BC": 0.0099,
+            "KA": 0.9896
+          },
+          "ci95": {
+            "O": [
+              0.0,
+              0.0026
+            ],
+            "BC": [
+              0.0007,
+              0.0343
+            ],
+            "KA": [
+              0.9649,
+              0.9988
+            ]
+          },
+          "modal_class": "KA"
+        }
+      ],
+      "reassignment": {
+        "coded_counts": {
+          "O": 77,
+          "BC": 363,
+          "KA": 82
+        },
+        "modal_counts": {
+          "O": 44,
+          "BC": 458,
+          "KA": 20
+        },
+        "riders_whose_modal_class_differs_from_coded": 141,
+        "share_modal_differs": 0.27,
+        "coded_by_modal": {
+          "O": {
+            "O": 21,
+            "BC": 56,
+            "KA": 0
+          },
+          "BC": {
+            "O": 23,
+            "BC": 340,
+            "KA": 0
+          },
+          "KA": {
+            "O": 0,
+            "BC": 62,
+            "KA": 20
+          }
+        },
+        "posterior_prob_of_coded_class": {
+          "mean": 0.7069,
+          "min": 0.0785,
+          "median": 0.9099,
+          "by_coded_class": {
+            "O": 0.5289,
+            "BC": 0.8351,
+            "KA": 0.3066
+          }
+        }
+      },
+      "model_implied_class_share": {
+        "O": {
+          "mean": 0.1882,
+          "ci95": [
+            0.0707,
+            0.4377
+          ]
+        },
+        "BC": {
+          "mean": 0.7555,
+          "ci95": [
+            0.5155,
+            0.8733
+          ]
+        },
+        "KA": {
+          "mean": 0.0563,
+          "ci95": [
+            0.0367,
+            0.0964
+          ]
+        }
+      }
+    }
+  },
+  "dependence_sensitivity": {
+    "estimated": {
+      "moderate": {
+        "prior_set": "moderate",
+        "priors": {
+          "n_diag": 4.0,
+          "n_off": 1.0,
+          "shift_sd": 1.0,
+          "class_sd": 3.0
+        },
+        "dependence_fixed_at": null,
+        "dependence_posterior": {
+          "mean": 0.724,
+          "sd": 0.3428,
+          "ci95": [
+            0.0923,
+            1.3904
+          ],
+          "excludes_zero": true,
+          "r_hat": 1.0056,
+          "ess_bulk": 1038,
+          "ess_tail": 3305,
+          "prior": "Normal(0, 1)"
+        },
+        "n": 522,
+        "diagnostics": {
+          "max_r_hat": 1.0078,
+          "min_ess_bulk": 754,
+          "min_ess_tail": 2429,
+          "divergences": 0,
+          "n_parameters_summarized": 23,
+          "healthy": true
+        },
+        "fit_against_raw_table": {
+          "max_abs_count_error": 10.33,
+          "total_abs_count_error": 57.95,
+          "max_abs_pearson_residual": 1.566,
+          "observed": [
+            [
+              50,
+              21,
+              6,
+              0
+            ],
+            [
+              69,
+              7,
+              26,
+              1
+            ],
+            [
+              185,
+              16,
+              51,
+              8
+            ],
+            [
+              43,
+              0,
+              17,
+              11
+            ],
+            [
+              2,
+              0,
+              0,
+              9
+            ]
+          ],
+          "implied": [
+            [
+              50.9,
+              16.6,
+              7.3,
+              1.4
+            ],
+            [
+              70.3,
+              9.4,
+              20.9,
+              2.0
+            ],
+            [
+              174.7,
+              17.3,
+              60.1,
+              6.3
+            ],
+            [
+              43.8,
+              3.3,
+              11.9,
+              13.1
+            ],
+            [
+              4.2,
+              0.4,
+              1.3,
+              6.6
+            ]
+          ],
+          "reproduces_raw_table": true,
+          "note": "A Pearson residual above about 2 in any cell means the measurement layer cannot represent the observed table, which is a parameterization problem and not a finding."
+        },
+        "class_alignment": {
+          "kabco_measurement": {
+            "O": {
+              "O": 0.2413,
+              "BC": 0.6924,
+              "KA": 0.0663
+            },
+            "BC": {
+              "O": 0.0635,
+              "BC": 0.5601,
+              "KA": 0.3764
+            },
+            "KA": {
+              "O": 0.002,
+              "BC": 0.0769,
+              "KA": 0.9211
+            }
+          },
+          "kabco_measurement_five_level": {
+            "O": {
+              "O": 0.2413,
+              "C": 0.2579,
+              "B": 0.4345,
+              "A": 0.0637,
+              "K": 0.0025
+            },
+            "BC": {
+              "O": 0.0635,
+              "C": 0.1083,
+              "B": 0.4518,
+              "A": 0.3484,
+              "K": 0.028
+            },
+            "KA": {
+              "O": 0.002,
+              "C": 0.0047,
+              "B": 0.0722,
+              "A": 0.4707,
+              "K": 0.4503
+            }
+          },
+          "p_severe_given_class": {
+            "O": 0.0663,
+            "BC": 0.3764,
+            "KA": 0.9211
+          },
+          "p_no_injury_given_class": {
+            "O": 0.2413,
+            "BC": 0.0635,
+            "KA": 0.002
+          },
+          "severity_ordering_holds": true,
+          "class_with_most_severe_mass": "KA",
+          "aligned": true
+        },
+        "latent_prevalence": {
+          "O": {
+            "mean": 0.5372,
+            "ci95": [
+              0.078,
+              0.9418
+            ]
+          },
+          "BC": {
+            "mean": 0.4251,
+            "ci95": [
+              0.0357,
+              0.8743
+            ]
+          },
+          "KA": {
+            "mean": 0.0376,
+            "ci95": [
+              0.0079,
+              0.1
+            ]
+          }
+        },
+        "narrative_measurement": {
+          "O": {
+            "no cue": 0.6764,
+            "O-consistent": 0.2283,
+            "BC-consistent": 0.0728,
+            "KA-consistent": 0.0225
+          },
+          "BC": {
+            "no cue": 0.6374,
+            "O-consistent": 0.0236,
+            "BC-consistent": 0.2872,
+            "KA-consistent": 0.0518
+          },
+          "KA": {
+            "no cue": 0.3299,
+            "O-consistent": 0.0445,
+            "BC-consistent": 0.0993,
+            "KA-consistent": 0.5263
+          }
+        },
+        "run_seconds": 20.2,
+        "draws_per_chain": 4000,
+        "tune": 4000,
+        "class_probability_cells": [
+          {
+            "kabco": "O",
+            "narrative": "no cue",
+            "n_riders": 50,
+            "posterior_mean": {
+              "O": 0.6827,
+              "BC": 0.3169,
+              "KA": 0.0004
+            },
+            "ci95": {
+              "O": [
+                0.0675,
+                0.9997
+              ],
+              "BC": [
+                0.0003,
+                0.9314
+              ],
+              "KA": [
+                0.0,
+                0.0032
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "O",
+            "narrative": "O-consistent",
+            "n_riders": 21,
+            "posterior_mean": {
+              "O": 0.9524,
+              "BC": 0.0474,
+              "KA": 0.0002
+            },
+            "ci95": {
+              "O": [
+                0.6855,
+                0.9999
+              ],
+              "BC": [
+                0.0,
+                0.3144
+              ],
+              "KA": [
+                0.0,
+                0.0015
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "O",
+            "narrative": "BC-consistent",
+            "n_riders": 6,
+            "posterior_mean": {
+              "O": 0.5799,
+              "BC": 0.419,
+              "KA": 0.0011
+            },
+            "ci95": {
+              "O": [
+                0.0124,
+                0.9965
+              ],
+              "BC": [
+                0.0034,
+                0.9864
+              ],
+              "KA": [
+                0.0,
+                0.0096
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "O",
+            "narrative": "KA-consistent",
+            "n_riders": 0,
+            "posterior_mean": {
+              "O": 0.6396,
+              "BC": 0.3332,
+              "KA": 0.0272
+            },
+            "ci95": {
+              "O": [
+                0.029,
+                0.9989
+              ],
+              "BC": [
+                0.0006,
+                0.9469
+              ],
+              "KA": [
+                0.0,
+                0.2234
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "C",
+            "narrative": "no cue",
+            "n_riders": 69,
+            "posterior_mean": {
+              "O": 0.6264,
+              "BC": 0.3729,
+              "KA": 0.0007
+            },
+            "ci95": {
+              "O": [
+                0.0418,
+                0.9995
+              ],
+              "BC": [
+                0.0005,
+                0.9566
+              ],
+              "KA": [
+                0.0,
+                0.0052
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "C",
+            "narrative": "O-consistent",
+            "n_riders": 7,
+            "posterior_mean": {
+              "O": 0.9263,
+              "BC": 0.0733,
+              "KA": 0.0004
+            },
+            "ci95": {
+              "O": [
+                0.5575,
+                0.9999
+              ],
+              "BC": [
+                0.0001,
+                0.4407
+              ],
+              "KA": [
+                0.0,
+                0.0033
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "C",
+            "narrative": "BC-consistent",
+            "n_riders": 26,
+            "posterior_mean": {
+              "O": 0.5301,
+              "BC": 0.4682,
+              "KA": 0.0017
+            },
+            "ci95": {
+              "O": [
+                0.0067,
+                0.9944
+              ],
+              "BC": [
+                0.0054,
+                0.9916
+              ],
+              "KA": [
+                0.0,
+                0.015
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "C",
+            "narrative": "KA-consistent",
+            "n_riders": 1,
+            "posterior_mean": {
+              "O": 0.5707,
+              "BC": 0.3868,
+              "KA": 0.0425
+            },
+            "ci95": {
+              "O": [
+                0.016,
+                0.9982
+              ],
+              "BC": [
+                0.001,
+                0.96
+              ],
+              "KA": [
+                0.0,
+                0.3462
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "B",
+            "narrative": "no cue",
+            "n_riders": 185,
+            "posterior_mean": {
+              "O": 0.5298,
+              "BC": 0.4662,
+              "KA": 0.0041
+            },
+            "ci95": {
+              "O": [
+                0.017,
+                0.9962
+              ],
+              "BC": [
+                0.0034,
+                0.9772
+              ],
+              "KA": [
+                0.0,
+                0.0288
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "B",
+            "narrative": "O-consistent",
+            "n_riders": 16,
+            "posterior_mean": {
+              "O": 0.8552,
+              "BC": 0.1407,
+              "KA": 0.0041
+            },
+            "ci95": {
+              "O": [
+                0.315,
+                0.9991
+              ],
+              "BC": [
+                0.0005,
+                0.6789
+              ],
+              "KA": [
+                0.0,
+                0.0302
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "B",
+            "narrative": "BC-consistent",
+            "n_riders": 51,
+            "posterior_mean": {
+              "O": 0.391,
+              "BC": 0.5998,
+              "KA": 0.0092
+            },
+            "ci95": {
+              "O": [
+                0.0026,
+                0.9525
+              ],
+              "BC": [
+                0.0459,
+                0.9941
+              ],
+              "KA": [
+                0.0,
+                0.0778
+              ]
+            },
+            "modal_class": "BC"
+          },
+          {
+            "kabco": "B",
+            "narrative": "KA-consistent",
+            "n_riders": 8,
+            "posterior_mean": {
+              "O": 0.4009,
+              "BC": 0.4546,
+              "KA": 0.1445
+            },
+            "ci95": {
+              "O": [
+                0.0042,
+                0.9832
+              ],
+              "BC": [
+                0.007,
+                0.9549
+              ],
+              "KA": [
+                0.0002,
+                0.7675
+              ]
+            },
+            "modal_class": "BC"
+          },
+          {
+            "kabco": "A",
+            "narrative": "no cue",
+            "n_riders": 43,
+            "posterior_mean": {
+              "O": 0.3375,
+              "BC": 0.5881,
+              "KA": 0.0744
+            },
+            "ci95": {
+              "O": [
+                0.0076,
+                0.9014
+              ],
+              "BC": [
+                0.0595,
+                0.9484
+              ],
+              "KA": [
+                0.0013,
+                0.2907
+              ]
+            },
+            "modal_class": "BC"
+          },
+          {
+            "kabco": "A",
+            "narrative": "O-consistent",
+            "n_riders": 0,
+            "posterior_mean": {
+              "O": 0.651,
+              "BC": 0.2434,
+              "KA": 0.1056
+            },
+            "ci95": {
+              "O": [
+                0.1402,
+                0.97
+              ],
+              "BC": [
+                0.0064,
+                0.7426
+              ],
+              "KA": [
+                0.0008,
+                0.4339
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "A",
+            "narrative": "BC-consistent",
+            "n_riders": 17,
+            "posterior_mean": {
+              "O": 0.1234,
+              "BC": 0.7735,
+              "KA": 0.1031
+            },
+            "ci95": {
+              "O": [
+                0.001,
+                0.4676
+              ],
+              "BC": [
+                0.3157,
+                0.9812
+              ],
+              "KA": [
+                0.0003,
+                0.5513
+              ]
+            },
+            "modal_class": "BC"
+          },
+          {
+            "kabco": "A",
+            "narrative": "KA-consistent",
+            "n_riders": 11,
+            "posterior_mean": {
+              "O": 0.0859,
+              "BC": 0.2899,
+              "KA": 0.6242
+            },
+            "ci95": {
+              "O": [
+                0.0003,
+                0.4278
+              ],
+              "BC": [
+                0.0101,
+                0.8816
+              ],
+              "KA": [
+                0.0236,
+                0.9765
+              ]
+            },
+            "modal_class": "KA"
+          },
+          {
+            "kabco": "K",
+            "narrative": "no cue",
+            "n_riders": 2,
+            "posterior_mean": {
+              "O": 0.1227,
+              "BC": 0.3812,
+              "KA": 0.4961
+            },
+            "ci95": {
+              "O": [
+                0.0031,
+                0.5408
+              ],
+              "BC": [
+                0.0333,
+                0.8043
+              ],
+              "KA": [
+                0.116,
+                0.899
+              ]
+            },
+            "modal_class": "KA"
+          },
+          {
+            "kabco": "K",
+            "narrative": "O-consistent",
+            "n_riders": 0,
+            "posterior_mean": {
+              "O": 0.2768,
+              "BC": 0.1669,
+              "KA": 0.5563
+            },
+            "ci95": {
+              "O": [
+                0.0185,
+                0.8057
+              ],
+              "BC": [
+                0.0025,
+                0.6412
+              ],
+              "KA": [
+                0.0347,
+                0.9591
+              ]
+            },
+            "modal_class": "KA"
+          },
+          {
+            "kabco": "K",
+            "narrative": "BC-consistent",
+            "n_riders": 0,
+            "posterior_mean": {
+              "O": 0.0429,
+              "BC": 0.5286,
+              "KA": 0.4285
+            },
+            "ci95": {
+              "O": [
+                0.0004,
+                0.2055
+              ],
+              "BC": [
+                0.0646,
+                0.9458
+              ],
+              "KA": [
+                0.0166,
+                0.9231
+              ]
+            },
+            "modal_class": "BC"
+          },
+          {
+            "kabco": "K",
+            "narrative": "KA-consistent",
+            "n_riders": 9,
+            "posterior_mean": {
+              "O": 0.005,
+              "BC": 0.0456,
+              "KA": 0.9494
+            },
+            "ci95": {
+              "O": [
+                0.0,
+                0.0284
+              ],
+              "BC": [
+                0.0012,
+                0.2539
+              ],
+              "KA": [
+                0.7336,
+                0.9974
+              ]
+            },
+            "modal_class": "KA"
+          }
+        ],
+        "reassignment": {
+          "coded_counts": {
+            "O": 77,
+            "BC": 363,
+            "KA": 82
+          },
+          "modal_counts": {
+            "O": 381,
+            "BC": 119,
+            "KA": 22
+          },
+          "riders_whose_modal_class_differs_from_coded": 364,
+          "share_modal_differs": 0.697,
+          "coded_by_modal": {
+            "O": {
+              "O": 77,
+              "BC": 0,
+              "KA": 0
+            },
+            "BC": {
+              "O": 304,
+              "BC": 59,
+              "KA": 0
+            },
+            "KA": {
+              "O": 0,
+              "BC": 60,
+              "KA": 22
+            }
+          },
+          "posterior_prob_of_coded_class": {
+            "mean": 0.4607,
+            "min": 0.0733,
+            "median": 0.4662,
+            "by_coded_class": {
+              "O": 0.7482,
+              "BC": 0.445,
+              "KA": 0.2604
+            }
+          }
+        },
+        "model_implied_class_share": {
+          "O": {
+            "mean": 0.5256,
+            "ci95": [
+              0.0862,
+              0.9223
+            ]
+          },
+          "BC": {
+            "mean": 0.4285,
+            "ci95": [
+              0.0431,
+              0.8576
+            ]
+          },
+          "KA": {
+            "mean": 0.0459,
+            "ci95": [
+              0.0169,
+              0.1035
+            ]
+          }
+        },
+        "latent_prevalence_note": "With lambda estimated, the prevalence parameter is not the marginal class share; read model_implied_class_share instead.",
+        "pipeline_settings_run": {
+          "dependence_posterior": {
+            "mean": 0.7333,
+            "sd": 0.3325,
+            "ci95": [
+              0.0963,
+              1.3663
+            ],
+            "excludes_zero": true,
+            "r_hat": 1.0099,
+            "ess_bulk": 324,
+            "ess_tail": 1014,
+            "prior": "Normal(0, 1)"
+          },
+          "diagnostics": {
+            "max_r_hat": 1.0207,
+            "min_ess_bulk": 202,
+            "min_ess_tail": 643,
+            "divergences": 0,
+            "n_parameters_summarized": 23,
+            "healthy": false
+          },
+          "latent_prevalence": {
+            "O": {
+              "mean": 0.5585,
+              "ci95": [
+                0.0786,
+                0.9448
+              ]
+            },
+            "BC": {
+              "mean": 0.4043,
+              "ci95": [
+                0.0309,
+                0.8706
+              ]
+            },
+            "KA": {
+              "mean": 0.0372,
+              "ci95": [
+                0.0076,
+                0.0996
+              ]
+            }
+          },
+          "run_seconds": 14.7,
+          "draws_per_chain": 1000,
+          "tune": 2000,
+          "fit_against_raw_table": {
+            "max_abs_pearson_residual": 1.533,
+            "total_abs_count_error": 58.43,
+            "max_abs_count_error": 10.32,
+            "reproduces_raw_table": true
+          }
+        }
+      },
+      "weak": {
+        "prior_set": "weak",
+        "priors": {
+          "n_diag": 1.5,
+          "n_off": 1.0,
+          "shift_sd": 2.5,
+          "class_sd": 3.0
+        },
+        "dependence_fixed_at": null,
+        "dependence_posterior": {
+          "mean": 0.8964,
+          "sd": 0.2816,
+          "ci95": [
+            0.3333,
+            1.4372
+          ],
+          "excludes_zero": true,
+          "r_hat": 1.0019,
+          "ess_bulk": 2437,
+          "ess_tail": 3879,
+          "prior": "Normal(0, 1)"
+        },
+        "n": 522,
+        "diagnostics": {
+          "max_r_hat": 1.0062,
+          "min_ess_bulk": 716,
+          "min_ess_tail": 1191,
+          "divergences": 0,
+          "n_parameters_summarized": 23,
+          "healthy": true
+        },
+        "fit_against_raw_table": {
+          "max_abs_count_error": 9.46,
+          "total_abs_count_error": 57.95,
+          "max_abs_pearson_residual": 1.3,
+          "observed": [
+            [
+              50,
+              21,
+              6,
+              0
+            ],
+            [
+              69,
+              7,
+              26,
+              1
+            ],
+            [
+              185,
+              16,
+              51,
+              8
+            ],
+            [
+              43,
+              0,
+              17,
+              11
+            ],
+            [
+              2,
+              0,
+              0,
+              9
+            ]
+          ],
+          "implied": [
+            [
+              52.2,
+              16.0,
+              6.6,
+              1.4
+            ],
+            [
+              71.1,
+              8.3,
+              21.4,
+              1.9
+            ],
+            [
+              175.5,
+              17.5,
+              59.3,
+              6.3
+            ],
+            [
+              42.6,
+              3.8,
+              11.6,
+              13.9
+            ],
+            [
+              3.6,
+              0.5,
+              1.8,
+              6.5
+            ]
+          ],
+          "reproduces_raw_table": true,
+          "note": "A Pearson residual above about 2 in any cell means the measurement layer cannot represent the observed table, which is a parameterization problem and not a finding."
+        },
+        "class_alignment": {
+          "kabco_measurement": {
+            "O": {
+              "O": 0.2031,
+              "BC": 0.7152,
+              "KA": 0.0817
+            },
+            "BC": {
+              "O": 0.0519,
+              "BC": 0.5014,
+              "KA": 0.4466
+            },
+            "KA": {
+              "O": 0.0023,
+              "BC": 0.0802,
+              "KA": 0.9175
+            }
+          },
+          "kabco_measurement_five_level": {
+            "O": {
+              "O": 0.2031,
+              "C": 0.2412,
+              "B": 0.474,
+              "A": 0.0783,
+              "K": 0.0034
+            },
+            "BC": {
+              "O": 0.0519,
+              "C": 0.0861,
+              "B": 0.4153,
+              "A": 0.4056,
+              "K": 0.041
+            },
+            "KA": {
+              "O": 0.0023,
+              "C": 0.005,
+              "B": 0.0752,
+              "A": 0.4393,
+              "K": 0.4782
+            }
+          },
+          "p_severe_given_class": {
+            "O": 0.0817,
+            "BC": 0.4466,
+            "KA": 0.9175
+          },
+          "p_no_injury_given_class": {
+            "O": 0.2031,
+            "BC": 0.0519,
+            "KA": 0.0023
+          },
+          "severity_ordering_holds": true,
+          "class_with_most_severe_mass": "KA",
+          "aligned": true
+        },
+        "latent_prevalence": {
+          "O": {
+            "mean": 0.6651,
+            "ci95": [
+              0.0563,
+              0.9579
+            ]
+          },
+          "BC": {
+            "mean": 0.2995,
+            "ci95": [
+              0.0115,
+              0.8887
+            ]
+          },
+          "KA": {
+            "mean": 0.0355,
+            "ci95": [
+              0.0057,
+              0.1125
+            ]
+          }
+        },
+        "narrative_measurement": {
+          "O": {
+            "no cue": 0.708,
+            "O-consistent": 0.1675,
+            "BC-consistent": 0.0986,
+            "KA-consistent": 0.0258
+          },
+          "BC": {
+            "no cue": 0.557,
+            "O-consistent": 0.0424,
+            "BC-consistent": 0.3068,
+            "KA-consistent": 0.0939
+          },
+          "KA": {
+            "no cue": 0.2449,
+            "O-consistent": 0.0683,
+            "BC-consistent": 0.1986,
+            "KA-consistent": 0.4883
+          }
+        },
+        "run_seconds": 21.7,
+        "draws_per_chain": 4000,
+        "tune": 4000,
+        "class_probability_cells": [
+          {
+            "kabco": "O",
+            "narrative": "no cue",
+            "n_riders": 50,
+            "posterior_mean": {
+              "O": 0.7784,
+              "BC": 0.2212,
+              "KA": 0.0004
+            },
+            "ci95": {
+              "O": [
+                0.019,
+                0.9999
+              ],
+              "BC": [
+                0.0001,
+                0.9798
+              ],
+              "KA": [
+                0.0,
+                0.0032
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "O",
+            "narrative": "O-consistent",
+            "n_riders": 21,
+            "posterior_mean": {
+              "O": 0.9349,
+              "BC": 0.0647,
+              "KA": 0.0004
+            },
+            "ci95": {
+              "O": [
+                0.3727,
+                0.9999
+              ],
+              "BC": [
+                0.0,
+                0.6273
+              ],
+              "KA": [
+                0.0,
+                0.003
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "O",
+            "narrative": "BC-consistent",
+            "n_riders": 6,
+            "posterior_mean": {
+              "O": 0.7616,
+              "BC": 0.2352,
+              "KA": 0.0031
+            },
+            "ci95": {
+              "O": [
+                0.0379,
+                0.9978
+              ],
+              "BC": [
+                0.0015,
+                0.9549
+              ],
+              "KA": [
+                0.0,
+                0.0272
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "O",
+            "narrative": "KA-consistent",
+            "n_riders": 0,
+            "posterior_mean": {
+              "O": 0.7223,
+              "BC": 0.2518,
+              "KA": 0.0259
+            },
+            "ci95": {
+              "O": [
+                0.0518,
+                0.9988
+              ],
+              "BC": [
+                0.0006,
+                0.9197
+              ],
+              "KA": [
+                0.0,
+                0.2257
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "C",
+            "narrative": "no cue",
+            "n_riders": 69,
+            "posterior_mean": {
+              "O": 0.7521,
+              "BC": 0.2473,
+              "KA": 0.0006
+            },
+            "ci95": {
+              "O": [
+                0.0134,
+                0.9998
+              ],
+              "BC": [
+                0.0001,
+                0.9847
+              ],
+              "KA": [
+                0.0,
+                0.0051
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "C",
+            "narrative": "O-consistent",
+            "n_riders": 7,
+            "posterior_mean": {
+              "O": 0.9175,
+              "BC": 0.0818,
+              "KA": 0.0007
+            },
+            "ci95": {
+              "O": [
+                0.3177,
+                0.9999
+              ],
+              "BC": [
+                0.0001,
+                0.682
+              ],
+              "KA": [
+                0.0,
+                0.0054
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "C",
+            "narrative": "BC-consistent",
+            "n_riders": 26,
+            "posterior_mean": {
+              "O": 0.7226,
+              "BC": 0.2723,
+              "KA": 0.0051
+            },
+            "ci95": {
+              "O": [
+                0.0254,
+                0.9966
+              ],
+              "BC": [
+                0.0023,
+                0.9676
+              ],
+              "KA": [
+                0.0,
+                0.0438
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "C",
+            "narrative": "KA-consistent",
+            "n_riders": 1,
+            "posterior_mean": {
+              "O": 0.6705,
+              "BC": 0.2915,
+              "KA": 0.0379
+            },
+            "ci95": {
+              "O": [
+                0.0316,
+                0.9981
+              ],
+              "BC": [
+                0.001,
+                0.9369
+              ],
+              "KA": [
+                0.0,
+                0.3372
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "B",
+            "narrative": "no cue",
+            "n_riders": 185,
+            "posterior_mean": {
+              "O": 0.6825,
+              "BC": 0.3139,
+              "KA": 0.0037
+            },
+            "ci95": {
+              "O": [
+                0.0077,
+                0.999
+              ],
+              "BC": [
+                0.0006,
+                0.987
+              ],
+              "KA": [
+                0.0,
+                0.0305
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "B",
+            "narrative": "O-consistent",
+            "n_riders": 16,
+            "posterior_mean": {
+              "O": 0.8657,
+              "BC": 0.1293,
+              "KA": 0.0051
+            },
+            "ci95": {
+              "O": [
+                0.2007,
+                0.9993
+              ],
+              "BC": [
+                0.0004,
+                0.7849
+              ],
+              "KA": [
+                0.0,
+                0.0381
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "B",
+            "narrative": "BC-consistent",
+            "n_riders": 51,
+            "posterior_mean": {
+              "O": 0.5716,
+              "BC": 0.4019,
+              "KA": 0.0265
+            },
+            "ci95": {
+              "O": [
+                0.0113,
+                0.9773
+              ],
+              "BC": [
+                0.0127,
+                0.9724
+              ],
+              "KA": [
+                0.0,
+                0.2142
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "B",
+            "narrative": "KA-consistent",
+            "n_riders": 8,
+            "posterior_mean": {
+              "O": 0.491,
+              "BC": 0.3874,
+              "KA": 0.1216
+            },
+            "ci95": {
+              "O": [
+                0.0096,
+                0.9843
+              ],
+              "BC": [
+                0.0061,
+                0.9388
+              ],
+              "KA": [
+                0.0001,
+                0.7351
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "A",
+            "narrative": "no cue",
+            "n_riders": 43,
+            "posterior_mean": {
+              "O": 0.4952,
+              "BC": 0.448,
+              "KA": 0.0568
+            },
+            "ci95": {
+              "O": [
+                0.0041,
+                0.9704
+              ],
+              "BC": [
+                0.0064,
+                0.9634
+              ],
+              "KA": [
+                0.0003,
+                0.3237
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "A",
+            "narrative": "O-consistent",
+            "n_riders": 0,
+            "posterior_mean": {
+              "O": 0.664,
+              "BC": 0.2319,
+              "KA": 0.1042
+            },
+            "ci95": {
+              "O": [
+                0.1032,
+                0.972
+              ],
+              "BC": [
+                0.0045,
+                0.7762
+              ],
+              "KA": [
+                0.0007,
+                0.4471
+              ]
+            },
+            "modal_class": "O"
+          },
+          {
+            "kabco": "A",
+            "narrative": "BC-consistent",
+            "n_riders": 17,
+            "posterior_mean": {
+              "O": 0.2063,
+              "BC": 0.5951,
+              "KA": 0.1986
+            },
+            "ci95": {
+              "O": [
+                0.0041,
+                0.6509
+              ],
+              "BC": [
+                0.0293,
+                0.939
+              ],
+              "KA": [
+                0.0003,
+                0.7954
+              ]
+            },
+            "modal_class": "BC"
+          },
+          {
+            "kabco": "A",
+            "narrative": "KA-consistent",
+            "n_riders": 11,
+            "posterior_mean": {
+              "O": 0.1172,
+              "BC": 0.3535,
+              "KA": 0.5293
+            },
+            "ci95": {
+              "O": [
+                0.001,
+                0.4721
+              ],
+              "BC": [
+                0.0079,
+                0.9155
+              ],
+              "KA": [
+                0.0104,
+                0.9677
+              ]
+            },
+            "modal_class": "KA"
+          },
+          {
+            "kabco": "K",
+            "narrative": "no cue",
+            "n_riders": 2,
+            "posterior_mean": {
+              "O": 0.2394,
+              "BC": 0.3738,
+              "KA": 0.3868
+            },
+            "ci95": {
+              "O": [
+                0.0022,
+                0.8089
+              ],
+              "BC": [
+                0.0048,
+                0.892
+              ],
+              "KA": [
+                0.0287,
+                0.8849
+              ]
+            },
+            "modal_class": "KA"
+          },
+          {
+            "kabco": "K",
+            "narrative": "O-consistent",
+            "n_riders": 0,
+            "posterior_mean": {
+              "O": 0.2712,
+              "BC": 0.1709,
+              "KA": 0.5579
+            },
+            "ci95": {
+              "O": [
+                0.0141,
+                0.7978
+              ],
+              "BC": [
+                0.002,
+                0.6766
+              ],
+              "KA": [
+                0.0342,
+                0.9622
+              ]
+            },
+            "modal_class": "KA"
+          },
+          {
+            "kabco": "K",
+            "narrative": "BC-consistent",
+            "n_riders": 0,
+            "posterior_mean": {
+              "O": 0.0634,
+              "BC": 0.3956,
+              "KA": 0.5411
+            },
+            "ci95": {
+              "O": [
+                0.001,
+                0.2814
+              ],
+              "BC": [
+                0.0073,
+                0.9199
+              ],
+              "KA": [
+                0.0228,
+                0.9702
+              ]
+            },
+            "modal_class": "KA"
+          },
+          {
+            "kabco": "K",
+            "narrative": "KA-consistent",
+            "n_riders": 9,
+            "posterior_mean": {
+              "O": 0.009,
+              "BC": 0.0803,
+              "KA": 0.9107
+            },
+            "ci95": {
+              "O": [
+                0.0001,
+                0.0457
+              ],
+              "BC": [
+                0.0012,
+                0.4955
+              ],
+              "KA": [
+                0.4822,
+                0.996
+              ]
+            },
+            "modal_class": "KA"
+          }
+        ],
+        "reassignment": {
+          "coded_counts": {
+            "O": 77,
+            "BC": 363,
+            "KA": 82
+          },
+          "modal_counts": {
+            "O": 483,
+            "BC": 17,
+            "KA": 22
+          },
+          "riders_whose_modal_class_differs_from_coded": 423,
+          "share_modal_differs": 0.81,
+          "coded_by_modal": {
+            "O": {
+              "O": 77,
+              "BC": 0,
+              "KA": 0
+            },
+            "BC": {
+              "O": 363,
+              "BC": 0,
+              "KA": 0
+            },
+            "KA": {
+              "O": 43,
+              "BC": 17,
+              "KA": 22
+            }
+          },
+          "posterior_prob_of_coded_class": {
+            "mean": 0.3687,
+            "min": 0.0568,
+            "median": 0.3139,
+            "by_coded_class": {
+              "O": 0.8198,
+              "BC": 0.2995,
+              "KA": 0.2514
+            }
+          }
+        },
+        "model_implied_class_share": {
+          "O": {
+            "mean": 0.6528,
+            "ci95": [
+              0.0672,
+              0.9394
+            ]
+          },
+          "BC": {
+            "mean": 0.3013,
+            "ci95": [
+              0.0142,
+              0.8654
+            ]
+          },
+          "KA": {
+            "mean": 0.0459,
+            "ci95": [
+              0.0123,
+              0.1272
+            ]
+          }
+        },
+        "latent_prevalence_note": "With lambda estimated, the prevalence parameter is not the marginal class share; read model_implied_class_share instead.",
+        "pipeline_settings_run": {
+          "dependence_posterior": {
+            "mean": 0.8862,
+            "sd": 0.2826,
+            "ci95": [
+              0.2994,
+              1.4254
+            ],
+            "excludes_zero": true,
+            "r_hat": 1.0085,
+            "ess_bulk": 664,
+            "ess_tail": 1156,
+            "prior": "Normal(0, 1)"
+          },
+          "diagnostics": {
+            "max_r_hat": 1.0263,
+            "min_ess_bulk": 196,
+            "min_ess_tail": 391,
+            "divergences": 0,
+            "n_parameters_summarized": 23,
+            "healthy": false
+          },
+          "latent_prevalence": {
+            "O": {
+              "mean": 0.6559,
+              "ci95": [
+                0.0501,
+                0.9569
+              ]
+            },
+            "BC": {
+              "mean": 0.3061,
+              "ci95": [
+                0.0107,
+                0.8949
+              ]
+            },
+            "KA": {
+              "mean": 0.038,
+              "ci95": [
+                0.0063,
+                0.117
+              ]
+            }
+          },
+          "run_seconds": 15.1,
+          "draws_per_chain": 1000,
+          "tune": 2000,
+          "fit_against_raw_table": {
+            "max_abs_pearson_residual": 1.318,
+            "total_abs_count_error": 59.06,
+            "max_abs_count_error": 9.5,
+            "reproduces_raw_table": true
+          }
+        }
+      }
+    },
+    "fixed_grid_moderate": {
+      "0.5": {
+        "diagnostics": {
+          "max_r_hat": 1.0029,
+          "min_ess_bulk": 479,
+          "min_ess_tail": 447,
+          "divergences": 0,
+          "n_parameters_summarized": 22,
+          "healthy": true
+        },
+        "fit_against_raw_table": {
+          "max_abs_pearson_residual": 1.811,
+          "total_abs_count_error": 59.14,
+          "max_abs_count_error": 9.99,
+          "reproduces_raw_table": true
+        },
+        "latent_prevalence": {
+          "O": {
+            "mean": 0.3175,
+            "ci95": [
+              0.0723,
+              0.8696
+            ]
+          },
+          "BC": {
+            "mean": 0.6352,
+            "ci95": [
+              0.0873,
+              0.881
+            ]
+          },
+          "KA": {
+            "mean": 0.0473,
+            "ci95": [
+              0.0169,
+              0.1085
+            ]
+          }
+        },
+        "class_alignment_aligned": true,
+        "run_seconds": 15.0
+      },
+      "1.0": {
+        "diagnostics": {
+          "max_r_hat": 1.014,
+          "min_ess_bulk": 318,
+          "min_ess_tail": 168,
+          "divergences": 0,
+          "n_parameters_summarized": 22,
+          "healthy": false
+        },
+        "fit_against_raw_table": {
+          "max_abs_pearson_residual": 1.357,
+          "total_abs_count_error": 61.26,
+          "max_abs_count_error": 11.49,
+          "reproduces_raw_table": true
+        },
+        "latent_prevalence": {
+          "O": {
+            "mean": 0.7909,
+            "ci95": [
+              0.0972,
+              0.9478
+            ]
+          },
+          "BC": {
+            "mean": 0.1834,
+            "ci95": [
+              0.0288,
+              0.8545
+            ]
+          },
+          "KA": {
+            "mean": 0.0257,
+            "ci95": [
+              0.0068,
+              0.0756
+            ]
+          }
+        },
+        "class_alignment_aligned": true,
+        "run_seconds": 13.8
+      }
+    },
+    "parameterization": "log-scale boost lambda on the cells where the KABCO code and the narrative level imply the same severity position (O; C or B with BC-consistent; A or K with KA-consistent); the 'no cue' column never receives it. The factor is common to all latent classes, so it cancels from the per-rider class probabilities except through the other parameters.",
+    "earlier_console_value_not_reproducible_from_files": "The manuscript value +0.70 [0.23, 1.22] came from an unsaved run on 2026-09-14 on pre-final labels; the values above replace it."
+  },
+  "narrative_length_sensitivity": {
+    "association_length_with_coded_kabco": {
+      "O": 0.003,
+      "C": -0.208,
+      "B": -0.02,
+      "A": 0.159,
+      "K": 1.376
+    },
+    "association_length_with_narrative_level": {
+      "no cue": -0.214,
+      "O-consistent": 0.36,
+      "BC-consistent": 0.357,
+      "KA-consistent": 0.797
+    },
+    "length_z_max": 8.37,
+    "models": {
+      "class_specific_with_prevalence_slopes": {
+        "estimated": true,
+        "prior_set": "moderate",
+        "class_specific_narrative_slopes": true,
+        "prevalence_depends_on_length": true,
+        "n_length_parameters": 11,
+        "length_variable": "narrative_chars_z",
+        "run_seconds": 52.1,
+        "draws_per_chain": 4000,
+        "tune": 4000,
+        "diagnostics": {
+          "max_r_hat": 1.0025,
+          "min_ess_bulk": 2475,
+          "min_ess_tail": 2145,
+          "divergences": 0,
+          "n_parameters_summarized": 33,
+          "healthy": true
+        },
+        "fit_against_raw_table": {
+          "max_abs_count_error": 7.74,
+          "total_abs_count_error": 60.71,
+          "max_abs_pearson_residual": 2.644,
+          "observed": [
+            [
+              50,
+              21,
+              6,
+              0
+            ],
+            [
+              69,
+              7,
+              26,
+              1
+            ],
+            [
+              185,
+              16,
+              51,
+              8
+            ],
+            [
+              43,
+              0,
+              17,
+              11
+            ],
+            [
+              2,
+              0,
+              0,
+              9
+            ]
+          ],
+          "implied": [
+            [
+              48.8,
+              14.7,
+              11.6,
+              1.2
+            ],
+            [
+              70.1,
+              12.8,
+              19.5,
+              1.8
+            ],
+            [
+              177.3,
+              14.9,
+              56.1,
+              8.1
+            ],
+            [
+              43.4,
+              2.3,
+              13.7,
+              13.2
+            ],
+            [
+              5.7,
+              0.3,
+              1.6,
+              4.8
+            ]
+          ],
+          "reproduces_raw_table": false,
+          "note": "A Pearson residual above about 2 in any cell means the measurement layer cannot represent the observed table, which is a parameterization problem and not a finding."
+        },
+        "class_alignment": {
+          "kabco_measurement": {
+            "O": {
+              "O": 0.3701,
+              "BC": 0.5987,
+              "KA": 0.0312
+            },
+            "BC": {
+              "O": 0.102,
+              "BC": 0.7625,
+              "KA": 0.1354
+            },
+            "KA": {
+              "O": 0.0048,
+              "BC": 0.1995,
+              "KA": 0.7956
+            }
+          },
+          "p_severe_given_class": {
+            "O": 0.0312,
+            "BC": 0.1354,
+            "KA": 0.7956
+          },
+          "severity_ordering_holds": true,
+          "aligned": true
+        },
+        "narrative_length_slopes": {
+          "O|O-consistent": {
+            "mean": 1.2254,
+            "ci95": [
+              -0.2415,
+              2.4927
+            ],
+            "excludes_zero": false
+          },
+          "O|BC-consistent": {
+            "mean": 0.5437,
+            "ci95": [
+              -1.302,
+              2.0778
+            ],
+            "excludes_zero": false
+          },
+          "O|KA-consistent": {
+            "mean": 0.1667,
+            "ci95": [
+              -1.5093,
+              1.7822
+            ],
+            "excludes_zero": false
+          },
+          "BC|O-consistent": {
+            "mean": 0.3377,
+            "ci95": [
+              -1.3067,
+              1.6327
+            ],
+            "excludes_zero": false
+          },
+          "BC|BC-consistent": {
+            "mean": 0.9543,
+            "ci95": [
+              0.3598,
+              1.6518
+            ],
+            "excludes_zero": true
+          },
+          "BC|KA-consistent": {
+            "mean": 0.3515,
+            "ci95": [
+              -1.1264,
+              1.4989
+            ],
+            "excludes_zero": false
+          },
+          "KA|O-consistent": {
+            "mean": -0.5709,
+            "ci95": [
+              -2.074,
+              0.5753
+            ],
+            "excludes_zero": false
+          },
+          "KA|BC-consistent": {
+            "mean": -0.5873,
+            "ci95": [
+              -2.1989,
+              0.5231
+            ],
+            "excludes_zero": false
+          },
+          "KA|KA-consistent": {
+            "mean": -0.0492,
+            "ci95": [
+              -0.5172,
+              0.7683
+            ],
+            "excludes_zero": false
+          }
+        },
+        "n_narrative_slopes_excluding_zero": 1,
+        "prevalence_length_slopes": {
+          "BC": {
+            "mean": -0.1716,
+            "ci95": [
+              -1.2216,
+              0.5968
+            ],
+            "excludes_zero": false
+          },
+          "KA": {
+            "mean": 0.6322,
+            "ci95": [
+              0.0761,
+              1.2153
+            ],
+            "excludes_zero": true
+          }
+        },
+        "latent_prevalence_at_mean_length": {
+          "O": {
+            "mean": 0.212,
+            "ci95": [
+              0.0896,
+              0.4955
+            ]
+          },
+          "BC": {
+            "mean": 0.7234,
+            "ci95": [
+              0.4506,
+              0.8531
+            ]
+          },
+          "KA": {
+            "mean": 0.0647,
+            "ci95": [
+              0.0266,
+              0.1289
+            ]
+          }
+        },
+        "narrative_measurement_at_mean_length": {
+          "O": {
+            "no cue": 0.5091,
+            "O-consistent": 0.4248,
+            "BC-consistent": 0.0484,
+            "KA-consistent": 0.0177
+          },
+          "BC": {
+            "no cue": 0.7134,
+            "O-consistent": 0.014,
+            "BC-consistent": 0.2579,
+            "KA-consistent": 0.0147
+          },
+          "KA": {
+            "no cue": 0.3176,
+            "O-consistent": 0.0277,
+            "BC-consistent": 0.0797,
+            "KA-consistent": 0.575
+          }
+        },
+        "implied_table_draws": 400,
+        "pipeline_settings_run": {
+          "estimated": true,
+          "prior_set": "moderate",
+          "class_specific_narrative_slopes": true,
+          "prevalence_depends_on_length": true,
+          "n_length_parameters": 11,
+          "length_variable": "narrative_chars_z",
+          "run_seconds": 27.7,
+          "draws_per_chain": 1000,
+          "tune": 2000,
+          "diagnostics": {
+            "max_r_hat": 1.0261,
+            "min_ess_bulk": 224,
+            "min_ess_tail": 93,
+            "divergences": 0,
+            "n_parameters_summarized": 33,
+            "healthy": false
+          },
+          "fit_against_raw_table": {
+            "max_abs_count_error": 7.85,
+            "total_abs_count_error": 58.9,
+            "max_abs_pearson_residual": 2.419,
+            "observed": [
+              [
+                50,
+                21,
+                6,
+                0
+              ],
+              [
+                69,
+                7,
+                26,
+                1
+              ],
+              [
+                185,
+                16,
+                51,
+                8
+              ],
+              [
+                43,
+                0,
+                17,
+                11
+              ],
+              [
+                2,
+                0,
+                0,
+                9
+              ]
+            ],
+            "implied": [
+              [
+                49.6,
+                14.7,
+                11.4,
+                1.3
+              ],
+              [
+                69.2,
+                12.8,
+                18.9,
+                1.8
+              ],
+              [
+                177.1,
+                15.4,
+                56.2,
+                8.1
+              ],
+              [
+                43.2,
+                2.5,
+                13.9,
+                13.5
+              ],
+              [
+                5.4,
+                0.4,
+                1.5,
+                5.0
+              ]
+            ],
+            "reproduces_raw_table": false,
+            "note": "A Pearson residual above about 2 in any cell means the measurement layer cannot represent the observed table, which is a parameterization problem and not a finding."
+          },
+          "class_alignment": {
+            "kabco_measurement": {
+              "O": {
+                "O": 0.3652,
+                "BC": 0.6028,
+                "KA": 0.032
+              },
+              "BC": {
+                "O": 0.0995,
+                "BC": 0.7595,
+                "KA": 0.141
+              },
+              "KA": {
+                "O": 0.0047,
+                "BC": 0.1924,
+                "KA": 0.803
+              }
+            },
+            "p_severe_given_class": {
+              "O": 0.032,
+              "BC": 0.141,
+              "KA": 0.803
+            },
+            "severity_ordering_holds": true,
+            "aligned": true
+          },
+          "narrative_length_slopes": {
+            "O|O-consistent": {
+              "mean": 1.2751,
+              "ci95": [
+                -0.2048,
+                2.5124
+              ],
+              "excludes_zero": false
+            },
+            "O|BC-consistent": {
+              "mean": 0.5444,
+              "ci95": [
+                -1.3554,
+                2.1178
+              ],
+              "excludes_zero": false
+            },
+            "O|KA-consistent": {
+              "mean": 0.1716,
+              "ci95": [
+                -1.538,
+                1.7981
+              ],
+              "excludes_zero": false
+            },
+            "BC|O-consistent": {
+              "mean": 0.3002,
+              "ci95": [
+                -1.3645,
+                1.609
+              ],
+              "excludes_zero": false
+            },
+            "BC|BC-consistent": {
+              "mean": 0.9064,
+              "ci95": [
+                0.1127,
+                1.5387
+              ],
+              "excludes_zero": true
+            },
+            "BC|KA-consistent": {
+              "mean": 0.346,
+              "ci95": [
+                -1.0737,
+                1.4993
+              ],
+              "excludes_zero": false
+            },
+            "KA|O-consistent": {
+              "mean": -0.5897,
+              "ci95": [
+                -2.1495,
+                0.6044
+              ],
+              "excludes_zero": false
+            },
+            "KA|BC-consistent": {
+              "mean": -0.5748,
+              "ci95": [
+                -2.1592,
+                0.5372
+              ],
+              "excludes_zero": false
+            },
+            "KA|KA-consistent": {
+              "mean": -0.0175,
+              "ci95": [
+                -0.5074,
+                1.1669
+              ],
+              "excludes_zero": false
+            }
+          },
+          "n_narrative_slopes_excluding_zero": 1,
+          "prevalence_length_slopes": {
+            "BC": {
+              "mean": -0.1146,
+              "ci95": [
+                -1.0965,
+                0.7384
+              ],
+              "excludes_zero": false
+            },
+            "KA": {
+              "mean": 0.6546,
+              "ci95": [
+                0.1022,
+                1.2407
+              ],
+              "excludes_zero": true
+            }
+          },
+          "latent_prevalence_at_mean_length": {
+            "O": {
+              "mean": 0.2262,
+              "ci95": [
+                0.0897,
+                0.6319
+              ]
+            },
+            "BC": {
+              "mean": 0.7108,
+              "ci95": [
+                0.3167,
+                0.8518
+              ]
+            },
+            "KA": {
+              "mean": 0.063,
+              "ci95": [
+                0.0257,
+                0.121
+              ]
+            }
+          },
+          "narrative_measurement_at_mean_length": {
+            "O": {
+              "no cue": 0.5173,
+              "O-consistent": 0.415,
+              "BC-consistent": 0.0502,
+              "KA-consistent": 0.0175
+            },
+            "BC": {
+              "no cue": 0.7097,
+              "O-consistent": 0.0138,
+              "BC-consistent": 0.2604,
+              "KA-consistent": 0.0162
+            },
+            "KA": {
+              "no cue": 0.3148,
+              "O-consistent": 0.0289,
+              "BC-consistent": 0.0774,
+              "KA-consistent": 0.5789
+            }
+          },
+          "implied_table_draws": 400
+        }
+      },
+      "class_specific_no_prevalence_slopes": {
+        "estimated": true,
+        "prior_set": "moderate",
+        "class_specific_narrative_slopes": true,
+        "prevalence_depends_on_length": false,
+        "n_length_parameters": 9,
+        "length_variable": "narrative_chars_z",
+        "run_seconds": 44.5,
+        "draws_per_chain": 4000,
+        "tune": 4000,
+        "diagnostics": {
+          "max_r_hat": 1.0017,
+          "min_ess_bulk": 3160,
+          "min_ess_tail": 3088,
+          "divergences": 0,
+          "n_parameters_summarized": 31,
+          "healthy": true
+        },
+        "fit_against_raw_table": {
+          "max_abs_count_error": 8.43,
+          "total_abs_count_error": 62.08,
+          "max_abs_pearson_residual": 2.794,
+          "observed": [
+            [
+              50,
+              21,
+              6,
+              0
+            ],
+            [
+              69,
+              7,
+              26,
+              1
+            ],
+            [
+              185,
+              16,
+              51,
+              8
+            ],
+            [
+              43,
+              0,
+              17,
+              11
+            ],
+            [
+              2,
+              0,
+              0,
+              9
+            ]
+          ],
+          "implied": [
+            [
+              48.6,
+              15.6,
+              11.4,
+              1.2
+            ],
+            [
+              68.2,
+              14.2,
+              19.1,
+              1.7
+            ],
+            [
+              176.6,
+              15.7,
+              57.7,
+              7.5
+            ],
+            [
+              43.7,
+              2.3,
+              13.9,
+              12.0
+            ],
+            [
+              6.0,
+              0.4,
+              1.6,
+              4.7
+            ]
+          ],
+          "reproduces_raw_table": false,
+          "note": "A Pearson residual above about 2 in any cell means the measurement layer cannot represent the observed table, which is a parameterization problem and not a finding."
+        },
+        "class_alignment": {
+          "kabco_measurement": {
+            "O": {
+              "O": 0.3603,
+              "BC": 0.6117,
+              "KA": 0.0281
+            },
+            "BC": {
+              "O": 0.0886,
+              "BC": 0.7703,
+              "KA": 0.1411
+            },
+            "KA": {
+              "O": 0.0036,
+              "BC": 0.1723,
+              "KA": 0.824
+            }
+          },
+          "p_severe_given_class": {
+            "O": 0.0281,
+            "BC": 0.1411,
+            "KA": 0.824
+          },
+          "severity_ordering_holds": true,
+          "aligned": true
+        },
+        "narrative_length_slopes": {
+          "O|O-consistent": {
+            "mean": 1.5888,
+            "ci95": [
+              0.7126,
+              2.576
+            ],
+            "excludes_zero": true
+          },
+          "O|BC-consistent": {
+            "mean": 0.8745,
+            "ci95": [
+              -1.1484,
+              2.4111
+            ],
+            "excludes_zero": false
+          },
+          "O|KA-consistent": {
+            "mean": 0.3268,
+            "ci95": [
+              -1.3955,
+              1.8973
+            ],
+            "excludes_zero": false
+          },
+          "BC|O-consistent": {
+            "mean": -0.0078,
+            "ci95": [
+              -1.4853,
+              1.0389
+            ],
+            "excludes_zero": false
+          },
+          "BC|BC-consistent": {
+            "mean": 0.5191,
+            "ci95": [
+              0.0603,
+              0.9546
+            ],
+            "excludes_zero": true
+          },
+          "BC|KA-consistent": {
+            "mean": 0.1837,
+            "ci95": [
+              -1.1622,
+              1.0404
+            ],
+            "excludes_zero": false
+          },
+          "KA|O-consistent": {
+            "mean": -0.0806,
+            "ci95": [
+              -1.8177,
+              1.5312
+            ],
+            "excludes_zero": false
+          },
+          "KA|BC-consistent": {
+            "mean": -0.1218,
+            "ci95": [
+              -1.7898,
+              1.3907
+            ],
+            "excludes_zero": false
+          },
+          "KA|KA-consistent": {
+            "mean": 1.1268,
+            "ci95": [
+              -0.0132,
+              2.39
+            ],
+            "excludes_zero": false
+          }
+        },
+        "n_narrative_slopes_excluding_zero": 2,
+        "prevalence_length_slopes": null,
+        "latent_prevalence_at_mean_length": {
+          "O": {
+            "mean": 0.2509,
+            "ci95": [
+              0.1211,
+              0.5239
+            ]
+          },
+          "BC": {
+            "mean": 0.6711,
+            "ci95": [
+              0.4008,
+              0.8084
+            ]
+          },
+          "KA": {
+            "mean": 0.0781,
+            "ci95": [
+              0.0359,
+              0.142
+            ]
+          }
+        },
+        "narrative_measurement_at_mean_length": {
+          "O": {
+            "no cue": 0.5451,
+            "O-consistent": 0.3753,
+            "BC-consistent": 0.0646,
+            "KA-consistent": 0.015
+          },
+          "BC": {
+            "no cue": 0.7226,
+            "O-consistent": 0.0114,
+            "BC-consistent": 0.2498,
+            "KA-consistent": 0.0162
+          },
+          "KA": {
+            "no cue": 0.3728,
+            "O-consistent": 0.0254,
+            "BC-consistent": 0.0779,
+            "KA-consistent": 0.5239
+          }
+        },
+        "implied_table_draws": 400,
+        "pipeline_settings_run": {
+          "estimated": true,
+          "prior_set": "moderate",
+          "class_specific_narrative_slopes": true,
+          "prevalence_depends_on_length": false,
+          "n_length_parameters": 9,
+          "length_variable": "narrative_chars_z",
+          "run_seconds": 23.5,
+          "draws_per_chain": 1000,
+          "tune": 2000,
+          "diagnostics": {
+            "max_r_hat": 1.0047,
+            "min_ess_bulk": 510,
+            "min_ess_tail": 519,
+            "divergences": 0,
+            "n_parameters_summarized": 31,
+            "healthy": true
+          },
+          "fit_against_raw_table": {
+            "max_abs_count_error": 9.15,
+            "total_abs_count_error": 63.17,
+            "max_abs_pearson_residual": 2.781,
+            "observed": [
+              [
+                50,
+                21,
+                6,
+                0
+              ],
+              [
+                69,
+                7,
+                26,
+                1
+              ],
+              [
+                185,
+                16,
+                51,
+                8
+              ],
+              [
+                43,
+                0,
+                17,
+                11
+              ],
+              [
+                2,
+                0,
+                0,
+                9
+              ]
+            ],
+            "implied": [
+              [
+                48.8,
+                15.1,
+                11.6,
+                1.2
+              ],
+              [
+                68.1,
+                13.9,
+                19.2,
+                1.7
+              ],
+              [
+                175.9,
+                15.8,
+                57.7,
+                7.5
+              ],
+              [
+                44.0,
+                2.3,
+                14.3,
+                12.2
+              ],
+              [
+                5.9,
+                0.4,
+                1.7,
+                4.7
+              ]
+            ],
+            "reproduces_raw_table": false,
+            "note": "A Pearson residual above about 2 in any cell means the measurement layer cannot represent the observed table, which is a parameterization problem and not a finding."
+          },
+          "class_alignment": {
+            "kabco_measurement": {
+              "O": {
+                "O": 0.3537,
+                "BC": 0.618,
+                "KA": 0.0283
+              },
+              "BC": {
+                "O": 0.0865,
+                "BC": 0.7694,
+                "KA": 0.1441
+              },
+              "KA": {
+                "O": 0.0036,
+                "BC": 0.1728,
+                "KA": 0.8237
+              }
+            },
+            "p_severe_given_class": {
+              "O": 0.0283,
+              "BC": 0.1441,
+              "KA": 0.8237
+            },
+            "severity_ordering_holds": true,
+            "aligned": true
+          },
+          "narrative_length_slopes": {
+            "O|O-consistent": {
+              "mean": 1.5778,
+              "ci95": [
+                0.6777,
+                2.574
+              ],
+              "excludes_zero": true
+            },
+            "O|BC-consistent": {
+              "mean": 0.9274,
+              "ci95": [
+                -1.0727,
+                2.4391
+              ],
+              "excludes_zero": false
+            },
+            "O|KA-consistent": {
+              "mean": 0.3176,
+              "ci95": [
+                -1.3867,
+                1.9378
+              ],
+              "excludes_zero": false
+            },
+            "BC|O-consistent": {
+              "mean": -0.0093,
+              "ci95": [
+                -1.52,
+                1.064
+              ],
+              "excludes_zero": false
+            },
+            "BC|BC-consistent": {
+              "mean": 0.5013,
+              "ci95": [
+                -0.0124,
+                0.9611
+              ],
+              "excludes_zero": false
+            },
+            "BC|KA-consistent": {
+              "mean": 0.1459,
+              "ci95": [
+                -1.2619,
+                1.0953
+              ],
+              "excludes_zero": false
+            },
+            "KA|O-consistent": {
+              "mean": -0.0598,
+              "ci95": [
+                -1.7287,
+                1.5602
+              ],
+              "excludes_zero": false
+            },
+            "KA|BC-consistent": {
+              "mean": -0.131,
+              "ci95": [
+                -1.7951,
+                1.3888
+              ],
+              "excludes_zero": false
+            },
+            "KA|KA-consistent": {
+              "mean": 1.1118,
+              "ci95": [
+                -0.0349,
+                2.3735
+              ],
+              "excludes_zero": false
+            }
+          },
+          "n_narrative_slopes_excluding_zero": 1,
+          "prevalence_length_slopes": null,
+          "latent_prevalence_at_mean_length": {
+            "O": {
+              "mean": 0.2643,
+              "ci95": [
+                0.1227,
+                0.5653
+              ]
+            },
+            "BC": {
+              "mean": 0.6576,
+              "ci95": [
+                0.3586,
+                0.8046
+              ]
+            },
+            "KA": {
+              "mean": 0.0781,
+              "ci95": [
+                0.0355,
+                0.1413
+              ]
+            }
+          },
+          "narrative_measurement_at_mean_length": {
+            "O": {
+              "no cue": 0.549,
+              "O-consistent": 0.3656,
+              "BC-consistent": 0.0706,
+              "KA-consistent": 0.0148
+            },
+            "BC": {
+              "no cue": 0.7229,
+              "O-consistent": 0.0112,
+              "BC-consistent": 0.2494,
+              "KA-consistent": 0.0165
+            },
+            "KA": {
+              "no cue": 0.37,
+              "O-consistent": 0.0257,
+              "BC-consistent": 0.0781,
+              "KA-consistent": 0.5262
+            }
+          },
+          "implied_table_draws": 400
+        }
+      },
+      "class_common_with_prevalence_slopes": {
+        "estimated": true,
+        "prior_set": "moderate",
+        "class_specific_narrative_slopes": false,
+        "prevalence_depends_on_length": true,
+        "n_length_parameters": 5,
+        "length_variable": "narrative_chars_z",
+        "run_seconds": 54.8,
+        "draws_per_chain": 4000,
+        "tune": 4000,
+        "diagnostics": {
+          "max_r_hat": 1.0007,
+          "min_ess_bulk": 4393,
+          "min_ess_tail": 5314,
+          "divergences": 0,
+          "n_parameters_summarized": 27,
+          "healthy": true
+        },
+        "fit_against_raw_table": {
+          "max_abs_count_error": 6.6,
+          "total_abs_count_error": 59.11,
+          "max_abs_pearson_residual": 2.538,
+          "observed": [
+            [
+              50,
+              21,
+              6,
+              0
+            ],
+            [
+              69,
+              7,
+              26,
+              1
+            ],
+            [
+              185,
+              16,
+              51,
+              8
+            ],
+            [
+              43,
+              0,
+              17,
+              11
+            ],
+            [
+              2,
+              0,
+              0,
+              9
+            ]
+          ],
+          "implied": [
+            [
+              48.8,
+              14.9,
+              12.1,
+              1.4
+            ],
+            [
+              68.9,
+              12.5,
+              19.6,
+              1.9
+            ],
+            [
+              178.4,
+              14.9,
+              56.1,
+              7.8
+            ],
+            [
+              43.5,
+              2.5,
+              13.2,
+              13.3
+            ],
+            [
+              5.6,
+              0.4,
+              1.4,
+              5.0
+            ]
+          ],
+          "reproduces_raw_table": false,
+          "note": "A Pearson residual above about 2 in any cell means the measurement layer cannot represent the observed table, which is a parameterization problem and not a finding."
+        },
+        "class_alignment": {
+          "kabco_measurement": {
+            "O": {
+              "O": 0.3876,
+              "BC": 0.583,
+              "KA": 0.0295
+            },
+            "BC": {
+              "O": 0.1045,
+              "BC": 0.7634,
+              "KA": 0.132
+            },
+            "KA": {
+              "O": 0.0046,
+              "BC": 0.1895,
+              "KA": 0.8059
+            }
+          },
+          "p_severe_given_class": {
+            "O": 0.0295,
+            "BC": 0.132,
+            "KA": 0.8059
+          },
+          "severity_ordering_holds": true,
+          "aligned": true
+        },
+        "narrative_length_slopes": {
+          "all|O-consistent": {
+            "mean": 0.5785,
+            "ci95": [
+              -0.1641,
+              1.2151
+            ],
+            "excludes_zero": false
+          },
+          "all|BC-consistent": {
+            "mean": 0.7819,
+            "ci95": [
+              0.4561,
+              1.1508
+            ],
+            "excludes_zero": true
+          },
+          "all|KA-consistent": {
+            "mean": 0.2689,
+            "ci95": [
+              -0.2261,
+              0.8352
+            ],
+            "excludes_zero": false
+          }
+        },
+        "n_narrative_slopes_excluding_zero": 1,
+        "prevalence_length_slopes": {
+          "BC": {
+            "mean": -0.3399,
+            "ci95": [
+              -1.1426,
+              0.3888
+            ],
+            "excludes_zero": false
+          },
+          "KA": {
+            "mean": 0.5191,
+            "ci95": [
+              0.0271,
+              1.056
+            ],
+            "excludes_zero": true
+          }
+        },
+        "latent_prevalence_at_mean_length": {
+          "O": {
+            "mean": 0.1878,
+            "ci95": [
+              0.0814,
+              0.3911
+            ]
+          },
+          "BC": {
+            "mean": 0.7498,
+            "ci95": [
+              0.5477,
+              0.865
+            ]
+          },
+          "KA": {
+            "mean": 0.0624,
+            "ci95": [
+              0.0275,
+              0.1172
+            ]
+          }
+        },
+        "narrative_measurement_at_mean_length": {
+          "O": {
+            "no cue": 0.4855,
+            "O-consistent": 0.4387,
+            "BC-consistent": 0.0555,
+            "KA-consistent": 0.0204
+          },
+          "BC": {
+            "no cue": 0.7169,
+            "O-consistent": 0.0162,
+            "BC-consistent": 0.2522,
+            "KA-consistent": 0.0146
+          },
+          "KA": {
+            "no cue": 0.3916,
+            "O-consistent": 0.0168,
+            "BC-consistent": 0.0284,
+            "KA-consistent": 0.5632
+          }
+        },
+        "implied_table_draws": 400,
+        "pipeline_settings_run": {
+          "estimated": true,
+          "prior_set": "moderate",
+          "class_specific_narrative_slopes": false,
+          "prevalence_depends_on_length": true,
+          "n_length_parameters": 5,
+          "length_variable": "narrative_chars_z",
+          "run_seconds": 27.7,
+          "draws_per_chain": 1000,
+          "tune": 2000,
+          "diagnostics": {
+            "max_r_hat": 1.0041,
+            "min_ess_bulk": 1159,
+            "min_ess_tail": 1332,
+            "divergences": 0,
+            "n_parameters_summarized": 27,
+            "healthy": true
+          },
+          "fit_against_raw_table": {
+            "max_abs_count_error": 6.52,
+            "total_abs_count_error": 59.04,
+            "max_abs_pearson_residual": 2.66,
+            "observed": [
+              [
+                50,
+                21,
+                6,
+                0
+              ],
+              [
+                69,
+                7,
+                26,
+                1
+              ],
+              [
+                185,
+                16,
+                51,
+                8
+              ],
+              [
+                43,
+                0,
+                17,
+                11
+              ],
+              [
+                2,
+                0,
+                0,
+                9
+              ]
+            ],
+            "implied": [
+              [
+                48.5,
+                14.7,
+                12.0,
+                1.3
+              ],
+              [
+                69.3,
+                12.5,
+                19.5,
+                1.8
+              ],
+              [
+                179.0,
+                14.8,
+                55.8,
+                7.9
+              ],
+              [
+                43.5,
+                2.4,
+                13.1,
+                13.3
+              ],
+              [
+                5.8,
+                0.4,
+                1.5,
+                4.9
+              ]
+            ],
+            "reproduces_raw_table": false,
+            "note": "A Pearson residual above about 2 in any cell means the measurement layer cannot represent the observed table, which is a parameterization problem and not a finding."
+          },
+          "class_alignment": {
+            "kabco_measurement": {
+              "O": {
+                "O": 0.388,
+                "BC": 0.5825,
+                "KA": 0.0295
+              },
+              "BC": {
+                "O": 0.105,
+                "BC": 0.7628,
+                "KA": 0.1322
+              },
+              "KA": {
+                "O": 0.0046,
+                "BC": 0.1894,
+                "KA": 0.8059
+              }
+            },
+            "p_severe_given_class": {
+              "O": 0.0295,
+              "BC": 0.1322,
+              "KA": 0.8059
+            },
+            "severity_ordering_holds": true,
+            "aligned": true
+          },
+          "narrative_length_slopes": {
+            "all|O-consistent": {
+              "mean": 0.5788,
+              "ci95": [
+                -0.1744,
+                1.1982
+              ],
+              "excludes_zero": false
+            },
+            "all|BC-consistent": {
+              "mean": 0.7776,
+              "ci95": [
+                0.4492,
+                1.1335
+              ],
+              "excludes_zero": true
+            },
+            "all|KA-consistent": {
+              "mean": 0.2633,
+              "ci95": [
+                -0.2535,
+                0.818
+              ],
+              "excludes_zero": false
+            }
+          },
+          "n_narrative_slopes_excluding_zero": 1,
+          "prevalence_length_slopes": {
+            "BC": {
+              "mean": -0.3468,
+              "ci95": [
+                -1.1686,
+                0.3612
+              ],
+              "excludes_zero": false
+            },
+            "KA": {
+              "mean": 0.5239,
+              "ci95": [
+                0.0271,
+                1.0484
+              ],
+              "excludes_zero": true
+            }
+          },
+          "latent_prevalence_at_mean_length": {
+            "O": {
+              "mean": 0.1866,
+              "ci95": [
+                0.0792,
+                0.3924
+              ]
+            },
+            "BC": {
+              "mean": 0.7511,
+              "ci95": [
+                0.5502,
+                0.8656
+              ]
+            },
+            "KA": {
+              "mean": 0.0622,
+              "ci95": [
+                0.0275,
+                0.1165
+              ]
+            }
+          },
+          "narrative_measurement_at_mean_length": {
+            "O": {
+              "no cue": 0.484,
+              "O-consistent": 0.4413,
+              "BC-consistent": 0.0538,
+              "KA-consistent": 0.0208
+            },
+            "BC": {
+              "no cue": 0.7177,
+              "O-consistent": 0.0161,
+              "BC-consistent": 0.2517,
+              "KA-consistent": 0.0145
+            },
+            "KA": {
+              "no cue": 0.3895,
+              "O-consistent": 0.0161,
+              "BC-consistent": 0.0291,
+              "KA-consistent": 0.5653
+            }
+          },
+          "implied_table_draws": 400
+        }
+      }
+    },
+    "note": "Primary length sensitivity is class-specific narrative slopes with the latent prevalence also logit-linear in length. Without the prevalence slopes, the association between length and coded severity can only be absorbed by the narrative slopes."
+  },
+  "saved_class_probabilities": {
+    "file": "data/audit_posterior_classprobs.npz",
+    "key": "rider_row_id (row order of model_frame.csv); crash_id alongside",
+    "class_order": [
+      "O",
+      "BC",
+      "KA"
+    ],
+    "primary_arrays": "moderate_mean (522, 3) and moderate_draws (100, 522, 3)",
+    "draw_indices_moderate": [
+      0,
+      40,
+      81,
+      121,
+      162,
+      202,
+      242,
+      283,
+      323,
+      364,
+      404,
+      444,
+      485,
+      525,
+      566,
+      606,
+      646,
+      687,
+      727,
+      767,
+      808,
+      848,
+      889,
+      929,
+      969,
+      1010,
+      1050,
+      1091,
+      1131,
+      1171,
+      1212,
+      1252,
+      1293,
+      1333,
+      1373,
+      1414,
+      1454,
+      1495,
+      1535,
+      1575,
+      1616,
+      1656,
+      1697,
+      1737,
+      1777,
+      1818,
+      1858,
+      1899,
+      1939,
+      1979,
+      2020,
+      2060,
+      2100,
+      2141,
+      2181,
+      2222,
+      2262,
+      2302,
+      2343,
+      2383,
+      2424,
+      2464,
+      2504,
+      2545,
+      2585,
+      2626,
+      2666,
+      2706,
+      2747,
+      2787,
+      2828,
+      2868,
+      2908,
+      2949,
+      2989,
+      3030,
+      3070,
+      3110,
+      3151,
+      3191,
+      3232,
+      3272,
+      3312,
+      3353,
+      3393,
+      3433,
+      3474,
+      3514,
+      3555,
+      3595,
+      3635,
+      3676,
+      3716,
+      3757,
+      3797,
+      3837,
+      3878,
+      3918,
+      3959,
+      3999
+    ],
+    "n_total_posterior_draws": 4000,
+    "arrays": [
+      "classes",
+      "crash_id",
+      "dependence_moderate_draws",
+      "dependence_moderate_mean",
+      "length_class_common_with_prevalence_slopes_mean",
+      "length_class_specific_no_prevalence_slopes_mean",
+      "length_class_specific_with_prevalence_slopes_mean",
+      "moderate_draw_indices",
+      "moderate_draws",
+      "moderate_mean",
+      "narrative_indicator",
+      "rider_row_id",
+      "sev3",
+      "sev_kabco",
+      "weak_draw_indices",
+      "weak_draws",
+      "weak_mean"
+    ]
+  },
+  "total_run_seconds": 373.9
+}

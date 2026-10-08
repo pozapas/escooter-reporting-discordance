@@ -1,0 +1,523 @@
+Crash_ID,sev3,sev_kabco,narrative_indicator
+18084267,BC,C,no cue
+18123439,BC,C,no cue
+18137184,BC,B,no cue
+18258555,BC,C,BC-consistent
+18286020,BC,C,KA-consistent
+18291178,BC,C,no cue
+18299940,KA,A,no cue
+18313764,KA,A,BC-consistent
+18314365,BC,B,BC-consistent
+18320652,BC,B,no cue
+18369868,KA,K,KA-consistent
+18373106,BC,C,no cue
+18385472,KA,A,BC-consistent
+18391216,BC,B,no cue
+18391833,KA,A,KA-consistent
+18392142,BC,B,no cue
+18409305,BC,B,no cue
+18431591,BC,B,BC-consistent
+18445363,BC,C,no cue
+18450191,BC,B,no cue
+18452325,BC,B,no cue
+18546608,BC,C,no cue
+18551567,BC,B,BC-consistent
+18567504,BC,B,no cue
+18596396,BC,B,no cue
+18614327,BC,B,no cue
+18621759,BC,B,no cue
+18625016,BC,C,BC-consistent
+18641849,KA,K,KA-consistent
+18660262,BC,C,no cue
+18706178,O,O,O-consistent
+18756943,BC,B,no cue
+18764612,O,O,O-consistent
+18794429,BC,B,no cue
+18802924,BC,B,no cue
+18805222,BC,B,no cue
+18806351,O,O,O-consistent
+18818841,BC,B,no cue
+18867093,KA,A,KA-consistent
+18881223,BC,C,BC-consistent
+18906035,BC,B,no cue
+18915979,KA,A,no cue
+18923620,KA,K,KA-consistent
+18925961,O,O,no cue
+18941232,KA,A,BC-consistent
+18951170,BC,B,no cue
+18965473,O,O,no cue
+18967267,BC,B,KA-consistent
+18985335,BC,B,BC-consistent
+18992871,O,O,O-consistent
+18993054,KA,A,no cue
+18995056,O,O,O-consistent
+19003825,O,O,no cue
+19010130,BC,B,O-consistent
+19011663,KA,A,no cue
+19015926,BC,B,BC-consistent
+19028413,BC,C,no cue
+19030755,BC,C,no cue
+19031335,BC,B,no cue
+19038674,BC,B,BC-consistent
+19041843,O,O,O-consistent
+19043371,BC,C,BC-consistent
+19044104,BC,C,BC-consistent
+19052739,BC,B,BC-consistent
+19055507,BC,B,no cue
+19058086,O,O,O-consistent
+19058199,O,O,no cue
+19062803,BC,B,no cue
+19063162,BC,C,no cue
+19086156,BC,C,no cue
+19090003,BC,B,no cue
+19108452,BC,B,no cue
+19109523,BC,B,no cue
+19111788,BC,B,no cue
+19111838,BC,B,no cue
+19121524,O,O,no cue
+19126204,O,O,O-consistent
+19127244,KA,A,no cue
+19127529,BC,C,no cue
+19130882,BC,B,BC-consistent
+19131543,O,O,no cue
+19133592,KA,A,no cue
+19138340,BC,C,no cue
+19142204,BC,B,no cue
+19148829,BC,B,no cue
+19159800,BC,B,no cue
+19159849,BC,C,no cue
+19159931,BC,C,no cue
+19174169,BC,B,BC-consistent
+19174978,BC,B,no cue
+19180118,BC,B,no cue
+19183894,KA,A,no cue
+19185174,BC,B,no cue
+19186525,BC,B,no cue
+19186739,BC,B,no cue
+19189676,KA,A,no cue
+19195336,O,O,no cue
+19196622,BC,C,no cue
+19218694,BC,B,no cue
+19219749,BC,B,no cue
+19251585,BC,C,O-consistent
+19254440,BC,C,O-consistent
+19254711,KA,A,no cue
+19270000,BC,B,no cue
+19272573,O,O,no cue
+19272749,KA,A,no cue
+19274295,BC,B,no cue
+19286469,BC,C,BC-consistent
+19313514,O,O,BC-consistent
+19475564,BC,B,BC-consistent
+19491838,KA,A,no cue
+19507353,O,O,no cue
+19517409,BC,B,no cue
+19522285,BC,B,BC-consistent
+19526549,O,O,no cue
+19533819,KA,A,KA-consistent
+19537291,KA,K,no cue
+19540181,BC,C,BC-consistent
+19540388,O,O,no cue
+19541467,KA,A,no cue
+19552914,BC,C,BC-consistent
+19559491,BC,B,no cue
+19563636,O,O,O-consistent
+19564787,BC,C,no cue
+19582024,BC,C,no cue
+19595833,BC,B,no cue
+19598321,BC,C,no cue
+19604789,BC,B,no cue
+19609475,BC,C,no cue
+19619530,BC,B,no cue
+19623670,BC,B,BC-consistent
+19627016,BC,B,KA-consistent
+19629633,O,O,O-consistent
+19633539,BC,B,BC-consistent
+19638154,KA,A,no cue
+19651475,BC,B,KA-consistent
+19653793,BC,B,BC-consistent
+19660941,BC,B,no cue
+19661312,KA,A,no cue
+19662004,BC,B,no cue
+19663095,BC,B,no cue
+19683418,O,O,O-consistent
+19686907,BC,B,no cue
+19691273,KA,A,KA-consistent
+19696501,KA,A,BC-consistent
+19701571,BC,C,no cue
+19706137,BC,B,no cue
+19709866,BC,C,no cue
+19714635,BC,B,no cue
+19717875,BC,B,O-consistent
+19724045,BC,B,no cue
+19724162,BC,C,BC-consistent
+19735764,BC,C,O-consistent
+19738411,BC,B,no cue
+19738411,BC,B,no cue
+19752721,BC,B,no cue
+19764578,BC,B,O-consistent
+19767231,BC,B,no cue
+19789804,BC,B,BC-consistent
+19793128,BC,B,no cue
+19804488,BC,B,no cue
+19804617,BC,C,no cue
+19818376,BC,C,no cue
+19819680,KA,A,BC-consistent
+19824473,BC,C,O-consistent
+19829368,BC,B,no cue
+19831483,BC,C,no cue
+19832336,BC,B,no cue
+19838154,BC,B,no cue
+19838154,BC,B,no cue
+19841743,BC,B,no cue
+19843126,KA,A,BC-consistent
+19846755,KA,A,no cue
+19850030,BC,B,no cue
+19852246,BC,B,no cue
+19862768,O,O,no cue
+19866223,O,O,O-consistent
+19874580,BC,B,no cue
+19894547,BC,B,BC-consistent
+19906400,BC,B,no cue
+19917295,BC,B,no cue
+19925630,BC,B,no cue
+19929608,BC,B,no cue
+19936064,BC,B,BC-consistent
+19939160,KA,A,BC-consistent
+19951535,BC,B,no cue
+19965049,BC,C,no cue
+19322713,KA,A,no cue
+19336857,KA,A,no cue
+19342070,O,O,no cue
+19343481,BC,B,O-consistent
+19350178,BC,C,BC-consistent
+19356628,BC,C,BC-consistent
+19357329,BC,B,O-consistent
+19358885,O,O,no cue
+19361623,BC,C,BC-consistent
+19365016,KA,K,no cue
+19369660,BC,B,no cue
+19370199,BC,C,no cue
+19382500,O,O,no cue
+19389140,BC,B,no cue
+19400069,BC,B,no cue
+19402680,O,O,no cue
+19405353,O,O,no cue
+19408210,KA,A,KA-consistent
+19415461,BC,B,no cue
+19419756,BC,B,no cue
+19420746,BC,C,BC-consistent
+19421338,O,O,no cue
+19421895,KA,A,no cue
+19423677,BC,C,BC-consistent
+19423704,BC,B,no cue
+19430118,BC,B,no cue
+19430549,BC,B,no cue
+19430683,BC,B,no cue
+19437706,BC,B,no cue
+19438471,BC,C,no cue
+19460617,O,O,no cue
+19467254,BC,B,no cue
+19468303,O,O,no cue
+19470483,BC,B,no cue
+19472952,O,O,no cue
+19477001,O,O,BC-consistent
+19970856,BC,B,O-consistent
+20000350,BC,B,no cue
+20003726,KA,A,KA-consistent
+20004253,BC,C,no cue
+20010107,BC,B,KA-consistent
+20015570,BC,C,no cue
+20020060,BC,B,O-consistent
+20021369,KA,A,no cue
+20022518,BC,B,BC-consistent
+20023141,KA,A,BC-consistent
+20024809,KA,A,BC-consistent
+20032187,BC,B,no cue
+20047472,BC,B,BC-consistent
+20048510,BC,B,no cue
+20080870,O,O,no cue
+20081399,BC,B,no cue
+20083053,BC,C,BC-consistent
+20084491,KA,A,no cue
+20089553,BC,B,no cue
+20094195,BC,B,no cue
+20099777,KA,A,BC-consistent
+20101116,O,O,no cue
+20103657,BC,B,no cue
+20112813,KA,A,BC-consistent
+20114613,BC,B,BC-consistent
+20121378,BC,C,no cue
+20124884,BC,B,BC-consistent
+20140364,BC,C,no cue
+20154484,BC,B,BC-consistent
+20159431,BC,C,BC-consistent
+20161216,KA,A,BC-consistent
+20183025,BC,C,no cue
+20183822,BC,B,O-consistent
+20198019,BC,C,no cue
+20202393,BC,C,no cue
+20207046,BC,C,no cue
+20211473,O,O,no cue
+20216761,BC,B,no cue
+20231519,BC,B,no cue
+20240878,BC,C,BC-consistent
+20247194,O,O,no cue
+20248203,BC,B,no cue
+20250526,KA,A,no cue
+20255177,KA,A,BC-consistent
+20263828,BC,B,no cue
+20268199,BC,B,no cue
+20270590,BC,C,no cue
+20276277,BC,C,BC-consistent
+20278396,BC,B,no cue
+20280232,BC,B,BC-consistent
+20280929,BC,B,no cue
+20282612,O,O,BC-consistent
+20283477,BC,B,no cue
+20301756,BC,B,BC-consistent
+20301900,O,O,BC-consistent
+20302188,BC,B,no cue
+20304849,BC,B,BC-consistent
+20305777,KA,A,no cue
+20323085,BC,B,BC-consistent
+20323121,BC,B,no cue
+20327993,KA,A,no cue
+20336171,O,O,no cue
+20344537,BC,B,BC-consistent
+20364240,BC,B,O-consistent
+20368192,O,O,O-consistent
+20375534,KA,A,no cue
+20378330,BC,B,no cue
+20383782,O,O,no cue
+20384101,BC,B,BC-consistent
+20385074,BC,C,BC-consistent
+20397172,O,O,no cue
+20397823,KA,A,KA-consistent
+20403304,O,O,no cue
+20406549,BC,B,no cue
+20411572,KA,A,no cue
+20418910,BC,C,no cue
+20422898,O,O,no cue
+20430323,BC,B,no cue
+20430425,BC,B,BC-consistent
+20434392,BC,B,no cue
+20434406,BC,B,no cue
+20447249,BC,B,BC-consistent
+20447519,BC,B,O-consistent
+20461799,KA,A,no cue
+20468976,BC,C,no cue
+20476165,KA,A,BC-consistent
+20477394,O,O,no cue
+20478407,KA,K,KA-consistent
+20480266,BC,B,BC-consistent
+20482673,BC,C,no cue
+20485089,BC,B,no cue
+20488017,BC,B,BC-consistent
+20488368,BC,C,no cue
+20489141,BC,C,BC-consistent
+20489984,BC,B,no cue
+20491602,KA,A,no cue
+20493115,BC,B,no cue
+20500092,BC,B,no cue
+20501375,O,O,no cue
+20501710,BC,B,BC-consistent
+20512902,BC,B,no cue
+20520178,BC,B,no cue
+20522383,BC,B,no cue
+20538124,BC,B,no cue
+20538618,BC,B,BC-consistent
+20544011,BC,B,no cue
+20553131,O,O,no cue
+20553888,BC,B,BC-consistent
+20559541,KA,A,no cue
+20559560,BC,B,BC-consistent
+20559900,BC,B,no cue
+20565125,BC,C,O-consistent
+20568597,BC,B,no cue
+20574462,BC,C,BC-consistent
+20578639,BC,B,no cue
+20578714,O,O,no cue
+20579424,BC,B,no cue
+20580720,BC,B,no cue
+20580870,BC,B,O-consistent
+20582376,BC,C,no cue
+20582708,O,O,BC-consistent
+20583145,BC,B,no cue
+20586599,O,O,no cue
+20589104,KA,A,no cue
+20605956,BC,B,no cue
+20606091,BC,B,no cue
+20608805,KA,A,no cue
+20602973,O,O,O-consistent
+20611920,BC,B,KA-consistent
+20612065,BC,C,no cue
+20612331,BC,B,no cue
+20613236,O,O,no cue
+20620121,BC,B,no cue
+20633867,KA,A,no cue
+20642185,BC,B,KA-consistent
+20643678,BC,C,no cue
+20650631,KA,K,KA-consistent
+20650849,BC,C,no cue
+20657977,BC,C,no cue
+20658124,BC,B,no cue
+20668494,BC,B,no cue
+20695518,BC,B,no cue
+20705537,BC,C,no cue
+20713506,O,O,O-consistent
+20714698,BC,B,BC-consistent
+20715097,O,O,BC-consistent
+20716178,BC,B,no cue
+20720478,BC,B,no cue
+20734482,BC,C,O-consistent
+20737162,BC,B,no cue
+20740047,BC,B,no cue
+20742992,BC,B,BC-consistent
+20748142,BC,C,no cue
+20750723,KA,K,KA-consistent
+20750767,BC,C,BC-consistent
+20753681,BC,C,BC-consistent
+20767365,BC,B,no cue
+20771900,BC,C,no cue
+20773657,O,O,no cue
+20774954,BC,C,BC-consistent
+20779194,BC,B,no cue
+20781798,BC,B,BC-consistent
+20798612,BC,C,BC-consistent
+20803332,BC,B,BC-consistent
+20808181,BC,C,no cue
+20808269,BC,B,no cue
+20811678,KA,A,BC-consistent
+20817104,BC,C,no cue
+20819210,KA,K,KA-consistent
+20825648,BC,B,no cue
+20826125,O,O,no cue
+20837983,O,O,no cue
+20841233,BC,C,no cue
+20843455,BC,B,BC-consistent
+20845055,BC,C,no cue
+20846144,BC,B,no cue
+20849003,KA,A,no cue
+20853611,BC,C,no cue
+20856931,BC,B,no cue
+20859304,BC,B,no cue
+20867028,BC,C,no cue
+20871654,BC,B,BC-consistent
+20876416,BC,B,no cue
+20879101,BC,B,BC-consistent
+20879470,BC,C,O-consistent
+20881063,BC,B,BC-consistent
+20882044,BC,C,no cue
+20885064,O,O,no cue
+20890854,BC,B,no cue
+20891629,BC,B,no cue
+20896203,BC,B,no cue
+20901734,BC,B,no cue
+20902269,BC,B,no cue
+20906237,BC,B,no cue
+20915930,BC,B,no cue
+20924283,KA,A,no cue
+20930078,BC,C,no cue
+20933210,KA,A,BC-consistent
+20946032,O,O,no cue
+20948743,BC,B,no cue
+20949182,KA,A,no cue
+20949756,KA,A,no cue
+20954008,BC,B,no cue
+20961193,BC,C,no cue
+20969801,O,O,O-consistent
+20970816,BC,C,no cue
+20974420,BC,B,no cue
+20974558,KA,A,no cue
+20977560,BC,B,BC-consistent
+20979006,BC,B,no cue
+20980965,BC,B,no cue
+20986113,BC,B,no cue
+20992259,BC,B,no cue
+20994792,BC,B,no cue
+21002349,BC,B,no cue
+21003129,BC,B,no cue
+21003804,BC,B,no cue
+21003933,BC,B,no cue
+21005257,BC,B,BC-consistent
+21005381,BC,B,no cue
+21006420,BC,B,no cue
+21006790,BC,B,no cue
+21008002,BC,B,no cue
+21012477,KA,A,no cue
+21017911,BC,B,O-consistent
+21018349,BC,B,no cue
+21018709,BC,B,no cue
+21021699,BC,B,no cue
+21022313,O,O,O-consistent
+21031520,O,O,no cue
+21032050,BC,B,no cue
+21032268,BC,B,no cue
+21034313,BC,B,BC-consistent
+21036638,KA,A,no cue
+21039602,BC,B,no cue
+21040774,BC,B,no cue
+21042588,BC,B,no cue
+21043695,BC,B,KA-consistent
+21047878,KA,A,no cue
+21050557,BC,B,no cue
+21050706,BC,B,no cue
+21051047,BC,B,O-consistent
+21052224,O,O,O-consistent
+21058624,BC,C,no cue
+21058632,O,O,O-consistent
+21062020,O,O,no cue
+21062942,KA,A,no cue
+21065437,BC,B,no cue
+21065441,KA,A,KA-consistent
+21066639,BC,B,no cue
+21072216,BC,B,no cue
+21074824,BC,C,no cue
+21075195,KA,A,no cue
+21077997,BC,B,BC-consistent
+21081496,BC,C,no cue
+21084487,BC,B,BC-consistent
+21086756,BC,B,no cue
+21088202,O,O,no cue
+21088362,BC,C,no cue
+21088684,BC,B,no cue
+21091566,O,O,no cue
+21092233,BC,B,no cue
+21095949,KA,A,no cue
+21097944,BC,C,BC-consistent
+21102501,BC,B,no cue
+21102927,KA,K,KA-consistent
+21104357,BC,B,no cue
+21105611,O,O,no cue
+21107761,BC,B,KA-consistent
+21108796,BC,C,no cue
+21110187,KA,A,KA-consistent
+21110839,O,O,O-consistent
+21112071,O,O,no cue
+21119308,O,O,no cue
+21123066,KA,A,no cue
+21125995,BC,C,no cue
+21126079,BC,B,O-consistent
+21126481,BC,B,O-consistent
+21129596,BC,B,no cue
+21132010,BC,B,no cue
+21133185,BC,C,no cue
+21135404,KA,K,KA-consistent
+21138090,BC,C,no cue
+21143611,BC,B,no cue
+21160358,BC,B,O-consistent
+21168139,BC,B,no cue
+21175810,BC,B,BC-consistent
+21180181,BC,B,no cue
+21182965,BC,B,no cue
+21186196,KA,A,KA-consistent
+21186229,BC,B,BC-consistent
+21186388,O,O,O-consistent
+21195829,O,O,no cue
+21199855,BC,C,no cue
+21201713,BC,B,no cue
+21208301,KA,A,KA-consistent
+21210922,BC,C,no cue
+21211011,O,O,no cue
+21212648,KA,A,BC-consistent

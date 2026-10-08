@@ -1,0 +1,86 @@
+{
+  "vote_shares_available": true,
+  "band": [
+    0.2,
+    0.8
+  ],
+  "flag_cap": 120,
+  "n_crashes": 520,
+  "per_mechanism": {
+    "wrong_way": {
+      "route_a_positives": 8,
+      "route_b_positives": 44,
+      "disagreements": 36,
+      "flagged": 1,
+      "fused_positives": 44
+    },
+    "sidewalk_transition": {
+      "route_a_positives": 50,
+      "route_b_positives": 155,
+      "disagreements": 113,
+      "flagged": 7,
+      "fused_positives": 155
+    },
+    "driveway_alley": {
+      "route_a_positives": 85,
+      "route_b_positives": 114,
+      "disagreements": 41,
+      "flagged": 5,
+      "fused_positives": 114
+    },
+    "failure_to_yield": {
+      "route_a_positives": 99,
+      "route_b_positives": 218,
+      "disagreements": 125,
+      "flagged": 13,
+      "fused_positives": 218
+    },
+    "signal_violation": {
+      "route_a_positives": 44,
+      "route_b_positives": 96,
+      "disagreements": 52,
+      "flagged": 2,
+      "fused_positives": 96
+    },
+    "swerve_loss_control": {
+      "route_a_positives": 34,
+      "route_b_positives": 43,
+      "disagreements": 31,
+      "flagged": 3,
+      "fused_positives": 43
+    },
+    "dooring": {
+      "route_a_positives": 2,
+      "route_b_positives": 4,
+      "disagreements": 2,
+      "flagged": 0,
+      "fused_positives": 4
+    },
+    "distraction_impairment": {
+      "route_a_positives": 44,
+      "route_b_positives": 81,
+      "disagreements": 61,
+      "flagged": 3,
+      "fused_positives": 81
+    },
+    "vehicle_turning_across": {
+      "route_a_positives": 125,
+      "route_b_positives": 183,
+      "disagreements": 96,
+      "flagged": 5,
+      "fused_positives": 183
+    },
+    "lane_positioning": {
+      "route_a_positives": 72,
+      "route_b_positives": 108,
+      "disagreements": 76,
+      "flagged": 8,
+      "fused_positives": 108
+    }
+  },
+  "band_used": [
+    0.2,
+    0.8
+  ],
+  "n_flagged_narratives": 47
+}

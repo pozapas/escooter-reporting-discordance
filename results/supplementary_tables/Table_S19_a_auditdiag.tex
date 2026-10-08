@@ -1,0 +1,46 @@
+% Generated table; it uses the manuscript preamble's macros (\hltint, \hcell, \altrow, PanelBg).
+\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}X c r r c r r c >{\centering\arraybackslash}p{2.3cm}}
+\caption{\hltint{HlM}{Convergence and fit of the reporting-audit measurement model.}}\label{tab:a_auditdiag}\\
+\toprule
+\headerrow
+\hcell{Specification} & \hcell{$\lambda$} & \hcell{Par.} & \hcell{$\hat{R}$} & \hcell{ESS bulk / tail} & \hcell{Div.} & \hcell{$|r|_{\max}$} & \hcell{Fits table} & \hcell{O share [95\% CI]} \\
+\midrule
+\endfirsthead
+\multicolumn{9}{l}{\cellcolor{HeaderGold}\textcolor{HeaderText}{\textbf{\tablename\ \thetable{} \textit{(continued)}}}} \\
+\toprule
+\headerrow
+\hcell{Specification} & \hcell{$\lambda$} & \hcell{Par.} & \hcell{$\hat{R}$} & \hcell{ESS bulk / tail} & \hcell{Div.} & \hcell{$|r|_{\max}$} & \hcell{Fits table} & \hcell{O share [95\% CI]} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{9}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\multicolumn{9}{p{0.97\linewidth}}{\footnotesize \textit{Note:} $\lambda$ is the dependence term, fixed or with its posterior mean and 95\% interval, and a dash marks the length models, which carry no dependence term. Par.\ counts the summarized parameters, $\hat{R}$ is the largest potential scale reduction factor, ESS gives the smallest bulk and tail effective sample sizes, Div.\ counts divergent transitions, and $|r|_{\max}$ is the largest absolute Pearson residual against the observed table. The O share is the model-implied share of the latent O class. A dash in that column marks a fit where the prevalence parameter is not the class share and the share was not computed.}\\
+\endlastfoot
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{9}{l}{\textbf{Panel A. Dependence term fixed}} \\
+\addlinespace[2pt]
+Moderate prior, primary & 0 & 22 & 1.004 & 1200 / 1410 & 0 & 2.224 & No & 0.19 [0.09, 0.38] \\
+\altrow
+Weak prior & 0 & 22 & 1.003 & 1152 / 1310 & 0 & 2.415 & No & 0.19 [0.07, 0.44] \\
+Moderate prior & 0.5 & 22 & 1.003 & 479 / 447 & 0 & 1.811 & Yes & -- \\
+\altrow
+Moderate prior & 1 & 22 & 1.014 & 318 / 168 & 0 & 1.357 & Yes & -- \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{9}{l}{\textbf{Panel B. Dependence term estimated}} \\
+\addlinespace[2pt]
+Moderate prior & 0.724 [0.092, 1.390] & 23 & 1.008 & 754 / 2429 & 0 & 1.566 & Yes & 0.53 [0.09, 0.92] \\
+\altrow
+Weak prior & 0.896 [0.333, 1.437] & 23 & 1.006 & 716 / 1191 & 0 & 1.300 & Yes & 0.65 [0.07, 0.94] \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{9}{l}{\textbf{Panel C. Narrative length added, moderate prior, no dependence term}} \\
+\addlinespace[2pt]
+Class-specific slopes, prevalence slopes & -- & 33 & 1.003 & 2475 / 2145 & 0 & 2.644 & No & -- \\
+\altrow
+Class-specific slopes only & -- & 31 & 1.002 & 3160 / 3088 & 0 & 2.794 & No & -- \\
+Common slopes, prevalence slopes & -- & 27 & 1.001 & 4393 / 5314 & 0 & 2.538 & No & -- \\
+\end{xltabular}

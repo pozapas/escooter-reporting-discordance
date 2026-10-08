@@ -1,0 +1,181 @@
+{
+  "mapping": [
+    {
+      "level": "KA-consistent",
+      "condition": "fatality, fracture, or unconsciousness cue present",
+      "reading": "Severe or fatal injury is described explicitly."
+    },
+    {
+      "level": "O-consistent",
+      "condition": "explicit no-injury cue present and no transport cue",
+      "reading": "The narrative states that no one was injured and describes no transport."
+    },
+    {
+      "level": "BC-consistent",
+      "condition": "transport cue present, no severe cue",
+      "reading": "Transport to hospital is described without any severe-injury language."
+    },
+    {
+      "level": "no cue",
+      "condition": "none of the above",
+      "reading": "The narrative carries no injury-outcome language of any kind."
+    }
+  ],
+  "levels": [
+    "no cue",
+    "O-consistent",
+    "BC-consistent",
+    "KA-consistent"
+  ],
+  "n_rider_rows": 522,
+  "n_distinct_crashes": 520,
+  "indicator_counts": {
+    "no cue": 349,
+    "O-consistent": 44,
+    "BC-consistent": 100,
+    "KA-consistent": 29
+  },
+  "cue_conflicts": {
+    "no_injury_and_transport": 3,
+    "no_injury_and_severe": 0,
+    "severe_without_transport": 12,
+    "note": "Resolved by the precedence in MAPPING: a severe cue wins over everything, and a transport cue wins over an explicit no-injury cue."
+  },
+  "cross_tab_kabco": {
+    "counts": {
+      "O": {
+        "no cue": 50,
+        "O-consistent": 21,
+        "BC-consistent": 6,
+        "KA-consistent": 0
+      },
+      "C": {
+        "no cue": 69,
+        "O-consistent": 7,
+        "BC-consistent": 26,
+        "KA-consistent": 1
+      },
+      "B": {
+        "no cue": 185,
+        "O-consistent": 16,
+        "BC-consistent": 51,
+        "KA-consistent": 8
+      },
+      "A": {
+        "no cue": 43,
+        "O-consistent": 0,
+        "BC-consistent": 17,
+        "KA-consistent": 11
+      },
+      "K": {
+        "no cue": 2,
+        "O-consistent": 0,
+        "BC-consistent": 0,
+        "KA-consistent": 9
+      }
+    },
+    "row_percent": {
+      "O": {
+        "no cue": 64.9,
+        "O-consistent": 27.3,
+        "BC-consistent": 7.8,
+        "KA-consistent": 0.0
+      },
+      "C": {
+        "no cue": 67.0,
+        "O-consistent": 6.8,
+        "BC-consistent": 25.2,
+        "KA-consistent": 1.0
+      },
+      "B": {
+        "no cue": 71.2,
+        "O-consistent": 6.2,
+        "BC-consistent": 19.6,
+        "KA-consistent": 3.1
+      },
+      "A": {
+        "no cue": 60.6,
+        "O-consistent": 0.0,
+        "BC-consistent": 23.9,
+        "KA-consistent": 15.5
+      },
+      "K": {
+        "no cue": 18.2,
+        "O-consistent": 0.0,
+        "BC-consistent": 0.0,
+        "KA-consistent": 81.8
+      }
+    },
+    "row_totals": {
+      "O": 77,
+      "C": 103,
+      "B": 260,
+      "A": 71,
+      "K": 11
+    },
+    "column_totals": {
+      "no cue": 349,
+      "O-consistent": 44,
+      "BC-consistent": 100,
+      "KA-consistent": 29
+    },
+    "n": 522
+  },
+  "cross_tab_sev3": {
+    "counts": {
+      "O": {
+        "no cue": 50,
+        "O-consistent": 21,
+        "BC-consistent": 6,
+        "KA-consistent": 0
+      },
+      "BC": {
+        "no cue": 254,
+        "O-consistent": 23,
+        "BC-consistent": 77,
+        "KA-consistent": 9
+      },
+      "KA": {
+        "no cue": 45,
+        "O-consistent": 0,
+        "BC-consistent": 17,
+        "KA-consistent": 20
+      }
+    },
+    "row_percent": {
+      "O": {
+        "no cue": 64.9,
+        "O-consistent": 27.3,
+        "BC-consistent": 7.8,
+        "KA-consistent": 0.0
+      },
+      "BC": {
+        "no cue": 70.0,
+        "O-consistent": 6.3,
+        "BC-consistent": 21.2,
+        "KA-consistent": 2.5
+      },
+      "KA": {
+        "no cue": 54.9,
+        "O-consistent": 0.0,
+        "BC-consistent": 20.7,
+        "KA-consistent": 24.4
+      }
+    },
+    "row_totals": {
+      "O": 77,
+      "BC": 363,
+      "KA": 82
+    },
+    "column_totals": {
+      "no cue": 349,
+      "O-consistent": 44,
+      "BC-consistent": 100,
+      "KA-consistent": 29
+    },
+    "n": 522
+  },
+  "label_source": "final adjudicated",
+  "labels_are_preliminary": false,
+  "note": "Built from the cue labels the severity models use. The indicator compares two fields of the same police record, the officer's KABCO code and the officer's narrative, so disagreement between them is discordance and not evidence that either is wrong."
+}

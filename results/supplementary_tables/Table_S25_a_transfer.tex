@@ -1,0 +1,27 @@
+% Generated table; it uses the manuscript preamble's macros (\hltint, \hcell, \altrow, PanelBg).
+\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}X rrrrrrr}
+\caption{\hltint{HlM}{Transferability tests, per split.}}\label{tab:a_transfer}\\
+\toprule
+\headerrow
+\hcell{Split} & \hcell{$n$ first} & \hcell{$n$ second} & \hcell{Covariates} & \hcell{LR} & \hcell{d.f.} & \hcell{$p$ asym.} & \hcell{$p$ boot.} \\
+\midrule
+\endfirsthead
+\multicolumn{8}{l}{\cellcolor{HeaderGold}\textcolor{HeaderText}{\textbf{\tablename\ \thetable{} \textit{(continued)}}}} \\
+\toprule
+\headerrow
+\hcell{Split} & \hcell{$n$ first} & \hcell{$n$ second} & \hcell{Covariates} & \hcell{LR} & \hcell{d.f.} & \hcell{$p$ asym.} & \hcell{$p$ boot.} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{8}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\multicolumn{8}{p{0.97\linewidth}}{\footnotesize \textit{Note:} The first group is the earlier period or the large cities. The covariate count is the number estimable within both sides of the split.}\\
+\endlastfoot
+Temporal, 2023 break & 109 & 413 & 9 & 0.86 & 11 & $>0.99$ & $>0.99$ \\
+\altrow
+Temporal, 2024 break & 223 & 299 & 21 & 16.01 & 23 & 0.855 & 0.904 \\
+Temporal, 2025 break & 350 & 172 & 16 & 12.67 & 18 & 0.811 & 0.822 \\
+\altrow
+Spatial, six major cities & 257 & 265 & 17 & 28.26 & 19 & 0.079 & 0.108 \\
+\end{xltabular}

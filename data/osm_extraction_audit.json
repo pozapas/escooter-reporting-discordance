@@ -1,0 +1,13 @@
+{
+  "located_crashes": 444,
+  "tiles": 105,
+  "failed_tiles": 0,
+  "extraction_date": "2026-09-14",
+  "overpass_endpoints_used": {},
+  "tile_degrees": 0.2,
+  "rows_written": 444,
+  "bike_facility_nearest_positives": 43,
+  "bike_facility_100m_positives": 145,
+  "road_density_km_100m_median": 0.87585,
+  "rows_with_error": 0
+}
