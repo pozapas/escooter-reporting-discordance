@@ -1,0 +1,46 @@
+% Generated table; it uses the manuscript preamble's macros (\hltint, \hcell, \altrow, PanelBg).
+\begin{table}[pos=htbp]
+\tableserif
+\centering
+\begin{threeparttable}
+\hllabelcolour{HlM}
+\caption{\hltint{HlM}{The cue block of M1 under alternative label sets.}}
+\label{tab:a_labelvariants}
+\footnotesize
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X c r r rrrrr}
+\toprule
+\headerrow
+\hcell{Label set} & \hcell{Test} & \hcell{$p$} & \hcell{$\Delta$CV} & \hcell{SW} & \hcell{FTY} & \hcell{SV} & \hcell{VTA} & \hcell{LP} \\
+\midrule
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{9}{l}{\textbf{Panel A. Every rider, $n = 522$}} \\
+\addlinespace[2pt]
+Final labels, primary & $\chi^2 = 0.80$ & 0.977 & 0.0134 & 21.5 & 32.6 & 17.0 & 32.8 & 20.5 \\
+\altrow
+Reference run on every rider & $\chi^2 = 1.11$ & 0.954 & 0.0131 & 29.7 & 41.8 & 18.4 & 35.1 & 20.7 \\
+Majority of the repeated runs & $\chi^2 = 1.22$ & 0.943 & 0.0131 & 29.3 & 40.8 & 18.6 & 35.4 & 19.9 \\
+\altrow
+Calibrated plug-in, human labels kept & $\chi^2 = 0.10$ & $>0.99$ & 0.0126 & 7.7 & 21.1 & 15.4 & 29.8 & 22.5 \\
+Calibrated plug-in on every rider & $\chi^2 = 1.50$ & 0.913 & 0.0130 & 8.0 & 21.8 & 15.4 & 29.7 & 22.8 \\
+\altrow
+Uncalibrated vote share & $\chi^2 = 1.19$ & 0.946 & 0.0131 & 29.4 & 40.8 & 18.5 & 35.7 & 20.3 \\
+Draws from the calibrated probability & $F = 0.018$ & $>0.99$ & -- & 7.8 & 21.2 & 15.5 & 29.9 & 22.5 \\
+\altrow
+Outcome-informed draws & $F = 0.134$ & 0.984 & -- & 8.7 & 22.1 & 15.5 & 29.3 & 22.3 \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{9}{l}{\textbf{Panel B. Human-coded riders only, $n = 187$}} \\
+\addlinespace[2pt]
+Human labels, admitted cues & $\chi^2_{2} = 0.35$ & 0.839 & -- & 6.4 & 19.8 & 17.1 & 30.5 & 26.7 \\
+\altrow
+Human labels, all five cues & $\chi^2_{5} = 0.88$ & 0.972 & -- & 6.4 & 19.8 & 17.1 & 30.5 & 26.7 \\
+Route B labels, admitted cues & $\chi^2_{2} = 1.83$ & 0.401 & -- & 29.4 & 45.5 & 20.9 & 36.9 & 27.3 \\
+\bottomrule
+\end{tabularx}
+\begin{tablenotes}[flushleft]\footnotesize
+\item \textit{Note:} The test is the likelihood-ratio $\chi^2$ of the cue block, with 5 degrees of freedom unless a subscript gives fewer, or for the drawn sets the D1 Wald $F$ pooled over 50 draws. $\Delta$CV is the mean over 10 repeats of 5-fold cross-validation of the M1 log loss minus the M0c log loss on the same fold, so a positive value means the cues raised the out-of-sample loss. It was not computed for the drawn sets or the reduced model, which hold a dash. The last five columns give the percentage of riders with the cue, or the mean probability for a plug-in or drawn set, for the sidewalk to roadway transition (SW), failure to yield (FTY), signal violation (SV), vehicle turning across (VTA) and lane positioning (LP). Draws from the calibrated probability alone ignore severity, so they attenuate any association between a cue and severity toward zero. The reduced model admits a covariate or cue only when each severity class holds at least 5 riders with it.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

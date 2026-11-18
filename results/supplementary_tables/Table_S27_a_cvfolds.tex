@@ -1,0 +1,38 @@
+% Generated table; it uses the manuscript preamble's macros (\hltint, \hcell, \altrow, PanelBg).
+\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}X rrrrrr}
+\caption{\hltint{HlM}{Fold-level cross-validated log loss of the specification ladder.}}\label{tab:a_cvfolds}\\
+\toprule
+\headerrow
+\hcell{Rung} & \hcell{Mean} & \hcell{SD} & \hcell{Min} & \hcell{Max} & \hcell{Covariates} & \hcell{Failed folds} \\
+\midrule
+\endfirsthead
+\multicolumn{7}{l}{\cellcolor{HeaderGold}\textcolor{HeaderText}{\textbf{\tablename\ \thetable{} \textit{(continued)}}}} \\
+\toprule
+\endhead
+\midrule
+\multicolumn{7}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\multicolumn{7}{p{0.97\linewidth}}{\footnotesize \textit{Note:} Log loss is the mean negative log-likelihood per rider of the held-out fold, and lower is better. A difference is the log loss of the first rung minus that of the second on the same fold, so a negative value favors the first. The last two columns count the folds and the repeats in which the first rung had the lower loss. The 50 folds overlap across repeats, so the standard deviation of the differences describes their spread and is not a standard error.}\\
+\endlastfoot
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{7}{l}{\textbf{Panel A. Log loss per rung}} \\
+\addlinespace[2pt]
+M0 & 0.8289 & 0.0528 & 0.7499 & 0.9579 & 28 & 0 \\
+\altrow
+M0c & 0.8356 & 0.0553 & 0.7486 & 0.9613 & 30 & 0 \\
+M1 & 0.8490 & 0.0564 & 0.7632 & 0.9665 & 35 & 0 \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{7}{l}{\textbf{Panel B. Paired differences between rungs}} \\
+\addlinespace[2pt]
+\midrule
+\headerrow
+\hcell{Difference} & \hcell{Mean} & \hcell{SD} & \hcell{Min} & \hcell{Max} & \hcell{Folds first lower} & \hcell{Repeats first lower} \\
+\midrule
+M1 minus M0c & 0.0134 & 0.0084 & 0.00005 & 0.0344 & 0 of 50 & 0 of 10 \\
+\altrow
+M1 minus M0 & 0.0201 & 0.0152 & $-$0.00012 & 0.0775 & 1 of 50 & 0 of 10 \\
+M0c minus M0 & 0.0067 & 0.0107 & $-$0.00122 & 0.0523 & 12 of 50 & 0 of 10 \\
+\end{xltabular}

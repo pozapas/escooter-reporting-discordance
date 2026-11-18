@@ -1,0 +1,4308 @@
+{
+  "generated": "2026-10-06T02:06:51+00:00",
+  "script": "src/masking_compare.py",
+  "inputs": [
+    "data/logs/extract_reference.jsonl",
+    "data/logs/extract_unmasked.jsonl",
+    "data/logs/extract_masked_rerun.jsonl",
+    "data/gold_labels.csv",
+    "data/validation_ids.csv",
+    "data/model_frame.csv",
+    "data/screening.json",
+    "data/severity.json",
+    "data/base_frame.csv",
+    "data/reference_labels.csv"
+  ],
+  "settings": {
+    "model": "meta-llama/llama-3.3-70b-instruct",
+    "provider_pinned": "DeepInfra, fallbacks disabled",
+    "pass": "mechanism (ten pre-crash cues)",
+    "prompt_version": "v1.3-2026-09-14",
+    "system_prompt": "identical in both runs, including its sentence about [MASKED] tokens; only the narrative text differs",
+    "temperature": 0.0,
+    "seed": 42,
+    "masked_labels": "Route B reference run, mechanism pass (LLM only)",
+    "unmasked_labels": "rerun on unmasked narratives, all 520 crashes (LLM only)",
+    "bootstrap_resamples": 2000,
+    "bootstrap_seed": 20260917,
+    "severity_model": "ordered logit, primary M1 covariate set from severity.ladder over the frozen screening; the cue set is held fixed across label sets",
+    "krinsky_robb_draws": 1000,
+    "krinsky_robb_seed": 20260917,
+    "event_rule_min_cell": 10,
+    "extract_command": "python extract.py custom --run-id unmasked --mask off --passes mechanism --log ../data/logs/extract_unmasked.jsonl",
+    "masked_rerun_command": "python extract.py custom --run-id masked_rerun --mask on --passes mechanism --ids ../data/validation_ids.csv --log ../data/logs/extract_masked_rerun.jsonl",
+    "masked_rerun_note": "rerun once to complete one HTTP 429 failure; one narrative returned a reply cut off at the token limit on both the run and one repeat with identical settings and has no masked-rerun label, so the same-period comparisons use the narratives listed under its provenance",
+    "reruns": "the same command was rerun once to complete the calls that failed with HTTP 429; one reply that omitted the schema-required labels (cut off at the token limit) was repeated once with extract._call and identical settings, and the complete reply is the one used; both events are in the log and counted under provenance.unmasked"
+  },
+  "provenance": {
+    "masked_reference": {
+      "log": "data/logs/extract_reference.jsonl",
+      "records_parsed_in_scope": 520,
+      "records_failed_in_scope": 0,
+      "records_failed_crash_ids": [],
+      "records_schema_invalid_in_scope": 0,
+      "records_schema_invalid_crash_ids": [],
+      "calls_in_scope_total": 520,
+      "crashes_labelled": 520,
+      "models_returned": [
+        "meta-llama/llama-3.3-70b-instruct"
+      ],
+      "providers_returned": [
+        "DeepInfra"
+      ],
+      "quantization_logged": [
+        "fp8 (provider-reported)"
+      ],
+      "response_format": [
+        "json_schema"
+      ],
+      "temperature": [
+        0.0
+      ],
+      "seed": [
+        42
+      ],
+      "prompt_version": [
+        "v1.3-2026-09-14"
+      ],
+      "first_call_utc": "2026-09-14T17:01:12.844129+00:00",
+      "last_call_utc": "2026-09-14T17:18:51.746677+00:00",
+      "calls_needing_retry": 4,
+      "mean_latency_ms": 15802.0,
+      "prompt_tokens": 1008670,
+      "completion_tokens": 93785,
+      "cost_usd_reported": 0.1296,
+      "calls_with_cost_reported": 520
+    },
+    "unmasked": {
+      "log": "data/logs/extract_unmasked.jsonl",
+      "records_parsed_in_scope": 520,
+      "records_failed_in_scope": 4,
+      "records_failed_crash_ids": [
+        20705537,
+        20825648,
+        20826125,
+        20841233
+      ],
+      "records_schema_invalid_in_scope": 1,
+      "records_schema_invalid_crash_ids": [
+        18806351
+      ],
+      "calls_in_scope_total": 525,
+      "crashes_labelled": 520,
+      "models_returned": [
+        "meta-llama/llama-3.3-70b-instruct"
+      ],
+      "providers_returned": [
+        "DeepInfra"
+      ],
+      "quantization_logged": [
+        "fp8 (provider-reported)"
+      ],
+      "response_format": [
+        "json_schema"
+      ],
+      "temperature": [
+        0.0
+      ],
+      "seed": [
+        42
+      ],
+      "prompt_version": [
+        "v1.3-2026-09-14"
+      ],
+      "first_call_utc": "2026-10-05T18:31:41.211505+00:00",
+      "last_call_utc": "2026-10-05T18:56:38.709995+00:00",
+      "calls_needing_retry": 63,
+      "mean_latency_ms": 19927.0,
+      "prompt_tokens": 1007369,
+      "completion_tokens": 94015,
+      "cost_usd_reported": 0.1295,
+      "calls_with_cost_reported": 520
+    },
+    "narratives_in_modeling_sample": 520,
+    "missing_unmasked_labels": [],
+    "masked_log_matches_reference_labels_csv": {
+      "crashes_compared": 520,
+      "label_mismatches": 0,
+      "matches": true
+    }
+  },
+  "validation": {
+    "masked": {
+      "n": 150,
+      "per_label": {
+        "wrong_way": {
+          "unweighted": {
+            "tp": 20.0,
+            "fp": 8.0,
+            "fn": 0.0,
+            "tn": 122.0,
+            "precision": 0.7143,
+            "recall": 1.0,
+            "f1": 0.8333,
+            "ci95": {
+              "precision": [
+                0.5385,
+                0.88
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.7,
+                0.9362
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 33.9808,
+            "fp": 14.6484,
+            "fn": 0.0,
+            "tn": 428.086,
+            "precision": 0.6988,
+            "recall": 1.0,
+            "f1": 0.8227,
+            "ci95": {
+              "precision": [
+                0.5163,
+                0.8762
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.681,
+                0.934
+              ]
+            }
+          },
+          "gold_positives": 20,
+          "predicted_positives": 28
+        },
+        "sidewalk_transition": {
+          "unweighted": {
+            "tp": 10.0,
+            "fp": 30.0,
+            "fn": 0.0,
+            "tn": 110.0,
+            "precision": 0.25,
+            "recall": 1.0,
+            "f1": 0.4,
+            "ci95": {
+              "precision": [
+                0.1212,
+                0.3947
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.2162,
+                0.566
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 28.575,
+            "fp": 72.7156,
+            "fn": 0.0,
+            "tn": 375.4245,
+            "precision": 0.2821,
+            "recall": 1.0,
+            "f1": 0.4401,
+            "ci95": {
+              "precision": [
+                0.1309,
+                0.4417
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.2314,
+                0.6128
+              ]
+            }
+          },
+          "gold_positives": 10,
+          "predicted_positives": 40
+        },
+        "driveway_alley": {
+          "unweighted": {
+            "tp": 41.0,
+            "fp": 3.0,
+            "fn": 1.0,
+            "tn": 105.0,
+            "precision": 0.9318,
+            "recall": 0.9762,
+            "f1": 0.9535,
+            "ci95": {
+              "precision": [
+                0.8462,
+                1.0
+              ],
+              "recall": [
+                0.925,
+                1.0
+              ],
+              "f1": [
+                0.9,
+                0.9897
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 106.4881,
+            "fp": 12.6521,
+            "fn": 8.7183,
+            "tn": 348.8567,
+            "precision": 0.8938,
+            "recall": 0.9243,
+            "f1": 0.9088,
+            "ci95": {
+              "precision": [
+                0.7688,
+                1.0
+              ],
+              "recall": [
+                0.7802,
+                1.0
+              ],
+              "f1": [
+                0.8075,
+                0.9849
+              ]
+            }
+          },
+          "gold_positives": 42,
+          "predicted_positives": 44
+        },
+        "failure_to_yield": {
+          "unweighted": {
+            "tp": 29.0,
+            "fp": 32.0,
+            "fn": 0.0,
+            "tn": 89.0,
+            "precision": 0.4754,
+            "recall": 1.0,
+            "f1": 0.6444,
+            "ci95": {
+              "precision": [
+                0.3455,
+                0.5965
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.5135,
+                0.7473
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 117.2792,
+            "fp": 102.8605,
+            "fn": 0.0,
+            "tn": 256.5755,
+            "precision": 0.5327,
+            "recall": 1.0,
+            "f1": 0.6952,
+            "ci95": {
+              "precision": [
+                0.3892,
+                0.6753
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.5603,
+                0.8062
+              ]
+            }
+          },
+          "gold_positives": 29,
+          "predicted_positives": 61
+        },
+        "signal_violation": {
+          "unweighted": {
+            "tp": 25.0,
+            "fp": 6.0,
+            "fn": 1.0,
+            "tn": 118.0,
+            "precision": 0.8065,
+            "recall": 0.9615,
+            "f1": 0.8772,
+            "ci95": {
+              "precision": [
+                0.6538,
+                0.9311
+              ],
+              "recall": [
+                0.8749,
+                1.0
+              ],
+              "f1": [
+                0.7692,
+                0.9552
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 71.037,
+            "fp": 14.0357,
+            "fn": 1.0,
+            "tn": 390.6424,
+            "precision": 0.835,
+            "recall": 0.9861,
+            "f1": 0.9043,
+            "ci95": {
+              "precision": [
+                0.6895,
+                0.9453
+              ],
+              "recall": [
+                0.9513,
+                1.0
+              ],
+              "f1": [
+                0.8077,
+                0.9688
+              ]
+            }
+          },
+          "gold_positives": 26,
+          "predicted_positives": 31
+        },
+        "swerve_loss_control": {
+          "unweighted": {
+            "tp": 19.0,
+            "fp": 4.0,
+            "fn": 5.0,
+            "tn": 122.0,
+            "precision": 0.8261,
+            "recall": 0.7917,
+            "f1": 0.8085,
+            "ci95": {
+              "precision": [
+                0.6667,
+                0.96
+              ],
+              "recall": [
+                0.6111,
+                0.9474
+              ],
+              "f1": [
+                0.6667,
+                0.9167
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 32.3301,
+            "fp": 6.6012,
+            "fn": 12.4265,
+            "tn": 425.3574,
+            "precision": 0.8304,
+            "recall": 0.7224,
+            "f1": 0.7726,
+            "ci95": {
+              "precision": [
+                0.6681,
+                0.9632
+              ],
+              "recall": [
+                0.5157,
+                0.9279
+              ],
+              "f1": [
+                0.6129,
+                0.9038
+              ]
+            }
+          },
+          "gold_positives": 24,
+          "predicted_positives": 23
+        },
+        "dooring": {
+          "unweighted": {
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 0.0,
+            "tn": 146.0,
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6667,
+            "ci95": {
+              "precision": [
+                0.0,
+                1.0
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.3333,
+                1.0
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 0.0,
+            "tn": 472.7152,
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6667,
+            "ci95": {
+              "precision": [
+                0.0,
+                1.0
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.3333,
+                1.0
+              ]
+            }
+          },
+          "gold_positives": 2,
+          "predicted_positives": 4
+        },
+        "distraction_impairment": {
+          "unweighted": {
+            "tp": 23.0,
+            "fp": 12.0,
+            "fn": 4.0,
+            "tn": 111.0,
+            "precision": 0.6571,
+            "recall": 0.8519,
+            "f1": 0.7419,
+            "ci95": {
+              "precision": [
+                0.4878,
+                0.8125
+              ],
+              "recall": [
+                0.7058,
+                0.9643
+              ],
+              "f1": [
+                0.6031,
+                0.8519
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 44.4236,
+            "fp": 25.4082,
+            "fn": 16.2107,
+            "tn": 390.6726,
+            "precision": 0.6362,
+            "recall": 0.7326,
+            "f1": 0.681,
+            "ci95": {
+              "precision": [
+                0.4716,
+                0.7997
+              ],
+              "recall": [
+                0.5299,
+                0.9386
+              ],
+              "f1": [
+                0.5278,
+                0.8153
+              ]
+            }
+          },
+          "gold_positives": 27,
+          "predicted_positives": 35
+        },
+        "vehicle_turning_across": {
+          "unweighted": {
+            "tp": 48.0,
+            "fp": 10.0,
+            "fn": 0.0,
+            "tn": 92.0,
+            "precision": 0.8276,
+            "recall": 1.0,
+            "f1": 0.9057,
+            "ci95": {
+              "precision": [
+                0.7213,
+                0.9245
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.8381,
+                0.9608
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 121.8312,
+            "fp": 28.2783,
+            "fn": 0.0,
+            "tn": 326.6057,
+            "precision": 0.8116,
+            "recall": 1.0,
+            "f1": 0.896,
+            "ci95": {
+              "precision": [
+                0.697,
+                0.9148
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.8214,
+                0.9555
+              ]
+            }
+          },
+          "gold_positives": 48,
+          "predicted_positives": 58
+        },
+        "lane_positioning": {
+          "unweighted": {
+            "tp": 41.0,
+            "fp": 1.0,
+            "fn": 3.0,
+            "tn": 105.0,
+            "precision": 0.9762,
+            "recall": 0.9318,
+            "f1": 0.9535,
+            "ci95": {
+              "precision": [
+                0.9189,
+                1.0
+              ],
+              "recall": [
+                0.8462,
+                1.0
+              ],
+              "f1": [
+                0.9014,
+                0.9897
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 86.3461,
+            "fp": 1.6978,
+            "fn": 14.9139,
+            "tn": 373.7574,
+            "precision": 0.9807,
+            "recall": 0.8527,
+            "f1": 0.9122,
+            "ci95": {
+              "precision": [
+                0.9333,
+                1.0
+              ],
+              "recall": [
+                0.6883,
+                1.0
+              ],
+              "f1": [
+                0.8054,
+                0.9909
+              ]
+            }
+          },
+          "gold_positives": 44,
+          "predicted_positives": 42
+        }
+      },
+      "macro_f1": 0.7785,
+      "macro_f1_ip_weighted": 0.77,
+      "labels_in_macro": [
+        "wrong_way",
+        "sidewalk_transition",
+        "driveway_alley",
+        "failure_to_yield",
+        "signal_violation",
+        "swerve_loss_control",
+        "dooring",
+        "distraction_impairment",
+        "vehicle_turning_across",
+        "lane_positioning"
+      ]
+    },
+    "unmasked": {
+      "n": 150,
+      "per_label": {
+        "wrong_way": {
+          "unweighted": {
+            "tp": 20.0,
+            "fp": 9.0,
+            "fn": 0.0,
+            "tn": 121.0,
+            "precision": 0.6897,
+            "recall": 1.0,
+            "f1": 0.8163,
+            "ci95": {
+              "precision": [
+                0.5185,
+                0.8571
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.6829,
+                0.9231
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 33.9808,
+            "fp": 16.5818,
+            "fn": 0.0,
+            "tn": 426.1526,
+            "precision": 0.6721,
+            "recall": 1.0,
+            "f1": 0.8039,
+            "ci95": {
+              "precision": [
+                0.4907,
+                0.8448
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.6584,
+                0.9158
+              ]
+            }
+          },
+          "gold_positives": 20,
+          "predicted_positives": 29
+        },
+        "sidewalk_transition": {
+          "unweighted": {
+            "tp": 10.0,
+            "fp": 30.0,
+            "fn": 0.0,
+            "tn": 110.0,
+            "precision": 0.25,
+            "recall": 1.0,
+            "f1": 0.4,
+            "ci95": {
+              "precision": [
+                0.1212,
+                0.3947
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.2162,
+                0.566
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 28.575,
+            "fp": 101.0221,
+            "fn": 0.0,
+            "tn": 347.1181,
+            "precision": 0.2205,
+            "recall": 1.0,
+            "f1": 0.3613,
+            "ci95": {
+              "precision": [
+                0.0937,
+                0.4106
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.1714,
+                0.5822
+              ]
+            }
+          },
+          "gold_positives": 10,
+          "predicted_positives": 40
+        },
+        "driveway_alley": {
+          "unweighted": {
+            "tp": 40.0,
+            "fp": 3.0,
+            "fn": 2.0,
+            "tn": 105.0,
+            "precision": 0.9302,
+            "recall": 0.9524,
+            "f1": 0.9412,
+            "ci95": {
+              "precision": [
+                0.8387,
+                1.0
+              ],
+              "recall": [
+                0.878,
+                1.0
+              ],
+              "f1": [
+                0.8788,
+                0.9867
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 102.9344,
+            "fp": 11.0955,
+            "fn": 12.2719,
+            "tn": 350.4133,
+            "precision": 0.9027,
+            "recall": 0.8935,
+            "f1": 0.8981,
+            "ci95": {
+              "precision": [
+                0.7778,
+                1.0
+              ],
+              "recall": [
+                0.7363,
+                1.0
+              ],
+              "f1": [
+                0.7895,
+                0.9771
+              ]
+            }
+          },
+          "gold_positives": 42,
+          "predicted_positives": 43
+        },
+        "failure_to_yield": {
+          "unweighted": {
+            "tp": 29.0,
+            "fp": 37.0,
+            "fn": 0.0,
+            "tn": 84.0,
+            "precision": 0.4394,
+            "recall": 1.0,
+            "f1": 0.6105,
+            "ci95": {
+              "precision": [
+                0.3175,
+                0.5585
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.4819,
+                0.7167
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 117.2792,
+            "fp": 111.1567,
+            "fn": 0.0,
+            "tn": 248.2793,
+            "precision": 0.5134,
+            "recall": 1.0,
+            "f1": 0.6785,
+            "ci95": {
+              "precision": [
+                0.3697,
+                0.6486
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.5398,
+                0.7868
+              ]
+            }
+          },
+          "gold_positives": 29,
+          "predicted_positives": 66
+        },
+        "signal_violation": {
+          "unweighted": {
+            "tp": 25.0,
+            "fp": 7.0,
+            "fn": 1.0,
+            "tn": 117.0,
+            "precision": 0.7812,
+            "recall": 0.9615,
+            "f1": 0.8621,
+            "ci95": {
+              "precision": [
+                0.625,
+                0.9167
+              ],
+              "recall": [
+                0.8749,
+                1.0
+              ],
+              "f1": [
+                0.7541,
+                0.9474
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 71.037,
+            "fp": 22.754,
+            "fn": 1.0,
+            "tn": 381.9242,
+            "precision": 0.7574,
+            "recall": 0.9861,
+            "f1": 0.8568,
+            "ci95": {
+              "precision": [
+                0.5651,
+                0.9237
+              ],
+              "recall": [
+                0.9513,
+                1.0
+              ],
+              "f1": [
+                0.7121,
+                0.9559
+              ]
+            }
+          },
+          "gold_positives": 26,
+          "predicted_positives": 32
+        },
+        "swerve_loss_control": {
+          "unweighted": {
+            "tp": 18.0,
+            "fp": 5.0,
+            "fn": 6.0,
+            "tn": 121.0,
+            "precision": 0.7826,
+            "recall": 0.75,
+            "f1": 0.766,
+            "ci95": {
+              "precision": [
+                0.6087,
+                0.9412
+              ],
+              "recall": [
+                0.56,
+                0.9167
+              ],
+              "f1": [
+                0.6154,
+                0.8837
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 30.7924,
+            "fp": 8.8136,
+            "fn": 13.9641,
+            "tn": 423.145,
+            "precision": 0.7775,
+            "recall": 0.688,
+            "f1": 0.73,
+            "ci95": {
+              "precision": [
+                0.5993,
+                0.9425
+              ],
+              "recall": [
+                0.4803,
+                0.9008
+              ],
+              "f1": [
+                0.5652,
+                0.8676
+              ]
+            }
+          },
+          "gold_positives": 24,
+          "predicted_positives": 23
+        },
+        "dooring": {
+          "unweighted": {
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 0.0,
+            "tn": 146.0,
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6667,
+            "ci95": {
+              "precision": [
+                0.0,
+                1.0
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.3333,
+                1.0
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 0.0,
+            "tn": 472.7152,
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6667,
+            "ci95": {
+              "precision": [
+                0.0,
+                1.0
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.3333,
+                1.0
+              ]
+            }
+          },
+          "gold_positives": 2,
+          "predicted_positives": 4
+        },
+        "distraction_impairment": {
+          "unweighted": {
+            "tp": 23.0,
+            "fp": 11.0,
+            "fn": 4.0,
+            "tn": 112.0,
+            "precision": 0.6765,
+            "recall": 0.8519,
+            "f1": 0.7541,
+            "ci95": {
+              "precision": [
+                0.5,
+                0.8276
+              ],
+              "recall": [
+                0.7058,
+                0.9643
+              ],
+              "f1": [
+                0.6154,
+                0.8627
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 44.4236,
+            "fp": 23.1958,
+            "fn": 16.2107,
+            "tn": 392.8851,
+            "precision": 0.657,
+            "recall": 0.7326,
+            "f1": 0.6927,
+            "ci95": {
+              "precision": [
+                0.4867,
+                0.8214
+              ],
+              "recall": [
+                0.5299,
+                0.9386
+              ],
+              "f1": [
+                0.536,
+                0.8305
+              ]
+            }
+          },
+          "gold_positives": 27,
+          "predicted_positives": 34
+        },
+        "vehicle_turning_across": {
+          "unweighted": {
+            "tp": 47.0,
+            "fp": 9.0,
+            "fn": 1.0,
+            "tn": 93.0,
+            "precision": 0.8393,
+            "recall": 0.9792,
+            "f1": 0.9038,
+            "ci95": {
+              "precision": [
+                0.7391,
+                0.9322
+              ],
+              "recall": [
+                0.9302,
+                1.0
+              ],
+              "f1": [
+                0.8381,
+                0.9587
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 119.0453,
+            "fp": 23.93,
+            "fn": 2.7859,
+            "tn": 330.954,
+            "precision": 0.8326,
+            "recall": 0.9771,
+            "f1": 0.8991,
+            "ci95": {
+              "precision": [
+                0.7215,
+                0.9286
+              ],
+              "recall": [
+                0.9228,
+                1.0
+              ],
+              "f1": [
+                0.8251,
+                0.9571
+              ]
+            }
+          },
+          "gold_positives": 48,
+          "predicted_positives": 56
+        },
+        "lane_positioning": {
+          "unweighted": {
+            "tp": 41.0,
+            "fp": 1.0,
+            "fn": 3.0,
+            "tn": 105.0,
+            "precision": 0.9762,
+            "recall": 0.9318,
+            "f1": 0.9535,
+            "ci95": {
+              "precision": [
+                0.9211,
+                1.0
+              ],
+              "recall": [
+                0.851,
+                1.0
+              ],
+              "f1": [
+                0.9032,
+                0.9893
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 87.988,
+            "fp": 1.6978,
+            "fn": 13.2719,
+            "tn": 373.7574,
+            "precision": 0.9811,
+            "recall": 0.8689,
+            "f1": 0.9216,
+            "ci95": {
+              "precision": [
+                0.9351,
+                1.0
+              ],
+              "recall": [
+                0.7048,
+                1.0
+              ],
+              "f1": [
+                0.819,
+                0.9937
+              ]
+            }
+          },
+          "gold_positives": 44,
+          "predicted_positives": 42
+        }
+      },
+      "macro_f1": 0.7674,
+      "macro_f1_ip_weighted": 0.7509,
+      "labels_in_macro": [
+        "wrong_way",
+        "sidewalk_transition",
+        "driveway_alley",
+        "failure_to_yield",
+        "signal_violation",
+        "swerve_loss_control",
+        "dooring",
+        "distraction_impairment",
+        "vehicle_turning_across",
+        "lane_positioning"
+      ]
+    },
+    "paired_unmasked_vs_masked": {
+      "n": 150,
+      "n_boot": 2000,
+      "seed": 20260917,
+      "difference_definition": "macro F1 unmasked minus macro F1 masked",
+      "macro_f1_unmasked": 0.7674,
+      "macro_f1_unmasked_ci95": [
+        0.7166,
+        0.816
+      ],
+      "macro_f1_masked": 0.7785,
+      "macro_f1_masked_ci95": [
+        0.7264,
+        0.8276
+      ],
+      "macro_f1_difference": -0.0111,
+      "macro_f1_difference_ci95": [
+        -0.022,
+        -0.0017
+      ],
+      "share_of_resamples_difference_above_zero": 0.013,
+      "difference_ci_excludes_zero": true,
+      "per_label": {
+        "wrong_way": {
+          "f1_unmasked": 0.8163,
+          "f1_masked": 0.8333,
+          "f1_difference": -0.017,
+          "f1_difference_ci95": [
+            -0.0586,
+            0.0
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_unmasked": 0,
+          "correct_only_masked": 1,
+          "mcnemar_exact_p": 1.0,
+          "cohen_kappa_between_runs": 0.9783,
+          "label_agreement_share": 0.9933
+        },
+        "sidewalk_transition": {
+          "f1_unmasked": 0.4,
+          "f1_masked": 0.4,
+          "f1_difference": 0.0,
+          "f1_difference_ci95": [
+            -0.0339,
+            0.0317
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_unmasked": 2,
+          "correct_only_masked": 2,
+          "mcnemar_exact_p": 1.0,
+          "cohen_kappa_between_runs": 0.9318,
+          "label_agreement_share": 0.9733
+        },
+        "driveway_alley": {
+          "f1_unmasked": 0.9412,
+          "f1_masked": 0.9535,
+          "f1_difference": -0.0123,
+          "f1_difference_ci95": [
+            -0.0556,
+            0.0265
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_unmasked": 1,
+          "correct_only_masked": 2,
+          "mcnemar_exact_p": 1.0,
+          "cohen_kappa_between_runs": 0.9514,
+          "label_agreement_share": 0.98
+        },
+        "failure_to_yield": {
+          "f1_unmasked": 0.6105,
+          "f1_masked": 0.6444,
+          "f1_difference": -0.0339,
+          "f1_difference_ci95": [
+            -0.0663,
+            -0.0075
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_unmasked": 0,
+          "correct_only_masked": 5,
+          "mcnemar_exact_p": 0.0625,
+          "cohen_kappa_between_runs": 0.9318,
+          "label_agreement_share": 0.9667
+        },
+        "signal_violation": {
+          "f1_unmasked": 0.8621,
+          "f1_masked": 0.8772,
+          "f1_difference": -0.0151,
+          "f1_difference_ci95": [
+            -0.0515,
+            0.0
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_unmasked": 0,
+          "correct_only_masked": 1,
+          "mcnemar_exact_p": 1.0,
+          "cohen_kappa_between_runs": 0.9799,
+          "label_agreement_share": 0.9933
+        },
+        "swerve_loss_control": {
+          "f1_unmasked": 0.766,
+          "f1_masked": 0.8085,
+          "f1_difference": -0.0426,
+          "f1_difference_ci95": [
+            -0.1141,
+            0.0
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_unmasked": 0,
+          "correct_only_masked": 2,
+          "mcnemar_exact_p": 0.5,
+          "cohen_kappa_between_runs": 0.9486,
+          "label_agreement_share": 0.9867
+        },
+        "dooring": {
+          "f1_unmasked": 0.6667,
+          "f1_masked": 0.6667,
+          "f1_difference": 0.0,
+          "f1_difference_ci95": [
+            0.0,
+            0.0
+          ],
+          "resamples_with_both_defined": 1737,
+          "correct_only_unmasked": 0,
+          "correct_only_masked": 0,
+          "mcnemar_exact_p": null,
+          "cohen_kappa_between_runs": 1.0,
+          "label_agreement_share": 1.0
+        },
+        "distraction_impairment": {
+          "f1_unmasked": 0.7541,
+          "f1_masked": 0.7419,
+          "f1_difference": 0.0122,
+          "f1_difference_ci95": [
+            0.0,
+            0.0409
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_unmasked": 1,
+          "correct_only_masked": 0,
+          "mcnemar_exact_p": 1.0,
+          "cohen_kappa_between_runs": 0.9812,
+          "label_agreement_share": 0.9933
+        },
+        "vehicle_turning_across": {
+          "f1_unmasked": 0.9038,
+          "f1_masked": 0.9057,
+          "f1_difference": -0.0018,
+          "f1_difference_ci95": [
+            -0.0386,
+            0.0352
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_unmasked": 2,
+          "correct_only_masked": 2,
+          "mcnemar_exact_p": 1.0,
+          "cohen_kappa_between_runs": 0.9434,
+          "label_agreement_share": 0.9733
+        },
+        "lane_positioning": {
+          "f1_unmasked": 0.9535,
+          "f1_masked": 0.9535,
+          "f1_difference": 0.0,
+          "f1_difference_ci95": [
+            -0.0355,
+            0.0361
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_unmasked": 1,
+          "correct_only_masked": 1,
+          "mcnemar_exact_p": 1.0,
+          "cohen_kappa_between_runs": 0.9669,
+          "label_agreement_share": 0.9867
+        }
+      },
+      "pooled_decisions": {
+        "correct_only_unmasked": 7,
+        "correct_only_masked": 16,
+        "mcnemar_exact_p": 0.09314,
+        "note": "all ten labels pooled over the narratives; decisions within a narrative are not independent, so this p-value is descriptive"
+      }
+    },
+    "discordant_decisions_by_text_change": {
+      "text_changed": {
+        "narratives": 79,
+        "correct_only_masked": 9,
+        "correct_only_unmasked": 5
+      },
+      "text_identical": {
+        "narratives": 71,
+        "correct_only_masked": 7,
+        "correct_only_unmasked": 2
+      }
+    },
+    "paired_unmasked_vs_masked_text_changed_only": {
+      "n": 79,
+      "n_boot": 2000,
+      "seed": 20260917,
+      "difference_definition": "macro F1 unmasked minus macro F1 masked",
+      "macro_f1_unmasked": 0.8071,
+      "macro_f1_unmasked_ci95": [
+        0.7422,
+        0.8491
+      ],
+      "macro_f1_masked": 0.8157,
+      "macro_f1_masked_ci95": [
+        0.7539,
+        0.8531
+      ],
+      "macro_f1_difference": -0.0086,
+      "macro_f1_difference_ci95": [
+        -0.0219,
+        0.004
+      ],
+      "share_of_resamples_difference_above_zero": 0.0885,
+      "difference_ci_excludes_zero": false,
+      "per_label": {
+        "wrong_way": {
+          "f1_unmasked": 0.8387,
+          "f1_masked": 0.8387,
+          "f1_difference": 0.0,
+          "f1_difference_ci95": [
+            0.0,
+            0.0
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_unmasked": 0,
+          "correct_only_masked": 0,
+          "mcnemar_exact_p": null,
+          "cohen_kappa_between_runs": 1.0,
+          "label_agreement_share": 1.0
+        },
+        "sidewalk_transition": {
+          "f1_unmasked": 0.32,
+          "f1_masked": 0.3333,
+          "f1_difference": -0.0133,
+          "f1_difference_ci95": [
+            -0.0667,
+            0.0354
+          ],
+          "resamples_with_both_defined": 1971,
+          "correct_only_unmasked": 1,
+          "correct_only_masked": 2,
+          "mcnemar_exact_p": 1.0,
+          "cohen_kappa_between_runs": 0.9012,
+          "label_agreement_share": 0.962
+        },
+        "driveway_alley": {
+          "f1_unmasked": 0.9787,
+          "f1_masked": 0.9796,
+          "f1_difference": -0.0009,
+          "f1_difference_ci95": [
+            -0.0638,
+            0.0588
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_unmasked": 1,
+          "correct_only_masked": 1,
+          "mcnemar_exact_p": 1.0,
+          "cohen_kappa_between_runs": 0.9402,
+          "label_agreement_share": 0.9747
+        },
+        "failure_to_yield": {
+          "f1_unmasked": 0.5641,
+          "f1_masked": 0.6111,
+          "f1_difference": -0.047,
+          "f1_difference_ci95": [
+            -0.107,
+            0.0
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_unmasked": 0,
+          "correct_only_masked": 3,
+          "mcnemar_exact_p": 0.25,
+          "cohen_kappa_between_runs": 0.915,
+          "label_agreement_share": 0.962
+        },
+        "signal_violation": {
+          "f1_unmasked": 0.875,
+          "f1_masked": 0.9032,
+          "f1_difference": -0.0282,
+          "f1_difference_ci95": [
+            -0.1003,
+            0.0
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_unmasked": 0,
+          "correct_only_masked": 1,
+          "mcnemar_exact_p": 1.0,
+          "cohen_kappa_between_runs": 0.9633,
+          "label_agreement_share": 0.9873
+        },
+        "swerve_loss_control": {
+          "f1_unmasked": 0.8148,
+          "f1_masked": 0.8462,
+          "f1_difference": -0.0313,
+          "f1_difference_ci95": [
+            -0.1147,
+            0.0
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_unmasked": 0,
+          "correct_only_masked": 1,
+          "mcnemar_exact_p": 1.0,
+          "cohen_kappa_between_runs": 0.9553,
+          "label_agreement_share": 0.9873
+        },
+        "dooring": {
+          "f1_unmasked": 1.0,
+          "f1_masked": 1.0,
+          "f1_difference": 0.0,
+          "f1_difference_ci95": [
+            0.0,
+            0.0
+          ],
+          "resamples_with_both_defined": 1268,
+          "correct_only_unmasked": 0,
+          "correct_only_masked": 0,
+          "mcnemar_exact_p": null,
+          "cohen_kappa_between_runs": 1.0,
+          "label_agreement_share": 1.0
+        },
+        "distraction_impairment": {
+          "f1_unmasked": 0.8205,
+          "f1_masked": 0.8,
+          "f1_difference": 0.0205,
+          "f1_difference_ci95": [
+            0.0,
+            0.074
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_unmasked": 1,
+          "correct_only_masked": 0,
+          "mcnemar_exact_p": 1.0,
+          "cohen_kappa_between_runs": 0.9671,
+          "label_agreement_share": 0.9873
+        },
+        "vehicle_turning_across": {
+          "f1_unmasked": 0.8814,
+          "f1_masked": 0.8667,
+          "f1_difference": 0.0147,
+          "f1_difference_ci95": [
+            -0.0328,
+            0.0689
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_unmasked": 2,
+          "correct_only_masked": 1,
+          "mcnemar_exact_p": 1.0,
+          "cohen_kappa_between_runs": 0.9223,
+          "label_agreement_share": 0.962
+        },
+        "lane_positioning": {
+          "f1_unmasked": 0.9778,
+          "f1_masked": 0.9778,
+          "f1_difference": 0.0,
+          "f1_difference_ci95": [
+            0.0,
+            0.0
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_unmasked": 0,
+          "correct_only_masked": 0,
+          "mcnemar_exact_p": null,
+          "cohen_kappa_between_runs": 1.0,
+          "label_agreement_share": 1.0
+        }
+      },
+      "pooled_decisions": {
+        "correct_only_unmasked": 5,
+        "correct_only_masked": 9,
+        "mcnemar_exact_p": 0.42395,
+        "note": "all ten labels pooled over the narratives; decisions within a narrative are not independent, so this p-value is descriptive"
+      }
+    },
+    "same_period_masked_rerun": {
+      "provenance": {
+        "log": "data/logs/extract_masked_rerun.jsonl",
+        "records_parsed_in_scope": 149,
+        "records_failed_in_scope": 1,
+        "records_failed_crash_ids": [
+          20714698
+        ],
+        "records_schema_invalid_in_scope": 2,
+        "records_schema_invalid_crash_ids": [
+          18806351
+        ],
+        "calls_in_scope_total": 152,
+        "crashes_labelled": 149,
+        "models_returned": [
+          "meta-llama/llama-3.3-70b-instruct"
+        ],
+        "providers_returned": [
+          "DeepInfra"
+        ],
+        "quantization_logged": [
+          "fp8 (provider-reported)"
+        ],
+        "response_format": [
+          "json_schema"
+        ],
+        "temperature": [
+          0.0
+        ],
+        "seed": [
+          42
+        ],
+        "prompt_version": [
+          "v1.3-2026-09-14"
+        ],
+        "first_call_utc": "2026-10-05T19:00:53.103593+00:00",
+        "last_call_utc": "2026-10-05T19:21:22.068584+00:00",
+        "calls_needing_retry": 36,
+        "mean_latency_ms": 29066.0,
+        "prompt_tokens": 290803,
+        "completion_tokens": 27421,
+        "cost_usd_reported": 0.0375,
+        "calls_with_cost_reported": 149
+      },
+      "prompt_identical_to_reference": 149,
+      "reference_reproduction": {
+        "narratives": 149,
+        "label_decisions": 1490,
+        "decisions_differing_from_reference": 23,
+        "share_differing": 0.01544,
+        "per_label_differing": {
+          "wrong_way": 1,
+          "sidewalk_transition": 2,
+          "driveway_alley": 1,
+          "failure_to_yield": 11,
+          "signal_violation": 1,
+          "swerve_loss_control": 1,
+          "dooring": 0,
+          "distraction_impairment": 0,
+          "vehicle_turning_across": 3,
+          "lane_positioning": 3
+        }
+      },
+      "masked_rerun_score": {
+        "n": 149,
+        "per_label": {
+          "wrong_way": {
+            "unweighted": {
+              "tp": 20.0,
+              "fp": 9.0,
+              "fn": 0.0,
+              "tn": 120.0,
+              "precision": 0.6897,
+              "recall": 1.0,
+              "f1": 0.8163,
+              "ci95": {
+                "precision": [
+                  0.5161,
+                  0.8529
+                ],
+                "recall": [
+                  1.0,
+                  1.0
+                ],
+                "f1": [
+                  0.6809,
+                  0.9206
+                ]
+              }
+            },
+            "ip_weighted": {
+              "tp": 33.9808,
+              "fp": 16.5818,
+              "fn": 0.0,
+              "tn": 422.0956,
+              "precision": 0.6721,
+              "recall": 1.0,
+              "f1": 0.8039,
+              "ci95": {
+                "precision": [
+                  0.4839,
+                  0.8472
+                ],
+                "recall": [
+                  1.0,
+                  1.0
+                ],
+                "f1": [
+                  0.6522,
+                  0.9173
+                ]
+              }
+            },
+            "gold_positives": 20,
+            "predicted_positives": 29
+          },
+          "sidewalk_transition": {
+            "unweighted": {
+              "tp": 10.0,
+              "fp": 30.0,
+              "fn": 0.0,
+              "tn": 109.0,
+              "precision": 0.25,
+              "recall": 1.0,
+              "f1": 0.4,
+              "ci95": {
+                "precision": [
+                  0.119,
+                  0.3947
+                ],
+                "recall": [
+                  1.0,
+                  1.0
+                ],
+                "f1": [
+                  0.2128,
+                  0.566
+                ]
+              }
+            },
+            "ip_weighted": {
+              "tp": 28.575,
+              "fp": 72.5893,
+              "fn": 0.0,
+              "tn": 371.4939,
+              "precision": 0.2825,
+              "recall": 1.0,
+              "f1": 0.4405,
+              "ci95": {
+                "precision": [
+                  0.135,
+                  0.4478
+                ],
+                "recall": [
+                  1.0,
+                  1.0
+                ],
+                "f1": [
+                  0.2378,
+                  0.6186
+                ]
+              }
+            },
+            "gold_positives": 10,
+            "predicted_positives": 40
+          },
+          "driveway_alley": {
+            "unweighted": {
+              "tp": 41.0,
+              "fp": 4.0,
+              "fn": 1.0,
+              "tn": 103.0,
+              "precision": 0.9111,
+              "recall": 0.9762,
+              "f1": 0.9425,
+              "ci95": {
+                "precision": [
+                  0.814,
+                  0.9804
+                ],
+                "recall": [
+                  0.9189,
+                  1.0
+                ],
+                "f1": [
+                  0.8813,
+                  0.9882
+                ]
+              }
+            },
+            "ip_weighted": {
+              "tp": 106.4881,
+              "fp": 14.7677,
+              "fn": 8.7183,
+              "tn": 342.6841,
+              "precision": 0.8782,
+              "recall": 0.9243,
+              "f1": 0.9007,
+              "ci95": {
+                "precision": [
+                  0.7503,
+                  0.9825
+                ],
+                "recall": [
+                  0.7709,
+                  1.0
+                ],
+                "f1": [
+                  0.7902,
+                  0.9815
+                ]
+              }
+            },
+            "gold_positives": 42,
+            "predicted_positives": 45
+          },
+          "failure_to_yield": {
+            "unweighted": {
+              "tp": 29.0,
+              "fp": 39.0,
+              "fn": 0.0,
+              "tn": 81.0,
+              "precision": 0.4265,
+              "recall": 1.0,
+              "f1": 0.5979,
+              "ci95": {
+                "precision": [
+                  0.3143,
+                  0.5439
+                ],
+                "recall": [
+                  1.0,
+                  1.0
+                ],
+                "f1": [
+                  0.4782,
+                  0.7046
+                ]
+              }
+            },
+            "ip_weighted": {
+              "tp": 117.2792,
+              "fp": 114.8717,
+              "fn": 0.0,
+              "tn": 240.5073,
+              "precision": 0.5052,
+              "recall": 1.0,
+              "f1": 0.6713,
+              "ci95": {
+                "precision": [
+                  0.3635,
+                  0.6413
+                ],
+                "recall": [
+                  1.0,
+                  1.0
+                ],
+                "f1": [
+                  0.5332,
+                  0.7815
+                ]
+              }
+            },
+            "gold_positives": 29,
+            "predicted_positives": 68
+          },
+          "signal_violation": {
+            "unweighted": {
+              "tp": 25.0,
+              "fp": 7.0,
+              "fn": 1.0,
+              "tn": 116.0,
+              "precision": 0.7812,
+              "recall": 0.9615,
+              "f1": 0.8621,
+              "ci95": {
+                "precision": [
+                  0.6286,
+                  0.9167
+                ],
+                "recall": [
+                  0.875,
+                  1.0
+                ],
+                "f1": [
+                  0.75,
+                  0.9492
+                ]
+              }
+            },
+            "ip_weighted": {
+              "tp": 71.037,
+              "fp": 22.754,
+              "fn": 1.0,
+              "tn": 377.8672,
+              "precision": 0.7574,
+              "recall": 0.9861,
+              "f1": 0.8568,
+              "ci95": {
+                "precision": [
+                  0.5668,
+                  0.9316
+                ],
+                "recall": [
+                  0.951,
+                  1.0
+                ],
+                "f1": [
+                  0.7169,
+                  0.9595
+                ]
+              }
+            },
+            "gold_positives": 26,
+            "predicted_positives": 32
+          },
+          "swerve_loss_control": {
+            "unweighted": {
+              "tp": 20.0,
+              "fp": 4.0,
+              "fn": 4.0,
+              "tn": 121.0,
+              "precision": 0.8333,
+              "recall": 0.8333,
+              "f1": 0.8333,
+              "ci95": {
+                "precision": [
+                  0.6667,
+                  0.96
+                ],
+                "recall": [
+                  0.6667,
+                  0.96
+                ],
+                "f1": [
+                  0.7026,
+                  0.9303
+                ]
+              }
+            },
+            "ip_weighted": {
+              "tp": 34.3995,
+              "fp": 6.6012,
+              "fn": 10.357,
+              "tn": 421.3005,
+              "precision": 0.839,
+              "recall": 0.7686,
+              "f1": 0.8023,
+              "ci95": {
+                "precision": [
+                  0.6777,
+                  0.9638
+                ],
+                "recall": [
+                  0.5682,
+                  0.9576
+                ],
+                "f1": [
+                  0.6503,
+                  0.9237
+                ]
+              }
+            },
+            "gold_positives": 24,
+            "predicted_positives": 24
+          },
+          "dooring": {
+            "unweighted": {
+              "tp": 2.0,
+              "fp": 2.0,
+              "fn": 0.0,
+              "tn": 145.0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6667,
+              "ci95": {
+                "precision": [
+                  0.0,
+                  1.0
+                ],
+                "recall": [
+                  1.0,
+                  1.0
+                ],
+                "f1": [
+                  0.3333,
+                  1.0
+                ]
+              }
+            },
+            "ip_weighted": {
+              "tp": 2.0,
+              "fp": 2.0,
+              "fn": 0.0,
+              "tn": 468.6582,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6667,
+              "ci95": {
+                "precision": [
+                  0.0,
+                  1.0
+                ],
+                "recall": [
+                  1.0,
+                  1.0
+                ],
+                "f1": [
+                  0.3333,
+                  1.0
+                ]
+              }
+            },
+            "gold_positives": 2,
+            "predicted_positives": 4
+          },
+          "distraction_impairment": {
+            "unweighted": {
+              "tp": 23.0,
+              "fp": 12.0,
+              "fn": 4.0,
+              "tn": 110.0,
+              "precision": 0.6571,
+              "recall": 0.8519,
+              "f1": 0.7419,
+              "ci95": {
+                "precision": [
+                  0.5,
+                  0.8148
+                ],
+                "recall": [
+                  0.6999,
+                  0.9667
+                ],
+                "f1": [
+                  0.5926,
+                  0.8519
+                ]
+              }
+            },
+            "ip_weighted": {
+              "tp": 44.4236,
+              "fp": 25.4082,
+              "fn": 16.2107,
+              "tn": 386.6157,
+              "precision": 0.6362,
+              "recall": 0.7326,
+              "f1": 0.681,
+              "ci95": {
+                "precision": [
+                  0.4598,
+                  0.8032
+                ],
+                "recall": [
+                  0.5173,
+                  0.9456
+                ],
+                "f1": [
+                  0.5083,
+                  0.816
+                ]
+              }
+            },
+            "gold_positives": 27,
+            "predicted_positives": 35
+          },
+          "vehicle_turning_across": {
+            "unweighted": {
+              "tp": 48.0,
+              "fp": 11.0,
+              "fn": 0.0,
+              "tn": 90.0,
+              "precision": 0.8136,
+              "recall": 1.0,
+              "f1": 0.8972,
+              "ci95": {
+                "precision": [
+                  0.7167,
+                  0.9118
+                ],
+                "recall": [
+                  1.0,
+                  1.0
+                ],
+                "f1": [
+                  0.835,
+                  0.9539
+                ]
+              }
+            },
+            "ip_weighted": {
+              "tp": 121.8312,
+              "fp": 36.2019,
+              "fn": 0.0,
+              "tn": 314.6251,
+              "precision": 0.7709,
+              "recall": 1.0,
+              "f1": 0.8706,
+              "ci95": {
+                "precision": [
+                  0.6389,
+                  0.9018
+                ],
+                "recall": [
+                  1.0,
+                  1.0
+                ],
+                "f1": [
+                  0.7797,
+                  0.9484
+                ]
+              }
+            },
+            "gold_positives": 48,
+            "predicted_positives": 59
+          },
+          "lane_positioning": {
+            "unweighted": {
+              "tp": 39.0,
+              "fp": 3.0,
+              "fn": 4.0,
+              "tn": 103.0,
+              "precision": 0.9286,
+              "recall": 0.907,
+              "f1": 0.9176,
+              "ci95": {
+                "precision": [
+                  0.8431,
+                  1.0
+                ],
+                "recall": [
+                  0.8139,
+                  0.9792
+                ],
+                "f1": [
+                  0.8525,
+                  0.9715
+                ]
+              }
+            },
+            "ip_weighted": {
+              "tp": 81.2891,
+              "fp": 7.1476,
+              "fn": 15.9139,
+              "tn": 368.3076,
+              "precision": 0.9192,
+              "recall": 0.8363,
+              "f1": 0.8758,
+              "ci95": {
+                "precision": [
+                  0.8213,
+                  1.0
+                ],
+                "recall": [
+                  0.6673,
+                  0.9884
+                ],
+                "f1": [
+                  0.7629,
+                  0.968
+                ]
+              }
+            },
+            "gold_positives": 43,
+            "predicted_positives": 42
+          }
+        },
+        "macro_f1": 0.7676,
+        "macro_f1_ip_weighted": 0.7569,
+        "labels_in_macro": [
+          "wrong_way",
+          "sidewalk_transition",
+          "driveway_alley",
+          "failure_to_yield",
+          "signal_violation",
+          "swerve_loss_control",
+          "dooring",
+          "distraction_impairment",
+          "vehicle_turning_across",
+          "lane_positioning"
+        ]
+      },
+      "paired_unmasked_vs_masked_rerun": {
+        "n": 149,
+        "n_boot": 2000,
+        "seed": 20260917,
+        "difference_definition": "macro F1 unmasked minus macro F1 masked_rerun",
+        "macro_f1_unmasked": 0.7673,
+        "macro_f1_unmasked_ci95": [
+          0.7149,
+          0.8193
+        ],
+        "macro_f1_masked_rerun": 0.7676,
+        "macro_f1_masked_rerun_ci95": [
+          0.7163,
+          0.8192
+        ],
+        "macro_f1_difference": -0.0003,
+        "macro_f1_difference_ci95": [
+          -0.0107,
+          0.0084
+        ],
+        "share_of_resamples_difference_above_zero": 0.474,
+        "difference_ci_excludes_zero": false,
+        "per_label": {
+          "wrong_way": {
+            "f1_unmasked": 0.8163,
+            "f1_masked_rerun": 0.8163,
+            "f1_difference": 0.0,
+            "f1_difference_ci95": [
+              0.0,
+              0.0
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_unmasked": 0,
+            "correct_only_masked_rerun": 0,
+            "mcnemar_exact_p": null,
+            "cohen_kappa_between_runs": 1.0,
+            "label_agreement_share": 1.0
+          },
+          "sidewalk_transition": {
+            "f1_unmasked": 0.4,
+            "f1_masked_rerun": 0.4,
+            "f1_difference": 0.0,
+            "f1_difference_ci95": [
+              -0.0226,
+              0.0234
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_unmasked": 1,
+            "correct_only_masked_rerun": 1,
+            "mcnemar_exact_p": 1.0,
+            "cohen_kappa_between_runs": 0.9658,
+            "label_agreement_share": 0.9866
+          },
+          "driveway_alley": {
+            "f1_unmasked": 0.9412,
+            "f1_masked_rerun": 0.9425,
+            "f1_difference": -0.0014,
+            "f1_difference_ci95": [
+              -0.0361,
+              0.0307
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_unmasked": 1,
+            "correct_only_masked_rerun": 1,
+            "mcnemar_exact_p": 1.0,
+            "cohen_kappa_between_runs": 0.9678,
+            "label_agreement_share": 0.9866
+          },
+          "failure_to_yield": {
+            "f1_unmasked": 0.6105,
+            "f1_masked_rerun": 0.5979,
+            "f1_difference": 0.0126,
+            "f1_difference_ci95": [
+              -0.0222,
+              0.0487
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_unmasked": 5,
+            "correct_only_masked_rerun": 3,
+            "mcnemar_exact_p": 0.727,
+            "cohen_kappa_between_runs": 0.8915,
+            "label_agreement_share": 0.9463
+          },
+          "signal_violation": {
+            "f1_unmasked": 0.8621,
+            "f1_masked_rerun": 0.8621,
+            "f1_difference": 0.0,
+            "f1_difference_ci95": [
+              0.0,
+              0.0
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_unmasked": 0,
+            "correct_only_masked_rerun": 0,
+            "mcnemar_exact_p": null,
+            "cohen_kappa_between_runs": 1.0,
+            "label_agreement_share": 1.0
+          },
+          "swerve_loss_control": {
+            "f1_unmasked": 0.766,
+            "f1_masked_rerun": 0.8333,
+            "f1_difference": -0.0674,
+            "f1_difference_ci95": [
+              -0.1571,
+              0.0
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_unmasked": 0,
+            "correct_only_masked_rerun": 3,
+            "mcnemar_exact_p": 0.25,
+            "cohen_kappa_between_runs": 0.9242,
+            "label_agreement_share": 0.9799
+          },
+          "dooring": {
+            "f1_unmasked": 0.6667,
+            "f1_masked_rerun": 0.6667,
+            "f1_difference": 0.0,
+            "f1_difference_ci95": [
+              0.0,
+              0.0
+            ],
+            "resamples_with_both_defined": 1709,
+            "correct_only_unmasked": 0,
+            "correct_only_masked_rerun": 0,
+            "mcnemar_exact_p": null,
+            "cohen_kappa_between_runs": 1.0,
+            "label_agreement_share": 1.0
+          },
+          "distraction_impairment": {
+            "f1_unmasked": 0.7541,
+            "f1_masked_rerun": 0.7419,
+            "f1_difference": 0.0122,
+            "f1_difference_ci95": [
+              0.0,
+              0.0416
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_unmasked": 1,
+            "correct_only_masked_rerun": 0,
+            "mcnemar_exact_p": 1.0,
+            "cohen_kappa_between_runs": 0.9811,
+            "label_agreement_share": 0.9933
+          },
+          "vehicle_turning_across": {
+            "f1_unmasked": 0.9038,
+            "f1_masked_rerun": 0.8972,
+            "f1_difference": 0.0066,
+            "f1_difference_ci95": [
+              -0.0255,
+              0.038
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_unmasked": 2,
+            "correct_only_masked_rerun": 1,
+            "mcnemar_exact_p": 1.0,
+            "cohen_kappa_between_runs": 0.9575,
+            "label_agreement_share": 0.9799
+          },
+          "lane_positioning": {
+            "f1_unmasked": 0.9524,
+            "f1_masked_rerun": 0.9176,
+            "f1_difference": 0.0347,
+            "f1_difference_ci95": [
+              0.0,
+              0.0786
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_unmasked": 3,
+            "correct_only_masked_rerun": 0,
+            "mcnemar_exact_p": 0.25,
+            "cohen_kappa_between_runs": 0.9499,
+            "label_agreement_share": 0.9799
+          }
+        },
+        "pooled_decisions": {
+          "correct_only_unmasked": 13,
+          "correct_only_masked_rerun": 9,
+          "mcnemar_exact_p": 0.523467,
+          "note": "all ten labels pooled over the narratives; decisions within a narrative are not independent, so this p-value is descriptive"
+        }
+      },
+      "paired_unmasked_vs_masked_rerun_text_changed_only": {
+        "n": 78,
+        "n_boot": 2000,
+        "seed": 20260917,
+        "difference_definition": "macro F1 unmasked minus macro F1 masked_rerun",
+        "macro_f1_unmasked": 0.807,
+        "macro_f1_unmasked_ci95": [
+          0.7429,
+          0.8477
+        ],
+        "macro_f1_masked_rerun": 0.7997,
+        "macro_f1_masked_rerun_ci95": [
+          0.7354,
+          0.8388
+        ],
+        "macro_f1_difference": 0.0073,
+        "macro_f1_difference_ci95": [
+          -0.0034,
+          0.0201
+        ],
+        "share_of_resamples_difference_above_zero": 0.9235,
+        "difference_ci_excludes_zero": false,
+        "per_label": {
+          "wrong_way": {
+            "f1_unmasked": 0.8387,
+            "f1_masked_rerun": 0.8387,
+            "f1_difference": 0.0,
+            "f1_difference_ci95": [
+              0.0,
+              0.0
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_unmasked": 0,
+            "correct_only_masked_rerun": 0,
+            "mcnemar_exact_p": null,
+            "cohen_kappa_between_runs": 1.0,
+            "label_agreement_share": 1.0
+          },
+          "sidewalk_transition": {
+            "f1_unmasked": 0.32,
+            "f1_masked_rerun": 0.3333,
+            "f1_difference": -0.0133,
+            "f1_difference_ci95": [
+              -0.0476,
+              0.0
+            ],
+            "resamples_with_both_defined": 1973,
+            "correct_only_unmasked": 0,
+            "correct_only_masked_rerun": 1,
+            "mcnemar_exact_p": 1.0,
+            "cohen_kappa_between_runs": 0.9669,
+            "label_agreement_share": 0.9872
+          },
+          "driveway_alley": {
+            "f1_unmasked": 0.9787,
+            "f1_masked_rerun": 0.9796,
+            "f1_difference": -0.0009,
+            "f1_difference_ci95": [
+              -0.0638,
+              0.0612
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_unmasked": 1,
+            "correct_only_masked_rerun": 1,
+            "mcnemar_exact_p": 1.0,
+            "cohen_kappa_between_runs": 0.9399,
+            "label_agreement_share": 0.9744
+          },
+          "failure_to_yield": {
+            "f1_unmasked": 0.5641,
+            "f1_masked_rerun": 0.5238,
+            "f1_difference": 0.0403,
+            "f1_difference_ci95": [
+              0.0,
+              0.0979
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_unmasked": 3,
+            "correct_only_masked_rerun": 0,
+            "mcnemar_exact_p": 0.25,
+            "cohen_kappa_between_runs": 0.9184,
+            "label_agreement_share": 0.9615
+          },
+          "signal_violation": {
+            "f1_unmasked": 0.875,
+            "f1_masked_rerun": 0.875,
+            "f1_difference": 0.0,
+            "f1_difference_ci95": [
+              0.0,
+              0.0
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_unmasked": 0,
+            "correct_only_masked_rerun": 0,
+            "mcnemar_exact_p": null,
+            "cohen_kappa_between_runs": 1.0,
+            "label_agreement_share": 1.0
+          },
+          "swerve_loss_control": {
+            "f1_unmasked": 0.8148,
+            "f1_masked_rerun": 0.8462,
+            "f1_difference": -0.0313,
+            "f1_difference_ci95": [
+              -0.1098,
+              0.0
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_unmasked": 0,
+            "correct_only_masked_rerun": 1,
+            "mcnemar_exact_p": 1.0,
+            "cohen_kappa_between_runs": 0.9552,
+            "label_agreement_share": 0.9872
+          },
+          "dooring": {
+            "f1_unmasked": 1.0,
+            "f1_masked_rerun": 1.0,
+            "f1_difference": 0.0,
+            "f1_difference_ci95": [
+              0.0,
+              0.0
+            ],
+            "resamples_with_both_defined": 1276,
+            "correct_only_unmasked": 0,
+            "correct_only_masked_rerun": 0,
+            "mcnemar_exact_p": null,
+            "cohen_kappa_between_runs": 1.0,
+            "label_agreement_share": 1.0
+          },
+          "distraction_impairment": {
+            "f1_unmasked": 0.8205,
+            "f1_masked_rerun": 0.8,
+            "f1_difference": 0.0205,
+            "f1_difference_ci95": [
+              0.0,
+              0.0711
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_unmasked": 1,
+            "correct_only_masked_rerun": 0,
+            "mcnemar_exact_p": 1.0,
+            "cohen_kappa_between_runs": 0.9669,
+            "label_agreement_share": 0.9872
+          },
+          "vehicle_turning_across": {
+            "f1_unmasked": 0.8814,
+            "f1_masked_rerun": 0.8667,
+            "f1_difference": 0.0147,
+            "f1_difference_ci95": [
+              0.0,
+              0.0518
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_unmasked": 1,
+            "correct_only_masked_rerun": 0,
+            "mcnemar_exact_p": 1.0,
+            "cohen_kappa_between_runs": 0.9738,
+            "label_agreement_share": 0.9872
+          },
+          "lane_positioning": {
+            "f1_unmasked": 0.9767,
+            "f1_masked_rerun": 0.9333,
+            "f1_difference": 0.0434,
+            "f1_difference_ci95": [
+              0.0,
+              0.1161
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_unmasked": 2,
+            "correct_only_masked_rerun": 0,
+            "mcnemar_exact_p": 0.5,
+            "cohen_kappa_between_runs": 0.9367,
+            "label_agreement_share": 0.9744
+          }
+        },
+        "pooled_decisions": {
+          "correct_only_unmasked": 8,
+          "correct_only_masked_rerun": 3,
+          "mcnemar_exact_p": 0.226562,
+          "note": "all ten labels pooled over the narratives; decisions within a narrative are not independent, so this p-value is descriptive"
+        }
+      },
+      "paired_masked_rerun_vs_masked_reference": {
+        "n": 149,
+        "n_boot": 2000,
+        "seed": 20260917,
+        "difference_definition": "macro F1 masked_rerun minus macro F1 masked_reference",
+        "macro_f1_masked_rerun": 0.7676,
+        "macro_f1_masked_rerun_ci95": [
+          0.7163,
+          0.8192
+        ],
+        "macro_f1_masked_reference": 0.7784,
+        "macro_f1_masked_reference_ci95": [
+          0.7261,
+          0.8296
+        ],
+        "macro_f1_difference": -0.0108,
+        "macro_f1_difference_ci95": [
+          -0.0207,
+          -0.0008
+        ],
+        "share_of_resamples_difference_above_zero": 0.0165,
+        "difference_ci_excludes_zero": true,
+        "per_label": {
+          "wrong_way": {
+            "f1_masked_rerun": 0.8163,
+            "f1_masked_reference": 0.8333,
+            "f1_difference": -0.017,
+            "f1_difference_ci95": [
+              -0.0593,
+              0.0
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_masked_rerun": 0,
+            "correct_only_masked_reference": 1,
+            "mcnemar_exact_p": 1.0,
+            "cohen_kappa_between_runs": 0.9783,
+            "label_agreement_share": 0.9933
+          },
+          "sidewalk_transition": {
+            "f1_masked_rerun": 0.4,
+            "f1_masked_reference": 0.4,
+            "f1_difference": 0.0,
+            "f1_difference_ci95": [
+              -0.0254,
+              0.024
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_masked_rerun": 1,
+            "correct_only_masked_reference": 1,
+            "mcnemar_exact_p": 1.0,
+            "cohen_kappa_between_runs": 0.9658,
+            "label_agreement_share": 0.9866
+          },
+          "driveway_alley": {
+            "f1_masked_rerun": 0.9425,
+            "f1_masked_reference": 0.9535,
+            "f1_difference": -0.011,
+            "f1_difference_ci95": [
+              -0.0386,
+              0.0
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_masked_rerun": 0,
+            "correct_only_masked_reference": 1,
+            "mcnemar_exact_p": 1.0,
+            "cohen_kappa_between_runs": 0.984,
+            "label_agreement_share": 0.9933
+          },
+          "failure_to_yield": {
+            "f1_masked_rerun": 0.5979,
+            "f1_masked_reference": 0.6444,
+            "f1_difference": -0.0465,
+            "f1_difference_ci95": [
+              -0.0914,
+              -0.0062
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_masked_rerun": 2,
+            "correct_only_masked_reference": 9,
+            "mcnemar_exact_p": 0.0654,
+            "cohen_kappa_between_runs": 0.85,
+            "label_agreement_share": 0.9262
+          },
+          "signal_violation": {
+            "f1_masked_rerun": 0.8621,
+            "f1_masked_reference": 0.8772,
+            "f1_difference": -0.0151,
+            "f1_difference_ci95": [
+              -0.0525,
+              0.0
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_masked_rerun": 0,
+            "correct_only_masked_reference": 1,
+            "mcnemar_exact_p": 1.0,
+            "cohen_kappa_between_runs": 0.9799,
+            "label_agreement_share": 0.9933
+          },
+          "swerve_loss_control": {
+            "f1_masked_rerun": 0.8333,
+            "f1_masked_reference": 0.8085,
+            "f1_difference": 0.0248,
+            "f1_difference_ci95": [
+              0.0,
+              0.0889
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_masked_rerun": 1,
+            "correct_only_masked_reference": 0,
+            "mcnemar_exact_p": 1.0,
+            "cohen_kappa_between_runs": 0.9747,
+            "label_agreement_share": 0.9933
+          },
+          "dooring": {
+            "f1_masked_rerun": 0.6667,
+            "f1_masked_reference": 0.6667,
+            "f1_difference": 0.0,
+            "f1_difference_ci95": [
+              0.0,
+              0.0
+            ],
+            "resamples_with_both_defined": 1709,
+            "correct_only_masked_rerun": 0,
+            "correct_only_masked_reference": 0,
+            "mcnemar_exact_p": null,
+            "cohen_kappa_between_runs": 1.0,
+            "label_agreement_share": 1.0
+          },
+          "distraction_impairment": {
+            "f1_masked_rerun": 0.7419,
+            "f1_masked_reference": 0.7419,
+            "f1_difference": 0.0,
+            "f1_difference_ci95": [
+              0.0,
+              0.0
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_masked_rerun": 0,
+            "correct_only_masked_reference": 0,
+            "mcnemar_exact_p": null,
+            "cohen_kappa_between_runs": 1.0,
+            "label_agreement_share": 1.0
+          },
+          "vehicle_turning_across": {
+            "f1_masked_rerun": 0.8972,
+            "f1_masked_reference": 0.9057,
+            "f1_difference": -0.0085,
+            "f1_difference_ci95": [
+              -0.0385,
+              0.019
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_masked_rerun": 1,
+            "correct_only_masked_reference": 2,
+            "mcnemar_exact_p": 1.0,
+            "cohen_kappa_between_runs": 0.9578,
+            "label_agreement_share": 0.9799
+          },
+          "lane_positioning": {
+            "f1_masked_rerun": 0.9176,
+            "f1_masked_reference": 0.9524,
+            "f1_difference": -0.0347,
+            "f1_difference_ci95": [
+              -0.08,
+              0.0
+            ],
+            "resamples_with_both_defined": 2000,
+            "correct_only_masked_rerun": 0,
+            "correct_only_masked_reference": 3,
+            "mcnemar_exact_p": 0.25,
+            "cohen_kappa_between_runs": 0.9499,
+            "label_agreement_share": 0.9799
+          }
+        },
+        "pooled_decisions": {
+          "correct_only_masked_rerun": 5,
+          "correct_only_masked_reference": 18,
+          "mcnemar_exact_p": 0.010622,
+          "note": "all ten labels pooled over the narratives; decisions within a narrative are not independent, so this p-value is descriptive"
+        }
+      }
+    }
+  },
+  "agreement_all_narratives": {
+    "narratives": 520,
+    "masking_changed_text": 272,
+    "masking_left_text_identical": 248,
+    "identical_prompt_hash": {
+      "where_text_identical": 248,
+      "where_text_changed": 0
+    },
+    "all": {
+      "narratives": 520,
+      "label_decisions": 5200,
+      "decisions_differing": 107,
+      "share_of_decisions_differing": 0.02058,
+      "narratives_with_any_difference": 94,
+      "per_label": {
+        "wrong_way": {
+          "masked_positive": 44,
+          "unmasked_positive": 48,
+          "gained_when_unmasked": 5,
+          "lost_when_unmasked": 1,
+          "agreement_share": 0.9885,
+          "cohen_kappa": 0.9285
+        },
+        "sidewalk_transition": {
+          "masked_positive": 155,
+          "unmasked_positive": 147,
+          "gained_when_unmasked": 5,
+          "lost_when_unmasked": 13,
+          "agreement_share": 0.9654,
+          "cohen_kappa": 0.916
+        },
+        "driveway_alley": {
+          "masked_positive": 114,
+          "unmasked_positive": 114,
+          "gained_when_unmasked": 3,
+          "lost_when_unmasked": 3,
+          "agreement_share": 0.9885,
+          "cohen_kappa": 0.9663
+        },
+        "failure_to_yield": {
+          "masked_positive": 218,
+          "unmasked_positive": 240,
+          "gained_when_unmasked": 23,
+          "lost_when_unmasked": 1,
+          "agreement_share": 0.9538,
+          "cohen_kappa": 0.9065
+        },
+        "signal_violation": {
+          "masked_positive": 96,
+          "unmasked_positive": 101,
+          "gained_when_unmasked": 6,
+          "lost_when_unmasked": 1,
+          "agreement_share": 0.9865,
+          "cohen_kappa": 0.9562
+        },
+        "swerve_loss_control": {
+          "masked_positive": 43,
+          "unmasked_positive": 46,
+          "gained_when_unmasked": 4,
+          "lost_when_unmasked": 1,
+          "agreement_share": 0.9904,
+          "cohen_kappa": 0.9386
+        },
+        "dooring": {
+          "masked_positive": 4,
+          "unmasked_positive": 4,
+          "gained_when_unmasked": 0,
+          "lost_when_unmasked": 0,
+          "agreement_share": 1.0,
+          "cohen_kappa": 1.0
+        },
+        "distraction_impairment": {
+          "masked_positive": 81,
+          "unmasked_positive": 87,
+          "gained_when_unmasked": 7,
+          "lost_when_unmasked": 1,
+          "agreement_share": 0.9846,
+          "cohen_kappa": 0.9432
+        },
+        "vehicle_turning_across": {
+          "masked_positive": 183,
+          "unmasked_positive": 191,
+          "gained_when_unmasked": 15,
+          "lost_when_unmasked": 7,
+          "agreement_share": 0.9577,
+          "cohen_kappa": 0.9082
+        },
+        "lane_positioning": {
+          "masked_positive": 108,
+          "unmasked_positive": 107,
+          "gained_when_unmasked": 5,
+          "lost_when_unmasked": 6,
+          "agreement_share": 0.9788,
+          "cohen_kappa": 0.9355
+        }
+      }
+    },
+    "text_changed": {
+      "narratives": 272,
+      "label_decisions": 2720,
+      "decisions_differing": 60,
+      "share_of_decisions_differing": 0.02206,
+      "narratives_with_any_difference": 52,
+      "per_label": {
+        "wrong_way": {
+          "masked_positive": 24,
+          "unmasked_positive": 26,
+          "gained_when_unmasked": 2,
+          "lost_when_unmasked": 0,
+          "agreement_share": 0.9926,
+          "cohen_kappa": 0.956
+        },
+        "sidewalk_transition": {
+          "masked_positive": 78,
+          "unmasked_positive": 74,
+          "gained_when_unmasked": 3,
+          "lost_when_unmasked": 7,
+          "agreement_share": 0.9632,
+          "cohen_kappa": 0.9087
+        },
+        "driveway_alley": {
+          "masked_positive": 64,
+          "unmasked_positive": 61,
+          "gained_when_unmasked": 0,
+          "lost_when_unmasked": 3,
+          "agreement_share": 0.989,
+          "cohen_kappa": 0.9688
+        },
+        "failure_to_yield": {
+          "masked_positive": 104,
+          "unmasked_positive": 121,
+          "gained_when_unmasked": 17,
+          "lost_when_unmasked": 0,
+          "agreement_share": 0.9375,
+          "cohen_kappa": 0.8717
+        },
+        "signal_violation": {
+          "masked_positive": 51,
+          "unmasked_positive": 54,
+          "gained_when_unmasked": 3,
+          "lost_when_unmasked": 0,
+          "agreement_share": 0.989,
+          "cohen_kappa": 0.9646
+        },
+        "swerve_loss_control": {
+          "masked_positive": 22,
+          "unmasked_positive": 25,
+          "gained_when_unmasked": 3,
+          "lost_when_unmasked": 0,
+          "agreement_share": 0.989,
+          "cohen_kappa": 0.9302
+        },
+        "dooring": {
+          "masked_positive": 1,
+          "unmasked_positive": 1,
+          "gained_when_unmasked": 0,
+          "lost_when_unmasked": 0,
+          "agreement_share": 1.0,
+          "cohen_kappa": 1.0
+        },
+        "distraction_impairment": {
+          "masked_positive": 43,
+          "unmasked_positive": 47,
+          "gained_when_unmasked": 5,
+          "lost_when_unmasked": 1,
+          "agreement_share": 0.9779,
+          "cohen_kappa": 0.9201
+        },
+        "vehicle_turning_across": {
+          "masked_positive": 103,
+          "unmasked_positive": 107,
+          "gained_when_unmasked": 8,
+          "lost_when_unmasked": 4,
+          "agreement_share": 0.9559,
+          "cohen_kappa": 0.907
+        },
+        "lane_positioning": {
+          "masked_positive": 59,
+          "unmasked_positive": 59,
+          "gained_when_unmasked": 2,
+          "lost_when_unmasked": 2,
+          "agreement_share": 0.9853,
+          "cohen_kappa": 0.9567
+        }
+      }
+    },
+    "text_identical": {
+      "narratives": 248,
+      "label_decisions": 2480,
+      "decisions_differing": 47,
+      "share_of_decisions_differing": 0.01895,
+      "narratives_with_any_difference": 42,
+      "per_label": {
+        "wrong_way": {
+          "masked_positive": 20,
+          "unmasked_positive": 22,
+          "gained_when_unmasked": 3,
+          "lost_when_unmasked": 1,
+          "agreement_share": 0.9839,
+          "cohen_kappa": 0.896
+        },
+        "sidewalk_transition": {
+          "masked_positive": 77,
+          "unmasked_positive": 73,
+          "gained_when_unmasked": 2,
+          "lost_when_unmasked": 6,
+          "agreement_share": 0.9677,
+          "cohen_kappa": 0.9236
+        },
+        "driveway_alley": {
+          "masked_positive": 50,
+          "unmasked_positive": 53,
+          "gained_when_unmasked": 3,
+          "lost_when_unmasked": 0,
+          "agreement_share": 0.9879,
+          "cohen_kappa": 0.9632
+        },
+        "failure_to_yield": {
+          "masked_positive": 114,
+          "unmasked_positive": 119,
+          "gained_when_unmasked": 6,
+          "lost_when_unmasked": 1,
+          "agreement_share": 0.9718,
+          "cohen_kappa": 0.9434
+        },
+        "signal_violation": {
+          "masked_positive": 45,
+          "unmasked_positive": 47,
+          "gained_when_unmasked": 3,
+          "lost_when_unmasked": 1,
+          "agreement_share": 0.9839,
+          "cohen_kappa": 0.9466
+        },
+        "swerve_loss_control": {
+          "masked_positive": 21,
+          "unmasked_positive": 21,
+          "gained_when_unmasked": 1,
+          "lost_when_unmasked": 1,
+          "agreement_share": 0.9919,
+          "cohen_kappa": 0.948
+        },
+        "dooring": {
+          "masked_positive": 3,
+          "unmasked_positive": 3,
+          "gained_when_unmasked": 0,
+          "lost_when_unmasked": 0,
+          "agreement_share": 1.0,
+          "cohen_kappa": 1.0
+        },
+        "distraction_impairment": {
+          "masked_positive": 38,
+          "unmasked_positive": 40,
+          "gained_when_unmasked": 2,
+          "lost_when_unmasked": 0,
+          "agreement_share": 0.9919,
+          "cohen_kappa": 0.9696
+        },
+        "vehicle_turning_across": {
+          "masked_positive": 80,
+          "unmasked_positive": 84,
+          "gained_when_unmasked": 7,
+          "lost_when_unmasked": 3,
+          "agreement_share": 0.9597,
+          "cohen_kappa": 0.9089
+        },
+        "lane_positioning": {
+          "masked_positive": 49,
+          "unmasked_positive": 48,
+          "gained_when_unmasked": 3,
+          "lost_when_unmasked": 4,
+          "agreement_share": 0.9718,
+          "cohen_kappa": 0.9103
+        }
+      }
+    }
+  },
+  "severity": {
+    "n_rows": 522,
+    "n_crashes": 520,
+    "cues_in_M1": [
+      "sidewalk_transition",
+      "failure_to_yield",
+      "signal_violation",
+      "vehicle_turning_across",
+      "lane_positioning"
+    ],
+    "n_covariates_M0c": 30,
+    "n_covariates_M1": 35,
+    "masked": {
+      "converged": {
+        "M0c": true,
+        "M1": true
+      },
+      "fit_M0c": {
+        "loglik": -394.3256,
+        "n_parameters": 32,
+        "n": 522,
+        "rho2": 0.0851,
+        "adjusted_rho2": 0.0109,
+        "aic": 852.651,
+        "bic": 988.897,
+        "converged": true
+      },
+      "fit_M1": {
+        "loglik": -393.7727,
+        "n_parameters": 37,
+        "n": 522,
+        "rho2": 0.0864,
+        "adjusted_rho2": 0.0006,
+        "aic": 861.545,
+        "bic": 1019.079,
+        "converged": true
+      },
+      "separation_M1": {
+        "max_abs_coefficient": 1.6799,
+        "max_standard_error": 0.7867,
+        "any_coefficient_above_10": false,
+        "any_standard_error_above_10": false,
+        "max_abs_t": 3.277,
+        "suggests_separation": false
+      },
+      "lr_M0c_to_M1_cue_block": {
+        "lr_chi2": 1.1059,
+        "df": 5,
+        "p": 0.953583
+      },
+      "cue_coefficients": {
+        "sidewalk_transition": {
+          "coef": 0.195238,
+          "se": 0.233754,
+          "z": 0.8352,
+          "p": 0.40359,
+          "ci95": [
+            -0.262912,
+            0.653388
+          ],
+          "excludes_zero": false
+        },
+        "failure_to_yield": {
+          "coef": -0.074058,
+          "se": 0.22039,
+          "z": -0.336,
+          "p": 0.736847,
+          "ci95": [
+            -0.506015,
+            0.357899
+          ],
+          "excludes_zero": false
+        },
+        "signal_violation": {
+          "coef": 0.010547,
+          "se": 0.294643,
+          "z": 0.0358,
+          "p": 0.971446,
+          "ci95": [
+            -0.566943,
+            0.588036
+          ],
+          "excludes_zero": false
+        },
+        "vehicle_turning_across": {
+          "coef": -0.087476,
+          "se": 0.269743,
+          "z": -0.3243,
+          "p": 0.745715,
+          "ci95": [
+            -0.616162,
+            0.44121
+          ],
+          "excludes_zero": false
+        },
+        "lane_positioning": {
+          "coef": 0.168638,
+          "se": 0.271486,
+          "z": 0.6212,
+          "p": 0.534491,
+          "ci95": [
+            -0.363465,
+            0.70074
+          ],
+          "excludes_zero": false
+        }
+      },
+      "cue_ame": {
+        "sidewalk_transition": {
+          "O": {
+            "ame": -0.02078,
+            "ci95": [
+              -0.06725,
+              0.03407
+            ],
+            "excludes_zero": false
+          },
+          "BC": {
+            "ame": -0.00425,
+            "ci95": [
+              -0.02321,
+              0.00468
+            ],
+            "excludes_zero": false
+          },
+          "KA": {
+            "ame": 0.02503,
+            "ci95": [
+              -0.03582,
+              0.08709
+            ],
+            "excludes_zero": false
+          }
+        },
+        "failure_to_yield": {
+          "O": {
+            "ame": 0.00809,
+            "ci95": [
+              -0.03674,
+              0.05877
+            ],
+            "excludes_zero": false
+          },
+          "BC": {
+            "ame": 0.00115,
+            "ci95": [
+              -0.00807,
+              0.01039
+            ],
+            "excludes_zero": false
+          },
+          "KA": {
+            "ame": -0.00924,
+            "ci95": [
+              -0.0653,
+              0.04404
+            ],
+            "excludes_zero": false
+          }
+        },
+        "signal_violation": {
+          "O": {
+            "ame": -0.00115,
+            "ci95": [
+              -0.06275,
+              0.06822
+            ],
+            "excludes_zero": false
+          },
+          "BC": {
+            "ame": -0.00018,
+            "ci95": [
+              -0.02644,
+              0.00559
+            ],
+            "excludes_zero": false
+          },
+          "KA": {
+            "ame": 0.00132,
+            "ci95": [
+              -0.06606,
+              0.08338
+            ],
+            "excludes_zero": false
+          }
+        },
+        "vehicle_turning_across": {
+          "O": {
+            "ame": 0.0096,
+            "ci95": [
+              -0.04448,
+              0.0743
+            ],
+            "excludes_zero": false
+          },
+          "BC": {
+            "ame": 0.00128,
+            "ci95": [
+              -0.01329,
+              0.00942
+            ],
+            "excludes_zero": false
+          },
+          "KA": {
+            "ame": -0.01087,
+            "ci95": [
+              -0.07504,
+              0.0542
+            ],
+            "excludes_zero": false
+          }
+        },
+        "lane_positioning": {
+          "O": {
+            "ame": -0.01779,
+            "ci95": [
+              -0.07192,
+              0.04572
+            ],
+            "excludes_zero": false
+          },
+          "BC": {
+            "ame": -0.00397,
+            "ci95": [
+              -0.02939,
+              0.0044
+            ],
+            "excludes_zero": false
+          },
+          "KA": {
+            "ame": 0.02176,
+            "ci95": [
+              -0.04653,
+              0.09745
+            ],
+            "excludes_zero": false
+          }
+        }
+      },
+      "cue_ame_KA": {
+        "sidewalk_transition": {
+          "ame": 0.02503,
+          "ci95": [
+            -0.03582,
+            0.08709
+          ],
+          "excludes_zero": false
+        },
+        "failure_to_yield": {
+          "ame": -0.00924,
+          "ci95": [
+            -0.0653,
+            0.04404
+          ],
+          "excludes_zero": false
+        },
+        "signal_violation": {
+          "ame": 0.00132,
+          "ci95": [
+            -0.06606,
+            0.08338
+          ],
+          "excludes_zero": false
+        },
+        "vehicle_turning_across": {
+          "ame": -0.01087,
+          "ci95": [
+            -0.07504,
+            0.0542
+          ],
+          "excludes_zero": false
+        },
+        "lane_positioning": {
+          "ame": 0.02176,
+          "ci95": [
+            -0.04653,
+            0.09745
+          ],
+          "excludes_zero": false
+        }
+      }
+    },
+    "unmasked": {
+      "converged": {
+        "M0c": true,
+        "M1": true
+      },
+      "fit_M0c": {
+        "loglik": -394.3256,
+        "n_parameters": 32,
+        "n": 522,
+        "rho2": 0.0851,
+        "adjusted_rho2": 0.0109,
+        "aic": 852.651,
+        "bic": 988.897,
+        "converged": true
+      },
+      "fit_M1": {
+        "loglik": -393.5495,
+        "n_parameters": 37,
+        "n": 522,
+        "rho2": 0.0869,
+        "adjusted_rho2": 0.0011,
+        "aic": 861.099,
+        "bic": 1018.633,
+        "converged": true
+      },
+      "separation_M1": {
+        "max_abs_coefficient": 1.6653,
+        "max_standard_error": 0.7845,
+        "any_coefficient_above_10": false,
+        "any_standard_error_above_10": false,
+        "max_abs_t": 3.241,
+        "suggests_separation": false
+      },
+      "lr_M0c_to_M1_cue_block": {
+        "lr_chi2": 1.5522,
+        "df": 5,
+        "p": 0.906965
+      },
+      "cue_coefficients": {
+        "sidewalk_transition": {
+          "coef": 0.224964,
+          "se": 0.236395,
+          "z": 0.9516,
+          "p": 0.341278,
+          "ci95": [
+            -0.238362,
+            0.68829
+          ],
+          "excludes_zero": false
+        },
+        "failure_to_yield": {
+          "coef": -0.046598,
+          "se": 0.22135,
+          "z": -0.2105,
+          "p": 0.833265,
+          "ci95": [
+            -0.480435,
+            0.38724
+          ],
+          "excludes_zero": false
+        },
+        "signal_violation": {
+          "coef": -0.000754,
+          "se": 0.29453,
+          "z": -0.0026,
+          "p": 0.997958,
+          "ci95": [
+            -0.578022,
+            0.576514
+          ],
+          "excludes_zero": false
+        },
+        "vehicle_turning_across": {
+          "coef": -0.096049,
+          "se": 0.259544,
+          "z": -0.3701,
+          "p": 0.711332,
+          "ci95": [
+            -0.604745,
+            0.412648
+          ],
+          "excludes_zero": false
+        },
+        "lane_positioning": {
+          "coef": 0.25112,
+          "se": 0.269626,
+          "z": 0.9314,
+          "p": 0.351664,
+          "ci95": [
+            -0.277336,
+            0.779577
+          ],
+          "excludes_zero": false
+        }
+      },
+      "cue_ame": {
+        "sidewalk_transition": {
+          "O": {
+            "ame": -0.02383,
+            "ci95": [
+              -0.07109,
+              0.02933
+            ],
+            "excludes_zero": false
+          },
+          "BC": {
+            "ame": -0.00513,
+            "ci95": [
+              -0.02603,
+              0.00403
+            ],
+            "excludes_zero": false
+          },
+          "KA": {
+            "ame": 0.02896,
+            "ci95": [
+              -0.03231,
+              0.09548
+            ],
+            "excludes_zero": false
+          }
+        },
+        "failure_to_yield": {
+          "O": {
+            "ame": 0.00508,
+            "ci95": [
+              -0.0425,
+              0.05265
+            ],
+            "excludes_zero": false
+          },
+          "BC": {
+            "ame": 0.00075,
+            "ci95": [
+              -0.00881,
+              0.01073
+            ],
+            "excludes_zero": false
+          },
+          "KA": {
+            "ame": -0.00582,
+            "ci95": [
+              -0.05863,
+              0.04952
+            ],
+            "excludes_zero": false
+          }
+        },
+        "signal_violation": {
+          "O": {
+            "ame": 8e-05,
+            "ci95": [
+              -0.05794,
+              0.06666
+            ],
+            "excludes_zero": false
+          },
+          "BC": {
+            "ame": 1e-05,
+            "ci95": [
+              -0.02432,
+              0.00612
+            ],
+            "excludes_zero": false
+          },
+          "KA": {
+            "ame": -9e-05,
+            "ci95": [
+              -0.06298,
+              0.08008
+            ],
+            "excludes_zero": false
+          }
+        },
+        "vehicle_turning_across": {
+          "O": {
+            "ame": 0.01054,
+            "ci95": [
+              -0.03933,
+              0.07004
+            ],
+            "excludes_zero": false
+          },
+          "BC": {
+            "ame": 0.00138,
+            "ci95": [
+              -0.00967,
+              0.00958
+            ],
+            "excludes_zero": false
+          },
+          "KA": {
+            "ame": -0.01192,
+            "ci95": [
+              -0.07202,
+              0.04712
+            ],
+            "excludes_zero": false
+          }
+        },
+        "lane_positioning": {
+          "O": {
+            "ame": -0.02611,
+            "ci95": [
+              -0.0781,
+              0.0355
+            ],
+            "excludes_zero": false
+          },
+          "BC": {
+            "ame": -0.00672,
+            "ci95": [
+              -0.0385,
+              0.0037
+            ],
+            "excludes_zero": false
+          },
+          "KA": {
+            "ame": 0.03283,
+            "ci95": [
+              -0.03546,
+              0.11022
+            ],
+            "excludes_zero": false
+          }
+        }
+      },
+      "cue_ame_KA": {
+        "sidewalk_transition": {
+          "ame": 0.02896,
+          "ci95": [
+            -0.03231,
+            0.09548
+          ],
+          "excludes_zero": false
+        },
+        "failure_to_yield": {
+          "ame": -0.00582,
+          "ci95": [
+            -0.05863,
+            0.04952
+          ],
+          "excludes_zero": false
+        },
+        "signal_violation": {
+          "ame": -9e-05,
+          "ci95": [
+            -0.06298,
+            0.08008
+          ],
+          "excludes_zero": false
+        },
+        "vehicle_turning_across": {
+          "ame": -0.01192,
+          "ci95": [
+            -0.07202,
+            0.04712
+          ],
+          "excludes_zero": false
+        },
+        "lane_positioning": {
+          "ame": 0.03283,
+          "ci95": [
+            -0.03546,
+            0.11022
+          ],
+          "excludes_zero": false
+        }
+      }
+    },
+    "cue_comparison": {
+      "sidewalk_transition": {
+        "coef_masked": 0.195238,
+        "coef_unmasked": 0.224964,
+        "coef_difference": 0.0297,
+        "ame_KA_masked": 0.02503,
+        "ame_KA_unmasked": 0.02896,
+        "ame_KA_difference": 0.00393,
+        "ka_interval_excludes_zero_masked": false,
+        "ka_interval_excludes_zero_unmasked": false,
+        "significance_agrees": true,
+        "sign_agrees": true
+      },
+      "failure_to_yield": {
+        "coef_masked": -0.074058,
+        "coef_unmasked": -0.046598,
+        "coef_difference": 0.0275,
+        "ame_KA_masked": -0.00924,
+        "ame_KA_unmasked": -0.00582,
+        "ame_KA_difference": 0.00342,
+        "ka_interval_excludes_zero_masked": false,
+        "ka_interval_excludes_zero_unmasked": false,
+        "significance_agrees": true,
+        "sign_agrees": true
+      },
+      "signal_violation": {
+        "coef_masked": 0.010547,
+        "coef_unmasked": -0.000754,
+        "coef_difference": -0.0113,
+        "ame_KA_masked": 0.00132,
+        "ame_KA_unmasked": -9e-05,
+        "ame_KA_difference": -0.00141,
+        "ka_interval_excludes_zero_masked": false,
+        "ka_interval_excludes_zero_unmasked": false,
+        "significance_agrees": true,
+        "sign_agrees": false
+      },
+      "vehicle_turning_across": {
+        "coef_masked": -0.087476,
+        "coef_unmasked": -0.096049,
+        "coef_difference": -0.0086,
+        "ame_KA_masked": -0.01087,
+        "ame_KA_unmasked": -0.01192,
+        "ame_KA_difference": -0.00105,
+        "ka_interval_excludes_zero_masked": false,
+        "ka_interval_excludes_zero_unmasked": false,
+        "significance_agrees": true,
+        "sign_agrees": true
+      },
+      "lane_positioning": {
+        "coef_masked": 0.168638,
+        "coef_unmasked": 0.25112,
+        "coef_difference": 0.0825,
+        "ame_KA_masked": 0.02176,
+        "ame_KA_unmasked": 0.03283,
+        "ame_KA_difference": 0.01107,
+        "ka_interval_excludes_zero_masked": false,
+        "ka_interval_excludes_zero_unmasked": false,
+        "significance_agrees": true,
+        "sign_agrees": true
+      }
+    },
+    "summary": {
+      "lr_p_masked": 0.953583,
+      "lr_p_unmasked": 0.906965,
+      "cue_block_significant_at_5pct_masked": false,
+      "cue_block_significant_at_5pct_unmasked": false,
+      "all_coefficient_signs_agree": false,
+      "all_ka_significance_agrees": true,
+      "any_ka_interval_excludes_zero": false,
+      "max_abs_ame_KA_difference": 0.01107
+    },
+    "prevalence_masked": {
+      "class_counts": {
+        "O": 77,
+        "BC": 363,
+        "KA": 82
+      },
+      "wrong_way": {
+        "positives_by_class": {
+          "O": 10,
+          "BC": 28,
+          "KA": 6
+        },
+        "share_by_class": {
+          "O": 0.1299,
+          "BC": 0.0771,
+          "KA": 0.0732
+        },
+        "share_KA_minus_O": -0.0567,
+        "min_cell": 6,
+        "meets_event_rule": false
+      },
+      "sidewalk_transition": {
+        "positives_by_class": {
+          "O": 14,
+          "BC": 122,
+          "KA": 19
+        },
+        "share_by_class": {
+          "O": 0.1818,
+          "BC": 0.3361,
+          "KA": 0.2317
+        },
+        "share_KA_minus_O": 0.0499,
+        "min_cell": 14,
+        "meets_event_rule": true
+      },
+      "driveway_alley": {
+        "positives_by_class": {
+          "O": 6,
+          "BC": 98,
+          "KA": 10
+        },
+        "share_by_class": {
+          "O": 0.0779,
+          "BC": 0.27,
+          "KA": 0.122
+        },
+        "share_KA_minus_O": 0.044,
+        "min_cell": 6,
+        "meets_event_rule": false
+      },
+      "failure_to_yield": {
+        "positives_by_class": {
+          "O": 31,
+          "BC": 157,
+          "KA": 30
+        },
+        "share_by_class": {
+          "O": 0.4026,
+          "BC": 0.4325,
+          "KA": 0.3659
+        },
+        "share_KA_minus_O": -0.0367,
+        "min_cell": 30,
+        "meets_event_rule": true
+      },
+      "signal_violation": {
+        "positives_by_class": {
+          "O": 16,
+          "BC": 67,
+          "KA": 13
+        },
+        "share_by_class": {
+          "O": 0.2078,
+          "BC": 0.1846,
+          "KA": 0.1585
+        },
+        "share_KA_minus_O": -0.0493,
+        "min_cell": 13,
+        "meets_event_rule": true
+      },
+      "swerve_loss_control": {
+        "positives_by_class": {
+          "O": 6,
+          "BC": 36,
+          "KA": 2
+        },
+        "share_by_class": {
+          "O": 0.0779,
+          "BC": 0.0992,
+          "KA": 0.0244
+        },
+        "share_KA_minus_O": -0.0535,
+        "min_cell": 2,
+        "meets_event_rule": false
+      },
+      "dooring": {
+        "positives_by_class": {
+          "O": 1,
+          "BC": 1,
+          "KA": 2
+        },
+        "share_by_class": {
+          "O": 0.013,
+          "BC": 0.0028,
+          "KA": 0.0244
+        },
+        "share_KA_minus_O": 0.0114,
+        "min_cell": 1,
+        "meets_event_rule": false
+      },
+      "distraction_impairment": {
+        "positives_by_class": {
+          "O": 8,
+          "BC": 54,
+          "KA": 19
+        },
+        "share_by_class": {
+          "O": 0.1039,
+          "BC": 0.1488,
+          "KA": 0.2317
+        },
+        "share_KA_minus_O": 0.1278,
+        "min_cell": 8,
+        "meets_event_rule": false
+      },
+      "vehicle_turning_across": {
+        "positives_by_class": {
+          "O": 25,
+          "BC": 135,
+          "KA": 23
+        },
+        "share_by_class": {
+          "O": 0.3247,
+          "BC": 0.3719,
+          "KA": 0.2805
+        },
+        "share_KA_minus_O": -0.0442,
+        "min_cell": 23,
+        "meets_event_rule": true
+      },
+      "lane_positioning": {
+        "positives_by_class": {
+          "O": 19,
+          "BC": 65,
+          "KA": 24
+        },
+        "share_by_class": {
+          "O": 0.2468,
+          "BC": 0.1791,
+          "KA": 0.2927
+        },
+        "share_KA_minus_O": 0.0459,
+        "min_cell": 19,
+        "meets_event_rule": true
+      }
+    },
+    "prevalence_unmasked": {
+      "class_counts": {
+        "O": 77,
+        "BC": 363,
+        "KA": 82
+      },
+      "wrong_way": {
+        "positives_by_class": {
+          "O": 11,
+          "BC": 30,
+          "KA": 7
+        },
+        "share_by_class": {
+          "O": 0.1429,
+          "BC": 0.0826,
+          "KA": 0.0854
+        },
+        "share_KA_minus_O": -0.0575,
+        "min_cell": 7,
+        "meets_event_rule": false
+      },
+      "sidewalk_transition": {
+        "positives_by_class": {
+          "O": 12,
+          "BC": 118,
+          "KA": 17
+        },
+        "share_by_class": {
+          "O": 0.1558,
+          "BC": 0.3251,
+          "KA": 0.2073
+        },
+        "share_KA_minus_O": 0.0515,
+        "min_cell": 12,
+        "meets_event_rule": true
+      },
+      "driveway_alley": {
+        "positives_by_class": {
+          "O": 6,
+          "BC": 98,
+          "KA": 10
+        },
+        "share_by_class": {
+          "O": 0.0779,
+          "BC": 0.27,
+          "KA": 0.122
+        },
+        "share_KA_minus_O": 0.044,
+        "min_cell": 6,
+        "meets_event_rule": false
+      },
+      "failure_to_yield": {
+        "positives_by_class": {
+          "O": 33,
+          "BC": 174,
+          "KA": 33
+        },
+        "share_by_class": {
+          "O": 0.4286,
+          "BC": 0.4793,
+          "KA": 0.4024
+        },
+        "share_KA_minus_O": -0.0261,
+        "min_cell": 33,
+        "meets_event_rule": true
+      },
+      "signal_violation": {
+        "positives_by_class": {
+          "O": 16,
+          "BC": 72,
+          "KA": 13
+        },
+        "share_by_class": {
+          "O": 0.2078,
+          "BC": 0.1983,
+          "KA": 0.1585
+        },
+        "share_KA_minus_O": -0.0493,
+        "min_cell": 13,
+        "meets_event_rule": true
+      },
+      "swerve_loss_control": {
+        "positives_by_class": {
+          "O": 7,
+          "BC": 37,
+          "KA": 3
+        },
+        "share_by_class": {
+          "O": 0.0909,
+          "BC": 0.1019,
+          "KA": 0.0366
+        },
+        "share_KA_minus_O": -0.0543,
+        "min_cell": 3,
+        "meets_event_rule": false
+      },
+      "dooring": {
+        "positives_by_class": {
+          "O": 1,
+          "BC": 1,
+          "KA": 2
+        },
+        "share_by_class": {
+          "O": 0.013,
+          "BC": 0.0028,
+          "KA": 0.0244
+        },
+        "share_KA_minus_O": 0.0114,
+        "min_cell": 1,
+        "meets_event_rule": false
+      },
+      "distraction_impairment": {
+        "positives_by_class": {
+          "O": 8,
+          "BC": 59,
+          "KA": 20
+        },
+        "share_by_class": {
+          "O": 0.1039,
+          "BC": 0.1625,
+          "KA": 0.2439
+        },
+        "share_KA_minus_O": 0.14,
+        "min_cell": 8,
+        "meets_event_rule": false
+      },
+      "vehicle_turning_across": {
+        "positives_by_class": {
+          "O": 26,
+          "BC": 141,
+          "KA": 24
+        },
+        "share_by_class": {
+          "O": 0.3377,
+          "BC": 0.3884,
+          "KA": 0.2927
+        },
+        "share_KA_minus_O": -0.045,
+        "min_cell": 24,
+        "meets_event_rule": true
+      },
+      "lane_positioning": {
+        "positives_by_class": {
+          "O": 17,
+          "BC": 66,
+          "KA": 24
+        },
+        "share_by_class": {
+          "O": 0.2208,
+          "BC": 0.1818,
+          "KA": 0.2927
+        },
+        "share_KA_minus_O": 0.0719,
+        "min_cell": 17,
+        "meets_event_rule": true
+      }
+    },
+    "label_shift_by_class": {
+      "wrong_way": {
+        "gained_by_class": {
+          "O": 1,
+          "BC": 3,
+          "KA": 1
+        },
+        "lost_by_class": {
+          "O": 0,
+          "BC": 1,
+          "KA": 0
+        }
+      },
+      "sidewalk_transition": {
+        "gained_by_class": {
+          "O": 1,
+          "BC": 3,
+          "KA": 1
+        },
+        "lost_by_class": {
+          "O": 3,
+          "BC": 7,
+          "KA": 3
+        }
+      },
+      "driveway_alley": {
+        "gained_by_class": {
+          "O": 0,
+          "BC": 3,
+          "KA": 0
+        },
+        "lost_by_class": {
+          "O": 0,
+          "BC": 3,
+          "KA": 0
+        }
+      },
+      "failure_to_yield": {
+        "gained_by_class": {
+          "O": 2,
+          "BC": 18,
+          "KA": 3
+        },
+        "lost_by_class": {
+          "O": 0,
+          "BC": 1,
+          "KA": 0
+        }
+      },
+      "signal_violation": {
+        "gained_by_class": {
+          "O": 0,
+          "BC": 6,
+          "KA": 0
+        },
+        "lost_by_class": {
+          "O": 0,
+          "BC": 1,
+          "KA": 0
+        }
+      },
+      "swerve_loss_control": {
+        "gained_by_class": {
+          "O": 1,
+          "BC": 2,
+          "KA": 1
+        },
+        "lost_by_class": {
+          "O": 0,
+          "BC": 1,
+          "KA": 0
+        }
+      },
+      "dooring": {
+        "gained_by_class": {
+          "O": 0,
+          "BC": 0,
+          "KA": 0
+        },
+        "lost_by_class": {
+          "O": 0,
+          "BC": 0,
+          "KA": 0
+        }
+      },
+      "distraction_impairment": {
+        "gained_by_class": {
+          "O": 1,
+          "BC": 5,
+          "KA": 1
+        },
+        "lost_by_class": {
+          "O": 1,
+          "BC": 0,
+          "KA": 0
+        }
+      },
+      "vehicle_turning_across": {
+        "gained_by_class": {
+          "O": 1,
+          "BC": 13,
+          "KA": 1
+        },
+        "lost_by_class": {
+          "O": 0,
+          "BC": 7,
+          "KA": 0
+        }
+      },
+      "lane_positioning": {
+        "gained_by_class": {
+          "O": 1,
+          "BC": 3,
+          "KA": 1
+        },
+        "lost_by_class": {
+          "O": 3,
+          "BC": 2,
+          "KA": 1
+        }
+      }
+    },
+    "event_rule_would_admit": {
+      "masked": [
+        "sidewalk_transition",
+        "failure_to_yield",
+        "signal_violation",
+        "vehicle_turning_across",
+        "lane_positioning"
+      ],
+      "unmasked": [
+        "sidewalk_transition",
+        "failure_to_yield",
+        "signal_violation",
+        "vehicle_turning_across",
+        "lane_positioning"
+      ]
+    },
+    "primary_labels_reproduction": {
+      "lr_here": {
+        "lr_chi2": 0.7964,
+        "df": 5,
+        "p": 0.977265
+      },
+      "lr_severity": {
+        "lr_chi2": 0.7964,
+        "df": 5,
+        "p": 0.977265
+      },
+      "matches": true,
+      "primary_model_in_severity": "ordered logit (BIC did not confirm the partial proportional-odds model)"
+    },
+    "primary_labels_fit": {
+      "converged": {
+        "M0c": true,
+        "M1": true
+      },
+      "fit_M0c": {
+        "loglik": -394.3256,
+        "n_parameters": 32,
+        "n": 522,
+        "rho2": 0.0851,
+        "adjusted_rho2": 0.0109,
+        "aic": 852.651,
+        "bic": 988.897,
+        "converged": true
+      },
+      "fit_M1": {
+        "loglik": -393.9275,
+        "n_parameters": 37,
+        "n": 522,
+        "rho2": 0.086,
+        "adjusted_rho2": 0.0002,
+        "aic": 861.855,
+        "bic": 1019.389,
+        "converged": true
+      },
+      "separation_M1": {
+        "max_abs_coefficient": 1.692,
+        "max_standard_error": 0.7905,
+        "any_coefficient_above_10": false,
+        "any_standard_error_above_10": false,
+        "max_abs_t": 3.313,
+        "suggests_separation": false
+      },
+      "lr_M0c_to_M1_cue_block": {
+        "lr_chi2": 0.7964,
+        "df": 5,
+        "p": 0.977265
+      },
+      "cue_coefficients": {
+        "sidewalk_transition": {
+          "coef": 0.101026,
+          "se": 0.250797,
+          "z": 0.4028,
+          "p": 0.68708,
+          "ci95": [
+            -0.390527,
+            0.59258
+          ],
+          "excludes_zero": false
+        },
+        "failure_to_yield": {
+          "coef": -0.005901,
+          "se": 0.224655,
+          "z": -0.0263,
+          "p": 0.979044,
+          "ci95": [
+            -0.446217,
+            0.434415
+          ],
+          "excludes_zero": false
+        },
+        "signal_violation": {
+          "coef": 0.011684,
+          "se": 0.300861,
+          "z": 0.0388,
+          "p": 0.969023,
+          "ci95": [
+            -0.577993,
+            0.601361
+          ],
+          "excludes_zero": false
+        },
+        "vehicle_turning_across": {
+          "coef": -0.054852,
+          "se": 0.277902,
+          "z": -0.1974,
+          "p": 0.843529,
+          "ci95": [
+            -0.599529,
+            0.489825
+          ],
+          "excludes_zero": false
+        },
+        "lane_positioning": {
+          "coef": 0.225128,
+          "se": 0.266778,
+          "z": 0.8439,
+          "p": 0.398739,
+          "ci95": [
+            -0.297748,
+            0.748004
+          ],
+          "excludes_zero": false
+        }
+      },
+      "cue_ame": {
+        "sidewalk_transition": {
+          "O": {
+            "ame": -0.01082,
+            "ci95": [
+              -0.06223,
+              0.04797
+            ],
+            "excludes_zero": false
+          },
+          "BC": {
+            "ame": -0.00205,
+            "ci95": [
+              -0.02373,
+              0.00521
+            ],
+            "excludes_zero": false
+          },
+          "KA": {
+            "ame": 0.01287,
+            "ci95": [
+              -0.04706,
+              0.08385
+            ],
+            "excludes_zero": false
+          }
+        },
+        "failure_to_yield": {
+          "O": {
+            "ame": 0.00064,
+            "ci95": [
+              -0.04466,
+              0.05378
+            ],
+            "excludes_zero": false
+          },
+          "BC": {
+            "ame": 0.0001,
+            "ci95": [
+              -0.01288,
+              0.00777
+            ],
+            "excludes_zero": false
+          },
+          "KA": {
+            "ame": -0.00074,
+            "ci95": [
+              -0.05551,
+              0.05515
+            ],
+            "excludes_zero": false
+          }
+        },
+        "signal_violation": {
+          "O": {
+            "ame": -0.00127,
+            "ci95": [
+              -0.06249,
+              0.0702
+            ],
+            "excludes_zero": false
+          },
+          "BC": {
+            "ame": -0.0002,
+            "ci95": [
+              -0.02807,
+              0.00538
+            ],
+            "excludes_zero": false
+          },
+          "KA": {
+            "ame": 0.00147,
+            "ci95": [
+              -0.06227,
+              0.08882
+            ],
+            "excludes_zero": false
+          }
+        },
+        "vehicle_turning_across": {
+          "O": {
+            "ame": 0.00601,
+            "ci95": [
+              -0.05194,
+              0.06971
+            ],
+            "excludes_zero": false
+          },
+          "BC": {
+            "ame": 0.00082,
+            "ci95": [
+              -0.01592,
+              0.0082
+            ],
+            "excludes_zero": false
+          },
+          "KA": {
+            "ame": -0.00683,
+            "ci95": [
+              -0.06905,
+              0.06582
+            ],
+            "excludes_zero": false
+          }
+        },
+        "lane_positioning": {
+          "O": {
+            "ame": -0.02354,
+            "ci95": [
+              -0.0765,
+              0.03521
+            ],
+            "excludes_zero": false
+          },
+          "BC": {
+            "ame": -0.00579,
+            "ci95": [
+              -0.03269,
+              0.00342
+            ],
+            "excludes_zero": false
+          },
+          "KA": {
+            "ame": 0.02933,
+            "ci95": [
+              -0.03812,
+              0.10537
+            ],
+            "excludes_zero": false
+          }
+        }
+      },
+      "cue_ame_KA": {
+        "sidewalk_transition": {
+          "ame": 0.01287,
+          "ci95": [
+            -0.04706,
+            0.08385
+          ],
+          "excludes_zero": false
+        },
+        "failure_to_yield": {
+          "ame": -0.00074,
+          "ci95": [
+            -0.05551,
+            0.05515
+          ],
+          "excludes_zero": false
+        },
+        "signal_violation": {
+          "ame": 0.00147,
+          "ci95": [
+            -0.06227,
+            0.08882
+          ],
+          "excludes_zero": false
+        },
+        "vehicle_turning_across": {
+          "ame": -0.00683,
+          "ci95": [
+            -0.06905,
+            0.06582
+          ],
+          "excludes_zero": false
+        },
+        "lane_positioning": {
+          "ame": 0.02933,
+          "ci95": [
+            -0.03812,
+            0.10537
+          ],
+          "excludes_zero": false
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+% Generated table; it uses the manuscript preamble's macros (\hltint, \hcell, \altrow, PanelBg).
+\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}X r r r r r r}
+\caption{\hltint{HlM}{Posted speed at the statutory line, and the fields recorded for each unit.}}\label{sup:tab_safesystem}\\
+\toprule
+\headerrow
+\hcell{Posted limit} & \hcell{Riders} & \hcell{O, $n$ (\%)} & \hcell{BC, $n$ (\%)} & \hcell{KA, $n$ (\%)} & \hcell{} & \hcell{} \\
+\midrule
+\endfirsthead
+\multicolumn{7}{l}{\cellcolor{HeaderGold}\textcolor{HeaderText}{\textbf{\tablename\ \thetable{} \textit{(continued)}}}} \\
+\toprule
+\endhead
+\midrule
+\multicolumn{7}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\multicolumn{7}{p{0.97\linewidth}}{\footnotesize \textit{Note:} Panel~A counts the 481 riders with a recorded posted limit; 99 of the 125 above the line crashed at an intersection or driveway. In Panels~B and~C the speed term and unrecorded rider age carry threshold-specific coefficients and every other M1 covariate a shared one. Any injury contrasts BC and KA with O, and KA contrasts KA with O and BC, so a positive coefficient favors the more severe side of that contrast. The difference $p$ is the Wald test that the two coefficients are equal, and $\Delta$BIC is the change against the single-slope ordered logit. The pre-specified bands are reported from the fit constrained to keep every probability valid, because the unconstrained fit gives a negative middle-class probability on 7 riders; the split at the line needs no constraint. Bold marks an interval that excludes zero. Marginal effects use 1,000 Krinsky and Robb draws, of which 501 and 402 give a negative middle-class probability for some rider under a counterfactual. The split at the line was chosen after the pre-specified results were known and is recorded as a departure from the pre-specification. Panel~D counts the 520 modeled crashes in which the field is present and not unknown; in M1 the three body-type indicators of the motor vehicle together give a likelihood-ratio $p$ of 0.427.}\\
+\endlastfoot
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{7}{l}{\textbf{Panel A. Riders by posted limit against the 35 mph line}} \\
+\addlinespace[2pt]
+35 mph or less & 356 & 48 (13.5) & 259 (72.8) & 49 (13.8) & & \\
+\altrow
+Above 35 mph & 125 & 23 (18.4) & 71 (56.8) & 31 (24.8) & & \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{7}{l}{\textbf{Panel B. Threshold-specific coefficients of the speed term}} \\
+\addlinespace[2pt]
+\midrule
+\headerrow
+\hcell{Speed term} & \hcell{Any injury} & \hcell{95\% CI} & \hcell{KA} & \hcell{95\% CI} & \hcell{Difference $p$} & \hcell{$\Delta$BIC} \\
+\midrule
+45 mph or above, pre-specified bands & \textbf{$-$0.935} & [$-$1.771, $-$0.099] & 0.575 & [$-$0.179, 1.330] & $<0.001$ & $-$14.6 \\
+\altrow
+Above 35 mph, exploratory & $-$0.664 & [$-$1.327, 0.000] & \textbf{0.610} & [0.012, 1.209] & $<0.001$ & $-$13.5 \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{7}{l}{\textbf{Panel C. Average marginal effects of the speed term}} \\
+\addlinespace[2pt]
+\midrule
+\headerrow
+\hcell{Speed term} & \hcell{O} & \hcell{95\% CI} & \hcell{BC} & \hcell{95\% CI} & \hcell{KA} & \hcell{95\% CI} \\
+\midrule
+45 mph or above, pre-specified bands & \textbf{0.105} & [0.005, 0.238] & \textbf{$-$0.198} & [$-$0.332, $-$0.085] & 0.092 & [$-$0.011, 0.218] \\
+\altrow
+Above 35 mph, exploratory & 0.070 & [$-$0.004, 0.158] & \textbf{$-$0.159} & [$-$0.266, $-$0.068] & \textbf{0.089} & [0.011, 0.190] \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{7}{l}{\textbf{Panel D. Crashes with the field recorded, by unit}} \\
+\addlinespace[2pt]
+\midrule
+\headerrow
+\hcell{Field} & \hcell{E-scooter} & \hcell{Motor vehicle} & \hcell{} & \hcell{} & \hcell{} & \hcell{} \\
+\midrule
+Make & 0 & 477 & & & & \\
+\altrow
+Model & 0 & 452 & & & & \\
+Body style & 0 & 492 & & & & \\
+\altrow
+Model year & 0 & 460 & & & & \\
+\end{xltabular}

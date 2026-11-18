@@ -1,0 +1,722 @@
+{
+  "min_events_rule": 10,
+  "max_vif_rule": 5.0,
+  "n_candidates": 46,
+  "n_included": 30,
+  "candidates": [
+    {
+      "candidate": "speed_35to40",
+      "binary": true,
+      "events_by_severity": {
+        "O": 20,
+        "BC": 104,
+        "KA": 22
+      },
+      "min_cell": 20,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.339,
+      "disposition": "included"
+    },
+    {
+      "candidate": "speed_ge45",
+      "binary": true,
+      "events_by_severity": {
+        "O": 16,
+        "BC": 39,
+        "KA": 22
+      },
+      "min_cell": 16,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.749,
+      "disposition": "included"
+    },
+    {
+      "candidate": "speed_unknown",
+      "binary": true,
+      "events_by_severity": {
+        "O": 6,
+        "BC": 33,
+        "KA": 2
+      },
+      "min_cell": 2,
+      "exempt": true,
+      "meets_event_rule": true,
+      "vif": 1.202,
+      "disposition": "included: missingness indicator, exempt (prespec 3.2)"
+    },
+    {
+      "candidate": "light_dark_or_unknown",
+      "binary": true,
+      "events_by_severity": {
+        "O": 27,
+        "BC": 99,
+        "KA": 37
+      },
+      "min_cell": 27,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.806,
+      "disposition": "included"
+    },
+    {
+      "candidate": "eth_black",
+      "binary": true,
+      "events_by_severity": {
+        "O": 14,
+        "BC": 96,
+        "KA": 16
+      },
+      "min_cell": 14,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.311,
+      "disposition": "included"
+    },
+    {
+      "candidate": "eth_hispanic",
+      "binary": true,
+      "events_by_severity": {
+        "O": 17,
+        "BC": 95,
+        "KA": 15
+      },
+      "min_cell": 15,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.327,
+      "disposition": "included"
+    },
+    {
+      "candidate": "eth_other_or_unknown",
+      "binary": true,
+      "events_by_severity": {
+        "O": 26,
+        "BC": 37,
+        "KA": 11
+      },
+      "min_cell": 11,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.808,
+      "disposition": "included"
+    },
+    {
+      "candidate": "gender_female",
+      "binary": true,
+      "events_by_severity": {
+        "O": 11,
+        "BC": 90,
+        "KA": 24
+      },
+      "min_cell": 11,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.053,
+      "disposition": "included"
+    },
+    {
+      "candidate": "gender_unknown",
+      "binary": true,
+      "events_by_severity": {
+        "O": 17,
+        "BC": 6,
+        "KA": 3
+      },
+      "min_cell": 3,
+      "exempt": true,
+      "meets_event_rule": true,
+      "vif": 3.075,
+      "disposition": "included: missingness indicator, exempt (prespec 3.2)"
+    },
+    {
+      "candidate": "age_45plus",
+      "binary": true,
+      "events_by_severity": {
+        "O": 11,
+        "BC": 38,
+        "KA": 15
+      },
+      "min_cell": 11,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.284,
+      "disposition": "included"
+    },
+    {
+      "candidate": "age_under25",
+      "binary": true,
+      "events_by_severity": {
+        "O": 29,
+        "BC": 197,
+        "KA": 30
+      },
+      "min_cell": 29,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.453,
+      "disposition": "included"
+    },
+    {
+      "candidate": "age_unknown",
+      "binary": true,
+      "events_by_severity": {
+        "O": 21,
+        "BC": 8,
+        "KA": 5
+      },
+      "min_cell": 5,
+      "exempt": true,
+      "meets_event_rule": true,
+      "vif": 3.085,
+      "disposition": "included: missingness indicator, exempt (prespec 3.2)"
+    },
+    {
+      "candidate": "veh_other_unknown",
+      "binary": true,
+      "events_by_severity": {
+        "O": 10,
+        "BC": 25,
+        "KA": 7
+      },
+      "min_cell": 7,
+      "exempt": true,
+      "meets_event_rule": true,
+      "vif": 1.16,
+      "disposition": "included: missingness indicator, exempt (prespec 3.2)"
+    },
+    {
+      "candidate": "veh_pickup_truck_van",
+      "binary": true,
+      "events_by_severity": {
+        "O": 15,
+        "BC": 64,
+        "KA": 19
+      },
+      "min_cell": 15,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.23,
+      "disposition": "included"
+    },
+    {
+      "candidate": "veh_suv",
+      "binary": true,
+      "events_by_severity": {
+        "O": 21,
+        "BC": 100,
+        "KA": 22
+      },
+      "min_cell": 21,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.239,
+      "disposition": "included"
+    },
+    {
+      "candidate": "coll_other",
+      "binary": true,
+      "events_by_severity": {
+        "O": 14,
+        "BC": 72,
+        "KA": 18
+      },
+      "min_cell": 14,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.729,
+      "disposition": "included"
+    },
+    {
+      "candidate": "coll_single_mv_straight",
+      "binary": true,
+      "events_by_severity": {
+        "O": 19,
+        "BC": 89,
+        "KA": 18
+      },
+      "min_cell": 18,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.53,
+      "disposition": "included"
+    },
+    {
+      "candidate": "coll_turning",
+      "binary": true,
+      "events_by_severity": {
+        "O": 23,
+        "BC": 103,
+        "KA": 21
+      },
+      "min_cell": 21,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 2.305,
+      "disposition": "included"
+    },
+    {
+      "candidate": "intx_intersection_or_driveway",
+      "binary": true,
+      "events_by_severity": {
+        "O": 58,
+        "BC": 269,
+        "KA": 58
+      },
+      "min_cell": 58,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.705,
+      "disposition": "included"
+    },
+    {
+      "candidate": "ctrl_signal",
+      "binary": true,
+      "events_by_severity": {
+        "O": 21,
+        "BC": 63,
+        "KA": 24
+      },
+      "min_cell": 21,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.477,
+      "disposition": "included"
+    },
+    {
+      "candidate": "ctrl_stop_sign",
+      "binary": true,
+      "events_by_severity": {
+        "O": 15,
+        "BC": 87,
+        "KA": 13
+      },
+      "min_cell": 13,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.503,
+      "disposition": "included"
+    },
+    {
+      "candidate": "road_not_city_street",
+      "binary": true,
+      "events_by_severity": {
+        "O": 29,
+        "BC": 128,
+        "KA": 30
+      },
+      "min_cell": 29,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 2.105,
+      "disposition": "included"
+    },
+    {
+      "candidate": "cf_rider_failed_to_yield",
+      "binary": true,
+      "events_by_severity": {
+        "O": 13,
+        "BC": 44,
+        "KA": 18
+      },
+      "min_cell": 13,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.2,
+      "disposition": "included"
+    },
+    {
+      "candidate": "cf_driver_failed_to_yield",
+      "binary": true,
+      "events_by_severity": {
+        "O": 15,
+        "BC": 82,
+        "KA": 9
+      },
+      "min_cell": 9,
+      "exempt": false,
+      "meets_event_rule": false,
+      "vif": null,
+      "disposition": "excluded: smallest severity cell below 10"
+    },
+    {
+      "candidate": "cf_driver_inattention",
+      "binary": true,
+      "events_by_severity": {
+        "O": 11,
+        "BC": 65,
+        "KA": 13
+      },
+      "min_cell": 11,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.076,
+      "disposition": "included"
+    },
+    {
+      "candidate": "cf_disregard_control",
+      "binary": true,
+      "events_by_severity": {
+        "O": 4,
+        "BC": 38,
+        "KA": 12
+      },
+      "min_cell": 4,
+      "exempt": false,
+      "meets_event_rule": false,
+      "vif": null,
+      "disposition": "excluded: smallest severity cell below 10"
+    },
+    {
+      "candidate": "cf_speed_related",
+      "binary": true,
+      "events_by_severity": {
+        "O": 7,
+        "BC": 23,
+        "KA": 8
+      },
+      "min_cell": 7,
+      "exempt": false,
+      "meets_event_rule": false,
+      "vif": null,
+      "disposition": "excluded: smallest severity cell below 10"
+    },
+    {
+      "candidate": "cf_wrong_side_or_way",
+      "binary": true,
+      "events_by_severity": {
+        "O": 6,
+        "BC": 9,
+        "KA": 4
+      },
+      "min_cell": 4,
+      "exempt": false,
+      "meets_event_rule": false,
+      "vif": null,
+      "disposition": "excluded: smallest severity cell below 10"
+    },
+    {
+      "candidate": "cf_driveway_entry_exit",
+      "binary": true,
+      "events_by_severity": {
+        "O": 6,
+        "BC": 76,
+        "KA": 8
+      },
+      "min_cell": 6,
+      "exempt": false,
+      "meets_event_rule": false,
+      "vif": null,
+      "disposition": "excluded: smallest severity cell below 10"
+    },
+    {
+      "candidate": "weekend",
+      "binary": true,
+      "events_by_severity": {
+        "O": 23,
+        "BC": 83,
+        "KA": 21
+      },
+      "min_cell": 21,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.174,
+      "disposition": "included"
+    },
+    {
+      "candidate": "nighttime",
+      "binary": true,
+      "events_by_severity": {
+        "O": 15,
+        "BC": 44,
+        "KA": 21
+      },
+      "min_cell": 15,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.883,
+      "disposition": "included"
+    },
+    {
+      "candidate": "coord_missing",
+      "binary": true,
+      "events_by_severity": {
+        "O": 9,
+        "BC": 64,
+        "KA": 3
+      },
+      "min_cell": 3,
+      "exempt": true,
+      "meets_event_rule": true,
+      "vif": 2.375,
+      "disposition": "included: missingness indicator, exempt (prespec 3.2)"
+    },
+    {
+      "candidate": "bike_facility_nearest",
+      "binary": true,
+      "events_by_severity": {
+        "O": 5,
+        "BC": 35,
+        "KA": 3
+      },
+      "min_cell": 3,
+      "exempt": false,
+      "meets_event_rule": false,
+      "vif": null,
+      "disposition": "excluded: smallest severity cell below 10"
+    },
+    {
+      "candidate": "road_density_km_100m",
+      "binary": false,
+      "events_by_severity": null,
+      "min_cell": null,
+      "exempt": false,
+      "meets_event_rule": true,
+      "median_by_severity": {
+        "O": 0.8759,
+        "BC": 0.882,
+        "KA": 0.8775
+      },
+      "vif": 1.254,
+      "disposition": "included"
+    },
+    {
+      "candidate": "poverty_share",
+      "binary": false,
+      "events_by_severity": null,
+      "min_cell": null,
+      "exempt": false,
+      "meets_event_rule": true,
+      "median_by_severity": {
+        "O": 0.1423751686909581,
+        "BC": 0.11779496568938125,
+        "KA": 0.093062605752961
+      },
+      "vif": 1.108,
+      "disposition": "included"
+    },
+    {
+      "candidate": "urban_area_200k",
+      "binary": true,
+      "events_by_severity": {
+        "O": 62,
+        "BC": 282,
+        "KA": 60
+      },
+      "min_cell": 60,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.252,
+      "disposition": "included"
+    },
+    {
+      "candidate": "wrong_way",
+      "binary": true,
+      "events_by_severity": {
+        "O": 10,
+        "BC": 21,
+        "KA": 5
+      },
+      "min_cell": 5,
+      "exempt": false,
+      "meets_event_rule": false,
+      "vif": null,
+      "disposition": "excluded: smallest severity cell below 10"
+    },
+    {
+      "candidate": "sidewalk_transition",
+      "binary": true,
+      "events_by_severity": {
+        "O": 10,
+        "BC": 89,
+        "KA": 13
+      },
+      "min_cell": 10,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.168,
+      "disposition": "included"
+    },
+    {
+      "candidate": "driveway_alley",
+      "binary": true,
+      "events_by_severity": {
+        "O": 5,
+        "BC": 95,
+        "KA": 10
+      },
+      "min_cell": 5,
+      "exempt": false,
+      "meets_event_rule": false,
+      "vif": null,
+      "disposition": "excluded: smallest severity cell below 10"
+    },
+    {
+      "candidate": "failure_to_yield",
+      "binary": true,
+      "events_by_severity": {
+        "O": 24,
+        "BC": 119,
+        "KA": 27
+      },
+      "min_cell": 24,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.194,
+      "disposition": "included"
+    },
+    {
+      "candidate": "signal_violation",
+      "binary": true,
+      "events_by_severity": {
+        "O": 14,
+        "BC": 62,
+        "KA": 13
+      },
+      "min_cell": 13,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.369,
+      "disposition": "included"
+    },
+    {
+      "candidate": "swerve_loss_control",
+      "binary": true,
+      "events_by_severity": {
+        "O": 9,
+        "BC": 37,
+        "KA": 1
+      },
+      "min_cell": 1,
+      "exempt": false,
+      "meets_event_rule": false,
+      "vif": null,
+      "disposition": "excluded: smallest severity cell below 10"
+    },
+    {
+      "candidate": "dooring",
+      "binary": true,
+      "events_by_severity": {
+        "O": 1,
+        "BC": 0,
+        "KA": 1
+      },
+      "min_cell": 0,
+      "exempt": false,
+      "meets_event_rule": false,
+      "vif": null,
+      "disposition": "excluded: smallest severity cell below 10"
+    },
+    {
+      "candidate": "distraction_impairment",
+      "binary": true,
+      "events_by_severity": {
+        "O": 6,
+        "BC": 48,
+        "KA": 18
+      },
+      "min_cell": 6,
+      "exempt": false,
+      "meets_event_rule": false,
+      "vif": null,
+      "disposition": "excluded: smallest severity cell below 10"
+    },
+    {
+      "candidate": "vehicle_turning_across",
+      "binary": true,
+      "events_by_severity": {
+        "O": 25,
+        "BC": 123,
+        "KA": 23
+      },
+      "min_cell": 23,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.835,
+      "disposition": "included"
+    },
+    {
+      "candidate": "lane_positioning",
+      "binary": true,
+      "events_by_severity": {
+        "O": 16,
+        "BC": 68,
+        "KA": 23
+      },
+      "min_cell": 16,
+      "exempt": false,
+      "meets_event_rule": true,
+      "vif": 1.234,
+      "disposition": "included"
+    }
+  ],
+  "references": {
+    "speed": "le30",
+    "light": "day_dusk_dawn",
+    "eth": "white",
+    "gender": "male",
+    "age": "25to54",
+    "veh": "car",
+    "coll": "angle",
+    "intx": "non_intersection",
+    "ctrl": "none_other_unknown",
+    "road": "city_street"
+  },
+  "layers": {
+    "osm": "444 located crashes joined",
+    "acs": "444 located crashes joined",
+    "urban_area_200k": "345 of 446 located rows inside; 76 unlocated rows by city lookup (58) or rural flag (18)",
+    "cues": "final adjudicated labels joined"
+  },
+  "stage_two_merges": [
+    "age: 55 and over has cells {'O': 4, 'BC': 19, 'KA': 4}, below 10; threshold moved",
+    "age: 50 and over has cells {'O': 7, 'BC': 29, 'KA': 10}, below 10; threshold moved",
+    "age: older band set at 45 and over, cells {'O': 11, 'BC': 38, 'KA': 15}",
+    "ethnicity: 'other' cells {'O': 3, 'BC': 27, 'KA': 7} below 10; merged with 'unknown' into 'other or unknown', cells {'O': 26, 'BC': 37, 'KA': 11}",
+    "collision manner: 'same_direction' cells {'O': 9, 'BC': 44, 'KA': 11} below 10; merged into 'other'",
+    "road class: 'non-trafficway' cells {'O': 8, 'BC': 64, 'KA': 3} below 10; merged with the highway category into 'not a city street', cells {'O': 29, 'BC': 128, 'KA': 30}",
+    "intersection relation: 'driveway access' cells {'O': 6, 'BC': 62, 'KA': 6} below 10; merged with 'intersection or intersection-related' into 'intersection or driveway access', cells {'O': 58, 'BC': 269, 'KA': 58}",
+    "lighting: 'dark, not lighted or unknown' cells {'O': 6, 'BC': 19, 'KA': 13} below 10; merged with 'dark, lighted' into 'dark or unknown lighting', cells {'O': 27, 'BC': 99, 'KA': 37}"
+  ],
+  "urban_area_200k": {
+    "ua_population_threshold": 200000,
+    "urban_areas_at_or_above_threshold_nationally": 179,
+    "located_rows": 446,
+    "located_inside": 345,
+    "located_outside": 101,
+    "unlocated_rows": 76,
+    "unlocated_resolved_by_city_lookup": 58,
+    "unlocated_unresolved_fallback_rural_flag": 18,
+    "city_lookup_rule": "a record without coordinates takes 1 if at least half the located records of its City_ID fall inside a qualifying urban area; 'Not Listed' or a city with no located record falls back to the CRIS rural flag",
+    "urban_areas_hit": {
+      "Houston, TX": 94,
+      "Austin, TX": 80,
+      "Dallas--Fort Worth--Arlington, TX": 71,
+      "San Antonio, TX": 53,
+      "Lubbock, TX": 13,
+      "Denton--Lewisville, TX": 11,
+      "El Paso, TX--NM": 8,
+      "Corpus Christi, TX": 6,
+      "Killeen, TX": 4,
+      "McAllen, TX": 3,
+      "Laredo, TX": 2
+    },
+    "counts_by_severity": {
+      "inside_ua_200k": {
+        "O": 62,
+        "BC": 282,
+        "KA": 60
+      },
+      "outside": {
+        "O": 15,
+        "BC": 81,
+        "KA": 22
+      }
+    },
+    "construction": "data_extra._urbanized_area: point-in-polygon of the crash coordinates against the 2020 Census Urban Areas (tl_2020_us_uac20) whose population in ua_list_all.txt is 200,000 or more; a record without coordinates takes the majority value of the located records of its City_ID, and a record whose city cannot be placed takes the CRIS rural flag",
+    "reproduces_data_extra": true
+  },
+  "rows": 522,
+  "distinct_crashes": 520
+}

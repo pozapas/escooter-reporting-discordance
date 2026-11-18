@@ -1,0 +1,52 @@
+% Generated table; it uses the manuscript preamble's macros (\hltint, \hcell, \altrow, PanelBg).
+\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}X rrrrrrr}
+\caption{\hltint{HlM}{Fit of the random-parameter models and their distribution parameters.}}\label{tab:a_randompar_models}\\
+\toprule
+\headerrow
+\hcell{Model} & \hcell{$\log L$} & \hcell{Par.} & \hcell{AIC} & \hcell{BIC} & \hcell{LR $\chi^2$} & \hcell{d.f.} & \hcell{$p$} \\
+\midrule
+\endfirsthead
+\multicolumn{8}{l}{\cellcolor{HeaderGold}\textcolor{HeaderText}{\textbf{\tablename\ \thetable{} \textit{(continued)}}}} \\
+\toprule
+\endhead
+\midrule
+\multicolumn{8}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\multicolumn{8}{p{0.97\linewidth}}{\footnotesize \textit{Note:} Lower AIC and BIC mean a better penalized fit. The likelihood-ratio tests compare each model with the fixed M1, and $p$ uses the chi-bar-squared reference for standard deviations on the boundary. A shifter is named by its random coefficient and the context variable after the word by, and a dash marks a parameter absent from the joint model.}\\
+\endlastfoot
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{8}{l}{\textbf{Panel A. Fit}} \\
+\addlinespace[2pt]
+Fixed-parameter M1 & $-$393.93 & 37 & 861.9 & 1019.4 & -- & -- & -- \\
+\altrow
+Single random coefficient, rider age not recorded & $-$382.06 & 38 & 840.1 & 1001.9 & 23.74 & 1 & $<0.001$ \\
+Joint, 9 random coefficients & $-$368.88 & 46 & 829.8 & 1025.6 & 50.09 & 9 & $<0.001$ \\
+\altrow
+Final, joint plus shifters & $-$362.38 & 48 & 820.8 & 1025.1 & 63.10 & 11 & $<0.001$ \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{8}{l}{\textbf{Panel B. Standard deviations and shifters}} \\
+\addlinespace[2pt]
+\midrule
+\headerrow
+\hcell{Parameter} & \multicolumn{2}{c}{\hcell{Joint estimate (SE)}} & \hcell{Joint $p$} & \multicolumn{2}{c}{\hcell{Final estimate (SE)}} & \hcell{Final $p$} & \hcell{} \\
+\midrule
+Mean shift, traffic signal present by speed limit 45 mph or above & \multicolumn{2}{c}{--} & -- & \multicolumn{2}{c}{$-$1.856 (0.997)} & 0.063 & \\
+\altrow
+SD, speed limit 45 mph or above & \multicolumn{2}{c}{1.902 (0.689)} & 0.006 & \multicolumn{2}{c}{1.659 (0.683)} & 0.015 & \\
+SD, dark or light not recorded & \multicolumn{2}{c}{0.113 (1.016)} & 0.911 & \multicolumn{2}{c}{0.005 (1.540)} & $>0.99$ & \\
+\altrow
+SD, ethnicity other or not recorded & \multicolumn{2}{c}{0.779 (1.108)} & 0.482 & \multicolumn{2}{c}{0.577 (1.351)} & 0.669 & \\
+SD, rider gender not recorded & \multicolumn{2}{c}{0.233 (4.375)} & 0.957 & \multicolumn{2}{c}{0.280 (3.697)} & 0.940 & \\
+\altrow
+SD, rider 45 or above & \multicolumn{2}{c}{1.868 (0.648)} & 0.004 & \multicolumn{2}{c}{1.882 (0.622)} & 0.002 & \\
+SD, rider age not recorded & \multicolumn{2}{c}{9.466 (3.306)} & 0.004 & \multicolumn{2}{c}{9.280 (3.388)} & 0.006 & \\
+\altrow
+SD, traffic signal present & \multicolumn{2}{c}{1.999 (0.541)} & $<0.001$ & \multicolumn{2}{c}{1.764 (0.521)} & 0.001 & \\
+SD, night & \multicolumn{2}{c}{1.622 (0.658)} & 0.014 & \multicolumn{2}{c}{1.167 (0.663)} & 0.078 & \\
+\altrow
+SD, officer cited rider failed to yield & \multicolumn{2}{c}{1.740 (0.619)} & 0.005 & \multicolumn{2}{c}{1.145 (0.685)} & 0.095 & \\
+Variance shift, officer cited rider failed to yield by night & \multicolumn{2}{c}{--} & -- & \multicolumn{2}{c}{2.273 (0.841)} & 0.007 & \\
+\end{xltabular}

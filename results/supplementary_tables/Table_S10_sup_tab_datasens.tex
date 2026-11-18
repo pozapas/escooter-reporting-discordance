@@ -1,0 +1,74 @@
+% Generated table; it uses the manuscript preamble's macros (\hltint, \hcell, \altrow, PanelBg).
+\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}X r r r r r r}
+\caption{\hltint{HlA}{Age forms, complete-case refit, ACS vintage and the missingness mechanism.}}\label{sup:tab_datasens}\\
+\toprule
+\headerrow
+\hcell{Row} & \hcell{$\log L$} & \hcell{Parameters} & \hcell{BIC} & \hcell{LR} & \hcell{d.f.} & \hcell{$p$} \\
+\midrule
+\endfirsthead
+\multicolumn{7}{l}{\cellcolor{HeaderGold}\textcolor{HeaderText}{\textbf{\tablename\ \thetable{} \textit{(continued)}}}} \\
+\toprule
+\endhead
+\midrule
+\multicolumn{7}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\multicolumn{7}{p{0.97\linewidth}}{\footnotesize \textit{Note:} In Panel~A every model keeps the indicator for unrecorded age, and the linear and spline forms give riders without a recorded age the median recorded age. The restricted cubic splines place knots at the 10th, 50th and 90th or the 5th, 35th, 65th and 95th percentiles of recorded age, and the four-knot fit shows separation, with a coefficient of 10.4 in absolute value. Panel~B lists the covariates whose KA interval excludes zero in either fit, and the refit drops three indicators that are constant among complete cases. Every KA effect that changes sign has an interval including zero in both fits. In Panel~C the vintages correlate at 0.903 on located records, and the earlier vintage changes the poverty share of 105 riders when assigned to the 2021 and 2022 crashes and 501 riders when assigned to every crash. Panel~D adjusts for year, night, weekend, intersection relation, roadway class and the large-city indicator. The model for crash coordinates leaves out roadway class, which separates it. OR is the odds ratio against BC. The share is the percentage of riders with the field unrecorded in O, BC and KA, in that order, as in Table~\ref{tab:a_missing}.}\\
+\endlastfoot
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{7}{l}{\textbf{Panel A. Age forms, each against the model without age terms}} \\
+\addlinespace[2pt]
+No age terms, the nested base & $-$394.75 & 35 & 1008.5 & -- & -- & -- \\
+\altrow
+Bands cut at 25 and 45, M1 & $-$393.93 & 37 & 1019.4 & 1.64 & 2 & 0.440 \\
+Bands cut at 25 and 55 & $-$393.67 & 37 & 1018.9 & 2.15 & 2 & 0.342 \\
+\altrow
+Bands cut at 21, 30 and 45 & $-$393.42 & 38 & 1024.6 & 2.66 & 3 & 0.447 \\
+Linear, per ten years & $-$394.14 & 36 & 1013.6 & 1.21 & 1 & 0.272 \\
+\altrow
+Spline, 3 knots & $-$393.90 & 37 & 1019.3 & 1.69 & 2 & 0.429 \\
+Spline, 4 knots & $-$392.58 & 38 & 1023.0 & 4.34 & 3 & 0.227 \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{7}{l}{\textbf{Panel B. Complete case against M1, KA marginal effects}} \\
+\addlinespace[2pt]
+\midrule
+\headerrow
+\hcell{Row} & \multicolumn{3}{c}{\hcell{M1, KA [95\% CI]}} & \multicolumn{3}{c}{\hcell{Complete case, KA [95\% CI]}} \\
+\midrule
+Riders & \multicolumn{3}{c}{522} & \multicolumn{3}{c}{407} \\
+\altrow
+Covariates & \multicolumn{3}{c}{35} & \multicolumn{3}{c}{32} \\
+Rider age not recorded & \multicolumn{3}{c}{$-$0.119 [$-$0.178, $-$0.024]} & \multicolumn{3}{c}{dropped, constant} \\
+\altrow
+Poverty share, block group & \multicolumn{3}{c}{$-$0.212 [$-$0.345, $-$0.091]} & \multicolumn{3}{c}{$-$0.226 [$-$0.378, $-$0.070]} \\
+KA effects that change sign & \multicolumn{6}{c}{6 of 32 compared} \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{7}{l}{\textbf{Panel C. Poverty-share marginal effects by ACS vintage}} \\
+\addlinespace[2pt]
+\midrule
+\headerrow
+\hcell{ACS estimates, assigned to} & \hcell{O} & \hcell{95\% CI} & \hcell{BC} & \hcell{95\% CI} & \hcell{KA} & \hcell{95\% CI} \\
+\midrule
+2019 to 2023, every crash, M1 & 0.184 & [0.082, 0.299] & 0.028 & [$-$0.019, 0.082] & $-$0.212 & [$-$0.345, $-$0.091] \\
+\altrow
+2017 to 2021, 2021 and 2022 & 0.169 & [0.067, 0.283] & 0.025 & [$-$0.016, 0.078] & $-$0.195 & [$-$0.327, $-$0.080] \\
+2017 to 2021, every crash & 0.161 & [0.059, 0.270] & 0.025 & [$-$0.014, 0.075] & $-$0.185 & [$-$0.314, $-$0.071] \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{7}{l}{\textbf{Panel D. Odds of an unrecorded field by severity class, against BC}} \\
+\addlinespace[2pt]
+\midrule
+\headerrow
+\hcell{Field} & \hcell{Missing} & \hcell{OR, O [95\% CI]} & \hcell{$p$} & \hcell{OR, KA [95\% CI]} & \hcell{$p$} & \hcell{Share (\%)} \\
+\midrule
+Rider age & 34 & 15.9 [6.7, 37.9] & $<0.001$ & 2.86 [0.89, 9.17] & 0.077 & 27.3 / 2.2 / 6.1 \\
+\altrow
+Rider gender & 26 & 17.0 [6.4, 45.4] & $<0.001$ & 2.29 [0.55, 9.59] & 0.257 & 22.1 / 1.7 / 3.7 \\
+Rider ethnicity & 37 & 15.0 [6.7, 33.6] & $<0.001$ & 1.86 [0.56, 6.21] & 0.313 & 29.9 / 2.8 / 4.9 \\
+\altrow
+Posted speed limit & 41 & 0.80 [0.31, 2.08] & 0.653 & 0.19 [0.04, 0.86] & 0.031 & 7.8 / 9.1 / 2.4 \\
+Crash coordinates & 76 & 0.65 [0.28, 1.54] & 0.328 & 0.14 [0.04, 0.50] & 0.002 & 11.7 / 17.6 / 3.7 \\
+\end{xltabular}

@@ -1,0 +1,8756 @@
+{
+  "generated": "2026-10-05T21:21:04",
+  "script": "src/m2_expected_likelihood.py",
+  "inputs": [
+    "data/model_frame.csv",
+    "data/audit_posterior_classprobs.npz",
+    "data/screening.json",
+    "data/numbers.json"
+  ],
+  "settings": {
+    "estimator": "ordered logit (primary M1 of severity.py), weighted maximum likelihood in the same raw parameterization",
+    "covariates": [
+      "speed_35to40",
+      "speed_ge45",
+      "speed_unknown",
+      "light_dark_or_unknown",
+      "eth_black",
+      "eth_hispanic",
+      "eth_other_or_unknown",
+      "gender_female",
+      "gender_unknown",
+      "age_45plus",
+      "age_under25",
+      "age_unknown",
+      "veh_other_unknown",
+      "veh_pickup_truck_van",
+      "veh_suv",
+      "coll_other",
+      "coll_single_mv_straight",
+      "coll_turning",
+      "intx_intersection_or_driveway",
+      "ctrl_signal",
+      "ctrl_stop_sign",
+      "road_not_city_street",
+      "weekend",
+      "nighttime",
+      "coord_missing",
+      "road_density_km_100m",
+      "poverty_share",
+      "urban_area_200k",
+      "cf_rider_failed_to_yield",
+      "cf_driver_inattention",
+      "sidewalk_transition",
+      "failure_to_yield",
+      "signal_violation",
+      "vehicle_turning_across",
+      "lane_positioning"
+    ],
+    "n_riders": 522,
+    "class_probabilities": "moderate prior, dependence fixed at 0 (audit primary)",
+    "n_posterior_draws": 100,
+    "within_draw_variance": "rider-clustered sandwich H^-1 (sum_i U_i U_i') H^-1",
+    "pooling": "Rubin's rules on the raw parameter vector, Barnard-Rubin df",
+    "ame": "severity.average_marginal_effects, 1000 Krinsky-Robb draws from the pooled mean and total variance (EL) or the sandwich (alternatives)",
+    "kr_draws": 1000,
+    "kr_seed": 20260917
+  },
+  "weight_definition": {
+    "expected_likelihood": "w_ic = pi_c p_K(k_i|c) p_N(n_i|c) / sum_c' pi_c' p_K(k_i|c') p_N(n_i|c'); l = sum_i sum_c w_ic log P(Y=c|x_i)",
+    "alt_i": "outcome = coded sev3, weight = w_i,coded",
+    "alt_ii": "outcome = argmax_c w_ic, weight = 1",
+    "note": "w depends on the record only through its (KABCO, narrative indicator) cell, so there are twenty distinct weight vectors; they are listed in audit_final.json. w is a function of the coded KABCO level that M1 models."
+  },
+  "m1_reproduction": {
+    "loglik": -393.9275,
+    "loglik_numbers_json": -393.93,
+    "max_abs_coef_gap_vs_numbers_json": 0.0005,
+    "max_abs_se_gap_vs_numbers_json": 0.0005,
+    "ame_max_abs_gap_vs_numbers_json": 0.0,
+    "ame_ci_max_abs_gap_vs_numbers_json": 0.0
+  },
+  "weighted_likelihood_verification": {
+    "reference": "statsmodels OrderedModel continued from the severity.py M1 optimum with BFGS gtol 1e-9",
+    "loglik_gap": 2.2737367544323206e-13,
+    "max_abs_beta_gap": 1.6277150496901704e-07,
+    "max_abs_cut_gap": 1.0046917831019186e-07,
+    "loglik_gap_vs_unpolished_m1": 1.0195844254212716e-05,
+    "max_abs_beta_gap_vs_unpolished_m1": 0.001036784094058385,
+    "max_abs_cut_gap_vs_unpolished_m1": 0.0006521266112931023,
+    "max_abs_model_se_gap": 2.2660347123504287e-05,
+    "passes": true
+  },
+  "M1": {
+    "coefficients_model_based": {
+      "speed_35to40": {
+        "coef": -0.133,
+        "se": 0.25,
+        "ci95": [
+          -0.622,
+          0.357
+        ],
+        "excludes_zero": false
+      },
+      "speed_ge45": {
+        "coef": -0.052,
+        "se": 0.365,
+        "ci95": [
+          -0.768,
+          0.664
+        ],
+        "excludes_zero": false
+      },
+      "speed_unknown": {
+        "coef": -0.515,
+        "se": 0.379,
+        "ci95": [
+          -1.258,
+          0.227
+        ],
+        "excludes_zero": false
+      },
+      "light_dark_or_unknown": {
+        "coef": 0.27,
+        "se": 0.278,
+        "ci95": [
+          -0.274,
+          0.815
+        ],
+        "excludes_zero": false
+      },
+      "eth_black": {
+        "coef": -0.33,
+        "se": 0.257,
+        "ci95": [
+          -0.833,
+          0.174
+        ],
+        "excludes_zero": false
+      },
+      "eth_hispanic": {
+        "coef": -0.376,
+        "se": 0.261,
+        "ci95": [
+          -0.887,
+          0.135
+        ],
+        "excludes_zero": false
+      },
+      "eth_other_or_unknown": {
+        "coef": -0.235,
+        "se": 0.372,
+        "ci95": [
+          -0.965,
+          0.494
+        ],
+        "excludes_zero": false
+      },
+      "gender_female": {
+        "coef": 0.321,
+        "se": 0.23,
+        "ci95": [
+          -0.131,
+          0.772
+        ],
+        "excludes_zero": false
+      },
+      "gender_unknown": {
+        "coef": -1.279,
+        "se": 0.79,
+        "ci95": [
+          -2.828,
+          0.27
+        ],
+        "excludes_zero": false
+      },
+      "age_45plus": {
+        "coef": 0.022,
+        "se": 0.335,
+        "ci95": [
+          -0.636,
+          0.679
+        ],
+        "excludes_zero": false
+      },
+      "age_under25": {
+        "coef": -0.265,
+        "se": 0.232,
+        "ci95": [
+          -0.721,
+          0.19
+        ],
+        "excludes_zero": false
+      },
+      "age_unknown": {
+        "coef": -1.603,
+        "se": 0.694,
+        "ci95": [
+          -2.962,
+          -0.243
+        ],
+        "excludes_zero": true
+      },
+      "veh_other_unknown": {
+        "coef": -0.564,
+        "se": 0.388,
+        "ci95": [
+          -1.324,
+          0.196
+        ],
+        "excludes_zero": false
+      },
+      "veh_pickup_truck_van": {
+        "coef": 0.145,
+        "se": 0.274,
+        "ci95": [
+          -0.392,
+          0.683
+        ],
+        "excludes_zero": false
+      },
+      "veh_suv": {
+        "coef": -0.029,
+        "se": 0.239,
+        "ci95": [
+          -0.497,
+          0.44
+        ],
+        "excludes_zero": false
+      },
+      "coll_other": {
+        "coef": 0.105,
+        "se": 0.311,
+        "ci95": [
+          -0.505,
+          0.714
+        ],
+        "excludes_zero": false
+      },
+      "coll_single_mv_straight": {
+        "coef": -0.155,
+        "se": 0.279,
+        "ci95": [
+          -0.702,
+          0.392
+        ],
+        "excludes_zero": false
+      },
+      "coll_turning": {
+        "coef": -0.135,
+        "se": 0.326,
+        "ci95": [
+          -0.774,
+          0.505
+        ],
+        "excludes_zero": false
+      },
+      "intx_intersection_or_driveway": {
+        "coef": -0.288,
+        "se": 0.284,
+        "ci95": [
+          -0.844,
+          0.269
+        ],
+        "excludes_zero": false
+      },
+      "ctrl_signal": {
+        "coef": 0.081,
+        "se": 0.293,
+        "ci95": [
+          -0.494,
+          0.655
+        ],
+        "excludes_zero": false
+      },
+      "ctrl_stop_sign": {
+        "coef": -0.141,
+        "se": 0.29,
+        "ci95": [
+          -0.708,
+          0.427
+        ],
+        "excludes_zero": false
+      },
+      "road_not_city_street": {
+        "coef": 0.193,
+        "se": 0.298,
+        "ci95": [
+          -0.391,
+          0.777
+        ],
+        "excludes_zero": false
+      },
+      "weekend": {
+        "coef": -0.324,
+        "se": 0.245,
+        "ci95": [
+          -0.804,
+          0.156
+        ],
+        "excludes_zero": false
+      },
+      "nighttime": {
+        "coef": 0.304,
+        "se": 0.368,
+        "ci95": [
+          -0.417,
+          1.024
+        ],
+        "excludes_zero": false
+      },
+      "coord_missing": {
+        "coef": -0.758,
+        "se": 0.423,
+        "ci95": [
+          -1.587,
+          0.071
+        ],
+        "excludes_zero": false
+      },
+      "road_density_km_100m": {
+        "coef": -0.066,
+        "se": 0.274,
+        "ci95": [
+          -0.603,
+          0.472
+        ],
+        "excludes_zero": false
+      },
+      "poverty_share": {
+        "coef": -1.692,
+        "se": 0.511,
+        "ci95": [
+          -2.693,
+          -0.691
+        ],
+        "excludes_zero": true
+      },
+      "urban_area_200k": {
+        "coef": -0.325,
+        "se": 0.256,
+        "ci95": [
+          -0.827,
+          0.176
+        ],
+        "excludes_zero": false
+      },
+      "cf_rider_failed_to_yield": {
+        "coef": 0.128,
+        "se": 0.306,
+        "ci95": [
+          -0.472,
+          0.728
+        ],
+        "excludes_zero": false
+      },
+      "cf_driver_inattention": {
+        "coef": 0.146,
+        "se": 0.263,
+        "ci95": [
+          -0.371,
+          0.662
+        ],
+        "excludes_zero": false
+      },
+      "sidewalk_transition": {
+        "coef": 0.101,
+        "se": 0.251,
+        "ci95": [
+          -0.391,
+          0.593
+        ],
+        "excludes_zero": false
+      },
+      "failure_to_yield": {
+        "coef": -0.006,
+        "se": 0.225,
+        "ci95": [
+          -0.446,
+          0.434
+        ],
+        "excludes_zero": false
+      },
+      "signal_violation": {
+        "coef": 0.012,
+        "se": 0.301,
+        "ci95": [
+          -0.578,
+          0.601
+        ],
+        "excludes_zero": false
+      },
+      "vehicle_turning_across": {
+        "coef": -0.055,
+        "se": 0.278,
+        "ci95": [
+          -0.6,
+          0.49
+        ],
+        "excludes_zero": false
+      },
+      "lane_positioning": {
+        "coef": 0.225,
+        "se": 0.267,
+        "ci95": [
+          -0.298,
+          0.748
+        ],
+        "excludes_zero": false
+      }
+    },
+    "coefficients_sandwich": {
+      "speed_35to40": {
+        "coef": -0.133,
+        "se": 0.25,
+        "ci95": [
+          -0.624,
+          0.358
+        ],
+        "excludes_zero": false
+      },
+      "speed_ge45": {
+        "coef": -0.053,
+        "se": 0.431,
+        "ci95": [
+          -0.898,
+          0.792
+        ],
+        "excludes_zero": false
+      },
+      "speed_unknown": {
+        "coef": -0.515,
+        "se": 0.297,
+        "ci95": [
+          -1.097,
+          0.067
+        ],
+        "excludes_zero": false
+      },
+      "light_dark_or_unknown": {
+        "coef": 0.271,
+        "se": 0.284,
+        "ci95": [
+          -0.285,
+          0.826
+        ],
+        "excludes_zero": false
+      },
+      "eth_black": {
+        "coef": -0.329,
+        "se": 0.243,
+        "ci95": [
+          -0.805,
+          0.146
+        ],
+        "excludes_zero": false
+      },
+      "eth_hispanic": {
+        "coef": -0.376,
+        "se": 0.266,
+        "ci95": [
+          -0.898,
+          0.146
+        ],
+        "excludes_zero": false
+      },
+      "eth_other_or_unknown": {
+        "coef": -0.235,
+        "se": 0.396,
+        "ci95": [
+          -1.011,
+          0.541
+        ],
+        "excludes_zero": false
+      },
+      "gender_female": {
+        "coef": 0.321,
+        "se": 0.226,
+        "ci95": [
+          -0.122,
+          0.764
+        ],
+        "excludes_zero": false
+      },
+      "gender_unknown": {
+        "coef": -1.278,
+        "se": 1.131,
+        "ci95": [
+          -3.494,
+          0.937
+        ],
+        "excludes_zero": false
+      },
+      "age_45plus": {
+        "coef": 0.022,
+        "se": 0.374,
+        "ci95": [
+          -0.711,
+          0.754
+        ],
+        "excludes_zero": false
+      },
+      "age_under25": {
+        "coef": -0.265,
+        "se": 0.225,
+        "ci95": [
+          -0.707,
+          0.176
+        ],
+        "excludes_zero": false
+      },
+      "age_unknown": {
+        "coef": -1.604,
+        "se": 0.989,
+        "ci95": [
+          -3.542,
+          0.335
+        ],
+        "excludes_zero": false
+      },
+      "veh_other_unknown": {
+        "coef": -0.564,
+        "se": 0.438,
+        "ci95": [
+          -1.423,
+          0.295
+        ],
+        "excludes_zero": false
+      },
+      "veh_pickup_truck_van": {
+        "coef": 0.145,
+        "se": 0.293,
+        "ci95": [
+          -0.429,
+          0.72
+        ],
+        "excludes_zero": false
+      },
+      "veh_suv": {
+        "coef": -0.029,
+        "se": 0.237,
+        "ci95": [
+          -0.493,
+          0.436
+        ],
+        "excludes_zero": false
+      },
+      "coll_other": {
+        "coef": 0.105,
+        "se": 0.295,
+        "ci95": [
+          -0.475,
+          0.684
+        ],
+        "excludes_zero": false
+      },
+      "coll_single_mv_straight": {
+        "coef": -0.155,
+        "se": 0.275,
+        "ci95": [
+          -0.695,
+          0.385
+        ],
+        "excludes_zero": false
+      },
+      "coll_turning": {
+        "coef": -0.135,
+        "se": 0.341,
+        "ci95": [
+          -0.802,
+          0.533
+        ],
+        "excludes_zero": false
+      },
+      "intx_intersection_or_driveway": {
+        "coef": -0.288,
+        "se": 0.293,
+        "ci95": [
+          -0.861,
+          0.286
+        ],
+        "excludes_zero": false
+      },
+      "ctrl_signal": {
+        "coef": 0.081,
+        "se": 0.34,
+        "ci95": [
+          -0.585,
+          0.746
+        ],
+        "excludes_zero": false
+      },
+      "ctrl_stop_sign": {
+        "coef": -0.14,
+        "se": 0.303,
+        "ci95": [
+          -0.734,
+          0.453
+        ],
+        "excludes_zero": false
+      },
+      "road_not_city_street": {
+        "coef": 0.193,
+        "se": 0.347,
+        "ci95": [
+          -0.487,
+          0.874
+        ],
+        "excludes_zero": false
+      },
+      "weekend": {
+        "coef": -0.324,
+        "se": 0.266,
+        "ci95": [
+          -0.844,
+          0.197
+        ],
+        "excludes_zero": false
+      },
+      "nighttime": {
+        "coef": 0.303,
+        "se": 0.408,
+        "ci95": [
+          -0.496,
+          1.102
+        ],
+        "excludes_zero": false
+      },
+      "coord_missing": {
+        "coef": -0.758,
+        "se": 0.42,
+        "ci95": [
+          -1.582,
+          0.065
+        ],
+        "excludes_zero": false
+      },
+      "road_density_km_100m": {
+        "coef": -0.065,
+        "se": 0.281,
+        "ci95": [
+          -0.616,
+          0.485
+        ],
+        "excludes_zero": false
+      },
+      "poverty_share": {
+        "coef": -1.692,
+        "se": 0.495,
+        "ci95": [
+          -2.662,
+          -0.722
+        ],
+        "excludes_zero": true
+      },
+      "urban_area_200k": {
+        "coef": -0.325,
+        "se": 0.25,
+        "ci95": [
+          -0.816,
+          0.165
+        ],
+        "excludes_zero": false
+      },
+      "cf_rider_failed_to_yield": {
+        "coef": 0.128,
+        "se": 0.354,
+        "ci95": [
+          -0.565,
+          0.822
+        ],
+        "excludes_zero": false
+      },
+      "cf_driver_inattention": {
+        "coef": 0.146,
+        "se": 0.255,
+        "ci95": [
+          -0.353,
+          0.646
+        ],
+        "excludes_zero": false
+      },
+      "sidewalk_transition": {
+        "coef": 0.101,
+        "se": 0.226,
+        "ci95": [
+          -0.342,
+          0.544
+        ],
+        "excludes_zero": false
+      },
+      "failure_to_yield": {
+        "coef": -0.006,
+        "se": 0.233,
+        "ci95": [
+          -0.463,
+          0.451
+        ],
+        "excludes_zero": false
+      },
+      "signal_violation": {
+        "coef": 0.012,
+        "se": 0.307,
+        "ci95": [
+          -0.59,
+          0.614
+        ],
+        "excludes_zero": false
+      },
+      "vehicle_turning_across": {
+        "coef": -0.055,
+        "se": 0.289,
+        "ci95": [
+          -0.621,
+          0.511
+        ],
+        "excludes_zero": false
+      },
+      "lane_positioning": {
+        "coef": 0.225,
+        "se": 0.289,
+        "ci95": [
+          -0.341,
+          0.792
+        ],
+        "excludes_zero": false
+      }
+    },
+    "ames_model_based": {
+      "speed_35to40": {
+        "O": {
+          "ame": 0.00832,
+          "ci95": [
+            -0.03908,
+            0.06
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00294,
+          "ci95": [
+            -0.00952,
+            0.01435
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.01125,
+          "ci95": [
+            -0.06714,
+            0.04285
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "speed_ge45": {
+        "O": {
+          "ame": -0.00354,
+          "ci95": [
+            -0.06962,
+            0.08226
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00112,
+          "ci95": [
+            -0.033,
+            0.01063
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00242,
+          "ci95": [
+            -0.07548,
+            0.10257
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "speed_unknown": {
+        "O": {
+          "ame": 0.05759,
+          "ci95": [
+            -0.02228,
+            0.17574
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00568,
+          "ci95": [
+            -0.06628,
+            0.00725
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.05191,
+          "ci95": [
+            -0.11542,
+            0.0297
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "light_dark_or_unknown": {
+        "O": {
+          "ame": -0.02846,
+          "ci95": [
+            -0.0832,
+            0.03195
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00648,
+          "ci95": [
+            -0.03301,
+            0.00361
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.03495,
+          "ci95": [
+            -0.03401,
+            0.11269
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "eth_black": {
+        "O": {
+          "ame": 0.0203,
+          "ci95": [
+            -0.03017,
+            0.07345
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00742,
+          "ci95": [
+            -0.00834,
+            0.02253
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.02772,
+          "ci95": [
+            -0.07561,
+            0.02947
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "eth_hispanic": {
+        "O": {
+          "ame": 0.02774,
+          "ci95": [
+            -0.02332,
+            0.08513
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.0061,
+          "ci95": [
+            -0.01011,
+            0.0206
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.03384,
+          "ci95": [
+            -0.08822,
+            0.02673
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "eth_other_or_unknown": {
+        "O": {
+          "ame": 0.0069,
+          "ci95": [
+            -0.06031,
+            0.09107
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00168,
+          "ci95": [
+            -0.03581,
+            0.00909
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00858,
+          "ci95": [
+            -0.07888,
+            0.09329
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "gender_female": {
+        "O": {
+          "ame": -0.04667,
+          "ci95": [
+            -0.09349,
+            0.00468
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00192,
+          "ci95": [
+            -0.03123,
+            0.01757
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.04475,
+          "ci95": [
+            -0.01546,
+            0.11671
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "gender_unknown": {
+        "O": {
+          "ame": 0.21388,
+          "ci95": [
+            -0.02123,
+            0.51465
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.1023,
+          "ci95": [
+            -0.3528,
+            0.00459
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.11158,
+          "ci95": [
+            -0.17286,
+            0.02582
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "age_45plus": {
+        "O": {
+          "ame": -0.03615,
+          "ci95": [
+            -0.09235,
+            0.0352
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.01111,
+          "ci95": [
+            -0.04113,
+            0.03001
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.02504,
+          "ci95": [
+            -0.05369,
+            0.13046
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "age_under25": {
+        "O": {
+          "ame": 0.00768,
+          "ci95": [
+            -0.03731,
+            0.05139
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.02164,
+          "ci95": [
+            0.00408,
+            0.04158
+          ],
+          "excludes_zero": true
+        },
+        "KA": {
+          "ame": -0.02933,
+          "ci95": [
+            -0.07981,
+            0.02593
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "age_unknown": {
+        "O": {
+          "ame": 0.23616,
+          "ci95": [
+            0.01846,
+            0.50831
+          ],
+          "excludes_zero": true
+        },
+        "BC": {
+          "ame": -0.11714,
+          "ci95": [
+            -0.35114,
+            0.00281
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.11902,
+          "ci95": [
+            -0.17817,
+            -0.02425
+          ],
+          "excludes_zero": true
+        },
+        "type": "discrete change"
+      },
+      "veh_other_unknown": {
+        "O": {
+          "ame": 0.07311,
+          "ci95": [
+            -0.02093,
+            0.18868
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.01043,
+          "ci95": [
+            -0.07434,
+            0.00676
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.06268,
+          "ci95": [
+            -0.12186,
+            0.02358
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "veh_pickup_truck_van": {
+        "O": {
+          "ame": -0.02092,
+          "ci95": [
+            -0.0702,
+            0.03572
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00485,
+          "ci95": [
+            -0.03429,
+            0.00661
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.02577,
+          "ci95": [
+            -0.03803,
+            0.10195
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "veh_suv": {
+        "O": {
+          "ame": 0.00073,
+          "ci95": [
+            -0.04348,
+            0.0533
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00098,
+          "ci95": [
+            -0.01115,
+            0.00911
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00171,
+          "ci95": [
+            -0.05521,
+            0.05247
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "coll_other": {
+        "O": {
+          "ame": -0.01878,
+          "ci95": [
+            -0.06935,
+            0.04069
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00454,
+          "ci95": [
+            -0.03072,
+            0.00791
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.02332,
+          "ci95": [
+            -0.04207,
+            0.09666
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "coll_single_mv_straight": {
+        "O": {
+          "ame": 0.01518,
+          "ci95": [
+            -0.03623,
+            0.07389
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00211,
+          "ci95": [
+            -0.01203,
+            0.01152
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.0173,
+          "ci95": [
+            -0.07369,
+            0.04185
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "coll_turning": {
+        "O": {
+          "ame": 0.01299,
+          "ci95": [
+            -0.04982,
+            0.08205
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.0018,
+          "ci95": [
+            -0.01578,
+            0.01356
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.0148,
+          "ci95": [
+            -0.08144,
+            0.05909
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "intx_intersection_or_driveway": {
+        "O": {
+          "ame": 0.0301,
+          "ci95": [
+            -0.03019,
+            0.08686
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00754,
+          "ci95": [
+            -0.00318,
+            0.03896
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.03764,
+          "ci95": [
+            -0.11721,
+            0.03337
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "ctrl_signal": {
+        "O": {
+          "ame": -0.01194,
+          "ci95": [
+            -0.06235,
+            0.05309
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00219,
+          "ci95": [
+            -0.02706,
+            0.00681
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.01413,
+          "ci95": [
+            -0.05495,
+            0.08482
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "ctrl_stop_sign": {
+        "O": {
+          "ame": 0.01758,
+          "ci95": [
+            -0.03998,
+            0.09133
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00159,
+          "ci95": [
+            -0.01529,
+            0.00884
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.01917,
+          "ci95": [
+            -0.08395,
+            0.05136
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "road_not_city_street": {
+        "O": {
+          "ame": -0.02069,
+          "ci95": [
+            -0.08146,
+            0.04882
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00391,
+          "ci95": [
+            -0.02588,
+            0.00661
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.0246,
+          "ci95": [
+            -0.04981,
+            0.10269
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "weekend": {
+        "O": {
+          "ame": 0.03715,
+          "ci95": [
+            -0.0152,
+            0.10377
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00139,
+          "ci95": [
+            -0.0154,
+            0.00947
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.03854,
+          "ci95": [
+            -0.09303,
+            0.01734
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "nighttime": {
+        "O": {
+          "ame": -0.03092,
+          "ci95": [
+            -0.09484,
+            0.04829
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00961,
+          "ci95": [
+            -0.06733,
+            0.0028
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.04054,
+          "ci95": [
+            -0.04665,
+            0.15672
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "coord_missing": {
+        "O": {
+          "ame": 0.09593,
+          "ci95": [
+            -0.0109,
+            0.23245
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.01558,
+          "ci95": [
+            -0.09228,
+            0.00622
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.08035,
+          "ci95": [
+            -0.14749,
+            0.01352
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "road_density_km_100m": {
+        "O": {
+          "ame": 0.00716,
+          "ci95": [
+            -0.05673,
+            0.06832
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00107,
+          "ci95": [
+            -0.00963,
+            0.0129
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00823,
+          "ci95": [
+            -0.07661,
+            0.06419
+          ],
+          "excludes_zero": false
+        },
+        "type": "derivative"
+      },
+      "poverty_share": {
+        "O": {
+          "ame": 0.18432,
+          "ci95": [
+            0.08176,
+            0.29938
+          ],
+          "excludes_zero": true
+        },
+        "BC": {
+          "ame": 0.02763,
+          "ci95": [
+            -0.01883,
+            0.08231
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.21195,
+          "ci95": [
+            -0.34473,
+            -0.09128
+          ],
+          "excludes_zero": true
+        },
+        "type": "derivative"
+      },
+      "urban_area_200k": {
+        "O": {
+          "ame": 0.03362,
+          "ci95": [
+            -0.01782,
+            0.08244
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00936,
+          "ci95": [
+            -0.002,
+            0.03756
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.04297,
+          "ci95": [
+            -0.11678,
+            0.01889
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "cf_rider_failed_to_yield": {
+        "O": {
+          "ame": -0.01357,
+          "ci95": [
+            -0.07188,
+            0.06256
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00292,
+          "ci95": [
+            -0.0386,
+            0.0046
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.01648,
+          "ci95": [
+            -0.05862,
+            0.10651
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "cf_driver_inattention": {
+        "O": {
+          "ame": -0.01543,
+          "ci95": [
+            -0.06537,
+            0.0406
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00337,
+          "ci95": [
+            -0.02904,
+            0.00334
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.0188,
+          "ci95": [
+            -0.04071,
+            0.09041
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "sidewalk_transition": {
+        "O": {
+          "ame": -0.01082,
+          "ci95": [
+            -0.06223,
+            0.04797
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00205,
+          "ci95": [
+            -0.02373,
+            0.00521
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.01287,
+          "ci95": [
+            -0.04706,
+            0.08385
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "failure_to_yield": {
+        "O": {
+          "ame": 0.00064,
+          "ci95": [
+            -0.04466,
+            0.05378
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.0001,
+          "ci95": [
+            -0.01288,
+            0.00777
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00074,
+          "ci95": [
+            -0.05551,
+            0.05515
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "signal_violation": {
+        "O": {
+          "ame": -0.00127,
+          "ci95": [
+            -0.06249,
+            0.0702
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.0002,
+          "ci95": [
+            -0.02807,
+            0.00538
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00147,
+          "ci95": [
+            -0.06227,
+            0.08882
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "vehicle_turning_across": {
+        "O": {
+          "ame": 0.00601,
+          "ci95": [
+            -0.05194,
+            0.06971
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00082,
+          "ci95": [
+            -0.01592,
+            0.0082
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00683,
+          "ci95": [
+            -0.06905,
+            0.06582
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "lane_positioning": {
+        "O": {
+          "ame": -0.02354,
+          "ci95": [
+            -0.0765,
+            0.03521
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00579,
+          "ci95": [
+            -0.03269,
+            0.00342
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.02933,
+          "ci95": [
+            -0.03812,
+            0.10537
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      }
+    },
+    "ames_sandwich": {
+      "speed_35to40": {
+        "O": {
+          "ame": 0.00833,
+          "ci95": [
+            -0.03902,
+            0.05759
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00293,
+          "ci95": [
+            -0.00903,
+            0.01256
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.01126,
+          "ci95": [
+            -0.0653,
+            0.046
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "speed_ge45": {
+        "O": {
+          "ame": -0.00349,
+          "ci95": [
+            -0.07783,
+            0.10285
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00113,
+          "ci95": [
+            -0.0532,
+            0.00903
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00236,
+          "ci95": [
+            -0.08508,
+            0.12858
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "speed_unknown": {
+        "O": {
+          "ame": 0.05751,
+          "ci95": [
+            -0.00684,
+            0.13581
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00566,
+          "ci95": [
+            -0.03665,
+            0.00784
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.05185,
+          "ci95": [
+            -0.10178,
+            0.00654
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "light_dark_or_unknown": {
+        "O": {
+          "ame": -0.02848,
+          "ci95": [
+            -0.08453,
+            0.03032
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00649,
+          "ci95": [
+            -0.03462,
+            0.00289
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.03497,
+          "ci95": [
+            -0.03174,
+            0.1136
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "eth_black": {
+        "O": {
+          "ame": 0.0203,
+          "ci95": [
+            -0.03029,
+            0.06975
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00741,
+          "ci95": [
+            -0.00597,
+            0.02291
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.02771,
+          "ci95": [
+            -0.0769,
+            0.02761
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "eth_hispanic": {
+        "O": {
+          "ame": 0.02772,
+          "ci95": [
+            -0.02308,
+            0.08896
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00609,
+          "ci95": [
+            -0.00974,
+            0.02172
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.03381,
+          "ci95": [
+            -0.09141,
+            0.02757
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "eth_other_or_unknown": {
+        "O": {
+          "ame": 0.00688,
+          "ci95": [
+            -0.06419,
+            0.10352
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00167,
+          "ci95": [
+            -0.03572,
+            0.00959
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00856,
+          "ci95": [
+            -0.08685,
+            0.09457
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "gender_female": {
+        "O": {
+          "ame": -0.04668,
+          "ci95": [
+            -0.09581,
+            0.00887
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00192,
+          "ci95": [
+            -0.02936,
+            0.01893
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.04476,
+          "ci95": [
+            -0.01508,
+            0.11548
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "gender_unknown": {
+        "O": {
+          "ame": 0.21377,
+          "ci95": [
+            -0.07509,
+            0.63003
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.10221,
+          "ci95": [
+            -0.46623,
+            0.00423
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.11155,
+          "ci95": [
+            -0.18141,
+            0.12857
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "age_45plus": {
+        "O": {
+          "ame": -0.03615,
+          "ci95": [
+            -0.08952,
+            0.04955
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.01112,
+          "ci95": [
+            -0.03896,
+            0.02935
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.02502,
+          "ci95": [
+            -0.05751,
+            0.12444
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "age_under25": {
+        "O": {
+          "ame": 0.00768,
+          "ci95": [
+            -0.04131,
+            0.0588
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.02166,
+          "ci95": [
+            -0.0,
+            0.04213
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.02934,
+          "ci95": [
+            -0.08924,
+            0.02837
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "age_unknown": {
+        "O": {
+          "ame": 0.23636,
+          "ci95": [
+            -0.04116,
+            0.60124
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.1173,
+          "ci95": [
+            -0.43135,
+            0.00425
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.11906,
+          "ci95": [
+            -0.18705,
+            0.05802
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "veh_other_unknown": {
+        "O": {
+          "ame": 0.07314,
+          "ci95": [
+            -0.02241,
+            0.21109
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.01044,
+          "ci95": [
+            -0.09662,
+            0.00622
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.0627,
+          "ci95": [
+            -0.13062,
+            0.02613
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "veh_pickup_truck_van": {
+        "O": {
+          "ame": -0.02093,
+          "ci95": [
+            -0.07338,
+            0.03661
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00486,
+          "ci95": [
+            -0.03534,
+            0.00699
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.02579,
+          "ci95": [
+            -0.03924,
+            0.10979
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "veh_suv": {
+        "O": {
+          "ame": 0.00073,
+          "ci95": [
+            -0.04939,
+            0.049
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00098,
+          "ci95": [
+            -0.0113,
+            0.01138
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00171,
+          "ci95": [
+            -0.05484,
+            0.05883
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "coll_other": {
+        "O": {
+          "ame": -0.01879,
+          "ci95": [
+            -0.06526,
+            0.0361
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00455,
+          "ci95": [
+            -0.02854,
+            0.00857
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.02333,
+          "ci95": [
+            -0.03938,
+            0.08988
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "coll_single_mv_straight": {
+        "O": {
+          "ame": 0.01519,
+          "ci95": [
+            -0.03873,
+            0.07676
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00212,
+          "ci95": [
+            -0.01166,
+            0.01165
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.01731,
+          "ci95": [
+            -0.0769,
+            0.04784
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "coll_turning": {
+        "O": {
+          "ame": 0.013,
+          "ci95": [
+            -0.05415,
+            0.08685
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.0018,
+          "ci95": [
+            -0.01579,
+            0.01237
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.01481,
+          "ci95": [
+            -0.08524,
+            0.06359
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "intx_intersection_or_driveway": {
+        "O": {
+          "ame": 0.03011,
+          "ci95": [
+            -0.03185,
+            0.08736
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00755,
+          "ci95": [
+            -0.00358,
+            0.04108
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.03765,
+          "ci95": [
+            -0.12429,
+            0.03425
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "ctrl_signal": {
+        "O": {
+          "ame": -0.01194,
+          "ci95": [
+            -0.07065,
+            0.06914
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00219,
+          "ci95": [
+            -0.03506,
+            0.00597
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.01412,
+          "ci95": [
+            -0.06145,
+            0.10091
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "ctrl_stop_sign": {
+        "O": {
+          "ame": 0.01757,
+          "ci95": [
+            -0.04108,
+            0.08841
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00159,
+          "ci95": [
+            -0.01639,
+            0.00856
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.01916,
+          "ci95": [
+            -0.08184,
+            0.05285
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "road_not_city_street": {
+        "O": {
+          "ame": -0.02074,
+          "ci95": [
+            -0.09195,
+            0.05468
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00392,
+          "ci95": [
+            -0.0295,
+            0.00653
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.02466,
+          "ci95": [
+            -0.05887,
+            0.1181
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "weekend": {
+        "O": {
+          "ame": 0.03711,
+          "ci95": [
+            -0.02115,
+            0.11042
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00139,
+          "ci95": [
+            -0.01744,
+            0.00883
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.0385,
+          "ci95": [
+            -0.09801,
+            0.02506
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "nighttime": {
+        "O": {
+          "ame": -0.03087,
+          "ci95": [
+            -0.09261,
+            0.06592
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00959,
+          "ci95": [
+            -0.07117,
+            0.00346
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.04046,
+          "ci95": [
+            -0.05792,
+            0.16243
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "coord_missing": {
+        "O": {
+          "ame": 0.09598,
+          "ci95": [
+            -0.00559,
+            0.22398
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.0156,
+          "ci95": [
+            -0.08226,
+            0.00575
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.08038,
+          "ci95": [
+            -0.15177,
+            0.00618
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "road_density_km_100m": {
+        "O": {
+          "ame": 0.00714,
+          "ci95": [
+            -0.05364,
+            0.06676
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00107,
+          "ci95": [
+            -0.00855,
+            0.01367
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.0082,
+          "ci95": [
+            -0.07625,
+            0.06171
+          ],
+          "excludes_zero": false
+        },
+        "type": "derivative"
+      },
+      "poverty_share": {
+        "O": {
+          "ame": 0.18432,
+          "ci95": [
+            0.08462,
+            0.28848
+          ],
+          "excludes_zero": true
+        },
+        "BC": {
+          "ame": 0.02762,
+          "ci95": [
+            -0.01388,
+            0.07697
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.21195,
+          "ci95": [
+            -0.33333,
+            -0.09255
+          ],
+          "excludes_zero": true
+        },
+        "type": "derivative"
+      },
+      "urban_area_200k": {
+        "O": {
+          "ame": 0.0336,
+          "ci95": [
+            -0.02409,
+            0.08005
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00935,
+          "ci95": [
+            -0.00249,
+            0.03883
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.04294,
+          "ci95": [
+            -0.11222,
+            0.02386
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "cf_rider_failed_to_yield": {
+        "O": {
+          "ame": -0.0136,
+          "ci95": [
+            -0.07133,
+            0.07879
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00292,
+          "ci95": [
+            -0.04344,
+            0.00399
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.01652,
+          "ci95": [
+            -0.06874,
+            0.11313
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "cf_driver_inattention": {
+        "O": {
+          "ame": -0.01546,
+          "ci95": [
+            -0.06847,
+            0.03934
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00338,
+          "ci95": [
+            -0.0304,
+            0.0041
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.01884,
+          "ci95": [
+            -0.03946,
+            0.09288
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "sidewalk_transition": {
+        "O": {
+          "ame": -0.01081,
+          "ci95": [
+            -0.05802,
+            0.0414
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00205,
+          "ci95": [
+            -0.0196,
+            0.00483
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.01286,
+          "ci95": [
+            -0.04497,
+            0.07409
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "failure_to_yield": {
+        "O": {
+          "ame": 0.00065,
+          "ci95": [
+            -0.04392,
+            0.05085
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.0001,
+          "ci95": [
+            -0.01266,
+            0.0067
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00075,
+          "ci95": [
+            -0.05556,
+            0.05683
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "signal_violation": {
+        "O": {
+          "ame": -0.00131,
+          "ci95": [
+            -0.06511,
+            0.06309
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.0002,
+          "ci95": [
+            -0.02686,
+            0.00505
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00151,
+          "ci95": [
+            -0.06007,
+            0.08866
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "vehicle_turning_across": {
+        "O": {
+          "ame": 0.00601,
+          "ci95": [
+            -0.05066,
+            0.07612
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00082,
+          "ci95": [
+            -0.01366,
+            0.00921
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00683,
+          "ci95": [
+            -0.07262,
+            0.05967
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "lane_positioning": {
+        "O": {
+          "ame": -0.02355,
+          "ci95": [
+            -0.07647,
+            0.04159
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.0058,
+          "ci95": [
+            -0.03466,
+            0.00301
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.02935,
+          "ci95": [
+            -0.0423,
+            0.10575
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      }
+    },
+    "excluding_zero_model_based": {
+      "coefficients": [
+        "age_unknown",
+        "poverty_share"
+      ],
+      "ame": {
+        "O": [
+          "age_unknown",
+          "poverty_share"
+        ],
+        "BC": [
+          "age_under25"
+        ],
+        "KA": [
+          "age_unknown",
+          "poverty_share"
+        ]
+      }
+    },
+    "excluding_zero_sandwich": {
+      "coefficients": [
+        "poverty_share"
+      ],
+      "ame": {
+        "O": [
+          "poverty_share"
+        ],
+        "BC": [],
+        "KA": [
+          "poverty_share"
+        ]
+      }
+    },
+    "loglik": -393.927
+  },
+  "M2_expected_likelihood": {
+    "n_draws": 100,
+    "all_converged": true,
+    "n_converged": 100,
+    "max_abs_gradient_worst_draw": 5.450796843914363e-06,
+    "expected_loglik_mean_over_draws": -348.834,
+    "fit_seconds": 3.1,
+    "coefficients": {
+      "speed_35to40": {
+        "coef": -0.233,
+        "se": 0.206,
+        "ci95": [
+          -0.639,
+          0.172
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.043,
+        "between_draw_share_of_variance": 0.039,
+        "se_within_only": 0.202
+      },
+      "speed_ge45": {
+        "coef": -0.042,
+        "se": 0.327,
+        "ci95": [
+          -0.685,
+          0.602
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.126,
+        "between_draw_share_of_variance": 0.122,
+        "se_within_only": 0.307
+      },
+      "speed_unknown": {
+        "coef": -0.209,
+        "se": 0.245,
+        "ci95": [
+          -0.69,
+          0.272
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.084,
+        "between_draw_share_of_variance": 0.08,
+        "se_within_only": 0.235
+      },
+      "light_dark_or_unknown": {
+        "coef": -0.034,
+        "se": 0.218,
+        "ci95": [
+          -0.463,
+          0.394
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.033,
+        "between_draw_share_of_variance": 0.029,
+        "se_within_only": 0.215
+      },
+      "eth_black": {
+        "coef": -0.141,
+        "se": 0.188,
+        "ci95": [
+          -0.512,
+          0.229
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.046,
+        "between_draw_share_of_variance": 0.042,
+        "se_within_only": 0.184
+      },
+      "eth_hispanic": {
+        "coef": -0.144,
+        "se": 0.209,
+        "ci95": [
+          -0.555,
+          0.267
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.07,
+        "between_draw_share_of_variance": 0.066,
+        "se_within_only": 0.202
+      },
+      "eth_other_or_unknown": {
+        "coef": 0.098,
+        "se": 0.335,
+        "ci95": [
+          -0.561,
+          0.757
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.091,
+        "between_draw_share_of_variance": 0.087,
+        "se_within_only": 0.32
+      },
+      "gender_female": {
+        "coef": 0.224,
+        "se": 0.193,
+        "ci95": [
+          -0.156,
+          0.603
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.035,
+        "between_draw_share_of_variance": 0.031,
+        "se_within_only": 0.19
+      },
+      "gender_unknown": {
+        "coef": -0.085,
+        "se": 0.875,
+        "ci95": [
+          -1.805,
+          1.635
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.04,
+        "between_draw_share_of_variance": 0.036,
+        "se_within_only": 0.859
+      },
+      "age_45plus": {
+        "coef": -0.059,
+        "se": 0.281,
+        "ci95": [
+          -0.612,
+          0.493
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.051,
+        "between_draw_share_of_variance": 0.047,
+        "se_within_only": 0.275
+      },
+      "age_under25": {
+        "coef": -0.031,
+        "se": 0.19,
+        "ci95": [
+          -0.405,
+          0.343
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.088,
+        "between_draw_share_of_variance": 0.084,
+        "se_within_only": 0.182
+      },
+      "age_unknown": {
+        "coef": -0.592,
+        "se": 0.775,
+        "ci95": [
+          -2.115,
+          0.93
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.078,
+        "between_draw_share_of_variance": 0.073,
+        "se_within_only": 0.746
+      },
+      "veh_other_unknown": {
+        "coef": 0.026,
+        "se": 0.351,
+        "ci95": [
+          -0.663,
+          0.715
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.071,
+        "between_draw_share_of_variance": 0.067,
+        "se_within_only": 0.339
+      },
+      "veh_pickup_truck_van": {
+        "coef": 0.33,
+        "se": 0.254,
+        "ci95": [
+          -0.169,
+          0.829
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.093,
+        "between_draw_share_of_variance": 0.089,
+        "se_within_only": 0.242
+      },
+      "veh_suv": {
+        "coef": 0.198,
+        "se": 0.192,
+        "ci95": [
+          -0.18,
+          0.575
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.065,
+        "between_draw_share_of_variance": 0.061,
+        "se_within_only": 0.186
+      },
+      "coll_other": {
+        "coef": 0.032,
+        "se": 0.227,
+        "ci95": [
+          -0.413,
+          0.477
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.039,
+        "between_draw_share_of_variance": 0.035,
+        "se_within_only": 0.223
+      },
+      "coll_single_mv_straight": {
+        "coef": -0.058,
+        "se": 0.202,
+        "ci95": [
+          -0.455,
+          0.339
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.102,
+        "between_draw_share_of_variance": 0.097,
+        "se_within_only": 0.192
+      },
+      "coll_turning": {
+        "coef": -0.005,
+        "se": 0.248,
+        "ci95": [
+          -0.492,
+          0.483
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.042,
+        "between_draw_share_of_variance": 0.038,
+        "se_within_only": 0.243
+      },
+      "intx_intersection_or_driveway": {
+        "coef": -0.385,
+        "se": 0.252,
+        "ci95": [
+          -0.881,
+          0.112
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.076,
+        "between_draw_share_of_variance": 0.072,
+        "se_within_only": 0.243
+      },
+      "ctrl_signal": {
+        "coef": 0.248,
+        "se": 0.298,
+        "ci95": [
+          -0.337,
+          0.833
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.101,
+        "between_draw_share_of_variance": 0.097,
+        "se_within_only": 0.283
+      },
+      "ctrl_stop_sign": {
+        "coef": -0.032,
+        "se": 0.224,
+        "ci95": [
+          -0.472,
+          0.408
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.038,
+        "between_draw_share_of_variance": 0.034,
+        "se_within_only": 0.22
+      },
+      "road_not_city_street": {
+        "coef": 0.292,
+        "se": 0.256,
+        "ci95": [
+          -0.212,
+          0.795
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.095,
+        "between_draw_share_of_variance": 0.091,
+        "se_within_only": 0.244
+      },
+      "weekend": {
+        "coef": 0.132,
+        "se": 0.203,
+        "ci95": [
+          -0.266,
+          0.531
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.045,
+        "between_draw_share_of_variance": 0.041,
+        "se_within_only": 0.199
+      },
+      "nighttime": {
+        "coef": 0.481,
+        "se": 0.357,
+        "ci95": [
+          -0.221,
+          1.184
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.099,
+        "between_draw_share_of_variance": 0.094,
+        "se_within_only": 0.34
+      },
+      "coord_missing": {
+        "coef": -0.721,
+        "se": 0.35,
+        "ci95": [
+          -1.41,
+          -0.032
+        ],
+        "excludes_zero": true,
+        "fraction_missing_information": 0.152,
+        "between_draw_share_of_variance": 0.147,
+        "se_within_only": 0.323
+      },
+      "road_density_km_100m": {
+        "coef": -0.096,
+        "se": 0.215,
+        "ci95": [
+          -0.519,
+          0.328
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.087,
+        "between_draw_share_of_variance": 0.083,
+        "se_within_only": 0.206
+      },
+      "poverty_share": {
+        "coef": -0.784,
+        "se": 0.383,
+        "ci95": [
+          -1.537,
+          -0.031
+        ],
+        "excludes_zero": true,
+        "fraction_missing_information": 0.097,
+        "between_draw_share_of_variance": 0.093,
+        "se_within_only": 0.365
+      },
+      "urban_area_200k": {
+        "coef": -0.355,
+        "se": 0.165,
+        "ci95": [
+          -0.679,
+          -0.031
+        ],
+        "excludes_zero": true,
+        "fraction_missing_information": 0.069,
+        "between_draw_share_of_variance": 0.065,
+        "se_within_only": 0.16
+      },
+      "cf_rider_failed_to_yield": {
+        "coef": -0.166,
+        "se": 0.253,
+        "ci95": [
+          -0.663,
+          0.33
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.076,
+        "between_draw_share_of_variance": 0.072,
+        "se_within_only": 0.243
+      },
+      "cf_driver_inattention": {
+        "coef": -0.102,
+        "se": 0.21,
+        "ci95": [
+          -0.515,
+          0.312
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.062,
+        "between_draw_share_of_variance": 0.058,
+        "se_within_only": 0.204
+      },
+      "sidewalk_transition": {
+        "coef": 0.136,
+        "se": 0.184,
+        "ci95": [
+          -0.225,
+          0.497
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.058,
+        "between_draw_share_of_variance": 0.053,
+        "se_within_only": 0.179
+      },
+      "failure_to_yield": {
+        "coef": -0.034,
+        "se": 0.175,
+        "ci95": [
+          -0.378,
+          0.31
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.045,
+        "between_draw_share_of_variance": 0.041,
+        "se_within_only": 0.172
+      },
+      "signal_violation": {
+        "coef": 0.002,
+        "se": 0.227,
+        "ci95": [
+          -0.444,
+          0.448
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.036,
+        "between_draw_share_of_variance": 0.032,
+        "se_within_only": 0.223
+      },
+      "vehicle_turning_across": {
+        "coef": 0.154,
+        "se": 0.224,
+        "ci95": [
+          -0.286,
+          0.593
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.058,
+        "between_draw_share_of_variance": 0.054,
+        "se_within_only": 0.217
+      },
+      "lane_positioning": {
+        "coef": 0.11,
+        "se": 0.238,
+        "ci95": [
+          -0.358,
+          0.578
+        ],
+        "excludes_zero": false,
+        "fraction_missing_information": 0.04,
+        "between_draw_share_of_variance": 0.036,
+        "se_within_only": 0.234
+      }
+    },
+    "coefficients_model_based_within": {
+      "speed_35to40": {
+        "coef": -0.233,
+        "se": 0.27,
+        "ci95": [
+          -0.763,
+          0.297
+        ],
+        "excludes_zero": false
+      },
+      "speed_ge45": {
+        "coef": -0.042,
+        "se": 0.407,
+        "ci95": [
+          -0.842,
+          0.758
+        ],
+        "excludes_zero": false
+      },
+      "speed_unknown": {
+        "coef": -0.209,
+        "se": 0.415,
+        "ci95": [
+          -1.025,
+          0.607
+        ],
+        "excludes_zero": false
+      },
+      "light_dark_or_unknown": {
+        "coef": -0.034,
+        "se": 0.302,
+        "ci95": [
+          -0.629,
+          0.56
+        ],
+        "excludes_zero": false
+      },
+      "eth_black": {
+        "coef": -0.141,
+        "se": 0.28,
+        "ci95": [
+          -0.691,
+          0.409
+        ],
+        "excludes_zero": false
+      },
+      "eth_hispanic": {
+        "coef": -0.144,
+        "se": 0.283,
+        "ci95": [
+          -0.7,
+          0.412
+        ],
+        "excludes_zero": false
+      },
+      "eth_other_or_unknown": {
+        "coef": 0.098,
+        "se": 0.417,
+        "ci95": [
+          -0.721,
+          0.917
+        ],
+        "excludes_zero": false
+      },
+      "gender_female": {
+        "coef": 0.224,
+        "se": 0.256,
+        "ci95": [
+          -0.279,
+          0.726
+        ],
+        "excludes_zero": false
+      },
+      "gender_unknown": {
+        "coef": -0.085,
+        "se": 0.843,
+        "ci95": [
+          -1.741,
+          1.571
+        ],
+        "excludes_zero": false
+      },
+      "age_45plus": {
+        "coef": -0.059,
+        "se": 0.362,
+        "ci95": [
+          -0.77,
+          0.651
+        ],
+        "excludes_zero": false
+      },
+      "age_under25": {
+        "coef": -0.031,
+        "se": 0.256,
+        "ci95": [
+          -0.535,
+          0.472
+        ],
+        "excludes_zero": false
+      },
+      "age_unknown": {
+        "coef": -0.592,
+        "se": 0.756,
+        "ci95": [
+          -2.079,
+          0.894
+        ],
+        "excludes_zero": false
+      },
+      "veh_other_unknown": {
+        "coef": 0.026,
+        "se": 0.422,
+        "ci95": [
+          -0.804,
+          0.856
+        ],
+        "excludes_zero": false
+      },
+      "veh_pickup_truck_van": {
+        "coef": 0.33,
+        "se": 0.309,
+        "ci95": [
+          -0.278,
+          0.938
+        ],
+        "excludes_zero": false
+      },
+      "veh_suv": {
+        "coef": 0.198,
+        "se": 0.264,
+        "ci95": [
+          -0.321,
+          0.716
+        ],
+        "excludes_zero": false
+      },
+      "coll_other": {
+        "coef": 0.032,
+        "se": 0.342,
+        "ci95": [
+          -0.641,
+          0.705
+        ],
+        "excludes_zero": false
+      },
+      "coll_single_mv_straight": {
+        "coef": -0.058,
+        "se": 0.302,
+        "ci95": [
+          -0.652,
+          0.537
+        ],
+        "excludes_zero": false
+      },
+      "coll_turning": {
+        "coef": -0.005,
+        "se": 0.353,
+        "ci95": [
+          -0.699,
+          0.689
+        ],
+        "excludes_zero": false
+      },
+      "intx_intersection_or_driveway": {
+        "coef": -0.385,
+        "se": 0.316,
+        "ci95": [
+          -1.005,
+          0.236
+        ],
+        "excludes_zero": false
+      },
+      "ctrl_signal": {
+        "coef": 0.248,
+        "se": 0.333,
+        "ci95": [
+          -0.407,
+          0.903
+        ],
+        "excludes_zero": false
+      },
+      "ctrl_stop_sign": {
+        "coef": -0.032,
+        "se": 0.308,
+        "ci95": [
+          -0.637,
+          0.573
+        ],
+        "excludes_zero": false
+      },
+      "road_not_city_street": {
+        "coef": 0.292,
+        "se": 0.33,
+        "ci95": [
+          -0.357,
+          0.941
+        ],
+        "excludes_zero": false
+      },
+      "weekend": {
+        "coef": 0.132,
+        "se": 0.268,
+        "ci95": [
+          -0.394,
+          0.659
+        ],
+        "excludes_zero": false
+      },
+      "nighttime": {
+        "coef": 0.481,
+        "se": 0.42,
+        "ci95": [
+          -0.345,
+          1.307
+        ],
+        "excludes_zero": false
+      },
+      "coord_missing": {
+        "coef": -0.721,
+        "se": 0.472,
+        "ci95": [
+          -1.648,
+          0.206
+        ],
+        "excludes_zero": false
+      },
+      "road_density_km_100m": {
+        "coef": -0.096,
+        "se": 0.304,
+        "ci95": [
+          -0.693,
+          0.501
+        ],
+        "excludes_zero": false
+      },
+      "poverty_share": {
+        "coef": -0.784,
+        "se": 0.554,
+        "ci95": [
+          -1.873,
+          0.305
+        ],
+        "excludes_zero": false
+      },
+      "urban_area_200k": {
+        "coef": -0.355,
+        "se": 0.283,
+        "ci95": [
+          -0.911,
+          0.201
+        ],
+        "excludes_zero": false
+      },
+      "cf_rider_failed_to_yield": {
+        "coef": -0.166,
+        "se": 0.328,
+        "ci95": [
+          -0.811,
+          0.478
+        ],
+        "excludes_zero": false
+      },
+      "cf_driver_inattention": {
+        "coef": -0.102,
+        "se": 0.287,
+        "ci95": [
+          -0.665,
+          0.462
+        ],
+        "excludes_zero": false
+      },
+      "sidewalk_transition": {
+        "coef": 0.136,
+        "se": 0.275,
+        "ci95": [
+          -0.404,
+          0.676
+        ],
+        "excludes_zero": false
+      },
+      "failure_to_yield": {
+        "coef": -0.034,
+        "se": 0.244,
+        "ci95": [
+          -0.513,
+          0.444
+        ],
+        "excludes_zero": false
+      },
+      "signal_violation": {
+        "coef": 0.002,
+        "se": 0.325,
+        "ci95": [
+          -0.637,
+          0.641
+        ],
+        "excludes_zero": false
+      },
+      "vehicle_turning_across": {
+        "coef": 0.154,
+        "se": 0.305,
+        "ci95": [
+          -0.447,
+          0.754
+        ],
+        "excludes_zero": false
+      },
+      "lane_positioning": {
+        "coef": 0.11,
+        "se": 0.292,
+        "ci95": [
+          -0.465,
+          0.684
+        ],
+        "excludes_zero": false
+      }
+    },
+    "cutpoints_pooled": [
+      -2.222,
+      2.183
+    ],
+    "fmi_summary": {
+      "median": 0.069,
+      "max": 0.152,
+      "argmax": "coord_missing"
+    },
+    "ames": {
+      "speed_35to40": {
+        "O": {
+          "ame": 0.03094,
+          "ci95": [
+            -0.01959,
+            0.09743
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.01951,
+          "ci95": [
+            -0.06789,
+            0.01221
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.01143,
+          "ci95": [
+            -0.03477,
+            0.00718
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "speed_ge45": {
+        "O": {
+          "ame": -0.00622,
+          "ci95": [
+            -0.09402,
+            0.08854
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00429,
+          "ci95": [
+            -0.061,
+            0.05921
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00193,
+          "ci95": [
+            -0.03342,
+            0.04589
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "speed_unknown": {
+        "O": {
+          "ame": 0.02022,
+          "ci95": [
+            -0.04504,
+            0.1004
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.01273,
+          "ci95": [
+            -0.07028,
+            0.0306
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00749,
+          "ci95": [
+            -0.03407,
+            0.01949
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "light_dark_or_unknown": {
+        "O": {
+          "ame": 0.00499,
+          "ci95": [
+            -0.06104,
+            0.07609
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00307,
+          "ci95": [
+            -0.05157,
+            0.03734
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00192,
+          "ci95": [
+            -0.0283,
+            0.02531
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "eth_black": {
+        "O": {
+          "ame": 0.01746,
+          "ci95": [
+            -0.0282,
+            0.07555
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.0108,
+          "ci95": [
+            -0.05201,
+            0.01692
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00666,
+          "ci95": [
+            -0.02837,
+            0.01213
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "eth_hispanic": {
+        "O": {
+          "ame": 0.01836,
+          "ci95": [
+            -0.03372,
+            0.07639
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.01168,
+          "ci95": [
+            -0.05473,
+            0.01961
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00668,
+          "ci95": [
+            -0.02872,
+            0.01575
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "eth_other_or_unknown": {
+        "O": {
+          "ame": -0.02335,
+          "ci95": [
+            -0.09736,
+            0.08352
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.01353,
+          "ci95": [
+            -0.06176,
+            0.05625
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00982,
+          "ci95": [
+            -0.02237,
+            0.06592
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "gender_female": {
+        "O": {
+          "ame": -0.03175,
+          "ci95": [
+            -0.08918,
+            0.02302
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.0184,
+          "ci95": [
+            -0.0158,
+            0.05677
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.01335,
+          "ci95": [
+            -0.00837,
+            0.0467
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "gender_unknown": {
+        "O": {
+          "ame": 0.02026,
+          "ci95": [
+            -0.16923,
+            0.37373
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.01265,
+          "ci95": [
+            -0.31278,
+            0.07103
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00761,
+          "ci95": [
+            -0.07005,
+            0.15098
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "age_45plus": {
+        "O": {
+          "ame": 0.0005,
+          "ci95": [
+            -0.06724,
+            0.07776
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -7e-05,
+          "ci95": [
+            -0.05667,
+            0.0405
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00043,
+          "ci95": [
+            -0.02419,
+            0.03413
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "age_under25": {
+        "O": {
+          "ame": -0.00237,
+          "ci95": [
+            -0.04976,
+            0.05483
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00169,
+          "ci95": [
+            -0.0361,
+            0.03242
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00068,
+          "ci95": [
+            -0.0215,
+            0.02122
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "age_unknown": {
+        "O": {
+          "ame": 0.09434,
+          "ci95": [
+            -0.11398,
+            0.4043
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.06836,
+          "ci95": [
+            -0.34332,
+            0.05442
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.02599,
+          "ci95": [
+            -0.07507,
+            0.07419
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "veh_other_unknown": {
+        "O": {
+          "ame": 0.01257,
+          "ci95": [
+            -0.08839,
+            0.13892
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00738,
+          "ci95": [
+            -0.10324,
+            0.04953
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.0052,
+          "ci95": [
+            -0.04159,
+            0.0456
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "veh_pickup_truck_van": {
+        "O": {
+          "ame": -0.03812,
+          "ci95": [
+            -0.09954,
+            0.04008
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.02203,
+          "ci95": [
+            -0.02718,
+            0.06236
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.01609,
+          "ci95": [
+            -0.01467,
+            0.05945
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "veh_suv": {
+        "O": {
+          "ame": -0.0197,
+          "ci95": [
+            -0.07671,
+            0.03253
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.01253,
+          "ci95": [
+            -0.0211,
+            0.05027
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00717,
+          "ci95": [
+            -0.0141,
+            0.03678
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "coll_other": {
+        "O": {
+          "ame": -0.00679,
+          "ci95": [
+            -0.06554,
+            0.05611
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00412,
+          "ci95": [
+            -0.0345,
+            0.04194
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00267,
+          "ci95": [
+            -0.02082,
+            0.02805
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "coll_single_mv_straight": {
+        "O": {
+          "ame": 0.00907,
+          "ci95": [
+            -0.04793,
+            0.07384
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00558,
+          "ci95": [
+            -0.05329,
+            0.02871
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00349,
+          "ci95": [
+            -0.02609,
+            0.02256
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "coll_turning": {
+        "O": {
+          "ame": -0.00048,
+          "ci95": [
+            -0.06925,
+            0.07076
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00039,
+          "ci95": [
+            -0.05022,
+            0.04427
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.0001,
+          "ci95": [
+            -0.02442,
+            0.03103
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "intx_intersection_or_driveway": {
+        "O": {
+          "ame": 0.0525,
+          "ci95": [
+            -0.02495,
+            0.11721
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.02909,
+          "ci95": [
+            -0.07044,
+            0.02087
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.02341,
+          "ci95": [
+            -0.07068,
+            0.00706
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "ctrl_signal": {
+        "O": {
+          "ame": -0.03512,
+          "ci95": [
+            -0.11789,
+            0.04762
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.0199,
+          "ci95": [
+            -0.0324,
+            0.06402
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.01523,
+          "ci95": [
+            -0.01607,
+            0.06741
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "ctrl_stop_sign": {
+        "O": {
+          "ame": 0.012,
+          "ci95": [
+            -0.04259,
+            0.08993
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00734,
+          "ci95": [
+            -0.0657,
+            0.02878
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00466,
+          "ci95": [
+            -0.02967,
+            0.01818
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "road_not_city_street": {
+        "O": {
+          "ame": -0.04101,
+          "ci95": [
+            -0.10522,
+            0.03969
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.02401,
+          "ci95": [
+            -0.0286,
+            0.06696
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.017,
+          "ci95": [
+            -0.01236,
+            0.05578
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "weekend": {
+        "O": {
+          "ame": -0.01871,
+          "ci95": [
+            -0.07843,
+            0.03622
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.01109,
+          "ci95": [
+            -0.02543,
+            0.05114
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00762,
+          "ci95": [
+            -0.01329,
+            0.03526
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "nighttime": {
+        "O": {
+          "ame": -0.06251,
+          "ci95": [
+            -0.14277,
+            0.04083
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.03151,
+          "ci95": [
+            -0.03783,
+            0.08196
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.031,
+          "ci95": [
+            -0.0123,
+            0.10643
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "coord_missing": {
+        "O": {
+          "ame": 0.1199,
+          "ci95": [
+            0.00752,
+            0.23714
+          ],
+          "excludes_zero": true
+        },
+        "BC": {
+          "ame": -0.08722,
+          "ci95": [
+            -0.18585,
+            -0.00336
+          ],
+          "excludes_zero": true
+        },
+        "KA": {
+          "ame": -0.03268,
+          "ci95": [
+            -0.07298,
+            -0.00231
+          ],
+          "excludes_zero": true
+        },
+        "type": "discrete change"
+      },
+      "road_density_km_100m": {
+        "O": {
+          "ame": 0.0138,
+          "ci95": [
+            -0.05218,
+            0.07352
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00844,
+          "ci95": [
+            -0.05122,
+            0.03379
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00536,
+          "ci95": [
+            -0.03293,
+            0.0215
+          ],
+          "excludes_zero": false
+        },
+        "type": "derivative"
+      },
+      "poverty_share": {
+        "O": {
+          "ame": 0.1131,
+          "ci95": [
+            -0.00046,
+            0.25563
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.06919,
+          "ci95": [
+            -0.17484,
+            0.00224
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.04391,
+          "ci95": [
+            -0.10811,
+            0.00021
+          ],
+          "excludes_zero": false
+        },
+        "type": "derivative"
+      },
+      "urban_area_200k": {
+        "O": {
+          "ame": 0.04819,
+          "ci95": [
+            0.00496,
+            0.10568
+          ],
+          "excludes_zero": true
+        },
+        "BC": {
+          "ame": -0.02666,
+          "ci95": [
+            -0.06965,
+            0.0028
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.02153,
+          "ci95": [
+            -0.05147,
+            -0.00237
+          ],
+          "excludes_zero": true
+        },
+        "type": "discrete change"
+      },
+      "cf_rider_failed_to_yield": {
+        "O": {
+          "ame": 0.02488,
+          "ci95": [
+            -0.05381,
+            0.10979
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.01601,
+          "ci95": [
+            -0.0828,
+            0.03032
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00887,
+          "ci95": [
+            -0.03447,
+            0.0246
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "cf_driver_inattention": {
+        "O": {
+          "ame": 0.01495,
+          "ci95": [
+            -0.05196,
+            0.07619
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00942,
+          "ci95": [
+            -0.05348,
+            0.03317
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00552,
+          "ci95": [
+            -0.02645,
+            0.02253
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "sidewalk_transition": {
+        "O": {
+          "ame": -0.01919,
+          "ci95": [
+            -0.06446,
+            0.0349
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.0113,
+          "ci95": [
+            -0.02381,
+            0.04026
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00789,
+          "ci95": [
+            -0.01276,
+            0.03204
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "failure_to_yield": {
+        "O": {
+          "ame": 0.00496,
+          "ci95": [
+            -0.05103,
+            0.05788
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00305,
+          "ci95": [
+            -0.03918,
+            0.03491
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00191,
+          "ci95": [
+            -0.02401,
+            0.02159
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "signal_violation": {
+        "O": {
+          "ame": -0.00027,
+          "ci95": [
+            -0.06799,
+            0.07053
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00017,
+          "ci95": [
+            -0.0486,
+            0.03984
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00011,
+          "ci95": [
+            -0.02484,
+            0.03133
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "vehicle_turning_across": {
+        "O": {
+          "ame": -0.02182,
+          "ci95": [
+            -0.09362,
+            0.04672
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.01301,
+          "ci95": [
+            -0.03088,
+            0.06267
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00881,
+          "ci95": [
+            -0.01721,
+            0.04113
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "lane_positioning": {
+        "O": {
+          "ame": -0.01554,
+          "ci95": [
+            -0.08446,
+            0.05666
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00922,
+          "ci95": [
+            -0.03805,
+            0.05352
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00632,
+          "ci95": [
+            -0.02124,
+            0.04088
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      }
+    },
+    "excluding_zero": {
+      "coefficients": [
+        "coord_missing",
+        "poverty_share",
+        "urban_area_200k"
+      ],
+      "ame": {
+        "O": [
+          "coord_missing",
+          "urban_area_200k"
+        ],
+        "BC": [
+          "coord_missing"
+        ],
+        "KA": [
+          "coord_missing",
+          "urban_area_200k"
+        ]
+      }
+    }
+  },
+  "expected_class_counts": {
+    "posterior_mean_weights": {
+      "O": 97.5,
+      "BC": 392.6,
+      "KA": 31.8
+    },
+    "mean_over_draws": {
+      "O": 100.4,
+      "BC": 390.3,
+      "KA": 31.4
+    },
+    "coded": {
+      "O": 77,
+      "BC": 363,
+      "KA": 82
+    }
+  },
+  "M2_expected_likelihood_at_posterior_mean_weights": {
+    "coefficients": {
+      "speed_35to40": {
+        "coef": -0.22,
+        "se": 0.187,
+        "ci95": [
+          -0.586,
+          0.147
+        ],
+        "excludes_zero": false
+      },
+      "speed_ge45": {
+        "coef": -0.014,
+        "se": 0.289,
+        "ci95": [
+          -0.582,
+          0.553
+        ],
+        "excludes_zero": false
+      },
+      "speed_unknown": {
+        "coef": -0.199,
+        "se": 0.215,
+        "ci95": [
+          -0.62,
+          0.223
+        ],
+        "excludes_zero": false
+      },
+      "light_dark_or_unknown": {
+        "coef": -0.038,
+        "se": 0.199,
+        "ci95": [
+          -0.428,
+          0.352
+        ],
+        "excludes_zero": false
+      },
+      "eth_black": {
+        "coef": -0.146,
+        "se": 0.17,
+        "ci95": [
+          -0.479,
+          0.187
+        ],
+        "excludes_zero": false
+      },
+      "eth_hispanic": {
+        "coef": -0.144,
+        "se": 0.188,
+        "ci95": [
+          -0.513,
+          0.224
+        ],
+        "excludes_zero": false
+      },
+      "eth_other_or_unknown": {
+        "coef": 0.084,
+        "se": 0.297,
+        "ci95": [
+          -0.499,
+          0.666
+        ],
+        "excludes_zero": false
+      },
+      "gender_female": {
+        "coef": 0.22,
+        "se": 0.177,
+        "ci95": [
+          -0.127,
+          0.566
+        ],
+        "excludes_zero": false
+      },
+      "gender_unknown": {
+        "coef": -0.112,
+        "se": 0.804,
+        "ci95": [
+          -1.688,
+          1.464
+        ],
+        "excludes_zero": false
+      },
+      "age_45plus": {
+        "coef": -0.053,
+        "se": 0.256,
+        "ci95": [
+          -0.555,
+          0.449
+        ],
+        "excludes_zero": false
+      },
+      "age_under25": {
+        "coef": -0.029,
+        "se": 0.169,
+        "ci95": [
+          -0.36,
+          0.302
+        ],
+        "excludes_zero": false
+      },
+      "age_unknown": {
+        "coef": -0.544,
+        "se": 0.699,
+        "ci95": [
+          -1.914,
+          0.827
+        ],
+        "excludes_zero": false
+      },
+      "veh_other_unknown": {
+        "coef": 0.033,
+        "se": 0.313,
+        "ci95": [
+          -0.581,
+          0.647
+        ],
+        "excludes_zero": false
+      },
+      "veh_pickup_truck_van": {
+        "coef": 0.316,
+        "se": 0.226,
+        "ci95": [
+          -0.127,
+          0.759
+        ],
+        "excludes_zero": false
+      },
+      "veh_suv": {
+        "coef": 0.193,
+        "se": 0.173,
+        "ci95": [
+          -0.145,
+          0.532
+        ],
+        "excludes_zero": false
+      },
+      "coll_other": {
+        "coef": 0.033,
+        "se": 0.205,
+        "ci95": [
+          -0.369,
+          0.434
+        ],
+        "excludes_zero": false
+      },
+      "coll_single_mv_straight": {
+        "coef": -0.055,
+        "se": 0.177,
+        "ci95": [
+          -0.401,
+          0.292
+        ],
+        "excludes_zero": false
+      },
+      "coll_turning": {
+        "coef": -0.0,
+        "se": 0.224,
+        "ci95": [
+          -0.438,
+          0.438
+        ],
+        "excludes_zero": false
+      },
+      "intx_intersection_or_driveway": {
+        "coef": -0.362,
+        "se": 0.226,
+        "ci95": [
+          -0.805,
+          0.081
+        ],
+        "excludes_zero": false
+      },
+      "ctrl_signal": {
+        "coef": 0.231,
+        "se": 0.264,
+        "ci95": [
+          -0.285,
+          0.748
+        ],
+        "excludes_zero": false
+      },
+      "ctrl_stop_sign": {
+        "coef": -0.036,
+        "se": 0.205,
+        "ci95": [
+          -0.437,
+          0.364
+        ],
+        "excludes_zero": false
+      },
+      "road_not_city_street": {
+        "coef": 0.276,
+        "se": 0.228,
+        "ci95": [
+          -0.171,
+          0.724
+        ],
+        "excludes_zero": false
+      },
+      "weekend": {
+        "coef": 0.131,
+        "se": 0.184,
+        "ci95": [
+          -0.23,
+          0.491
+        ],
+        "excludes_zero": false
+      },
+      "nighttime": {
+        "coef": 0.463,
+        "se": 0.318,
+        "ci95": [
+          -0.16,
+          1.086
+        ],
+        "excludes_zero": false
+      },
+      "coord_missing": {
+        "coef": -0.69,
+        "se": 0.301,
+        "ci95": [
+          -1.28,
+          -0.1
+        ],
+        "excludes_zero": true
+      },
+      "road_density_km_100m": {
+        "coef": -0.095,
+        "se": 0.191,
+        "ci95": [
+          -0.469,
+          0.278
+        ],
+        "excludes_zero": false
+      },
+      "poverty_share": {
+        "coef": -0.758,
+        "se": 0.33,
+        "ci95": [
+          -1.405,
+          -0.111
+        ],
+        "excludes_zero": true
+      },
+      "urban_area_200k": {
+        "coef": -0.348,
+        "se": 0.147,
+        "ci95": [
+          -0.637,
+          -0.06
+        ],
+        "excludes_zero": true
+      },
+      "cf_rider_failed_to_yield": {
+        "coef": -0.156,
+        "se": 0.227,
+        "ci95": [
+          -0.601,
+          0.288
+        ],
+        "excludes_zero": false
+      },
+      "cf_driver_inattention": {
+        "coef": -0.101,
+        "se": 0.189,
+        "ci95": [
+          -0.471,
+          0.268
+        ],
+        "excludes_zero": false
+      },
+      "sidewalk_transition": {
+        "coef": 0.127,
+        "se": 0.166,
+        "ci95": [
+          -0.197,
+          0.452
+        ],
+        "excludes_zero": false
+      },
+      "failure_to_yield": {
+        "coef": -0.032,
+        "se": 0.159,
+        "ci95": [
+          -0.344,
+          0.281
+        ],
+        "excludes_zero": false
+      },
+      "signal_violation": {
+        "coef": 0.004,
+        "se": 0.205,
+        "ci95": [
+          -0.398,
+          0.407
+        ],
+        "excludes_zero": false
+      },
+      "vehicle_turning_across": {
+        "coef": 0.139,
+        "se": 0.201,
+        "ci95": [
+          -0.256,
+          0.534
+        ],
+        "excludes_zero": false
+      },
+      "lane_positioning": {
+        "coef": 0.105,
+        "se": 0.218,
+        "ci95": [
+          -0.323,
+          0.533
+        ],
+        "excludes_zero": false
+      }
+    },
+    "excluding_zero": [
+      "coord_missing",
+      "poverty_share",
+      "urban_area_200k"
+    ],
+    "converged": true
+  },
+  "M2_alt_i_coded_class_weight": {
+    "coefficients": {
+      "speed_35to40": {
+        "coef": -0.414,
+        "se": 0.324,
+        "ci95": [
+          -1.049,
+          0.221
+        ],
+        "excludes_zero": false
+      },
+      "speed_ge45": {
+        "coef": -0.486,
+        "se": 0.518,
+        "ci95": [
+          -1.502,
+          0.53
+        ],
+        "excludes_zero": false
+      },
+      "speed_unknown": {
+        "coef": -0.522,
+        "se": 0.337,
+        "ci95": [
+          -1.183,
+          0.138
+        ],
+        "excludes_zero": false
+      },
+      "light_dark_or_unknown": {
+        "coef": 0.155,
+        "se": 0.341,
+        "ci95": [
+          -0.514,
+          0.825
+        ],
+        "excludes_zero": false
+      },
+      "eth_black": {
+        "coef": -0.025,
+        "se": 0.29,
+        "ci95": [
+          -0.593,
+          0.544
+        ],
+        "excludes_zero": false
+      },
+      "eth_hispanic": {
+        "coef": 0.085,
+        "se": 0.311,
+        "ci95": [
+          -0.525,
+          0.695
+        ],
+        "excludes_zero": false
+      },
+      "eth_other_or_unknown": {
+        "coef": 0.113,
+        "se": 0.502,
+        "ci95": [
+          -0.871,
+          1.098
+        ],
+        "excludes_zero": false
+      },
+      "gender_female": {
+        "coef": 0.257,
+        "se": 0.288,
+        "ci95": [
+          -0.307,
+          0.821
+        ],
+        "excludes_zero": false
+      },
+      "gender_unknown": {
+        "coef": -0.789,
+        "se": 1.423,
+        "ci95": [
+          -3.579,
+          2.001
+        ],
+        "excludes_zero": false
+      },
+      "age_45plus": {
+        "coef": -0.173,
+        "se": 0.48,
+        "ci95": [
+          -1.113,
+          0.767
+        ],
+        "excludes_zero": false
+      },
+      "age_under25": {
+        "coef": -0.171,
+        "se": 0.277,
+        "ci95": [
+          -0.714,
+          0.372
+        ],
+        "excludes_zero": false
+      },
+      "age_unknown": {
+        "coef": -1.496,
+        "se": 1.192,
+        "ci95": [
+          -3.832,
+          0.841
+        ],
+        "excludes_zero": false
+      },
+      "veh_other_unknown": {
+        "coef": -0.61,
+        "se": 0.504,
+        "ci95": [
+          -1.597,
+          0.377
+        ],
+        "excludes_zero": false
+      },
+      "veh_pickup_truck_van": {
+        "coef": 0.406,
+        "se": 0.392,
+        "ci95": [
+          -0.362,
+          1.173
+        ],
+        "excludes_zero": false
+      },
+      "veh_suv": {
+        "coef": 0.182,
+        "se": 0.284,
+        "ci95": [
+          -0.375,
+          0.739
+        ],
+        "excludes_zero": false
+      },
+      "coll_other": {
+        "coef": 0.284,
+        "se": 0.332,
+        "ci95": [
+          -0.367,
+          0.934
+        ],
+        "excludes_zero": false
+      },
+      "coll_single_mv_straight": {
+        "coef": 0.122,
+        "se": 0.3,
+        "ci95": [
+          -0.467,
+          0.711
+        ],
+        "excludes_zero": false
+      },
+      "coll_turning": {
+        "coef": 0.12,
+        "se": 0.39,
+        "ci95": [
+          -0.645,
+          0.885
+        ],
+        "excludes_zero": false
+      },
+      "intx_intersection_or_driveway": {
+        "coef": -0.519,
+        "se": 0.39,
+        "ci95": [
+          -1.282,
+          0.245
+        ],
+        "excludes_zero": false
+      },
+      "ctrl_signal": {
+        "coef": -0.034,
+        "se": 0.462,
+        "ci95": [
+          -0.939,
+          0.87
+        ],
+        "excludes_zero": false
+      },
+      "ctrl_stop_sign": {
+        "coef": 0.0,
+        "se": 0.355,
+        "ci95": [
+          -0.696,
+          0.696
+        ],
+        "excludes_zero": false
+      },
+      "road_not_city_street": {
+        "coef": 0.54,
+        "se": 0.424,
+        "ci95": [
+          -0.291,
+          1.371
+        ],
+        "excludes_zero": false
+      },
+      "weekend": {
+        "coef": -0.089,
+        "se": 0.333,
+        "ci95": [
+          -0.742,
+          0.563
+        ],
+        "excludes_zero": false
+      },
+      "nighttime": {
+        "coef": 0.551,
+        "se": 0.575,
+        "ci95": [
+          -0.576,
+          1.679
+        ],
+        "excludes_zero": false
+      },
+      "coord_missing": {
+        "coef": -1.006,
+        "se": 0.505,
+        "ci95": [
+          -1.997,
+          -0.016
+        ],
+        "excludes_zero": true
+      },
+      "road_density_km_100m": {
+        "coef": 0.005,
+        "se": 0.326,
+        "ci95": [
+          -0.634,
+          0.644
+        ],
+        "excludes_zero": false
+      },
+      "poverty_share": {
+        "coef": -1.516,
+        "se": 0.554,
+        "ci95": [
+          -2.602,
+          -0.43
+        ],
+        "excludes_zero": true
+      },
+      "urban_area_200k": {
+        "coef": -0.365,
+        "se": 0.251,
+        "ci95": [
+          -0.857,
+          0.128
+        ],
+        "excludes_zero": false
+      },
+      "cf_rider_failed_to_yield": {
+        "coef": -0.154,
+        "se": 0.44,
+        "ci95": [
+          -1.015,
+          0.708
+        ],
+        "excludes_zero": false
+      },
+      "cf_driver_inattention": {
+        "coef": 0.08,
+        "se": 0.293,
+        "ci95": [
+          -0.494,
+          0.653
+        ],
+        "excludes_zero": false
+      },
+      "sidewalk_transition": {
+        "coef": 0.277,
+        "se": 0.258,
+        "ci95": [
+          -0.228,
+          0.783
+        ],
+        "excludes_zero": false
+      },
+      "failure_to_yield": {
+        "coef": -0.126,
+        "se": 0.27,
+        "ci95": [
+          -0.655,
+          0.402
+        ],
+        "excludes_zero": false
+      },
+      "signal_violation": {
+        "coef": -0.023,
+        "se": 0.342,
+        "ci95": [
+          -0.694,
+          0.648
+        ],
+        "excludes_zero": false
+      },
+      "vehicle_turning_across": {
+        "coef": 0.147,
+        "se": 0.349,
+        "ci95": [
+          -0.536,
+          0.83
+        ],
+        "excludes_zero": false
+      },
+      "lane_positioning": {
+        "coef": 0.18,
+        "se": 0.376,
+        "ci95": [
+          -0.556,
+          0.916
+        ],
+        "excludes_zero": false
+      }
+    },
+    "ames": {
+      "speed_35to40": {
+        "O": {
+          "ame": 0.0287,
+          "ci95": [
+            -0.02688,
+            0.09085
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00995,
+          "ci95": [
+            -0.03738,
+            0.00705
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.01875,
+          "ci95": [
+            -0.05965,
+            0.02149
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "speed_ge45": {
+        "O": {
+          "ame": 0.03175,
+          "ci95": [
+            -0.05546,
+            0.15614
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.01044,
+          "ci95": [
+            -0.08466,
+            0.00956
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.02132,
+          "ci95": [
+            -0.07648,
+            0.0521
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "speed_unknown": {
+        "O": {
+          "ame": 0.03443,
+          "ci95": [
+            -0.02496,
+            0.10273
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.0152,
+          "ci95": [
+            -0.05467,
+            0.00611
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.01923,
+          "ci95": [
+            -0.05365,
+            0.02284
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "light_dark_or_unknown": {
+        "O": {
+          "ame": -0.01418,
+          "ci95": [
+            -0.07842,
+            0.05892
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00379,
+          "ci95": [
+            -0.02291,
+            0.01684
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.01039,
+          "ci95": [
+            -0.03844,
+            0.07129
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "eth_black": {
+        "O": {
+          "ame": 0.00652,
+          "ci95": [
+            -0.04395,
+            0.05863
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.0029,
+          "ci95": [
+            -0.02337,
+            0.01427
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00361,
+          "ci95": [
+            -0.03803,
+            0.03514
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "eth_hispanic": {
+        "O": {
+          "ame": -0.00607,
+          "ci95": [
+            -0.05395,
+            0.04605
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00076,
+          "ci95": [
+            -0.01769,
+            0.01511
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00531,
+          "ci95": [
+            -0.0314,
+            0.05
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "eth_other_or_unknown": {
+        "O": {
+          "ame": -0.00906,
+          "ci95": [
+            -0.08014,
+            0.09044
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00235,
+          "ci95": [
+            -0.0526,
+            0.01108
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00671,
+          "ci95": [
+            -0.04631,
+            0.10658
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "gender_female": {
+        "O": {
+          "ame": -0.02953,
+          "ci95": [
+            -0.07776,
+            0.03533
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.01077,
+          "ci95": [
+            -0.01978,
+            0.02548
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.01876,
+          "ci95": [
+            -0.02325,
+            0.0746
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "gender_unknown": {
+        "O": {
+          "ame": 0.10224,
+          "ci95": [
+            -0.10775,
+            0.59852
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.06171,
+          "ci95": [
+            -0.51855,
+            0.00671
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.04053,
+          "ci95": [
+            -0.10262,
+            0.24873
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "age_45plus": {
+        "O": {
+          "ame": -0.00756,
+          "ci95": [
+            -0.07333,
+            0.09176
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.01039,
+          "ci95": [
+            -0.05227,
+            0.02299
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00283,
+          "ci95": [
+            -0.04874,
+            0.08407
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "age_under25": {
+        "O": {
+          "ame": -0.00261,
+          "ci95": [
+            -0.05135,
+            0.0454
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00974,
+          "ci95": [
+            -0.00931,
+            0.0275
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00713,
+          "ci95": [
+            -0.04557,
+            0.03283
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "age_unknown": {
+        "O": {
+          "ame": 0.19191,
+          "ci95": [
+            -0.06285,
+            0.61666
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.13618,
+          "ci95": [
+            -0.52405,
+            0.00383
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.05573,
+          "ci95": [
+            -0.11015,
+            0.07899
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "veh_other_unknown": {
+        "O": {
+          "ame": 0.08402,
+          "ci95": [
+            -0.0201,
+            0.23551
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.04649,
+          "ci95": [
+            -0.15527,
+            0.0066
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.03753,
+          "ci95": [
+            -0.08006,
+            0.01157
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "veh_pickup_truck_van": {
+        "O": {
+          "ame": -0.03511,
+          "ci95": [
+            -0.09104,
+            0.03629
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.0063,
+          "ci95": [
+            -0.03331,
+            0.01684
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.02881,
+          "ci95": [
+            -0.02264,
+            0.11828
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "veh_suv": {
+        "O": {
+          "ame": -0.01519,
+          "ci95": [
+            -0.06774,
+            0.03875
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00572,
+          "ci95": [
+            -0.01008,
+            0.02187
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00947,
+          "ci95": [
+            -0.02917,
+            0.05545
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "coll_other": {
+        "O": {
+          "ame": -0.02002,
+          "ci95": [
+            -0.06706,
+            0.03365
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00513,
+          "ci95": [
+            -0.01174,
+            0.01763
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.01489,
+          "ci95": [
+            -0.02395,
+            0.06167
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "coll_single_mv_straight": {
+        "O": {
+          "ame": -0.00329,
+          "ci95": [
+            -0.05318,
+            0.05552
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00166,
+          "ci95": [
+            -0.02129,
+            0.01641
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00163,
+          "ci95": [
+            -0.03605,
+            0.04572
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "coll_turning": {
+        "O": {
+          "ame": -0.00356,
+          "ci95": [
+            -0.06622,
+            0.07029
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00191,
+          "ci95": [
+            -0.02991,
+            0.01746
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00165,
+          "ci95": [
+            -0.04413,
+            0.05903
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "intx_intersection_or_driveway": {
+        "O": {
+          "ame": 0.04471,
+          "ci95": [
+            -0.02559,
+            0.1059
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00706,
+          "ci95": [
+            -0.01748,
+            0.02784
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.03766,
+          "ci95": [
+            -0.1286,
+            0.01623
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "ctrl_signal": {
+        "O": {
+          "ame": 0.00323,
+          "ci95": [
+            -0.06721,
+            0.09643
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00099,
+          "ci95": [
+            -0.04931,
+            0.01009
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00223,
+          "ci95": [
+            -0.04984,
+            0.07008
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "ctrl_stop_sign": {
+        "O": {
+          "ame": -0.00073,
+          "ci95": [
+            -0.06032,
+            0.07011
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00031,
+          "ci95": [
+            -0.0285,
+            0.01156
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00042,
+          "ci95": [
+            -0.04266,
+            0.05944
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "road_not_city_street": {
+        "O": {
+          "ame": -0.04829,
+          "ci95": [
+            -0.12525,
+            0.03099
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.01018,
+          "ci95": [
+            -0.01851,
+            0.02287
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.03811,
+          "ci95": [
+            -0.02113,
+            0.1336
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "weekend": {
+        "O": {
+          "ame": 0.00848,
+          "ci95": [
+            -0.05065,
+            0.08655
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00272,
+          "ci95": [
+            -0.03745,
+            0.00977
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00576,
+          "ci95": [
+            -0.05216,
+            0.0442
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "nighttime": {
+        "O": {
+          "ame": -0.04501,
+          "ci95": [
+            -0.11578,
+            0.0615
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00294,
+          "ci95": [
+            -0.08335,
+            0.01057
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.04207,
+          "ci95": [
+            -0.03502,
+            0.19235
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "coord_missing": {
+        "O": {
+          "ame": 0.1186,
+          "ci95": [
+            0.00407,
+            0.27128
+          ],
+          "excludes_zero": true
+        },
+        "BC": {
+          "ame": -0.0677,
+          "ci95": [
+            -0.17333,
+            -0.00081
+          ],
+          "excludes_zero": true
+        },
+        "KA": {
+          "ame": -0.0509,
+          "ci95": [
+            -0.10837,
+            -0.00305
+          ],
+          "excludes_zero": true
+        },
+        "type": "discrete change"
+      },
+      "road_density_km_100m": {
+        "O": {
+          "ame": -0.00048,
+          "ci95": [
+            -0.05897,
+            0.06116
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00014,
+          "ci95": [
+            -0.01982,
+            0.01769
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00034,
+          "ci95": [
+            -0.04428,
+            0.0452
+          ],
+          "excludes_zero": false
+        },
+        "type": "derivative"
+      },
+      "poverty_share": {
+        "O": {
+          "ame": 0.14144,
+          "ci95": [
+            0.05428,
+            0.25984
+          ],
+          "excludes_zero": true
+        },
+        "BC": {
+          "ame": -0.0421,
+          "ci95": [
+            -0.0825,
+            0.00045
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.09935,
+          "ci95": [
+            -0.21242,
+            -0.03889
+          ],
+          "excludes_zero": true
+        },
+        "type": "derivative"
+      },
+      "urban_area_200k": {
+        "O": {
+          "ame": 0.03178,
+          "ci95": [
+            -0.01243,
+            0.07388
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00596,
+          "ci95": [
+            -0.01543,
+            0.00882
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.02582,
+          "ci95": [
+            -0.07188,
+            0.00996
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "cf_rider_failed_to_yield": {
+        "O": {
+          "ame": 0.0149,
+          "ci95": [
+            -0.0532,
+            0.13557
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00524,
+          "ci95": [
+            -0.07521,
+            0.00704
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00966,
+          "ci95": [
+            -0.06157,
+            0.05575
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "cf_driver_inattention": {
+        "O": {
+          "ame": -0.0073,
+          "ci95": [
+            -0.05881,
+            0.04936
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00197,
+          "ci95": [
+            -0.01958,
+            0.01123
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00533,
+          "ci95": [
+            -0.03265,
+            0.05546
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "sidewalk_transition": {
+        "O": {
+          "ame": -0.02449,
+          "ci95": [
+            -0.06728,
+            0.02194
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00513,
+          "ci95": [
+            -0.00932,
+            0.01375
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.01936,
+          "ci95": [
+            -0.01496,
+            0.06916
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "failure_to_yield": {
+        "O": {
+          "ame": 0.01196,
+          "ci95": [
+            -0.03959,
+            0.06969
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00383,
+          "ci95": [
+            -0.0268,
+            0.00837
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00813,
+          "ci95": [
+            -0.04632,
+            0.03179
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "signal_violation": {
+        "O": {
+          "ame": 0.00217,
+          "ci95": [
+            -0.05493,
+            0.08107
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00066,
+          "ci95": [
+            -0.03503,
+            0.01074
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00151,
+          "ci95": [
+            -0.04823,
+            0.05272
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "vehicle_turning_across": {
+        "O": {
+          "ame": -0.0135,
+          "ci95": [
+            -0.07686,
+            0.05169
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00364,
+          "ci95": [
+            -0.01949,
+            0.01624
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00986,
+          "ci95": [
+            -0.03653,
+            0.06729
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "lane_positioning": {
+        "O": {
+          "ame": -0.0162,
+          "ci95": [
+            -0.07242,
+            0.06314
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.0039,
+          "ci95": [
+            -0.03049,
+            0.01106
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.0123,
+          "ci95": [
+            -0.03607,
+            0.07872
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      }
+    },
+    "excluding_zero": {
+      "coefficients": [
+        "coord_missing",
+        "poverty_share"
+      ],
+      "ame": {
+        "O": [
+          "coord_missing",
+          "poverty_share"
+        ],
+        "BC": [
+          "coord_missing"
+        ],
+        "KA": [
+          "coord_missing",
+          "poverty_share"
+        ]
+      }
+    },
+    "sum_of_weights": 372.61,
+    "effective_n": 444.3,
+    "weight_summary": {
+      "mean": 0.7138,
+      "min": 0.0994,
+      "by_coded_class": {
+        "O": 0.5394,
+        "BC": 0.8375,
+        "KA": 0.33
+      }
+    },
+    "converged": true
+  },
+  "M2_alt_ii_modal_reassignment": {
+    "coefficients": {
+      "speed_35to40": {
+        "coef": -0.339,
+        "se": 0.376,
+        "ci95": [
+          -1.075,
+          0.397
+        ],
+        "excludes_zero": false
+      },
+      "speed_ge45": {
+        "coef": 0.352,
+        "se": 0.539,
+        "ci95": [
+          -0.705,
+          1.409
+        ],
+        "excludes_zero": false
+      },
+      "speed_unknown": {
+        "coef": -0.092,
+        "se": 0.457,
+        "ci95": [
+          -0.989,
+          0.804
+        ],
+        "excludes_zero": false
+      },
+      "light_dark_or_unknown": {
+        "coef": -0.169,
+        "se": 0.414,
+        "ci95": [
+          -0.981,
+          0.642
+        ],
+        "excludes_zero": false
+      },
+      "eth_black": {
+        "coef": -0.08,
+        "se": 0.342,
+        "ci95": [
+          -0.75,
+          0.59
+        ],
+        "excludes_zero": false
+      },
+      "eth_hispanic": {
+        "coef": -0.121,
+        "se": 0.373,
+        "ci95": [
+          -0.851,
+          0.61
+        ],
+        "excludes_zero": false
+      },
+      "eth_other_or_unknown": {
+        "coef": 0.346,
+        "se": 0.568,
+        "ci95": [
+          -0.767,
+          1.459
+        ],
+        "excludes_zero": false
+      },
+      "gender_female": {
+        "coef": 0.202,
+        "se": 0.354,
+        "ci95": [
+          -0.491,
+          0.895
+        ],
+        "excludes_zero": false
+      },
+      "gender_unknown": {
+        "coef": -0.091,
+        "se": 1.489,
+        "ci95": [
+          -3.008,
+          2.827
+        ],
+        "excludes_zero": false
+      },
+      "age_45plus": {
+        "coef": 0.054,
+        "se": 0.482,
+        "ci95": [
+          -0.891,
+          1.0
+        ],
+        "excludes_zero": false
+      },
+      "age_under25": {
+        "coef": 0.152,
+        "se": 0.336,
+        "ci95": [
+          -0.505,
+          0.81
+        ],
+        "excludes_zero": false
+      },
+      "age_unknown": {
+        "coef": -0.077,
+        "se": 1.351,
+        "ci95": [
+          -2.725,
+          2.572
+        ],
+        "excludes_zero": false
+      },
+      "veh_other_unknown": {
+        "coef": 0.112,
+        "se": 0.572,
+        "ci95": [
+          -1.009,
+          1.234
+        ],
+        "excludes_zero": false
+      },
+      "veh_pickup_truck_van": {
+        "coef": 0.66,
+        "se": 0.428,
+        "ci95": [
+          -0.179,
+          1.499
+        ],
+        "excludes_zero": false
+      },
+      "veh_suv": {
+        "coef": 0.488,
+        "se": 0.35,
+        "ci95": [
+          -0.198,
+          1.174
+        ],
+        "excludes_zero": false
+      },
+      "coll_other": {
+        "coef": 0.2,
+        "se": 0.384,
+        "ci95": [
+          -0.552,
+          0.953
+        ],
+        "excludes_zero": false
+      },
+      "coll_single_mv_straight": {
+        "coef": 0.179,
+        "se": 0.356,
+        "ci95": [
+          -0.519,
+          0.876
+        ],
+        "excludes_zero": false
+      },
+      "coll_turning": {
+        "coef": 0.07,
+        "se": 0.434,
+        "ci95": [
+          -0.781,
+          0.921
+        ],
+        "excludes_zero": false
+      },
+      "intx_intersection_or_driveway": {
+        "coef": -0.527,
+        "se": 0.431,
+        "ci95": [
+          -1.372,
+          0.318
+        ],
+        "excludes_zero": false
+      },
+      "ctrl_signal": {
+        "coef": 0.086,
+        "se": 0.514,
+        "ci95": [
+          -0.922,
+          1.095
+        ],
+        "excludes_zero": false
+      },
+      "ctrl_stop_sign": {
+        "coef": -0.138,
+        "se": 0.413,
+        "ci95": [
+          -0.948,
+          0.671
+        ],
+        "excludes_zero": false
+      },
+      "road_not_city_street": {
+        "coef": 0.617,
+        "se": 0.474,
+        "ci95": [
+          -0.313,
+          1.547
+        ],
+        "excludes_zero": false
+      },
+      "weekend": {
+        "coef": 0.359,
+        "se": 0.366,
+        "ci95": [
+          -0.358,
+          1.075
+        ],
+        "excludes_zero": false
+      },
+      "nighttime": {
+        "coef": 1.198,
+        "se": 0.606,
+        "ci95": [
+          0.011,
+          2.386
+        ],
+        "excludes_zero": true
+      },
+      "coord_missing": {
+        "coef": -1.366,
+        "se": 0.614,
+        "ci95": [
+          -2.569,
+          -0.163
+        ],
+        "excludes_zero": true
+      },
+      "road_density_km_100m": {
+        "coef": -0.437,
+        "se": 0.357,
+        "ci95": [
+          -1.137,
+          0.262
+        ],
+        "excludes_zero": false
+      },
+      "poverty_share": {
+        "coef": -0.808,
+        "se": 0.649,
+        "ci95": [
+          -2.08,
+          0.465
+        ],
+        "excludes_zero": false
+      },
+      "urban_area_200k": {
+        "coef": -0.626,
+        "se": 0.277,
+        "ci95": [
+          -1.168,
+          -0.083
+        ],
+        "excludes_zero": true
+      },
+      "cf_rider_failed_to_yield": {
+        "coef": -0.446,
+        "se": 0.437,
+        "ci95": [
+          -1.303,
+          0.41
+        ],
+        "excludes_zero": false
+      },
+      "cf_driver_inattention": {
+        "coef": -0.398,
+        "se": 0.371,
+        "ci95": [
+          -1.126,
+          0.33
+        ],
+        "excludes_zero": false
+      },
+      "sidewalk_transition": {
+        "coef": 0.207,
+        "se": 0.336,
+        "ci95": [
+          -0.451,
+          0.866
+        ],
+        "excludes_zero": false
+      },
+      "failure_to_yield": {
+        "coef": -0.144,
+        "se": 0.311,
+        "ci95": [
+          -0.753,
+          0.465
+        ],
+        "excludes_zero": false
+      },
+      "signal_violation": {
+        "coef": 0.169,
+        "se": 0.398,
+        "ci95": [
+          -0.612,
+          0.95
+        ],
+        "excludes_zero": false
+      },
+      "vehicle_turning_across": {
+        "coef": 0.29,
+        "se": 0.379,
+        "ci95": [
+          -0.453,
+          1.034
+        ],
+        "excludes_zero": false
+      },
+      "lane_positioning": {
+        "coef": -0.023,
+        "se": 0.398,
+        "ci95": [
+          -0.803,
+          0.758
+        ],
+        "excludes_zero": false
+      }
+    },
+    "coefficients_model_based": {
+      "speed_35to40": {
+        "coef": -0.338,
+        "se": 0.344,
+        "ci95": [
+          -1.012,
+          0.336
+        ],
+        "excludes_zero": false
+      },
+      "speed_ge45": {
+        "coef": 0.353,
+        "se": 0.507,
+        "ci95": [
+          -0.641,
+          1.347
+        ],
+        "excludes_zero": false
+      },
+      "speed_unknown": {
+        "coef": -0.092,
+        "se": 0.531,
+        "ci95": [
+          -1.132,
+          0.948
+        ],
+        "excludes_zero": false
+      },
+      "light_dark_or_unknown": {
+        "coef": -0.169,
+        "se": 0.386,
+        "ci95": [
+          -0.926,
+          0.587
+        ],
+        "excludes_zero": false
+      },
+      "eth_black": {
+        "coef": -0.081,
+        "se": 0.358,
+        "ci95": [
+          -0.783,
+          0.622
+        ],
+        "excludes_zero": false
+      },
+      "eth_hispanic": {
+        "coef": -0.121,
+        "se": 0.355,
+        "ci95": [
+          -0.816,
+          0.574
+        ],
+        "excludes_zero": false
+      },
+      "eth_other_or_unknown": {
+        "coef": 0.345,
+        "se": 0.529,
+        "ci95": [
+          -0.693,
+          1.383
+        ],
+        "excludes_zero": false
+      },
+      "gender_female": {
+        "coef": 0.202,
+        "se": 0.326,
+        "ci95": [
+          -0.436,
+          0.841
+        ],
+        "excludes_zero": false
+      },
+      "gender_unknown": {
+        "coef": -0.097,
+        "se": 1.067,
+        "ci95": [
+          -2.187,
+          1.994
+        ],
+        "excludes_zero": false
+      },
+      "age_45plus": {
+        "coef": 0.055,
+        "se": 0.45,
+        "ci95": [
+          -0.827,
+          0.937
+        ],
+        "excludes_zero": false
+      },
+      "age_under25": {
+        "coef": 0.152,
+        "se": 0.322,
+        "ci95": [
+          -0.479,
+          0.783
+        ],
+        "excludes_zero": false
+      },
+      "age_unknown": {
+        "coef": -0.071,
+        "se": 0.944,
+        "ci95": [
+          -1.92,
+          1.778
+        ],
+        "excludes_zero": false
+      },
+      "veh_other_unknown": {
+        "coef": 0.112,
+        "se": 0.527,
+        "ci95": [
+          -0.921,
+          1.145
+        ],
+        "excludes_zero": false
+      },
+      "veh_pickup_truck_van": {
+        "coef": 0.66,
+        "se": 0.387,
+        "ci95": [
+          -0.098,
+          1.418
+        ],
+        "excludes_zero": false
+      },
+      "veh_suv": {
+        "coef": 0.488,
+        "se": 0.343,
+        "ci95": [
+          -0.184,
+          1.16
+        ],
+        "excludes_zero": false
+      },
+      "coll_other": {
+        "coef": 0.199,
+        "se": 0.437,
+        "ci95": [
+          -0.658,
+          1.057
+        ],
+        "excludes_zero": false
+      },
+      "coll_single_mv_straight": {
+        "coef": 0.178,
+        "se": 0.38,
+        "ci95": [
+          -0.567,
+          0.924
+        ],
+        "excludes_zero": false
+      },
+      "coll_turning": {
+        "coef": 0.07,
+        "se": 0.45,
+        "ci95": [
+          -0.813,
+          0.952
+        ],
+        "excludes_zero": false
+      },
+      "intx_intersection_or_driveway": {
+        "coef": -0.527,
+        "se": 0.392,
+        "ci95": [
+          -1.296,
+          0.241
+        ],
+        "excludes_zero": false
+      },
+      "ctrl_signal": {
+        "coef": 0.086,
+        "se": 0.415,
+        "ci95": [
+          -0.728,
+          0.899
+        ],
+        "excludes_zero": false
+      },
+      "ctrl_stop_sign": {
+        "coef": -0.139,
+        "se": 0.395,
+        "ci95": [
+          -0.913,
+          0.636
+        ],
+        "excludes_zero": false
+      },
+      "road_not_city_street": {
+        "coef": 0.617,
+        "se": 0.431,
+        "ci95": [
+          -0.227,
+          1.461
+        ],
+        "excludes_zero": false
+      },
+      "weekend": {
+        "coef": 0.359,
+        "se": 0.348,
+        "ci95": [
+          -0.324,
+          1.042
+        ],
+        "excludes_zero": false
+      },
+      "nighttime": {
+        "coef": 1.198,
+        "se": 0.53,
+        "ci95": [
+          0.16,
+          2.237
+        ],
+        "excludes_zero": true
+      },
+      "coord_missing": {
+        "coef": -1.366,
+        "se": 0.593,
+        "ci95": [
+          -2.527,
+          -0.204
+        ],
+        "excludes_zero": true
+      },
+      "road_density_km_100m": {
+        "coef": -0.437,
+        "se": 0.382,
+        "ci95": [
+          -1.187,
+          0.313
+        ],
+        "excludes_zero": false
+      },
+      "poverty_share": {
+        "coef": -0.807,
+        "se": 0.705,
+        "ci95": [
+          -2.188,
+          0.574
+        ],
+        "excludes_zero": false
+      },
+      "urban_area_200k": {
+        "coef": -0.626,
+        "se": 0.369,
+        "ci95": [
+          -1.35,
+          0.098
+        ],
+        "excludes_zero": false
+      },
+      "cf_rider_failed_to_yield": {
+        "coef": -0.446,
+        "se": 0.402,
+        "ci95": [
+          -1.234,
+          0.342
+        ],
+        "excludes_zero": false
+      },
+      "cf_driver_inattention": {
+        "coef": -0.398,
+        "se": 0.357,
+        "ci95": [
+          -1.098,
+          0.303
+        ],
+        "excludes_zero": false
+      },
+      "sidewalk_transition": {
+        "coef": 0.207,
+        "se": 0.35,
+        "ci95": [
+          -0.479,
+          0.894
+        ],
+        "excludes_zero": false
+      },
+      "failure_to_yield": {
+        "coef": -0.144,
+        "se": 0.312,
+        "ci95": [
+          -0.756,
+          0.468
+        ],
+        "excludes_zero": false
+      },
+      "signal_violation": {
+        "coef": 0.169,
+        "se": 0.42,
+        "ci95": [
+          -0.654,
+          0.992
+        ],
+        "excludes_zero": false
+      },
+      "vehicle_turning_across": {
+        "coef": 0.29,
+        "se": 0.391,
+        "ci95": [
+          -0.476,
+          1.056
+        ],
+        "excludes_zero": false
+      },
+      "lane_positioning": {
+        "coef": -0.023,
+        "se": 0.368,
+        "ci95": [
+          -0.744,
+          0.698
+        ],
+        "excludes_zero": false
+      }
+    },
+    "ames": {
+      "speed_35to40": {
+        "O": {
+          "ame": 0.02853,
+          "ci95": [
+            -0.02218,
+            0.09012
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.01395,
+          "ci95": [
+            -0.05369,
+            0.01562
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.01458,
+          "ci95": [
+            -0.04601,
+            0.01006
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "speed_ge45": {
+        "O": {
+          "ame": -0.02941,
+          "ci95": [
+            -0.08319,
+            0.03809
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.01006,
+          "ci95": [
+            -0.02215,
+            0.02565
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.01934,
+          "ci95": [
+            -0.02374,
+            0.08251
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "speed_unknown": {
+        "O": {
+          "ame": 0.00153,
+          "ci95": [
+            -0.05209,
+            0.07843
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00221,
+          "ci95": [
+            -0.04882,
+            0.02188
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00374,
+          "ci95": [
+            -0.03504,
+            0.04028
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "light_dark_or_unknown": {
+        "O": {
+          "ame": 0.01284,
+          "ci95": [
+            -0.04799,
+            0.0922
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00633,
+          "ci95": [
+            -0.05332,
+            0.01769
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00651,
+          "ci95": [
+            -0.04474,
+            0.03364
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "eth_black": {
+        "O": {
+          "ame": 0.00685,
+          "ci95": [
+            -0.0374,
+            0.061
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00282,
+          "ci95": [
+            -0.03325,
+            0.01686
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00403,
+          "ci95": [
+            -0.03015,
+            0.02623
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "eth_hispanic": {
+        "O": {
+          "ame": 0.01116,
+          "ci95": [
+            -0.03919,
+            0.07728
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.0055,
+          "ci95": [
+            -0.04576,
+            0.01533
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00565,
+          "ci95": [
+            -0.03251,
+            0.02546
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "eth_other_or_unknown": {
+        "O": {
+          "ame": -0.02607,
+          "ci95": [
+            -0.08601,
+            0.06682
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00888,
+          "ci95": [
+            -0.04724,
+            0.02251
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.01718,
+          "ci95": [
+            -0.02826,
+            0.1023
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "gender_female": {
+        "O": {
+          "ame": -0.01446,
+          "ci95": [
+            -0.0608,
+            0.04375
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00595,
+          "ci95": [
+            -0.02445,
+            0.02079
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00851,
+          "ci95": [
+            -0.01933,
+            0.0529
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "gender_unknown": {
+        "O": {
+          "ame": 0.01053,
+          "ci95": [
+            -0.11392,
+            0.45654
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.0053,
+          "ci95": [
+            -0.38486,
+            0.01611
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00523,
+          "ci95": [
+            -0.07332,
+            0.28103
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "age_45plus": {
+        "O": {
+          "ame": 0.00119,
+          "ci95": [
+            -0.05675,
+            0.08565
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00079,
+          "ci95": [
+            -0.05617,
+            0.01798
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.0004,
+          "ci95": [
+            -0.03195,
+            0.05092
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "age_under25": {
+        "O": {
+          "ame": -0.01089,
+          "ci95": [
+            -0.06094,
+            0.03577
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00488,
+          "ci95": [
+            -0.01561,
+            0.03181
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00601,
+          "ci95": [
+            -0.02268,
+            0.03547
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "age_unknown": {
+        "O": {
+          "ame": 0.0123,
+          "ci95": [
+            -0.10858,
+            0.37529
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00666,
+          "ci95": [
+            -0.31803,
+            0.01619
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00564,
+          "ci95": [
+            -0.0671,
+            0.23804
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "veh_other_unknown": {
+        "O": {
+          "ame": 0.00867,
+          "ci95": [
+            -0.06803,
+            0.12439
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00216,
+          "ci95": [
+            -0.08595,
+            0.02307
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00651,
+          "ci95": [
+            -0.0421,
+            0.06613
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "veh_pickup_truck_van": {
+        "O": {
+          "ame": -0.03558,
+          "ci95": [
+            -0.08498,
+            0.0172
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.01412,
+          "ci95": [
+            -0.01343,
+            0.03168
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.02147,
+          "ci95": [
+            -0.01083,
+            0.0851
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "veh_suv": {
+        "O": {
+          "ame": -0.0264,
+          "ci95": [
+            -0.07614,
+            0.02781
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.01365,
+          "ci95": [
+            -0.01071,
+            0.03491
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.01276,
+          "ci95": [
+            -0.01791,
+            0.05348
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "coll_other": {
+        "O": {
+          "ame": -0.01003,
+          "ci95": [
+            -0.05823,
+            0.0469
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00463,
+          "ci95": [
+            -0.02265,
+            0.02397
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.0054,
+          "ci95": [
+            -0.02352,
+            0.04244
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "coll_single_mv_straight": {
+        "O": {
+          "ame": -0.00914,
+          "ci95": [
+            -0.05709,
+            0.05142
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00487,
+          "ci95": [
+            -0.02708,
+            0.02471
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00427,
+          "ci95": [
+            -0.02408,
+            0.04136
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "coll_turning": {
+        "O": {
+          "ame": 0.00033,
+          "ci95": [
+            -0.06,
+            0.07047
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00065,
+          "ci95": [
+            -0.03841,
+            0.0287
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00099,
+          "ci95": [
+            -0.03174,
+            0.0421
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "intx_intersection_or_driveway": {
+        "O": {
+          "ame": 0.03539,
+          "ci95": [
+            -0.02544,
+            0.09298
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.01254,
+          "ci95": [
+            -0.02678,
+            0.01867
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.02285,
+          "ci95": [
+            -0.0928,
+            0.01194
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "ctrl_signal": {
+        "O": {
+          "ame": -0.00828,
+          "ci95": [
+            -0.07086,
+            0.08265
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00366,
+          "ci95": [
+            -0.05162,
+            0.01938
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00461,
+          "ci95": [
+            -0.03325,
+            0.07301
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "ctrl_stop_sign": {
+        "O": {
+          "ame": 0.01181,
+          "ci95": [
+            -0.0468,
+            0.08499
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.00597,
+          "ci95": [
+            -0.05319,
+            0.01724
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00584,
+          "ci95": [
+            -0.03751,
+            0.03217
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "road_not_city_street": {
+        "O": {
+          "ame": -0.04261,
+          "ci95": [
+            -0.10853,
+            0.03053
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.01672,
+          "ci95": [
+            -0.01372,
+            0.04059
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.02589,
+          "ci95": [
+            -0.01668,
+            0.08968
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "weekend": {
+        "O": {
+          "ame": -0.02429,
+          "ci95": [
+            -0.07459,
+            0.03862
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00946,
+          "ci95": [
+            -0.0184,
+            0.0251
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.01483,
+          "ci95": [
+            -0.01848,
+            0.06221
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "nighttime": {
+        "O": {
+          "ame": -0.06295,
+          "ci95": [
+            -0.11529,
+            -0.0069
+          ],
+          "excludes_zero": true
+        },
+        "BC": {
+          "ame": -0.00173,
+          "ci95": [
+            -0.08448,
+            0.02345
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.06467,
+          "ci95": [
+            0.00459,
+            0.18634
+          ],
+          "excludes_zero": true
+        },
+        "type": "discrete change"
+      },
+      "coord_missing": {
+        "O": {
+          "ame": 0.14232,
+          "ci95": [
+            0.01409,
+            0.32903
+          ],
+          "excludes_zero": true
+        },
+        "BC": {
+          "ame": -0.10622,
+          "ci95": [
+            -0.25229,
+            -0.00706
+          ],
+          "excludes_zero": true
+        },
+        "KA": {
+          "ame": -0.03609,
+          "ci95": [
+            -0.08122,
+            -0.00685
+          ],
+          "excludes_zero": true
+        },
+        "type": "discrete change"
+      },
+      "road_density_km_100m": {
+        "O": {
+          "ame": 0.03209,
+          "ci95": [
+            -0.0129,
+            0.09836
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.01509,
+          "ci95": [
+            -0.0494,
+            0.00492
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.017,
+          "ci95": [
+            -0.05719,
+            0.00906
+          ],
+          "excludes_zero": false
+        },
+        "type": "derivative"
+      },
+      "poverty_share": {
+        "O": {
+          "ame": 0.05926,
+          "ci95": [
+            -0.03681,
+            0.16918
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.02787,
+          "ci95": [
+            -0.07848,
+            0.01696
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.03139,
+          "ci95": [
+            -0.11305,
+            0.01825
+          ],
+          "excludes_zero": false
+        },
+        "type": "derivative"
+      },
+      "urban_area_200k": {
+        "O": {
+          "ame": 0.03964,
+          "ci95": [
+            0.00734,
+            0.07936
+          ],
+          "excludes_zero": true
+        },
+        "BC": {
+          "ame": -0.01217,
+          "ci95": [
+            -0.02997,
+            0.00542
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.02748,
+          "ci95": [
+            -0.06641,
+            -0.00484
+          ],
+          "excludes_zero": true
+        },
+        "type": "discrete change"
+      },
+      "cf_rider_failed_to_yield": {
+        "O": {
+          "ame": 0.0369,
+          "ci95": [
+            -0.03254,
+            0.15333
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.02168,
+          "ci95": [
+            -0.10897,
+            0.00926
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.01521,
+          "ci95": [
+            -0.0448,
+            0.0236
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "cf_driver_inattention": {
+        "O": {
+          "ame": 0.03202,
+          "ci95": [
+            -0.0257,
+            0.11362
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.0183,
+          "ci95": [
+            -0.07409,
+            0.00866
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.01372,
+          "ci95": [
+            -0.04285,
+            0.01769
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "sidewalk_transition": {
+        "O": {
+          "ame": -0.01459,
+          "ci95": [
+            -0.06325,
+            0.04101
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00607,
+          "ci95": [
+            -0.02289,
+            0.01981
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00852,
+          "ci95": [
+            -0.02029,
+            0.05783
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "failure_to_yield": {
+        "O": {
+          "ame": 0.01079,
+          "ci95": [
+            -0.03811,
+            0.06457
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.0053,
+          "ci95": [
+            -0.0342,
+            0.01442
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00548,
+          "ci95": [
+            -0.03291,
+            0.02396
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "signal_violation": {
+        "O": {
+          "ame": -0.01189,
+          "ci95": [
+            -0.06611,
+            0.0512
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.005,
+          "ci95": [
+            -0.02673,
+            0.01935
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.00688,
+          "ci95": [
+            -0.02387,
+            0.05497
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "vehicle_turning_across": {
+        "O": {
+          "ame": -0.02053,
+          "ci95": [
+            -0.08058,
+            0.0354
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00871,
+          "ci95": [
+            -0.01835,
+            0.02903
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.01182,
+          "ci95": [
+            -0.0182,
+            0.06075
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "lane_positioning": {
+        "O": {
+          "ame": 0.00167,
+          "ci95": [
+            -0.05352,
+            0.07376
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": -0.0008,
+          "ci95": [
+            -0.04714,
+            0.01546
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": -0.00088,
+          "ci95": [
+            -0.03126,
+            0.04409
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      }
+    },
+    "excluding_zero": {
+      "coefficients": [
+        "coord_missing",
+        "nighttime",
+        "urban_area_200k"
+      ],
+      "ame": {
+        "O": [
+          "coord_missing",
+          "nighttime",
+          "urban_area_200k"
+        ],
+        "BC": [
+          "coord_missing"
+        ],
+        "KA": [
+          "coord_missing",
+          "nighttime",
+          "urban_area_200k"
+        ]
+      }
+    },
+    "modal_counts": {
+      "O": 44,
+      "BC": 456,
+      "KA": 22
+    },
+    "events_per_parameter": {
+      "n_covariates": 35,
+      "n_parameters": 37,
+      "class_counts": {
+        "O": 44,
+        "BC": 456,
+        "KA": 22
+      },
+      "smallest_class": 22,
+      "events_per_parameter_smallest_class": 0.595
+    },
+    "separation": {
+      "max_abs_coefficient": 1.3658,
+      "max_standard_error": 1.0666,
+      "any_coefficient_above_10": false,
+      "any_standard_error_above_10": false,
+      "max_abs_t": 2.304,
+      "suggests_separation": false
+    },
+    "converged": true,
+    "loglik": -220.913
+  },
+  "M2_expected_likelihood_audit_sensitivity": {
+    "weak_prior_weights": {
+      "n_converged": 100,
+      "coefficients": {
+        "speed_35to40": {
+          "coef": -0.248,
+          "se": 0.225,
+          "ci95": [
+            -0.69,
+            0.194
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.045,
+          "between_draw_share_of_variance": 0.041,
+          "se_within_only": 0.22
+        },
+        "speed_ge45": {
+          "coef": -0.036,
+          "se": 0.358,
+          "ci95": [
+            -0.739,
+            0.667
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.163,
+          "between_draw_share_of_variance": 0.158,
+          "se_within_only": 0.328
+        },
+        "speed_unknown": {
+          "coef": -0.209,
+          "se": 0.264,
+          "ci95": [
+            -0.728,
+            0.309
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.074,
+          "between_draw_share_of_variance": 0.07,
+          "se_within_only": 0.255
+        },
+        "light_dark_or_unknown": {
+          "coef": -0.049,
+          "se": 0.238,
+          "ci95": [
+            -0.516,
+            0.418
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.034,
+          "between_draw_share_of_variance": 0.03,
+          "se_within_only": 0.234
+        },
+        "eth_black": {
+          "coef": -0.143,
+          "se": 0.207,
+          "ci95": [
+            -0.551,
+            0.265
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.081,
+          "between_draw_share_of_variance": 0.077,
+          "se_within_only": 0.199
+        },
+        "eth_hispanic": {
+          "coef": -0.125,
+          "se": 0.227,
+          "ci95": [
+            -0.571,
+            0.321
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.079,
+          "between_draw_share_of_variance": 0.075,
+          "se_within_only": 0.218
+        },
+        "eth_other_or_unknown": {
+          "coef": 0.127,
+          "se": 0.37,
+          "ci95": [
+            -0.6,
+            0.854
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.128,
+          "between_draw_share_of_variance": 0.123,
+          "se_within_only": 0.346
+        },
+        "gender_female": {
+          "coef": 0.216,
+          "se": 0.209,
+          "ci95": [
+            -0.195,
+            0.626
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.043,
+          "between_draw_share_of_variance": 0.038,
+          "se_within_only": 0.205
+        },
+        "gender_unknown": {
+          "coef": -0.18,
+          "se": 0.953,
+          "ci95": [
+            -2.052,
+            1.693
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.045,
+          "between_draw_share_of_variance": 0.041,
+          "se_within_only": 0.933
+        },
+        "age_45plus": {
+          "coef": -0.068,
+          "se": 0.306,
+          "ci95": [
+            -0.669,
+            0.534
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.057,
+          "between_draw_share_of_variance": 0.053,
+          "se_within_only": 0.298
+        },
+        "age_under25": {
+          "coef": -0.013,
+          "se": 0.211,
+          "ci95": [
+            -0.428,
+            0.402
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.129,
+          "between_draw_share_of_variance": 0.124,
+          "se_within_only": 0.197
+        },
+        "age_unknown": {
+          "coef": -0.545,
+          "se": 0.855,
+          "ci95": [
+            -2.225,
+            1.135
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.088,
+          "between_draw_share_of_variance": 0.084,
+          "se_within_only": 0.818
+        },
+        "veh_other_unknown": {
+          "coef": 0.02,
+          "se": 0.375,
+          "ci95": [
+            -0.717,
+            0.757
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.054,
+          "between_draw_share_of_variance": 0.049,
+          "se_within_only": 0.366
+        },
+        "veh_pickup_truck_van": {
+          "coef": 0.347,
+          "se": 0.282,
+          "ci95": [
+            -0.208,
+            0.902
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.154,
+          "between_draw_share_of_variance": 0.149,
+          "se_within_only": 0.26
+        },
+        "veh_suv": {
+          "coef": 0.214,
+          "se": 0.214,
+          "ci95": [
+            -0.207,
+            0.634
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.111,
+          "between_draw_share_of_variance": 0.107,
+          "se_within_only": 0.202
+        },
+        "coll_other": {
+          "coef": 0.054,
+          "se": 0.246,
+          "ci95": [
+            -0.429,
+            0.536
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.048,
+          "between_draw_share_of_variance": 0.044,
+          "se_within_only": 0.24
+        },
+        "coll_single_mv_straight": {
+          "coef": -0.015,
+          "se": 0.223,
+          "ci95": [
+            -0.454,
+            0.424
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.15,
+          "between_draw_share_of_variance": 0.145,
+          "se_within_only": 0.206
+        },
+        "coll_turning": {
+          "coef": 0.019,
+          "se": 0.268,
+          "ci95": [
+            -0.507,
+            0.545
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.045,
+          "between_draw_share_of_variance": 0.041,
+          "se_within_only": 0.262
+        },
+        "intx_intersection_or_driveway": {
+          "coef": -0.407,
+          "se": 0.275,
+          "ci95": [
+            -0.947,
+            0.133
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.088,
+          "between_draw_share_of_variance": 0.084,
+          "se_within_only": 0.263
+        },
+        "ctrl_signal": {
+          "coef": 0.241,
+          "se": 0.323,
+          "ci95": [
+            -0.394,
+            0.877
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.105,
+          "between_draw_share_of_variance": 0.1,
+          "se_within_only": 0.307
+        },
+        "ctrl_stop_sign": {
+          "coef": -0.014,
+          "se": 0.243,
+          "ci95": [
+            -0.492,
+            0.465
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.039,
+          "between_draw_share_of_variance": 0.035,
+          "se_within_only": 0.239
+        },
+        "road_not_city_street": {
+          "coef": 0.316,
+          "se": 0.285,
+          "ci95": [
+            -0.244,
+            0.877
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.151,
+          "between_draw_share_of_variance": 0.147,
+          "se_within_only": 0.263
+        },
+        "weekend": {
+          "coef": 0.119,
+          "se": 0.222,
+          "ci95": [
+            -0.316,
+            0.555
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.07,
+          "between_draw_share_of_variance": 0.066,
+          "se_within_only": 0.214
+        },
+        "nighttime": {
+          "coef": 0.516,
+          "se": 0.401,
+          "ci95": [
+            -0.273,
+            1.304
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.171,
+          "between_draw_share_of_variance": 0.166,
+          "se_within_only": 0.366
+        },
+        "coord_missing": {
+          "coef": -0.787,
+          "se": 0.4,
+          "ci95": [
+            -1.573,
+            -0.0
+          ],
+          "excludes_zero": true,
+          "fraction_missing_information": 0.247,
+          "between_draw_share_of_variance": 0.242,
+          "se_within_only": 0.348
+        },
+        "road_density_km_100m": {
+          "coef": -0.094,
+          "se": 0.243,
+          "ci95": [
+            -0.571,
+            0.383
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.164,
+          "between_draw_share_of_variance": 0.159,
+          "se_within_only": 0.222
+        },
+        "poverty_share": {
+          "coef": -0.797,
+          "se": 0.403,
+          "ci95": [
+            -1.589,
+            -0.006
+          ],
+          "excludes_zero": true,
+          "fraction_missing_information": 0.062,
+          "between_draw_share_of_variance": 0.058,
+          "se_within_only": 0.391
+        },
+        "urban_area_200k": {
+          "coef": -0.37,
+          "se": 0.178,
+          "ci95": [
+            -0.72,
+            -0.02
+          ],
+          "excludes_zero": true,
+          "fraction_missing_information": 0.105,
+          "between_draw_share_of_variance": 0.101,
+          "se_within_only": 0.169
+        },
+        "cf_rider_failed_to_yield": {
+          "coef": -0.189,
+          "se": 0.275,
+          "ci95": [
+            -0.731,
+            0.352
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.11,
+          "between_draw_share_of_variance": 0.106,
+          "se_within_only": 0.261
+        },
+        "cf_driver_inattention": {
+          "coef": -0.113,
+          "se": 0.233,
+          "ci95": [
+            -0.572,
+            0.345
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.106,
+          "between_draw_share_of_variance": 0.102,
+          "se_within_only": 0.221
+        },
+        "sidewalk_transition": {
+          "coef": 0.148,
+          "se": 0.199,
+          "ci95": [
+            -0.243,
+            0.539
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.056,
+          "between_draw_share_of_variance": 0.052,
+          "se_within_only": 0.194
+        },
+        "failure_to_yield": {
+          "coef": -0.042,
+          "se": 0.19,
+          "ci95": [
+            -0.416,
+            0.332
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.052,
+          "between_draw_share_of_variance": 0.048,
+          "se_within_only": 0.186
+        },
+        "signal_violation": {
+          "coef": -0.016,
+          "se": 0.246,
+          "ci95": [
+            -0.499,
+            0.467
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.048,
+          "between_draw_share_of_variance": 0.043,
+          "se_within_only": 0.24
+        },
+        "vehicle_turning_across": {
+          "coef": 0.149,
+          "se": 0.242,
+          "ci95": [
+            -0.326,
+            0.624
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.058,
+          "between_draw_share_of_variance": 0.054,
+          "se_within_only": 0.235
+        },
+        "lane_positioning": {
+          "coef": 0.091,
+          "se": 0.257,
+          "ci95": [
+            -0.415,
+            0.597
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.04,
+          "between_draw_share_of_variance": 0.036,
+          "se_within_only": 0.253
+        }
+      },
+      "excluding_zero": {
+        "coefficients": [
+          "coord_missing",
+          "poverty_share",
+          "urban_area_200k"
+        ]
+      },
+      "fmi_summary": {
+        "median": 0.079,
+        "max": 0.247,
+        "argmax": "coord_missing"
+      }
+    },
+    "estimated_dependence_weights": {
+      "n_converged": 100,
+      "coefficients": {
+        "speed_35to40": {
+          "coef": -0.236,
+          "se": 0.247,
+          "ci95": [
+            -0.721,
+            0.25
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.119,
+          "between_draw_share_of_variance": 0.114,
+          "se_within_only": 0.232
+        },
+        "speed_ge45": {
+          "coef": 0.025,
+          "se": 0.343,
+          "ci95": [
+            -0.65,
+            0.701
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.16,
+          "between_draw_share_of_variance": 0.156,
+          "se_within_only": 0.316
+        },
+        "speed_unknown": {
+          "coef": -0.337,
+          "se": 0.492,
+          "ci95": [
+            -1.308,
+            0.635
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.431,
+          "between_draw_share_of_variance": 0.425,
+          "se_within_only": 0.373
+        },
+        "light_dark_or_unknown": {
+          "coef": 0.073,
+          "se": 0.28,
+          "ci95": [
+            -0.478,
+            0.624
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.258,
+          "between_draw_share_of_variance": 0.253,
+          "se_within_only": 0.242
+        },
+        "eth_black": {
+          "coef": -0.199,
+          "se": 0.229,
+          "ci95": [
+            -0.65,
+            0.252
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.167,
+          "between_draw_share_of_variance": 0.163,
+          "se_within_only": 0.21
+        },
+        "eth_hispanic": {
+          "coef": -0.085,
+          "se": 0.24,
+          "ci95": [
+            -0.557,
+            0.386
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.157,
+          "between_draw_share_of_variance": 0.153,
+          "se_within_only": 0.221
+        },
+        "eth_other_or_unknown": {
+          "coef": 0.215,
+          "se": 0.37,
+          "ci95": [
+            -0.513,
+            0.942
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.212,
+          "between_draw_share_of_variance": 0.208,
+          "se_within_only": 0.329
+        },
+        "gender_female": {
+          "coef": 0.153,
+          "se": 0.213,
+          "ci95": [
+            -0.266,
+            0.573
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.116,
+          "between_draw_share_of_variance": 0.112,
+          "se_within_only": 0.201
+        },
+        "gender_unknown": {
+          "coef": -0.358,
+          "se": 0.88,
+          "ci95": [
+            -2.088,
+            1.373
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.124,
+          "between_draw_share_of_variance": 0.119,
+          "se_within_only": 0.826
+        },
+        "age_45plus": {
+          "coef": 0.076,
+          "se": 0.301,
+          "ci95": [
+            -0.517,
+            0.669
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.177,
+          "between_draw_share_of_variance": 0.173,
+          "se_within_only": 0.274
+        },
+        "age_under25": {
+          "coef": -0.137,
+          "se": 0.262,
+          "ci95": [
+            -0.655,
+            0.38
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.389,
+          "between_draw_share_of_variance": 0.383,
+          "se_within_only": 0.206
+        },
+        "age_unknown": {
+          "coef": -0.237,
+          "se": 0.719,
+          "ci95": [
+            -1.65,
+            1.176
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.092,
+          "between_draw_share_of_variance": 0.088,
+          "se_within_only": 0.687
+        },
+        "veh_other_unknown": {
+          "coef": -0.063,
+          "se": 0.402,
+          "ci95": [
+            -0.853,
+            0.727
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.226,
+          "between_draw_share_of_variance": 0.221,
+          "se_within_only": 0.355
+        },
+        "veh_pickup_truck_van": {
+          "coef": 0.415,
+          "se": 0.313,
+          "ci95": [
+            -0.202,
+            1.031
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.3,
+          "between_draw_share_of_variance": 0.294,
+          "se_within_only": 0.263
+        },
+        "veh_suv": {
+          "coef": 0.125,
+          "se": 0.227,
+          "ci95": [
+            -0.322,
+            0.573
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.18,
+          "between_draw_share_of_variance": 0.176,
+          "se_within_only": 0.206
+        },
+        "coll_other": {
+          "coef": -0.093,
+          "se": 0.303,
+          "ci95": [
+            -0.69,
+            0.505
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.287,
+          "between_draw_share_of_variance": 0.281,
+          "se_within_only": 0.257
+        },
+        "coll_single_mv_straight": {
+          "coef": -0.094,
+          "se": 0.252,
+          "ci95": [
+            -0.591,
+            0.403
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.226,
+          "between_draw_share_of_variance": 0.221,
+          "se_within_only": 0.223
+        },
+        "coll_turning": {
+          "coef": 0.003,
+          "se": 0.288,
+          "ci95": [
+            -0.564,
+            0.57
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.059,
+          "between_draw_share_of_variance": 0.054,
+          "se_within_only": 0.28
+        },
+        "intx_intersection_or_driveway": {
+          "coef": -0.545,
+          "se": 0.352,
+          "ci95": [
+            -1.239,
+            0.149
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.486,
+          "between_draw_share_of_variance": 0.48,
+          "se_within_only": 0.254
+        },
+        "ctrl_signal": {
+          "coef": 0.351,
+          "se": 0.353,
+          "ci95": [
+            -0.345,
+            1.047
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.389,
+          "between_draw_share_of_variance": 0.383,
+          "se_within_only": 0.277
+        },
+        "ctrl_stop_sign": {
+          "coef": 0.051,
+          "se": 0.297,
+          "ci95": [
+            -0.533,
+            0.635
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.196,
+          "between_draw_share_of_variance": 0.192,
+          "se_within_only": 0.267
+        },
+        "road_not_city_street": {
+          "coef": 0.272,
+          "se": 0.265,
+          "ci95": [
+            -0.249,
+            0.793
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.095,
+          "between_draw_share_of_variance": 0.091,
+          "se_within_only": 0.253
+        },
+        "weekend": {
+          "coef": 0.044,
+          "se": 0.237,
+          "ci95": [
+            -0.423,
+            0.511
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.177,
+          "between_draw_share_of_variance": 0.172,
+          "se_within_only": 0.216
+        },
+        "nighttime": {
+          "coef": 0.586,
+          "se": 0.397,
+          "ci95": [
+            -0.195,
+            1.367
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.266,
+          "between_draw_share_of_variance": 0.261,
+          "se_within_only": 0.341
+        },
+        "coord_missing": {
+          "coef": -0.92,
+          "se": 0.551,
+          "ci95": [
+            -2.01,
+            0.17
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.573,
+          "between_draw_share_of_variance": 0.566,
+          "se_within_only": 0.363
+        },
+        "road_density_km_100m": {
+          "coef": -0.044,
+          "se": 0.256,
+          "ci95": [
+            -0.547,
+            0.46
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.149,
+          "between_draw_share_of_variance": 0.145,
+          "se_within_only": 0.237
+        },
+        "poverty_share": {
+          "coef": -1.129,
+          "se": 0.751,
+          "ci95": [
+            -2.62,
+            0.362
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.655,
+          "between_draw_share_of_variance": 0.649,
+          "se_within_only": 0.446
+        },
+        "urban_area_200k": {
+          "coef": -0.274,
+          "se": 0.215,
+          "ci95": [
+            -0.697,
+            0.148
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.215,
+          "between_draw_share_of_variance": 0.21,
+          "se_within_only": 0.191
+        },
+        "cf_rider_failed_to_yield": {
+          "coef": -0.059,
+          "se": 0.318,
+          "ci95": [
+            -0.686,
+            0.567
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.307,
+          "between_draw_share_of_variance": 0.302,
+          "se_within_only": 0.266
+        },
+        "cf_driver_inattention": {
+          "coef": -0.15,
+          "se": 0.251,
+          "ci95": [
+            -0.644,
+            0.344
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.131,
+          "between_draw_share_of_variance": 0.126,
+          "se_within_only": 0.235
+        },
+        "sidewalk_transition": {
+          "coef": 0.034,
+          "se": 0.243,
+          "ci95": [
+            -0.445,
+            0.513
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.123,
+          "between_draw_share_of_variance": 0.119,
+          "se_within_only": 0.229
+        },
+        "failure_to_yield": {
+          "coef": -0.099,
+          "se": 0.222,
+          "ci95": [
+            -0.536,
+            0.338
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.17,
+          "between_draw_share_of_variance": 0.165,
+          "se_within_only": 0.203
+        },
+        "signal_violation": {
+          "coef": -0.046,
+          "se": 0.265,
+          "ci95": [
+            -0.566,
+            0.474
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.116,
+          "between_draw_share_of_variance": 0.112,
+          "se_within_only": 0.249
+        },
+        "vehicle_turning_across": {
+          "coef": 0.11,
+          "se": 0.277,
+          "ci95": [
+            -0.434,
+            0.654
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.105,
+          "between_draw_share_of_variance": 0.101,
+          "se_within_only": 0.262
+        },
+        "lane_positioning": {
+          "coef": 0.237,
+          "se": 0.317,
+          "ci95": [
+            -0.387,
+            0.861
+          ],
+          "excludes_zero": false,
+          "fraction_missing_information": 0.383,
+          "between_draw_share_of_variance": 0.378,
+          "se_within_only": 0.25
+        }
+      },
+      "excluding_zero": {
+        "coefficients": []
+      },
+      "fmi_summary": {
+        "median": 0.18,
+        "max": 0.655,
+        "argmax": "poverty_share"
+      }
+    }
+  },
+  "comparison": {
+    "expected_likelihood": {
+      "vs_M1_sandwich": {
+        "coefficients_newly_excluding_zero": [
+          "coord_missing",
+          "urban_area_200k"
+        ],
+        "coefficients_no_longer_excluding_zero": [],
+        "sign_flips_among_excluding": [],
+        "ame": {
+          "O": {
+            "newly_excluding_zero": [
+              "coord_missing",
+              "urban_area_200k"
+            ],
+            "no_longer_excluding_zero": [
+              "poverty_share"
+            ]
+          },
+          "BC": {
+            "newly_excluding_zero": [
+              "coord_missing"
+            ],
+            "no_longer_excluding_zero": []
+          },
+          "KA": {
+            "newly_excluding_zero": [
+              "coord_missing",
+              "urban_area_200k"
+            ],
+            "no_longer_excluding_zero": [
+              "poverty_share"
+            ]
+          }
+        },
+        "ame_sign_flips_among_excluding": [],
+        "max_abs_coef_change": 1.193
+      },
+      "vs_M1_published": {
+        "coefficients_newly_excluding_zero": [
+          "coord_missing",
+          "urban_area_200k"
+        ],
+        "coefficients_no_longer_excluding_zero": [
+          "age_unknown"
+        ],
+        "sign_flips_among_excluding": [],
+        "ame": {
+          "O": {
+            "newly_excluding_zero": [
+              "coord_missing",
+              "urban_area_200k"
+            ],
+            "no_longer_excluding_zero": [
+              "age_unknown",
+              "poverty_share"
+            ]
+          },
+          "BC": {
+            "newly_excluding_zero": [
+              "coord_missing"
+            ],
+            "no_longer_excluding_zero": [
+              "age_under25"
+            ]
+          },
+          "KA": {
+            "newly_excluding_zero": [
+              "coord_missing",
+              "urban_area_200k"
+            ],
+            "no_longer_excluding_zero": [
+              "age_unknown",
+              "poverty_share"
+            ]
+          }
+        },
+        "ame_sign_flips_among_excluding": [],
+        "max_abs_coef_change": 1.194
+      }
+    },
+    "alt_i_coded_class_weight": {
+      "vs_M1_sandwich": {
+        "coefficients_newly_excluding_zero": [
+          "coord_missing"
+        ],
+        "coefficients_no_longer_excluding_zero": [],
+        "sign_flips_among_excluding": [],
+        "ame": {
+          "O": {
+            "newly_excluding_zero": [
+              "coord_missing"
+            ],
+            "no_longer_excluding_zero": []
+          },
+          "BC": {
+            "newly_excluding_zero": [
+              "coord_missing"
+            ],
+            "no_longer_excluding_zero": []
+          },
+          "KA": {
+            "newly_excluding_zero": [
+              "coord_missing"
+            ],
+            "no_longer_excluding_zero": []
+          }
+        },
+        "ame_sign_flips_among_excluding": [],
+        "max_abs_coef_change": 0.489
+      },
+      "vs_M1_published": {
+        "coefficients_newly_excluding_zero": [
+          "coord_missing"
+        ],
+        "coefficients_no_longer_excluding_zero": [
+          "age_unknown"
+        ],
+        "sign_flips_among_excluding": [],
+        "ame": {
+          "O": {
+            "newly_excluding_zero": [
+              "coord_missing"
+            ],
+            "no_longer_excluding_zero": [
+              "age_unknown"
+            ]
+          },
+          "BC": {
+            "newly_excluding_zero": [
+              "coord_missing"
+            ],
+            "no_longer_excluding_zero": [
+              "age_under25"
+            ]
+          },
+          "KA": {
+            "newly_excluding_zero": [
+              "coord_missing"
+            ],
+            "no_longer_excluding_zero": [
+              "age_unknown"
+            ]
+          }
+        },
+        "ame_sign_flips_among_excluding": [],
+        "max_abs_coef_change": 0.49
+      }
+    },
+    "alt_ii_modal_reassignment": {
+      "vs_M1_sandwich": {
+        "coefficients_newly_excluding_zero": [
+          "coord_missing",
+          "nighttime",
+          "urban_area_200k"
+        ],
+        "coefficients_no_longer_excluding_zero": [
+          "poverty_share"
+        ],
+        "sign_flips_among_excluding": [],
+        "ame": {
+          "O": {
+            "newly_excluding_zero": [
+              "coord_missing",
+              "nighttime",
+              "urban_area_200k"
+            ],
+            "no_longer_excluding_zero": [
+              "poverty_share"
+            ]
+          },
+          "BC": {
+            "newly_excluding_zero": [
+              "coord_missing"
+            ],
+            "no_longer_excluding_zero": []
+          },
+          "KA": {
+            "newly_excluding_zero": [
+              "coord_missing",
+              "nighttime",
+              "urban_area_200k"
+            ],
+            "no_longer_excluding_zero": [
+              "poverty_share"
+            ]
+          }
+        },
+        "ame_sign_flips_among_excluding": [],
+        "max_abs_coef_change": 1.527
+      },
+      "vs_M1_published": {
+        "coefficients_newly_excluding_zero": [
+          "coord_missing",
+          "nighttime",
+          "urban_area_200k"
+        ],
+        "coefficients_no_longer_excluding_zero": [
+          "age_unknown",
+          "poverty_share"
+        ],
+        "sign_flips_among_excluding": [],
+        "ame": {
+          "O": {
+            "newly_excluding_zero": [
+              "coord_missing",
+              "nighttime",
+              "urban_area_200k"
+            ],
+            "no_longer_excluding_zero": [
+              "age_unknown",
+              "poverty_share"
+            ]
+          },
+          "BC": {
+            "newly_excluding_zero": [
+              "coord_missing"
+            ],
+            "no_longer_excluding_zero": [
+              "age_under25"
+            ]
+          },
+          "KA": {
+            "newly_excluding_zero": [
+              "coord_missing",
+              "nighttime",
+              "urban_area_200k"
+            ],
+            "no_longer_excluding_zero": [
+              "age_unknown",
+              "poverty_share"
+            ]
+          }
+        },
+        "ame_sign_flips_among_excluding": [],
+        "max_abs_coef_change": 1.526
+      }
+    }
+  },
+  "run_seconds": {
+    "total": 21.2,
+    "one_ame_call": 1.8,
+    "el_100_fits": 3.1
+  }
+}

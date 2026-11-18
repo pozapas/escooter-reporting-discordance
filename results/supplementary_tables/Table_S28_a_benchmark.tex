@@ -1,0 +1,30 @@
+% Generated table; it uses the manuscript preamble's macros (\hltint, \hcell, \altrow, PanelBg).
+\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}X cccc}
+\caption{\hltint{HlM}{Out-of-sample performance of each benchmark configuration.}}\label{tab:a_benchmark}\\
+\toprule
+\headerrow
+\hcell{Model} & \hcell{Configuration} & \hcell{Balanced accuracy} & \hcell{Macro $F_1$} & \hcell{PR-AUC (KA)} & \hcell{Brier (KA)} \\
+\midrule
+\endfirsthead
+\multicolumn{6}{l}{\cellcolor{HeaderGold}\textcolor{HeaderText}{\textbf{\tablename\ \thetable{} \textit{(continued)}}}} \\
+\toprule
+\headerrow
+\hcell{Model} & \hcell{Configuration} & \hcell{Balanced accuracy} & \hcell{Macro $F_1$} & \hcell{PR-AUC (KA)} & \hcell{Brier (KA)} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{6}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\multicolumn{6}{p{0.97\linewidth}}{\footnotesize \textit{Note:} Cells give the mean over the 50 folds with the standard deviation in parentheses. PR-AUC and the Brier score refer to the KA class, and a lower Brier score is better. Leaf is the minimum number of riders in a leaf. Bold marks the best value in each column.}\\
+\endlastfoot
+Random forest 1 & 500 trees, no depth limit, leaf 5 & 0.383 (0.029) & 0.358 (0.042) & \textbf{0.303 (0.061)} & \textbf{0.1271 (0.0050)} \\
+\altrow
+Random forest 2 & 500 trees, depth 8, leaf 10 & 0.358 (0.022) & 0.319 (0.037) & 0.295 (0.062) & 0.1276 (0.0043) \\
+Gradient boosting 1 & 300 trees, rate 0.05, depth 3 & 0.387 (0.048) & 0.386 (0.061) & 0.248 (0.059) & 0.1527 (0.0141) \\
+\altrow
+Gradient boosting 2 & 300 trees, rate 0.05, depth 2 & \textbf{0.394 (0.039)} & \textbf{0.395 (0.051)} & 0.255 (0.049) & 0.1421 (0.0121) \\
+Ordered logit & M1 specification & 0.377 (0.030) & 0.354 (0.046) & 0.248 (0.062) & 0.1356 (0.0083) \\
+\midrule
+Always predicting BC & Baseline & 0.333 & -- & -- & -- \\
+\end{xltabular}

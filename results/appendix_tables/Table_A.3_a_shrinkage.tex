@@ -1,0 +1,76 @@
+% Generated table; it uses the manuscript preamble's macros (\hltint, \hcell, \altrow, PanelBg).
+\begin{table}[pos=htbp]
+\tableserif
+\centering
+\begin{threeparttable}
+\hllabelcolour{HlM}
+\caption{\hltint{HlM}{Shrinkage fits, random thresholds and the separation screen.}}
+\label{tab:a_shrinkage}
+\footnotesize
+\renewcommand{\arraystretch}{1.15}
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.9cm} *{4}{>{\centering\arraybackslash}X}}
+\toprule
+\headerrow
+\hcell{Quantity} & \hcell{M1} & \hcell{Firth} & \hcell{Bayes, raw} & \hcell{Bayes, 2 SD} \\
+\midrule
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{5}{l}{\textbf{Panel A. Average marginal effect on KA with 95\% interval}} \\
+\addlinespace[2pt]
+Poverty share & \textbf{$-$0.212\newline [$-$0.345, $-$0.091]} & \textbf{$-$0.217\newline [$-$0.355, $-$0.094]} & \textbf{$-$0.162\newline [$-$0.277, $-$0.053]} & \textbf{$-$0.199\newline [$-$0.317, $-$0.083]} \\
+\altrow
+Coordinates absent & $-$0.080\newline [$-$0.147, 0.014] & $-$0.083\newline [$-$0.153, 0.006] & $-$0.059\newline [$-$0.122, 0.025] & $-$0.062\newline [$-$0.127, 0.026] \\
+Rider age not recorded & \textbf{$-$0.119\newline [$-$0.178, $-$0.024]} & \textbf{$-$0.123\newline [$-$0.181, $-$0.032]} & \textbf{$-$0.104\newline [$-$0.156, $-$0.030]} & \textbf{$-$0.105\newline [$-$0.155, $-$0.033]} \\
+\altrow
+Cue, sidewalk transition & 0.013\newline [$-$0.047, 0.084] & 0.013\newline [$-$0.047, 0.080] & 0.015\newline [$-$0.038, 0.076] & 0.013\newline [$-$0.038, 0.073] \\
+Cue, failure to yield & $-$0.001\newline [$-$0.056, 0.055] & $-$0.001\newline [$-$0.057, 0.056] & 0.001\newline [$-$0.050, 0.053] & $-$0.001\newline [$-$0.052, 0.056] \\
+\altrow
+Cue, signal violation & 0.001\newline [$-$0.062, 0.089] & 0.001\newline [$-$0.069, 0.083] & 0.002\newline [$-$0.060, 0.075] & 0.004\newline [$-$0.064, 0.084] \\
+Cue, turning across & $-$0.007\newline [$-$0.069, 0.066] & $-$0.007\newline [$-$0.069, 0.065] & $-$0.007\newline [$-$0.065, 0.060] & $-$0.006\newline [$-$0.068, 0.061] \\
+\altrow
+Cue, lane positioning & 0.029\newline [$-$0.038, 0.105] & 0.030\newline [$-$0.036, 0.103] & 0.031\newline [$-$0.032, 0.103] & 0.032\newline [$-$0.031, 0.110] \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{5}{l}{\textbf{Panel B. Fit and diagnostics}} \\
+\addlinespace[2pt]
+Log-likelihood & $-$393.93 & $-$394.21 & $-$394.78 & $-$394.54 \\
+\altrow
+Largest absolute slope & 1.692 & 1.664 & 1.379 & 1.622 \\
+Mean absolute slope, ratio to M1 & -- & 0.975 & -- & -- \\
+\altrow
+Converged or healthy & Yes & Yes & Yes & Yes \\
+Largest $\hat R$ & -- & -- & 1.006 & 1.004 \\
+\altrow
+Smallest bulk ESS & -- & -- & 1111 & 962 \\
+Divergent transitions & -- & -- & 0 & 0 \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{5}{l}{\textbf{Panel C. Random thresholds}} \\
+\addlinespace[2pt]
+\midrule
+\headerrow
+\hcell{Variant} & \hcell{SD (SE)} & \hcell{$\bar\chi^2$ $p$} & \hcell{$\Delta$BIC} & \hcell{Converged} \\
+\midrule
+Gap between thresholds & 0.003 (0.177) & 0.494 & 6.3 & Yes \\
+\altrow
+Both thresholds and the gap & \multicolumn{3}{c}{Did not converge} & No \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{5}{l}{\textbf{Panel D. Separation screen}} \\
+\addlinespace[2pt]
+\midrule
+\headerrow
+\hcell{Rung} & \hcell{Covariates} & \hcell{$|\hat\beta|_{\max}$} & \hcell{SE$_{\max}$} & \hcell{Separation} \\
+\midrule
+M0 & 28 & 1.694 & 0.785 & None \\
+\altrow
+M0c & 30 & 1.686 & 0.787 & None \\
+M1 & 35 & 1.692 & 0.790 & None \\
+\bottomrule
+\end{tabularx}
+\begin{tablenotes}[flushleft]\footnotesize
+\item \textit{Note:} Bold marks a KA effect whose 95\% interval excludes zero. The Bayesian intervals are posterior percentiles and the point value is the posterior mean of the effect. In Panel~C the SD is that of the random term, $p$ uses the chi-bar-squared reference, and $\Delta$BIC is the change against M1. The variant with random terms on both thresholds and the gap did not converge, as its Hessian is not positive definite where the optimizer stopped. Its estimates are therefore not reported. The ratio to M1 divides the mean absolute slope of the Firth fit by that of M1, so a value below one means the penalty shrinks the slopes on average. ESS is the effective sample size of the posterior draws. The Firth log-likelihood is evaluated without its penalty, and the Bayesian one at the posterior mean. Separation is flagged when a coefficient or standard error exceeds 10 or the linear program finds a separating direction.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

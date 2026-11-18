@@ -1,0 +1,2114 @@
+{
+  "generated": "2026-10-05T19:23:58+00:00",
+  "script": "src/alt_model_compare.py",
+  "inputs": [
+    "data/logs/extract_reference.jsonl",
+    "data/logs/extract_alt_qwen.jsonl",
+    "data/logs/extract_masked_rerun.jsonl",
+    "data/gold_labels.csv",
+    "data/validation_ids.csv",
+    "data/validation_metrics.json"
+  ],
+  "settings": {
+    "pass": "mechanism (ten pre-crash cues)",
+    "prompt_version": "v1.3-2026-09-14",
+    "masking": "injury-outcome masking on (masking.py), as in the reference run",
+    "temperature": 0.0,
+    "seed": 42,
+    "one_narrative_per_call": true,
+    "provider_fallbacks": "disabled (provider.order pinned, allow_fallbacks false)",
+    "alternative_model_requested": "qwen/qwen-2.5-72b-instruct",
+    "alternative_provider_pinned": "DeepInfra",
+    "response_format": "json_schema, strict, same schema as the reference run",
+    "bootstrap_resamples": 2000,
+    "bootstrap_seed": 20260917,
+    "gold": "three-coder majority vote, batch 1 validation sample",
+    "macro_f1_definition": "mean F1 over the ten mechanism labels whose F1 is defined, as in validation_metrics.score_routes",
+    "extract_command": "python extract.py custom --run-id alt_qwen --model qwen/qwen-2.5-72b-instruct --provider DeepInfra --quantization \"fp8 (provider endpoint listing)\" --passes mechanism --ids ../data/validation_ids.csv --log ../data/logs/extract_alt_qwen.jsonl"
+  },
+  "provenance": {
+    "llama_reference": {
+      "log": "data/logs/extract_reference.jsonl",
+      "records_parsed_in_scope": 150,
+      "records_failed_in_scope": 0,
+      "records_failed_crash_ids": [],
+      "records_schema_invalid_in_scope": 0,
+      "records_schema_invalid_crash_ids": [],
+      "calls_in_scope_total": 150,
+      "crashes_labelled": 150,
+      "models_returned": [
+        "meta-llama/llama-3.3-70b-instruct"
+      ],
+      "providers_returned": [
+        "DeepInfra"
+      ],
+      "quantization_logged": [
+        "fp8 (provider-reported)"
+      ],
+      "response_format": [
+        "json_schema"
+      ],
+      "temperature": [
+        0.0
+      ],
+      "seed": [
+        42
+      ],
+      "prompt_version": [
+        "v1.3-2026-09-14"
+      ],
+      "first_call_utc": "2026-09-14T17:01:17.502543+00:00",
+      "last_call_utc": "2026-09-14T17:18:40.649329+00:00",
+      "calls_needing_retry": 1,
+      "mean_latency_ms": 15583.0,
+      "prompt_tokens": 292723,
+      "completion_tokens": 27439,
+      "cost_usd_reported": 0.0377,
+      "calls_with_cost_reported": 150
+    },
+    "qwen": {
+      "log": "data/logs/extract_alt_qwen.jsonl",
+      "records_parsed_in_scope": 150,
+      "records_failed_in_scope": 0,
+      "records_failed_crash_ids": [],
+      "records_schema_invalid_in_scope": 0,
+      "records_schema_invalid_crash_ids": [],
+      "calls_in_scope_total": 150,
+      "crashes_labelled": 150,
+      "models_returned": [
+        "qwen/qwen-2.5-72b-instruct"
+      ],
+      "providers_returned": [
+        "DeepInfra"
+      ],
+      "quantization_logged": [
+        "fp8 (provider endpoint listing)"
+      ],
+      "response_format": [
+        "json_schema"
+      ],
+      "temperature": [
+        0.0
+      ],
+      "seed": [
+        42
+      ],
+      "prompt_version": [
+        "v1.3-2026-09-14"
+      ],
+      "first_call_utc": "2026-10-05T18:31:09.948338+00:00",
+      "last_call_utc": "2026-10-05T18:36:46.680795+00:00",
+      "calls_needing_retry": 0,
+      "mean_latency_ms": 17649.0,
+      "prompt_tokens": 293445,
+      "completion_tokens": 28386,
+      "cost_usd_reported": 0.1158,
+      "calls_with_cost_reported": 150
+    },
+    "qwen_endpoint_listing": {
+      "accessed_utc": "2026-10-05T19:23:58+00:00",
+      "endpoints": [
+        {
+          "provider": "DeepInfra",
+          "quantization": "fp8",
+          "context_length": 32768,
+          "supports_structured_outputs": true,
+          "supports_response_format": true,
+          "supports_seed": true,
+          "price_prompt_per_token": "0.00000036",
+          "price_completion_per_token": "0.0000004"
+        },
+        {
+          "provider": "Novita",
+          "quantization": "bf16",
+          "context_length": 32000,
+          "supports_structured_outputs": false,
+          "supports_response_format": false,
+          "supports_seed": true,
+          "price_prompt_per_token": "0.00000038",
+          "price_completion_per_token": "0.0000004"
+        }
+      ]
+    },
+    "prompt_identity_llama_vs_qwen": {
+      "narratives_compared": 150,
+      "identical_prompt_sha256": 150,
+      "all_identical": true
+    },
+    "missing_labels": {
+      "llama_reference": [],
+      "qwen": []
+    }
+  },
+  "validation": {
+    "llama_reference": {
+      "n": 150,
+      "per_label": {
+        "wrong_way": {
+          "unweighted": {
+            "tp": 20.0,
+            "fp": 8.0,
+            "fn": 0.0,
+            "tn": 122.0,
+            "precision": 0.7143,
+            "recall": 1.0,
+            "f1": 0.8333,
+            "ci95": {
+              "precision": [
+                0.5385,
+                0.88
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.7,
+                0.9362
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 33.9808,
+            "fp": 14.6484,
+            "fn": 0.0,
+            "tn": 428.086,
+            "precision": 0.6988,
+            "recall": 1.0,
+            "f1": 0.8227,
+            "ci95": {
+              "precision": [
+                0.5163,
+                0.8762
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.681,
+                0.934
+              ]
+            }
+          },
+          "gold_positives": 20,
+          "predicted_positives": 28
+        },
+        "sidewalk_transition": {
+          "unweighted": {
+            "tp": 10.0,
+            "fp": 30.0,
+            "fn": 0.0,
+            "tn": 110.0,
+            "precision": 0.25,
+            "recall": 1.0,
+            "f1": 0.4,
+            "ci95": {
+              "precision": [
+                0.1212,
+                0.3947
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.2162,
+                0.566
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 28.575,
+            "fp": 72.7156,
+            "fn": 0.0,
+            "tn": 375.4245,
+            "precision": 0.2821,
+            "recall": 1.0,
+            "f1": 0.4401,
+            "ci95": {
+              "precision": [
+                0.1309,
+                0.4417
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.2314,
+                0.6128
+              ]
+            }
+          },
+          "gold_positives": 10,
+          "predicted_positives": 40
+        },
+        "driveway_alley": {
+          "unweighted": {
+            "tp": 41.0,
+            "fp": 3.0,
+            "fn": 1.0,
+            "tn": 105.0,
+            "precision": 0.9318,
+            "recall": 0.9762,
+            "f1": 0.9535,
+            "ci95": {
+              "precision": [
+                0.8462,
+                1.0
+              ],
+              "recall": [
+                0.925,
+                1.0
+              ],
+              "f1": [
+                0.9,
+                0.9897
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 106.4881,
+            "fp": 12.6521,
+            "fn": 8.7183,
+            "tn": 348.8567,
+            "precision": 0.8938,
+            "recall": 0.9243,
+            "f1": 0.9088,
+            "ci95": {
+              "precision": [
+                0.7688,
+                1.0
+              ],
+              "recall": [
+                0.7802,
+                1.0
+              ],
+              "f1": [
+                0.8075,
+                0.9849
+              ]
+            }
+          },
+          "gold_positives": 42,
+          "predicted_positives": 44
+        },
+        "failure_to_yield": {
+          "unweighted": {
+            "tp": 29.0,
+            "fp": 32.0,
+            "fn": 0.0,
+            "tn": 89.0,
+            "precision": 0.4754,
+            "recall": 1.0,
+            "f1": 0.6444,
+            "ci95": {
+              "precision": [
+                0.3455,
+                0.5965
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.5135,
+                0.7473
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 117.2792,
+            "fp": 102.8605,
+            "fn": 0.0,
+            "tn": 256.5755,
+            "precision": 0.5327,
+            "recall": 1.0,
+            "f1": 0.6952,
+            "ci95": {
+              "precision": [
+                0.3892,
+                0.6753
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.5603,
+                0.8062
+              ]
+            }
+          },
+          "gold_positives": 29,
+          "predicted_positives": 61
+        },
+        "signal_violation": {
+          "unweighted": {
+            "tp": 25.0,
+            "fp": 6.0,
+            "fn": 1.0,
+            "tn": 118.0,
+            "precision": 0.8065,
+            "recall": 0.9615,
+            "f1": 0.8772,
+            "ci95": {
+              "precision": [
+                0.6538,
+                0.9311
+              ],
+              "recall": [
+                0.8749,
+                1.0
+              ],
+              "f1": [
+                0.7692,
+                0.9552
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 71.037,
+            "fp": 14.0357,
+            "fn": 1.0,
+            "tn": 390.6424,
+            "precision": 0.835,
+            "recall": 0.9861,
+            "f1": 0.9043,
+            "ci95": {
+              "precision": [
+                0.6895,
+                0.9453
+              ],
+              "recall": [
+                0.9513,
+                1.0
+              ],
+              "f1": [
+                0.8077,
+                0.9688
+              ]
+            }
+          },
+          "gold_positives": 26,
+          "predicted_positives": 31
+        },
+        "swerve_loss_control": {
+          "unweighted": {
+            "tp": 19.0,
+            "fp": 4.0,
+            "fn": 5.0,
+            "tn": 122.0,
+            "precision": 0.8261,
+            "recall": 0.7917,
+            "f1": 0.8085,
+            "ci95": {
+              "precision": [
+                0.6667,
+                0.96
+              ],
+              "recall": [
+                0.6111,
+                0.9474
+              ],
+              "f1": [
+                0.6667,
+                0.9167
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 32.3301,
+            "fp": 6.6012,
+            "fn": 12.4265,
+            "tn": 425.3574,
+            "precision": 0.8304,
+            "recall": 0.7224,
+            "f1": 0.7726,
+            "ci95": {
+              "precision": [
+                0.6681,
+                0.9632
+              ],
+              "recall": [
+                0.5157,
+                0.9279
+              ],
+              "f1": [
+                0.6129,
+                0.9038
+              ]
+            }
+          },
+          "gold_positives": 24,
+          "predicted_positives": 23
+        },
+        "dooring": {
+          "unweighted": {
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 0.0,
+            "tn": 146.0,
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6667,
+            "ci95": {
+              "precision": [
+                0.0,
+                1.0
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.3333,
+                1.0
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 0.0,
+            "tn": 472.7152,
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6667,
+            "ci95": {
+              "precision": [
+                0.0,
+                1.0
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.3333,
+                1.0
+              ]
+            }
+          },
+          "gold_positives": 2,
+          "predicted_positives": 4
+        },
+        "distraction_impairment": {
+          "unweighted": {
+            "tp": 23.0,
+            "fp": 12.0,
+            "fn": 4.0,
+            "tn": 111.0,
+            "precision": 0.6571,
+            "recall": 0.8519,
+            "f1": 0.7419,
+            "ci95": {
+              "precision": [
+                0.4878,
+                0.8125
+              ],
+              "recall": [
+                0.7058,
+                0.9643
+              ],
+              "f1": [
+                0.6031,
+                0.8519
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 44.4236,
+            "fp": 25.4082,
+            "fn": 16.2107,
+            "tn": 390.6726,
+            "precision": 0.6362,
+            "recall": 0.7326,
+            "f1": 0.681,
+            "ci95": {
+              "precision": [
+                0.4716,
+                0.7997
+              ],
+              "recall": [
+                0.5299,
+                0.9386
+              ],
+              "f1": [
+                0.5278,
+                0.8153
+              ]
+            }
+          },
+          "gold_positives": 27,
+          "predicted_positives": 35
+        },
+        "vehicle_turning_across": {
+          "unweighted": {
+            "tp": 48.0,
+            "fp": 10.0,
+            "fn": 0.0,
+            "tn": 92.0,
+            "precision": 0.8276,
+            "recall": 1.0,
+            "f1": 0.9057,
+            "ci95": {
+              "precision": [
+                0.7213,
+                0.9245
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.8381,
+                0.9608
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 121.8312,
+            "fp": 28.2783,
+            "fn": 0.0,
+            "tn": 326.6057,
+            "precision": 0.8116,
+            "recall": 1.0,
+            "f1": 0.896,
+            "ci95": {
+              "precision": [
+                0.697,
+                0.9148
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.8214,
+                0.9555
+              ]
+            }
+          },
+          "gold_positives": 48,
+          "predicted_positives": 58
+        },
+        "lane_positioning": {
+          "unweighted": {
+            "tp": 41.0,
+            "fp": 1.0,
+            "fn": 3.0,
+            "tn": 105.0,
+            "precision": 0.9762,
+            "recall": 0.9318,
+            "f1": 0.9535,
+            "ci95": {
+              "precision": [
+                0.9189,
+                1.0
+              ],
+              "recall": [
+                0.8462,
+                1.0
+              ],
+              "f1": [
+                0.9014,
+                0.9897
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 86.3461,
+            "fp": 1.6978,
+            "fn": 14.9139,
+            "tn": 373.7574,
+            "precision": 0.9807,
+            "recall": 0.8527,
+            "f1": 0.9122,
+            "ci95": {
+              "precision": [
+                0.9333,
+                1.0
+              ],
+              "recall": [
+                0.6883,
+                1.0
+              ],
+              "f1": [
+                0.8054,
+                0.9909
+              ]
+            }
+          },
+          "gold_positives": 44,
+          "predicted_positives": 42
+        }
+      },
+      "macro_f1": 0.7785,
+      "macro_f1_ip_weighted": 0.77,
+      "labels_in_macro": [
+        "wrong_way",
+        "sidewalk_transition",
+        "driveway_alley",
+        "failure_to_yield",
+        "signal_violation",
+        "swerve_loss_control",
+        "dooring",
+        "distraction_impairment",
+        "vehicle_turning_across",
+        "lane_positioning"
+      ]
+    },
+    "qwen": {
+      "n": 150,
+      "per_label": {
+        "wrong_way": {
+          "unweighted": {
+            "tp": 18.0,
+            "fp": 6.0,
+            "fn": 2.0,
+            "tn": 124.0,
+            "precision": 0.75,
+            "recall": 0.9,
+            "f1": 0.8182,
+            "ci95": {
+              "precision": [
+                0.5666,
+                0.9092
+              ],
+              "recall": [
+                0.75,
+                1.0
+              ],
+              "f1": [
+                0.6667,
+                0.9254
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 31.0122,
+            "fp": 10.6325,
+            "fn": 2.9686,
+            "tn": 432.1019,
+            "precision": 0.7447,
+            "recall": 0.9126,
+            "f1": 0.8202,
+            "ci95": {
+              "precision": [
+                0.5571,
+                0.9106
+              ],
+              "recall": [
+                0.7653,
+                1.0
+              ],
+              "f1": [
+                0.6703,
+                0.9256
+              ]
+            }
+          },
+          "gold_positives": 20,
+          "predicted_positives": 24
+        },
+        "sidewalk_transition": {
+          "unweighted": {
+            "tp": 9.0,
+            "fp": 25.0,
+            "fn": 1.0,
+            "tn": 115.0,
+            "precision": 0.2647,
+            "recall": 0.9,
+            "f1": 0.4091,
+            "ci95": {
+              "precision": [
+                0.125,
+                0.4256
+              ],
+              "recall": [
+                0.6667,
+                1.0
+              ],
+              "f1": [
+                0.2162,
+                0.5854
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 25.2883,
+            "fp": 68.9126,
+            "fn": 3.2867,
+            "tn": 379.2275,
+            "precision": 0.2685,
+            "recall": 0.885,
+            "f1": 0.4119,
+            "ci95": {
+              "precision": [
+                0.1188,
+                0.4467
+              ],
+              "recall": [
+                0.6398,
+                1.0
+              ],
+              "f1": [
+                0.207,
+                0.6036
+              ]
+            }
+          },
+          "gold_positives": 10,
+          "predicted_positives": 34
+        },
+        "driveway_alley": {
+          "unweighted": {
+            "tp": 42.0,
+            "fp": 6.0,
+            "fn": 0.0,
+            "tn": 102.0,
+            "precision": 0.875,
+            "recall": 1.0,
+            "f1": 0.9333,
+            "ci95": {
+              "precision": [
+                0.7777,
+                0.9615
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.875,
+                0.9804
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 115.2063,
+            "fp": 17.4236,
+            "fn": 0.0,
+            "tn": 344.0852,
+            "precision": 0.8686,
+            "recall": 1.0,
+            "f1": 0.9297,
+            "ci95": {
+              "precision": [
+                0.7557,
+                0.9632
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.8609,
+                0.9812
+              ]
+            }
+          },
+          "gold_positives": 42,
+          "predicted_positives": 48
+        },
+        "failure_to_yield": {
+          "unweighted": {
+            "tp": 29.0,
+            "fp": 10.0,
+            "fn": 0.0,
+            "tn": 111.0,
+            "precision": 0.7436,
+            "recall": 1.0,
+            "f1": 0.8529,
+            "ci95": {
+              "precision": [
+                0.5946,
+                0.8824
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.7457,
+                0.9375
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 117.2792,
+            "fp": 23.7319,
+            "fn": 0.0,
+            "tn": 335.7041,
+            "precision": 0.8317,
+            "recall": 1.0,
+            "f1": 0.9081,
+            "ci95": {
+              "precision": [
+                0.6983,
+                0.9317
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.8223,
+                0.9646
+              ]
+            }
+          },
+          "gold_positives": 29,
+          "predicted_positives": 39
+        },
+        "signal_violation": {
+          "unweighted": {
+            "tp": 24.0,
+            "fp": 17.0,
+            "fn": 2.0,
+            "tn": 107.0,
+            "precision": 0.5854,
+            "recall": 0.9231,
+            "f1": 0.7164,
+            "ci95": {
+              "precision": [
+                0.4324,
+                0.7317
+              ],
+              "recall": [
+                0.8,
+                1.0
+              ],
+              "f1": [
+                0.5797,
+                0.8254
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 68.3056,
+            "fp": 53.4977,
+            "fn": 3.7314,
+            "tn": 351.1805,
+            "precision": 0.5608,
+            "recall": 0.9482,
+            "f1": 0.7048,
+            "ci95": {
+              "precision": [
+                0.3854,
+                0.7432
+              ],
+              "recall": [
+                0.8472,
+                1.0
+              ],
+              "f1": [
+                0.5374,
+                0.8379
+              ]
+            }
+          },
+          "gold_positives": 26,
+          "predicted_positives": 41
+        },
+        "swerve_loss_control": {
+          "unweighted": {
+            "tp": 22.0,
+            "fp": 17.0,
+            "fn": 2.0,
+            "tn": 109.0,
+            "precision": 0.5641,
+            "recall": 0.9167,
+            "f1": 0.6984,
+            "ci95": {
+              "precision": [
+                0.4146,
+                0.7188
+              ],
+              "recall": [
+                0.8,
+                1.0
+              ],
+              "f1": [
+                0.56,
+                0.8148
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 40.4458,
+            "fp": 77.025,
+            "fn": 4.3107,
+            "tn": 354.9337,
+            "precision": 0.3443,
+            "recall": 0.9037,
+            "f1": 0.4986,
+            "ci95": {
+              "precision": [
+                0.1865,
+                0.608
+              ],
+              "recall": [
+                0.7661,
+                1.0
+              ],
+              "f1": [
+                0.3065,
+                0.7386
+              ]
+            }
+          },
+          "gold_positives": 24,
+          "predicted_positives": 39
+        },
+        "dooring": {
+          "unweighted": {
+            "tp": 2.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "tn": 148.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "ci95": {
+              "precision": [
+                1.0,
+                1.0
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                1.0,
+                1.0
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 2.0,
+            "fp": 0.0,
+            "fn": 0.0,
+            "tn": 474.7152,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "ci95": {
+              "precision": [
+                1.0,
+                1.0
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                1.0,
+                1.0
+              ]
+            }
+          },
+          "gold_positives": 2,
+          "predicted_positives": 2
+        },
+        "distraction_impairment": {
+          "unweighted": {
+            "tp": 15.0,
+            "fp": 6.0,
+            "fn": 12.0,
+            "tn": 117.0,
+            "precision": 0.7143,
+            "recall": 0.5556,
+            "f1": 0.625,
+            "ci95": {
+              "precision": [
+                0.5,
+                0.9048
+              ],
+              "recall": [
+                0.36,
+                0.7391
+              ],
+              "f1": [
+                0.4324,
+                0.7637
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 32.1552,
+            "fp": 14.4024,
+            "fn": 28.4792,
+            "tn": 401.6785,
+            "precision": 0.6907,
+            "recall": 0.5303,
+            "f1": 0.6,
+            "ci95": {
+              "precision": [
+                0.4607,
+                0.9042
+              ],
+              "recall": [
+                0.3221,
+                0.7308
+              ],
+              "f1": [
+                0.4027,
+                0.7611
+              ]
+            }
+          },
+          "gold_positives": 27,
+          "predicted_positives": 21
+        },
+        "vehicle_turning_across": {
+          "unweighted": {
+            "tp": 48.0,
+            "fp": 17.0,
+            "fn": 0.0,
+            "tn": 85.0,
+            "precision": 0.7385,
+            "recall": 1.0,
+            "f1": 0.8496,
+            "ci95": {
+              "precision": [
+                0.6324,
+                0.8387
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.7748,
+                0.9123
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 121.8312,
+            "fp": 48.4779,
+            "fn": 0.0,
+            "tn": 306.406,
+            "precision": 0.7154,
+            "recall": 1.0,
+            "f1": 0.8341,
+            "ci95": {
+              "precision": [
+                0.5914,
+                0.8345
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.7433,
+                0.9098
+              ]
+            }
+          },
+          "gold_positives": 48,
+          "predicted_positives": 65
+        },
+        "lane_positioning": {
+          "unweighted": {
+            "tp": 41.0,
+            "fp": 2.0,
+            "fn": 3.0,
+            "tn": 104.0,
+            "precision": 0.9535,
+            "recall": 0.9318,
+            "f1": 0.9425,
+            "ci95": {
+              "precision": [
+                0.878,
+                1.0
+              ],
+              "recall": [
+                0.8519,
+                1.0
+              ],
+              "f1": [
+                0.8864,
+                0.988
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 89.6022,
+            "fp": 7.1371,
+            "fn": 11.6577,
+            "tn": 368.3181,
+            "precision": 0.9262,
+            "recall": 0.8849,
+            "f1": 0.9051,
+            "ci95": {
+              "precision": [
+                0.8098,
+                1.0
+              ],
+              "recall": [
+                0.7246,
+                1.0
+              ],
+              "f1": [
+                0.796,
+                0.9859
+              ]
+            }
+          },
+          "gold_positives": 44,
+          "predicted_positives": 43
+        }
+      },
+      "macro_f1": 0.7845,
+      "macro_f1_ip_weighted": 0.7612,
+      "labels_in_macro": [
+        "wrong_way",
+        "sidewalk_transition",
+        "driveway_alley",
+        "failure_to_yield",
+        "signal_violation",
+        "swerve_loss_control",
+        "dooring",
+        "distraction_impairment",
+        "vehicle_turning_across",
+        "lane_positioning"
+      ]
+    }
+  },
+  "llama_reference_check": {
+    "matches_validation_metrics_json": true,
+    "mismatches": {},
+    "note": "Table 2's route_b_reference macro F1 averages fifteen labels (ten mechanisms and five injury cues); the macro F1 here averages the ten mechanism labels only, because the alternative model ran the mechanism pass only."
+  },
+  "paired_llama_vs_qwen": {
+    "n": 150,
+    "n_boot": 2000,
+    "seed": 20260917,
+    "difference_definition": "macro F1 llama minus macro F1 qwen",
+    "macro_f1_llama": 0.7785,
+    "macro_f1_llama_ci95": [
+      0.7264,
+      0.8276
+    ],
+    "macro_f1_qwen": 0.7845,
+    "macro_f1_qwen_ci95": [
+      0.7392,
+      0.8155
+    ],
+    "macro_f1_difference": -0.0061,
+    "macro_f1_difference_ci95": [
+      -0.0531,
+      0.0493
+    ],
+    "share_of_resamples_difference_above_zero": 0.53,
+    "difference_ci_excludes_zero": false,
+    "per_label": {
+      "wrong_way": {
+        "f1_llama": 0.8333,
+        "f1_qwen": 0.8182,
+        "f1_difference": 0.0152,
+        "f1_difference_ci95": [
+          -0.0695,
+          0.1124
+        ],
+        "resamples_with_both_defined": 2000,
+        "correct_only_llama": 2,
+        "correct_only_qwen": 2,
+        "mcnemar_exact_p": 1.0,
+        "cohen_kappa_between_runs": 0.9071,
+        "label_agreement_share": 0.9733
+      },
+      "sidewalk_transition": {
+        "f1_llama": 0.4,
+        "f1_qwen": 0.4091,
+        "f1_difference": -0.0091,
+        "f1_difference_ci95": [
+          -0.1072,
+          0.0903
+        ],
+        "resamples_with_both_defined": 2000,
+        "correct_only_llama": 7,
+        "correct_only_qwen": 11,
+        "mcnemar_exact_p": 0.481,
+        "cohen_kappa_between_runs": 0.6778,
+        "label_agreement_share": 0.88
+      },
+      "driveway_alley": {
+        "f1_llama": 0.9535,
+        "f1_qwen": 0.9333,
+        "f1_difference": 0.0202,
+        "f1_difference_ci95": [
+          -0.0337,
+          0.0748
+        ],
+        "resamples_with_both_defined": 2000,
+        "correct_only_llama": 4,
+        "correct_only_qwen": 2,
+        "mcnemar_exact_p": 0.688,
+        "cohen_kappa_between_runs": 0.906,
+        "label_agreement_share": 0.96
+      },
+      "failure_to_yield": {
+        "f1_llama": 0.6444,
+        "f1_qwen": 0.8529,
+        "f1_difference": -0.2085,
+        "f1_difference_ci95": [
+          -0.305,
+          -0.1183
+        ],
+        "resamples_with_both_defined": 2000,
+        "correct_only_llama": 3,
+        "correct_only_qwen": 25,
+        "mcnemar_exact_p": 2.74e-05,
+        "cohen_kappa_between_runs": 0.5899,
+        "label_agreement_share": 0.8133
+      },
+      "signal_violation": {
+        "f1_llama": 0.8772,
+        "f1_qwen": 0.7164,
+        "f1_difference": 0.1608,
+        "f1_difference_ci95": [
+          0.0788,
+          0.2619
+        ],
+        "resamples_with_both_defined": 2000,
+        "correct_only_llama": 12,
+        "correct_only_qwen": 0,
+        "mcnemar_exact_p": 0.000488,
+        "cohen_kappa_between_runs": 0.782,
+        "label_agreement_share": 0.92
+      },
+      "swerve_loss_control": {
+        "f1_llama": 0.8085,
+        "f1_qwen": 0.6984,
+        "f1_difference": 0.1101,
+        "f1_difference_ci95": [
+          -0.0155,
+          0.2353
+        ],
+        "resamples_with_both_defined": 2000,
+        "correct_only_llama": 13,
+        "correct_only_qwen": 3,
+        "mcnemar_exact_p": 0.0213,
+        "cohen_kappa_between_runs": 0.6803,
+        "label_agreement_share": 0.8933
+      },
+      "dooring": {
+        "f1_llama": 0.6667,
+        "f1_qwen": 1.0,
+        "f1_difference": -0.3333,
+        "f1_difference_ci95": [
+          -0.6667,
+          0.0
+        ],
+        "resamples_with_both_defined": 1737,
+        "correct_only_llama": 0,
+        "correct_only_qwen": 2,
+        "mcnemar_exact_p": 0.5,
+        "cohen_kappa_between_runs": 0.6606,
+        "label_agreement_share": 0.9867
+      },
+      "distraction_impairment": {
+        "f1_llama": 0.7419,
+        "f1_qwen": 0.625,
+        "f1_difference": 0.1169,
+        "f1_difference_ci95": [
+          -0.0252,
+          0.2931
+        ],
+        "resamples_with_both_defined": 2000,
+        "correct_only_llama": 10,
+        "correct_only_qwen": 8,
+        "mcnemar_exact_p": 0.815,
+        "cohen_kappa_between_runs": 0.6104,
+        "label_agreement_share": 0.88
+      },
+      "vehicle_turning_across": {
+        "f1_llama": 0.9057,
+        "f1_qwen": 0.8496,
+        "f1_difference": 0.0561,
+        "f1_difference_ci95": [
+          0.0079,
+          0.1104
+        ],
+        "resamples_with_both_defined": 2000,
+        "correct_only_llama": 9,
+        "correct_only_qwen": 2,
+        "mcnemar_exact_p": 0.0654,
+        "cohen_kappa_between_runs": 0.8488,
+        "label_agreement_share": 0.9267
+      },
+      "lane_positioning": {
+        "f1_llama": 0.9535,
+        "f1_qwen": 0.9425,
+        "f1_difference": 0.011,
+        "f1_difference_ci95": [
+          -0.0535,
+          0.0728
+        ],
+        "resamples_with_both_defined": 2000,
+        "correct_only_llama": 4,
+        "correct_only_qwen": 3,
+        "mcnemar_exact_p": 1.0,
+        "cohen_kappa_between_runs": 0.8851,
+        "label_agreement_share": 0.9533
+      }
+    },
+    "pooled_decisions": {
+      "correct_only_llama": 64,
+      "correct_only_qwen": 58,
+      "mcnemar_exact_p": 0.65096,
+      "note": "all ten labels pooled over the narratives; decisions within a narrative are not independent, so this p-value is descriptive"
+    }
+  },
+  "same_period_llama_rerun_vs_qwen": {
+    "llama_rerun_provenance": {
+      "log": "data/logs/extract_masked_rerun.jsonl",
+      "records_parsed_in_scope": 149,
+      "records_failed_in_scope": 1,
+      "records_failed_crash_ids": [
+        20714698
+      ],
+      "records_schema_invalid_in_scope": 2,
+      "records_schema_invalid_crash_ids": [
+        18806351
+      ],
+      "calls_in_scope_total": 152,
+      "crashes_labelled": 149,
+      "models_returned": [
+        "meta-llama/llama-3.3-70b-instruct"
+      ],
+      "providers_returned": [
+        "DeepInfra"
+      ],
+      "quantization_logged": [
+        "fp8 (provider-reported)"
+      ],
+      "response_format": [
+        "json_schema"
+      ],
+      "temperature": [
+        0.0
+      ],
+      "seed": [
+        42
+      ],
+      "prompt_version": [
+        "v1.3-2026-09-14"
+      ],
+      "first_call_utc": "2026-10-05T19:00:53.103593+00:00",
+      "last_call_utc": "2026-10-05T19:21:22.068584+00:00",
+      "calls_needing_retry": 36,
+      "mean_latency_ms": 29066.0,
+      "prompt_tokens": 290803,
+      "completion_tokens": 27421,
+      "cost_usd_reported": 0.0375,
+      "calls_with_cost_reported": 149
+    },
+    "llama_rerun_score": {
+      "n": 149,
+      "per_label": {
+        "wrong_way": {
+          "unweighted": {
+            "tp": 20.0,
+            "fp": 9.0,
+            "fn": 0.0,
+            "tn": 120.0,
+            "precision": 0.6897,
+            "recall": 1.0,
+            "f1": 0.8163,
+            "ci95": {
+              "precision": [
+                0.5161,
+                0.8529
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.6809,
+                0.9206
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 33.9808,
+            "fp": 16.5818,
+            "fn": 0.0,
+            "tn": 422.0956,
+            "precision": 0.6721,
+            "recall": 1.0,
+            "f1": 0.8039,
+            "ci95": {
+              "precision": [
+                0.4839,
+                0.8472
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.6522,
+                0.9173
+              ]
+            }
+          },
+          "gold_positives": 20,
+          "predicted_positives": 29
+        },
+        "sidewalk_transition": {
+          "unweighted": {
+            "tp": 10.0,
+            "fp": 30.0,
+            "fn": 0.0,
+            "tn": 109.0,
+            "precision": 0.25,
+            "recall": 1.0,
+            "f1": 0.4,
+            "ci95": {
+              "precision": [
+                0.119,
+                0.3947
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.2128,
+                0.566
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 28.575,
+            "fp": 72.5893,
+            "fn": 0.0,
+            "tn": 371.4939,
+            "precision": 0.2825,
+            "recall": 1.0,
+            "f1": 0.4405,
+            "ci95": {
+              "precision": [
+                0.135,
+                0.4478
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.2378,
+                0.6186
+              ]
+            }
+          },
+          "gold_positives": 10,
+          "predicted_positives": 40
+        },
+        "driveway_alley": {
+          "unweighted": {
+            "tp": 41.0,
+            "fp": 4.0,
+            "fn": 1.0,
+            "tn": 103.0,
+            "precision": 0.9111,
+            "recall": 0.9762,
+            "f1": 0.9425,
+            "ci95": {
+              "precision": [
+                0.814,
+                0.9804
+              ],
+              "recall": [
+                0.9189,
+                1.0
+              ],
+              "f1": [
+                0.8813,
+                0.9882
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 106.4881,
+            "fp": 14.7677,
+            "fn": 8.7183,
+            "tn": 342.6841,
+            "precision": 0.8782,
+            "recall": 0.9243,
+            "f1": 0.9007,
+            "ci95": {
+              "precision": [
+                0.7503,
+                0.9825
+              ],
+              "recall": [
+                0.7709,
+                1.0
+              ],
+              "f1": [
+                0.7902,
+                0.9815
+              ]
+            }
+          },
+          "gold_positives": 42,
+          "predicted_positives": 45
+        },
+        "failure_to_yield": {
+          "unweighted": {
+            "tp": 29.0,
+            "fp": 39.0,
+            "fn": 0.0,
+            "tn": 81.0,
+            "precision": 0.4265,
+            "recall": 1.0,
+            "f1": 0.5979,
+            "ci95": {
+              "precision": [
+                0.3143,
+                0.5439
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.4782,
+                0.7046
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 117.2792,
+            "fp": 114.8717,
+            "fn": 0.0,
+            "tn": 240.5073,
+            "precision": 0.5052,
+            "recall": 1.0,
+            "f1": 0.6713,
+            "ci95": {
+              "precision": [
+                0.3635,
+                0.6413
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.5332,
+                0.7815
+              ]
+            }
+          },
+          "gold_positives": 29,
+          "predicted_positives": 68
+        },
+        "signal_violation": {
+          "unweighted": {
+            "tp": 25.0,
+            "fp": 7.0,
+            "fn": 1.0,
+            "tn": 116.0,
+            "precision": 0.7812,
+            "recall": 0.9615,
+            "f1": 0.8621,
+            "ci95": {
+              "precision": [
+                0.6286,
+                0.9167
+              ],
+              "recall": [
+                0.875,
+                1.0
+              ],
+              "f1": [
+                0.75,
+                0.9492
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 71.037,
+            "fp": 22.754,
+            "fn": 1.0,
+            "tn": 377.8672,
+            "precision": 0.7574,
+            "recall": 0.9861,
+            "f1": 0.8568,
+            "ci95": {
+              "precision": [
+                0.5668,
+                0.9316
+              ],
+              "recall": [
+                0.951,
+                1.0
+              ],
+              "f1": [
+                0.7169,
+                0.9595
+              ]
+            }
+          },
+          "gold_positives": 26,
+          "predicted_positives": 32
+        },
+        "swerve_loss_control": {
+          "unweighted": {
+            "tp": 20.0,
+            "fp": 4.0,
+            "fn": 4.0,
+            "tn": 121.0,
+            "precision": 0.8333,
+            "recall": 0.8333,
+            "f1": 0.8333,
+            "ci95": {
+              "precision": [
+                0.6667,
+                0.96
+              ],
+              "recall": [
+                0.6667,
+                0.96
+              ],
+              "f1": [
+                0.7026,
+                0.9303
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 34.3995,
+            "fp": 6.6012,
+            "fn": 10.357,
+            "tn": 421.3005,
+            "precision": 0.839,
+            "recall": 0.7686,
+            "f1": 0.8023,
+            "ci95": {
+              "precision": [
+                0.6777,
+                0.9638
+              ],
+              "recall": [
+                0.5682,
+                0.9576
+              ],
+              "f1": [
+                0.6503,
+                0.9237
+              ]
+            }
+          },
+          "gold_positives": 24,
+          "predicted_positives": 24
+        },
+        "dooring": {
+          "unweighted": {
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 0.0,
+            "tn": 145.0,
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6667,
+            "ci95": {
+              "precision": [
+                0.0,
+                1.0
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.3333,
+                1.0
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 0.0,
+            "tn": 468.6582,
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6667,
+            "ci95": {
+              "precision": [
+                0.0,
+                1.0
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.3333,
+                1.0
+              ]
+            }
+          },
+          "gold_positives": 2,
+          "predicted_positives": 4
+        },
+        "distraction_impairment": {
+          "unweighted": {
+            "tp": 23.0,
+            "fp": 12.0,
+            "fn": 4.0,
+            "tn": 110.0,
+            "precision": 0.6571,
+            "recall": 0.8519,
+            "f1": 0.7419,
+            "ci95": {
+              "precision": [
+                0.5,
+                0.8148
+              ],
+              "recall": [
+                0.6999,
+                0.9667
+              ],
+              "f1": [
+                0.5926,
+                0.8519
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 44.4236,
+            "fp": 25.4082,
+            "fn": 16.2107,
+            "tn": 386.6157,
+            "precision": 0.6362,
+            "recall": 0.7326,
+            "f1": 0.681,
+            "ci95": {
+              "precision": [
+                0.4598,
+                0.8032
+              ],
+              "recall": [
+                0.5173,
+                0.9456
+              ],
+              "f1": [
+                0.5083,
+                0.816
+              ]
+            }
+          },
+          "gold_positives": 27,
+          "predicted_positives": 35
+        },
+        "vehicle_turning_across": {
+          "unweighted": {
+            "tp": 48.0,
+            "fp": 11.0,
+            "fn": 0.0,
+            "tn": 90.0,
+            "precision": 0.8136,
+            "recall": 1.0,
+            "f1": 0.8972,
+            "ci95": {
+              "precision": [
+                0.7167,
+                0.9118
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.835,
+                0.9539
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 121.8312,
+            "fp": 36.2019,
+            "fn": 0.0,
+            "tn": 314.6251,
+            "precision": 0.7709,
+            "recall": 1.0,
+            "f1": 0.8706,
+            "ci95": {
+              "precision": [
+                0.6389,
+                0.9018
+              ],
+              "recall": [
+                1.0,
+                1.0
+              ],
+              "f1": [
+                0.7797,
+                0.9484
+              ]
+            }
+          },
+          "gold_positives": 48,
+          "predicted_positives": 59
+        },
+        "lane_positioning": {
+          "unweighted": {
+            "tp": 39.0,
+            "fp": 3.0,
+            "fn": 4.0,
+            "tn": 103.0,
+            "precision": 0.9286,
+            "recall": 0.907,
+            "f1": 0.9176,
+            "ci95": {
+              "precision": [
+                0.8431,
+                1.0
+              ],
+              "recall": [
+                0.8139,
+                0.9792
+              ],
+              "f1": [
+                0.8525,
+                0.9715
+              ]
+            }
+          },
+          "ip_weighted": {
+            "tp": 81.2891,
+            "fp": 7.1476,
+            "fn": 15.9139,
+            "tn": 368.3076,
+            "precision": 0.9192,
+            "recall": 0.8363,
+            "f1": 0.8758,
+            "ci95": {
+              "precision": [
+                0.8213,
+                1.0
+              ],
+              "recall": [
+                0.6673,
+                0.9884
+              ],
+              "f1": [
+                0.7629,
+                0.968
+              ]
+            }
+          },
+          "gold_positives": 43,
+          "predicted_positives": 42
+        }
+      },
+      "macro_f1": 0.7676,
+      "macro_f1_ip_weighted": 0.7569,
+      "labels_in_macro": [
+        "wrong_way",
+        "sidewalk_transition",
+        "driveway_alley",
+        "failure_to_yield",
+        "signal_violation",
+        "swerve_loss_control",
+        "dooring",
+        "distraction_impairment",
+        "vehicle_turning_across",
+        "lane_positioning"
+      ]
+    },
+    "paired_llama_rerun_vs_qwen": {
+      "n": 149,
+      "n_boot": 2000,
+      "seed": 20260917,
+      "difference_definition": "macro F1 llama_rerun minus macro F1 qwen",
+      "macro_f1_llama_rerun": 0.7676,
+      "macro_f1_llama_rerun_ci95": [
+        0.7163,
+        0.8192
+      ],
+      "macro_f1_qwen": 0.7855,
+      "macro_f1_qwen_ci95": [
+        0.7398,
+        0.8158
+      ],
+      "macro_f1_difference": -0.018,
+      "macro_f1_difference_ci95": [
+        -0.0619,
+        0.0363
+      ],
+      "share_of_resamples_difference_above_zero": 0.3655,
+      "difference_ci_excludes_zero": false,
+      "per_label": {
+        "wrong_way": {
+          "f1_llama_rerun": 0.8163,
+          "f1_qwen": 0.8182,
+          "f1_difference": -0.0019,
+          "f1_difference_ci95": [
+            -0.0947,
+            0.0996
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_llama_rerun": 2,
+          "correct_only_qwen": 3,
+          "mcnemar_exact_p": 1.0,
+          "cohen_kappa_between_runs": 0.8855,
+          "label_agreement_share": 0.9664
+        },
+        "sidewalk_transition": {
+          "f1_llama_rerun": 0.4,
+          "f1_qwen": 0.4091,
+          "f1_difference": -0.0091,
+          "f1_difference_ci95": [
+            -0.0985,
+            0.0953
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_llama_rerun": 6,
+          "correct_only_qwen": 10,
+          "mcnemar_exact_p": 0.454,
+          "cohen_kappa_between_runs": 0.713,
+          "label_agreement_share": 0.8926
+        },
+        "driveway_alley": {
+          "f1_llama_rerun": 0.9425,
+          "f1_qwen": 0.9333,
+          "f1_difference": 0.0092,
+          "f1_difference_ci95": [
+            -0.0474,
+            0.0662
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_llama_rerun": 4,
+          "correct_only_qwen": 3,
+          "mcnemar_exact_p": 1.0,
+          "cohen_kappa_between_runs": 0.8906,
+          "label_agreement_share": 0.953
+        },
+        "failure_to_yield": {
+          "f1_llama_rerun": 0.5979,
+          "f1_qwen": 0.8529,
+          "f1_difference": -0.255,
+          "f1_difference_ci95": [
+            -0.3535,
+            -0.1619
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_llama_rerun": 2,
+          "correct_only_qwen": 31,
+          "mcnemar_exact_p": 1.31e-07,
+          "cohen_kappa_between_runs": 0.5378,
+          "label_agreement_share": 0.7785
+        },
+        "signal_violation": {
+          "f1_llama_rerun": 0.8621,
+          "f1_qwen": 0.7164,
+          "f1_difference": 0.1457,
+          "f1_difference_ci95": [
+            0.0732,
+            0.2343
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_llama_rerun": 11,
+          "correct_only_qwen": 0,
+          "mcnemar_exact_p": 0.000977,
+          "cohen_kappa_between_runs": 0.8014,
+          "label_agreement_share": 0.9262
+        },
+        "swerve_loss_control": {
+          "f1_llama_rerun": 0.8333,
+          "f1_qwen": 0.7097,
+          "f1_difference": 0.1237,
+          "f1_difference_ci95": [
+            -0.0099,
+            0.2534
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_llama_rerun": 13,
+          "correct_only_qwen": 3,
+          "mcnemar_exact_p": 0.0213,
+          "cohen_kappa_between_runs": 0.6784,
+          "label_agreement_share": 0.8926
+        },
+        "dooring": {
+          "f1_llama_rerun": 0.6667,
+          "f1_qwen": 1.0,
+          "f1_difference": -0.3333,
+          "f1_difference_ci95": [
+            -0.6667,
+            0.0
+          ],
+          "resamples_with_both_defined": 1709,
+          "correct_only_llama_rerun": 0,
+          "correct_only_qwen": 2,
+          "mcnemar_exact_p": 0.5,
+          "cohen_kappa_between_runs": 0.6606,
+          "label_agreement_share": 0.9866
+        },
+        "distraction_impairment": {
+          "f1_llama_rerun": 0.7419,
+          "f1_qwen": 0.625,
+          "f1_difference": 0.1169,
+          "f1_difference_ci95": [
+            -0.0351,
+            0.289
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_llama_rerun": 10,
+          "correct_only_qwen": 8,
+          "mcnemar_exact_p": 0.815,
+          "cohen_kappa_between_runs": 0.6098,
+          "label_agreement_share": 0.8792
+        },
+        "vehicle_turning_across": {
+          "f1_llama_rerun": 0.8972,
+          "f1_qwen": 0.8496,
+          "f1_difference": 0.0476,
+          "f1_difference_ci95": [
+            0.0,
+            0.0998
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_llama_rerun": 8,
+          "correct_only_qwen": 2,
+          "mcnemar_exact_p": 0.109,
+          "cohen_kappa_between_runs": 0.8621,
+          "label_agreement_share": 0.9329
+        },
+        "lane_positioning": {
+          "f1_llama_rerun": 0.9176,
+          "f1_qwen": 0.9412,
+          "f1_difference": -0.0235,
+          "f1_difference_ci95": [
+            -0.0886,
+            0.0388
+          ],
+          "resamples_with_both_defined": 2000,
+          "correct_only_llama_rerun": 3,
+          "correct_only_qwen": 5,
+          "mcnemar_exact_p": 0.727,
+          "cohen_kappa_between_runs": 0.8674,
+          "label_agreement_share": 0.9463
+        }
+      },
+      "pooled_decisions": {
+        "correct_only_llama_rerun": 59,
+        "correct_only_qwen": 67,
+        "mcnemar_exact_p": 0.533053,
+        "note": "all ten labels pooled over the narratives; decisions within a narrative are not independent, so this p-value is descriptive"
+      }
+    }
+  }
+}

@@ -1,0 +1,89 @@
+% Generated table; it uses the manuscript preamble's macros (\hltint, \hcell, \altrow, PanelBg).
+\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}X *{2}{>{\centering\arraybackslash}p{3.6cm}} r}
+\caption{\hltint{HlM}{Multiple imputation, unrecorded ethnicity and the urban-area indicator.}}\label{tab:a_mi}\\
+\toprule
+\headerrow
+\hcell{Covariate} & \hcell{M1} & \hcell{Imputed} & \hcell{FMI} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{l}{\cellcolor{HeaderGold}\textcolor{HeaderText}{\textbf{\tablename\ \thetable{} \textit{(continued)}}}} \\
+\toprule
+\endhead
+\midrule
+\multicolumn{4}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\multicolumn{4}{p{0.97\linewidth}}{\footnotesize \textit{Note:} FMI is the fraction of missing information of the pooled KA effect. Bold marks an effect whose 95\% interval excludes zero. The imputed fits carry no unrecorded level for age, gender or speed limit, so the unrecorded age row has no imputed value and the other two are not shown. The other ethnicity row of Panel~A is compared with the other or not recorded level of M1. The seed row counts the Krinsky and Robb seeds out of 4 under which the KA interval for absent coordinates excludes zero.}\\
+\endlastfoot
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{4}{l}{\textbf{Panel A. Multiple imputation, effect on KA with 95\% interval}} \\
+\addlinespace[2pt]
+Poverty share, block group & \textbf{$-$0.212 [$-$0.345, $-$0.091]} & \textbf{$-$0.225 [$-$0.353, $-$0.097]} & 0.012 \\
+\altrow
+Crash coordinates absent & $-$0.080 [$-$0.147, 0.014] & $-$0.073 [$-$0.152, 0.005] & 0.007 \\
+Rider under 25 & $-$0.029 [$-$0.080, 0.026] & $-$0.023 [$-$0.082, 0.036] & 0.203 \\
+\altrow
+Rider 45 or above & 0.025 [$-$0.054, 0.130] & 0.016 [$-$0.077, 0.109] & 0.269 \\
+Rider female & 0.045 [$-$0.015, 0.117] & 0.047 [$-$0.019, 0.113] & 0.128 \\
+\altrow
+Rider Black & $-$0.028 [$-$0.076, 0.029] & $-$0.035 [$-$0.093, 0.023] & 0.140 \\
+Rider Hispanic & $-$0.034 [$-$0.088, 0.027] & $-$0.033 [$-$0.095, 0.029] & 0.204 \\
+\altrow
+Rider ethnicity other & $-$0.009 [$-$0.079, 0.093] & 0.047 [$-$0.075, 0.169] & 0.175 \\
+Speed limit 35 to 40 mph & $-$0.011 [$-$0.067, 0.043] & $-$0.007 [$-$0.064, 0.049] & 0.063 \\
+\altrow
+Speed limit 45 mph or above & 0.002 [$-$0.075, 0.103] & 0.002 [$-$0.084, 0.088] & 0.032 \\
+Cue, sidewalk to roadway transition & 0.013 [$-$0.047, 0.084] & 0.020 [$-$0.045, 0.085] & 0.008 \\
+\altrow
+Cue, failure to yield & $-$0.001 [$-$0.056, 0.055] & $-$0.002 [$-$0.059, 0.055] & 0.007 \\
+Cue, signal violation & 0.001 [$-$0.062, 0.089] & $-$0.006 [$-$0.081, 0.068] & 0.007 \\
+\altrow
+Cue, vehicle turning across & $-$0.007 [$-$0.069, 0.066] & $-$0.013 [$-$0.081, 0.055] & 0.005 \\
+Cue, lane positioning & 0.029 [$-$0.038, 0.105] & 0.038 [$-$0.035, 0.111] & 0.012 \\
+\altrow
+Rider age not recorded & \textbf{$-$0.119 [$-$0.178, $-$0.024]} & Not in the model & -- \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{4}{l}{\textbf{Panel B. Unrecorded ethnicity as its own indicator}} \\
+\addlinespace[2pt]
+\midrule
+\headerrow
+\hcell{Quantity} & \hcell{M1} & \hcell{Refit} & \hcell{} \\
+\midrule
+Riders O / BC / KA, other or not recorded & 26 / 37 / 11 & -- & \\
+\altrow
+Riders O / BC / KA, other & -- & 3 / 27 / 7 & \\
+Riders O / BC / KA, not recorded & -- & 23 / 10 / 4 & \\
+\altrow
+Coefficient, ethnicity not recorded (SE) & -- & $-$2.028 (0.743) & \\
+Log-likelihood & $-$393.93 & $-$390.22 & \\
+\altrow
+BIC & 1019.39 & 1018.24 & \\
+Likelihood ratio against M1 & -- & 7.41 (1 d.f., $p$ = 0.006) & \\
+\altrow
+KA intervals excluding zero & unrecorded age and poverty share & unrecorded ethnicity and poverty share & \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{4}{l}{\textbf{Panel C. Inside an urban area of 200,000 or more}} \\
+\addlinespace[2pt]
+\midrule
+\headerrow
+\hcell{Quantity} & \hcell{M1} & \hcell{Without} & \hcell{} \\
+\midrule
+Riders O / BC / KA, inside & 62 / 282 / 60 & -- & \\
+\altrow
+Riders O / BC / KA, outside & 15 / 81 / 22 & -- & \\
+VIF in the screening design & 1.25 & -- & \\
+\altrow
+Coefficient (SE) & $-$0.325 (0.256) & -- & \\
+Effect on KA & $-$0.043 [$-$0.117, 0.019] & -- & \\
+\altrow
+Log-likelihood & $-$393.93 & $-$394.74 & \\
+BIC & 1019.39 & 1014.75 & \\
+\altrow
+Likelihood ratio of the indicator & 1.62 (1 d.f., $p$ = 0.203) & -- & \\
+KA intervals excluding zero & unrecorded age and poverty share & unrecorded age, absent coordinates and poverty share & \\
+\altrow
+Seeds with the absent-coordinates KA interval excluding zero & 0 of 4 & 1 of 4 & \\
+\end{xltabular}

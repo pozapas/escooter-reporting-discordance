@@ -1,0 +1,3576 @@
+{
+  "primary_check": {
+    "loglik_refit": -393.9275,
+    "loglik_stored": -393.9275,
+    "matches": true,
+    "stored_primary_model": "ordered logit (BIC did not confirm the partial proportional-odds model)",
+    "n_covariates": 35,
+    "converged": true,
+    "kr_draws": 1000,
+    "kr_seed": 20260917,
+    "columns": [
+      "speed_35to40",
+      "speed_ge45",
+      "speed_unknown",
+      "light_dark_or_unknown",
+      "eth_black",
+      "eth_hispanic",
+      "eth_other_or_unknown",
+      "gender_female",
+      "gender_unknown",
+      "age_45plus",
+      "age_under25",
+      "age_unknown",
+      "veh_other_unknown",
+      "veh_pickup_truck_van",
+      "veh_suv",
+      "coll_other",
+      "coll_single_mv_straight",
+      "coll_turning",
+      "intx_intersection_or_driveway",
+      "ctrl_signal",
+      "ctrl_stop_sign",
+      "road_not_city_street",
+      "weekend",
+      "nighttime",
+      "coord_missing",
+      "road_density_km_100m",
+      "poverty_share",
+      "urban_area_200k",
+      "cf_rider_failed_to_yield",
+      "cf_driver_inattention",
+      "sidewalk_transition",
+      "failure_to_yield",
+      "signal_violation",
+      "vehicle_turning_across",
+      "lane_positioning"
+    ]
+  },
+  "generated": "2026-10-06T02:34:35+00:00",
+  "script": "src/data_extra.py",
+  "inputs": {
+    "model_frame": "data/model_frame.csv",
+    "base_frame": "data/base_frame.csv",
+    "final_labels": "data/final_labels.csv",
+    "reference_labels": "data/reference_labels.csv",
+    "validation_codes": [
+      "data/validation_codes_batch1.csv",
+      "data/validation_codes_batch2.csv"
+    ],
+    "screening": "data/screening.json",
+    "severity_primary": "data/severity.json",
+    "transferability": "data/transferability.json",
+    "fusion_audit": "data/fusion_audit.json",
+    "flagged_ids": "data/flagged_ids.csv",
+    "validation_ids": "data/validation_ids.csv",
+    "urban_areas": [
+      "data/shapefiles/tl_2020_us_uac20.shp",
+      "data/shapefiles/ua_list_all.txt"
+    ],
+    "prespec": "docs/prespec.md"
+  },
+  "actor_attribution": {
+    "source_rule": "Attribution follows the final labels' source: the coders' majority for human-coded narratives (validation batch 1 and adjudication batch 2), the reference-run attribution for automated narratives. A record enters the cross-tabulation only when its final cue is 1.",
+    "split_rule": "rider-attributed = rider or both; driver-attributed = driver or both; unclear-attributed = unclear, or cue positive with no attribution recorded (prespec section 8b)",
+    "event_rule_min_cell": 10,
+    "cues": {
+      "failure_to_yield": {
+        "cue_positive_rows": 170,
+        "crosstab_actor_by_severity": {
+          "both": {
+            "O": 0,
+            "BC": 3,
+            "KA": 0
+          },
+          "driver": {
+            "O": 10,
+            "BC": 54,
+            "KA": 8
+          },
+          "rider": {
+            "O": 14,
+            "BC": 59,
+            "KA": 17
+          },
+          "unclear": {
+            "O": 0,
+            "BC": 3,
+            "KA": 2
+          }
+        },
+        "crosstab_actor_by_label_source": {
+          "both": {
+            "automated": 3,
+            "human": 0
+          },
+          "driver": {
+            "automated": 52,
+            "human": 20
+          },
+          "rider": {
+            "automated": 76,
+            "human": 14
+          },
+          "unclear": {
+            "automated": 2,
+            "human": 3
+          }
+        },
+        "actor_percent_of_cue_positive": {
+          "rider": 52.9,
+          "driver": 42.4,
+          "unclear": 2.9,
+          "both": 1.8
+        },
+        "split_indicators": {
+          "rider_attributed": {
+            "n": 93,
+            "events_by_severity": {
+              "O": 14,
+              "BC": 62,
+              "KA": 17
+            },
+            "smallest_cell": 14,
+            "meets_event_rule": true
+          },
+          "driver_attributed": {
+            "n": 75,
+            "events_by_severity": {
+              "O": 10,
+              "BC": 57,
+              "KA": 8
+            },
+            "smallest_cell": 8,
+            "meets_event_rule": false
+          },
+          "unclear_attributed": {
+            "n": 5,
+            "events_by_severity": {
+              "O": 0,
+              "BC": 3,
+              "KA": 2
+            },
+            "smallest_cell": 0,
+            "meets_event_rule": false
+          }
+        },
+        "split_meets_event_rule": false,
+        "actor_recorded_but_cue_zero": {
+          "n": 2,
+          "by_actor_and_severity": {
+            "driver": {
+              "BC": 0,
+              "KA": 1
+            },
+            "unclear": {
+              "BC": 1,
+              "KA": 0
+            }
+          },
+          "by_source": {
+            "human": 2
+          },
+          "note": "Human-coded records where at least one coder recorded an attribution but the majority cue is 0. They are not cue-positive and are excluded from the cross-tabulation and the indicators."
+        },
+        "coder_majority_strength_cue_positive": {
+          "unanimous": 30,
+          "strict majority": 4,
+          "agreed by all who attributed": 3
+        },
+        "coder_ties": {
+          "n": 0,
+          "crash_ids": [],
+          "final_labels_value": {},
+          "note": "build_final_labels.py resolves a tied attribution by the first most frequent value. The tie is listed so the reader can see which records carry an arbitrary attribution."
+        },
+        "final_labels_differ_from_strict_majority": 0,
+        "validation_agreement_llm_vs_coders": {
+          "batch1_validation_sample": {
+            "batches": [
+              1
+            ],
+            "narratives": 150,
+            "n_both_attributed": 29,
+            "n_agree": 28,
+            "percent_agreement": 96.6,
+            "cohen_kappa": 0.9329,
+            "levels_seen": [
+              "driver",
+              "rider",
+              "unclear"
+            ],
+            "confusion_rows_coders_cols_llm": {
+              "driver": {
+                "driver": 15,
+                "rider": 0
+              },
+              "rider": {
+                "driver": 0,
+                "rider": 13
+              },
+              "unclear": {
+                "driver": 1,
+                "rider": 0
+              }
+            },
+            "coders_attributed_llm_cue_absent": 0,
+            "llm_attributed_coders_cue_absent": 32,
+            "coder_ties_excluded": 0
+          },
+          "batch2_flagged_adjudication": {
+            "batches": [
+              2
+            ],
+            "narratives": 37,
+            "n_both_attributed": 8,
+            "n_agree": 6,
+            "percent_agreement": 75.0,
+            "cohen_kappa": 0.4286,
+            "levels_seen": [
+              "driver",
+              "rider",
+              "unclear"
+            ],
+            "confusion_rows_coders_cols_llm": {
+              "driver": {
+                "driver": 5,
+                "rider": 0
+              },
+              "rider": {
+                "driver": 0,
+                "rider": 1
+              },
+              "unclear": {
+                "driver": 2,
+                "rider": 0
+              }
+            },
+            "coders_attributed_llm_cue_absent": 0,
+            "llm_attributed_coders_cue_absent": 16,
+            "coder_ties_excluded": 0
+          },
+          "pooled": {
+            "batches": [
+              1,
+              2
+            ],
+            "narratives": 187,
+            "n_both_attributed": 37,
+            "n_agree": 34,
+            "percent_agreement": 91.9,
+            "cohen_kappa": 0.8443,
+            "levels_seen": [
+              "driver",
+              "rider",
+              "unclear"
+            ],
+            "confusion_rows_coders_cols_llm": {
+              "driver": {
+                "driver": 20,
+                "rider": 0
+              },
+              "rider": {
+                "driver": 0,
+                "rider": 14
+              },
+              "unclear": {
+                "driver": 3,
+                "rider": 0
+              }
+            },
+            "coders_attributed_llm_cue_absent": 0,
+            "llm_attributed_coders_cue_absent": 48,
+            "coder_ties_excluded": 0
+          },
+          "note": "Agreement is computed on narratives where the coders' majority codes the cue positive with a non-tied attribution and the reference run codes the cue positive. Batch 1 is the validation sample; batch 2 is the flagged adjudication set, selected for disagreement and not a random sample. Agreement is unweighted (validation_metrics.py also reports inverse-probability-weighted label metrics; these are not). Kappa is uninformative where either side uses one level only, e.g. signal_violation in batch 2, where the coders used only 'rider'."
+        }
+      },
+      "signal_violation": {
+        "cue_positive_rows": 89,
+        "crosstab_actor_by_severity": {
+          "both": {
+            "O": 0,
+            "BC": 1,
+            "KA": 0
+          },
+          "driver": {
+            "O": 4,
+            "BC": 18,
+            "KA": 4
+          },
+          "rider": {
+            "O": 10,
+            "BC": 43,
+            "KA": 9
+          }
+        },
+        "crosstab_actor_by_label_source": {
+          "both": {
+            "automated": 0,
+            "human": 1
+          },
+          "driver": {
+            "automated": 22,
+            "human": 4
+          },
+          "rider": {
+            "automated": 35,
+            "human": 27
+          }
+        },
+        "actor_percent_of_cue_positive": {
+          "rider": 69.7,
+          "driver": 29.2,
+          "both": 1.1
+        },
+        "split_indicators": {
+          "rider_attributed": {
+            "n": 63,
+            "events_by_severity": {
+              "O": 10,
+              "BC": 44,
+              "KA": 9
+            },
+            "smallest_cell": 9,
+            "meets_event_rule": false
+          },
+          "driver_attributed": {
+            "n": 27,
+            "events_by_severity": {
+              "O": 4,
+              "BC": 19,
+              "KA": 4
+            },
+            "smallest_cell": 4,
+            "meets_event_rule": false
+          },
+          "unclear_attributed": {
+            "n": 0,
+            "events_by_severity": {
+              "O": 0,
+              "BC": 0,
+              "KA": 0
+            },
+            "smallest_cell": 0,
+            "meets_event_rule": false
+          }
+        },
+        "split_meets_event_rule": false,
+        "actor_recorded_but_cue_zero": {
+          "n": 5,
+          "by_actor_and_severity": {
+            "driver": {
+              "BC": 3,
+              "KA": 0
+            },
+            "rider": {
+              "BC": 1,
+              "KA": 1
+            }
+          },
+          "by_source": {
+            "human": 5
+          },
+          "note": "Human-coded records where at least one coder recorded an attribution but the majority cue is 0. They are not cue-positive and are excluded from the cross-tabulation and the indicators."
+        },
+        "coder_majority_strength_cue_positive": {
+          "unanimous": 28,
+          "strict majority": 2,
+          "agreed by all who attributed": 2
+        },
+        "coder_ties": {
+          "n": 0,
+          "crash_ids": [],
+          "final_labels_value": {},
+          "note": "build_final_labels.py resolves a tied attribution by the first most frequent value. The tie is listed so the reader can see which records carry an arbitrary attribution."
+        },
+        "final_labels_differ_from_strict_majority": 0,
+        "validation_agreement_llm_vs_coders": {
+          "batch1_validation_sample": {
+            "batches": [
+              1
+            ],
+            "narratives": 150,
+            "n_both_attributed": 25,
+            "n_agree": 23,
+            "percent_agreement": 92.0,
+            "cohen_kappa": 0.7396,
+            "levels_seen": [
+              "both",
+              "driver",
+              "rider"
+            ],
+            "confusion_rows_coders_cols_llm": {
+              "both": {
+                "both": 0,
+                "driver": 1,
+                "rider": 0
+              },
+              "driver": {
+                "both": 0,
+                "driver": 3,
+                "rider": 0
+              },
+              "rider": {
+                "both": 1,
+                "driver": 0,
+                "rider": 20
+              }
+            },
+            "coders_attributed_llm_cue_absent": 1,
+            "llm_attributed_coders_cue_absent": 6,
+            "coder_ties_excluded": 0
+          },
+          "batch2_flagged_adjudication": {
+            "batches": [
+              2
+            ],
+            "narratives": 37,
+            "n_both_attributed": 6,
+            "n_agree": 5,
+            "percent_agreement": 83.3,
+            "cohen_kappa": 0.0,
+            "levels_seen": [
+              "driver",
+              "rider"
+            ],
+            "confusion_rows_coders_cols_llm": {
+              "rider": {
+                "driver": 1,
+                "rider": 5
+              }
+            },
+            "coders_attributed_llm_cue_absent": 0,
+            "llm_attributed_coders_cue_absent": 2,
+            "coder_ties_excluded": 0
+          },
+          "pooled": {
+            "batches": [
+              1,
+              2
+            ],
+            "narratives": 187,
+            "n_both_attributed": 31,
+            "n_agree": 28,
+            "percent_agreement": 90.3,
+            "cohen_kappa": 0.6556,
+            "levels_seen": [
+              "both",
+              "driver",
+              "rider"
+            ],
+            "confusion_rows_coders_cols_llm": {
+              "both": {
+                "both": 0,
+                "driver": 1,
+                "rider": 0
+              },
+              "driver": {
+                "both": 0,
+                "driver": 3,
+                "rider": 0
+              },
+              "rider": {
+                "both": 1,
+                "driver": 1,
+                "rider": 25
+              }
+            },
+            "coders_attributed_llm_cue_absent": 1,
+            "llm_attributed_coders_cue_absent": 8,
+            "coder_ties_excluded": 0
+          },
+          "note": "Agreement is computed on narratives where the coders' majority codes the cue positive with a non-tied attribution and the reference run codes the cue positive. Batch 1 is the validation sample; batch 2 is the flagged adjudication set, selected for disagreement and not a random sample. Agreement is unweighted (validation_metrics.py also reports inverse-probability-weighted label metrics; these are not). Kappa is uninformative where either side uses one level only, e.g. signal_violation in batch 2, where the coders used only 'rider'."
+        }
+      }
+    },
+    "split_enters_m1": false,
+    "failing_indicators": {
+      "failure_to_yield": [
+        "driver_attributed",
+        "unclear_attributed"
+      ],
+      "signal_violation": [
+        "rider_attributed",
+        "driver_attributed",
+        "unclear_attributed"
+      ]
+    },
+    "disposition": "descriptive cross-tabulation only: at least one resulting indicator falls below the 10-event rule in a severity class, so under prespec section 8b the split does not enter M1 and no split model is estimated"
+  },
+  "unknown_ethnicity": {
+    "counts_by_severity": {
+      "eth_other": {
+        "O": 3,
+        "BC": 27,
+        "KA": 7
+      },
+      "eth_unknown": {
+        "O": 23,
+        "BC": 10,
+        "KA": 4
+      },
+      "eth_other_or_unknown_primary": {
+        "O": 26,
+        "BC": 37,
+        "KA": 11
+      }
+    },
+    "event_rule": {
+      "eth_other_meets": false,
+      "eth_unknown_meets": false,
+      "note": "fitted regardless, as a sensitivity"
+    },
+    "unknown_recode": "unknown = Prsn_Ethnicity_ID recorded Unknown or missing; other = Asian, Other, American Indian",
+    "fit": {
+      "loglik": -390.2218,
+      "n_parameters": 38,
+      "n": 522,
+      "rho2": 0.0946,
+      "adjusted_rho2": 0.0065,
+      "aic": 856.444,
+      "bic": 1018.235,
+      "converged": true
+    },
+    "primary_fit": {
+      "loglik": -393.9275,
+      "n_parameters": 37,
+      "n": 522,
+      "rho2": 0.086,
+      "adjusted_rho2": 0.0002,
+      "aic": 861.855,
+      "bic": 1019.389,
+      "converged": true
+    },
+    "lr_split_vs_primary": {
+      "lr_chi2": 7.4112,
+      "df": 1,
+      "p": 0.006482
+    },
+    "coefficients": {
+      "eth_other": {
+        "coef": 0.215205,
+        "se": 0.402806,
+        "z": 0.5343,
+        "p": 0.593159,
+        "ci95": [
+          -0.574281,
+          1.004691
+        ],
+        "excludes_zero": false
+      },
+      "eth_unknown": {
+        "coef": -2.02751,
+        "se": 0.742983,
+        "z": -2.7289,
+        "p": 0.006355,
+        "ci95": [
+          -3.48373,
+          -0.57129
+        ],
+        "excludes_zero": true
+      },
+      "eth_black": {
+        "coef": -0.324489,
+        "se": 0.258661,
+        "z": -1.2545,
+        "p": 0.209662,
+        "ci95": [
+          -0.831456,
+          0.182477
+        ],
+        "excludes_zero": false
+      },
+      "eth_hispanic": {
+        "coef": -0.374023,
+        "se": 0.262766,
+        "z": -1.4234,
+        "p": 0.154618,
+        "ci95": [
+          -0.889035,
+          0.140989
+        ],
+        "excludes_zero": false
+      }
+    },
+    "primary_coefficient_eth_other_or_unknown": {
+      "coef": -0.235492,
+      "se": 0.372325,
+      "z": -0.6325,
+      "p": 0.527067,
+      "ci95": [
+        -0.965235,
+        0.494252
+      ],
+      "excludes_zero": false
+    },
+    "ame": {
+      "eth_other": {
+        "O": {
+          "ame": -0.06317,
+          "ci95": [
+            -0.11474,
+            0.01305
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.00156,
+          "ci95": [
+            -0.07987,
+            0.03135
+          ],
+          "excludes_zero": false
+        },
+        "KA": {
+          "ame": 0.06161,
+          "ci95": [
+            -0.03358,
+            0.18934
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "eth_unknown": {
+        "O": {
+          "ame": 0.31718,
+          "ci95": [
+            0.04548,
+            0.58913
+          ],
+          "excludes_zero": true
+        },
+        "BC": {
+          "ame": -0.18248,
+          "ci95": [
+            -0.41608,
+            -0.00169
+          ],
+          "excludes_zero": true
+        },
+        "KA": {
+          "ame": -0.1347,
+          "ci95": [
+            -0.18991,
+            -0.04812
+          ],
+          "excludes_zero": true
+        },
+        "type": "discrete change"
+      },
+      "eth_black": {
+        "O": {
+          "ame": -0.00377,
+          "ci95": [
+            -0.05065,
+            0.05218
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.02979,
+          "ci95": [
+            0.00347,
+            0.04458
+          ],
+          "excludes_zero": true
+        },
+        "KA": {
+          "ame": -0.02601,
+          "ci95": [
+            -0.07707,
+            0.03774
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      },
+      "eth_hispanic": {
+        "O": {
+          "ame": 0.00386,
+          "ci95": [
+            -0.04479,
+            0.06952
+          ],
+          "excludes_zero": false
+        },
+        "BC": {
+          "ame": 0.02876,
+          "ci95": [
+            0.00354,
+            0.04249
+          ],
+          "excludes_zero": true
+        },
+        "KA": {
+          "ame": -0.03262,
+          "ci95": [
+            -0.08626,
+            0.02733
+          ],
+          "excludes_zero": false
+        },
+        "type": "discrete change"
+      }
+    },
+    "separation": {
+      "max_abs_coefficient": 2.0275,
+      "max_standard_error": 0.8787,
+      "any_coefficient_above_10": false,
+      "any_standard_error_above_10": false,
+      "max_abs_t": 3.261,
+      "suggests_separation": false
+    },
+    "vif": {
+      "eth_other": 1.18,
+      "eth_unknown": 4.278,
+      "gender_unknown": 3.948,
+      "age_unknown": 3.679
+    },
+    "unknown_cooccurrence": {
+      "eth_unknown_and_gender_unknown": 26,
+      "eth_unknown_and_age_unknown": 29,
+      "eth_unknown_all_three": 24,
+      "correlation_with_gender_unknown": 0.829,
+      "correlation_with_age_unknown": 0.804
+    },
+    "excludes_zero": {
+      "refit": {
+        "O": [
+          "eth_unknown",
+          "poverty_share"
+        ],
+        "BC": [
+          "eth_black",
+          "eth_hispanic",
+          "eth_unknown"
+        ],
+        "KA": [
+          "eth_unknown",
+          "poverty_share"
+        ]
+      },
+      "primary": {
+        "O": [
+          "age_unknown",
+          "poverty_share"
+        ],
+        "BC": [
+          "age_under25"
+        ],
+        "KA": [
+          "age_unknown",
+          "poverty_share"
+        ]
+      }
+    },
+    "conclusion_changes": {
+      "O": {
+        "gained": [],
+        "lost": [
+          "age_unknown"
+        ]
+      },
+      "BC": {
+        "gained": [
+          "eth_black",
+          "eth_hispanic"
+        ],
+        "lost": [
+          "age_under25"
+        ]
+      },
+      "KA": {
+        "gained": [],
+        "lost": [
+          "age_unknown"
+        ]
+      }
+    },
+    "any_other_conclusion_changes": true,
+    "max_abs_ka_ame_shift_other_covariates": 0.07525,
+    "max_shift_covariate": "gender_unknown",
+    "sign_flips_among_significant": [],
+    "ka_ame_requested": {
+      "poverty_share": {
+        "refit": {
+          "ame": -0.20915,
+          "ci95": [
+            -0.3389,
+            -0.09307
+          ],
+          "excludes_zero": true
+        },
+        "primary": {
+          "ame": -0.21195,
+          "ci95": [
+            -0.34473,
+            -0.09128
+          ],
+          "excludes_zero": true
+        }
+      },
+      "coord_missing": {
+        "refit": {
+          "ame": -0.078,
+          "ci95": [
+            -0.15225,
+            0.01476
+          ],
+          "excludes_zero": false
+        },
+        "primary": {
+          "ame": -0.08035,
+          "ci95": [
+            -0.14749,
+            0.01352
+          ],
+          "excludes_zero": false
+        }
+      },
+      "gender_unknown": {
+        "refit": {
+          "ame": -0.03633,
+          "ci95": [
+            -0.14465,
+            0.22036
+          ],
+          "excludes_zero": false
+        },
+        "primary": {
+          "ame": -0.11158,
+          "ci95": [
+            -0.17286,
+            0.02582
+          ],
+          "excludes_zero": false
+        }
+      },
+      "age_unknown": {
+        "refit": {
+          "ame": -0.07101,
+          "ci95": [
+            -0.15672,
+            0.11152
+          ],
+          "excludes_zero": false
+        },
+        "primary": {
+          "ame": -0.11902,
+          "ci95": [
+            -0.17817,
+            -0.02425
+          ],
+          "excludes_zero": true
+        }
+      },
+      "failure_to_yield": {
+        "refit": {
+          "ame": 0.00152,
+          "ci95": [
+            -0.04902,
+            0.06107
+          ],
+          "excludes_zero": false
+        },
+        "primary": {
+          "ame": -0.00074,
+          "ci95": [
+            -0.05551,
+            0.05515
+          ],
+          "excludes_zero": false
+        }
+      },
+      "signal_violation": {
+        "refit": {
+          "ame": 0.01409,
+          "ci95": [
+            -0.05553,
+            0.10207
+          ],
+          "excludes_zero": false
+        },
+        "primary": {
+          "ame": 0.00147,
+          "ci95": [
+            -0.06227,
+            0.08882
+          ],
+          "excludes_zero": false
+        }
+      },
+      "sidewalk_transition": {
+        "refit": {
+          "ame": 0.0101,
+          "ci95": [
+            -0.04908,
+            0.07785
+          ],
+          "excludes_zero": false
+        },
+        "primary": {
+          "ame": 0.01287,
+          "ci95": [
+            -0.04706,
+            0.08385
+          ],
+          "excludes_zero": false
+        }
+      },
+      "vehicle_turning_across": {
+        "refit": {
+          "ame": -0.01142,
+          "ci95": [
+            -0.07328,
+            0.05712
+          ],
+          "excludes_zero": false
+        },
+        "primary": {
+          "ame": -0.00683,
+          "ci95": [
+            -0.06905,
+            0.06582
+          ],
+          "excludes_zero": false
+        }
+      },
+      "lane_positioning": {
+        "refit": {
+          "ame": 0.0318,
+          "ci95": [
+            -0.03434,
+            0.11068
+          ],
+          "excludes_zero": false
+        },
+        "primary": {
+          "ame": 0.02933,
+          "ci95": [
+            -0.03812,
+            0.10537
+          ],
+          "excludes_zero": false
+        }
+      }
+    }
+  },
+  "text_counts": {
+    "denominators": {
+      "rider_rows": 522,
+      "crashes": 520
+    },
+    "weather": {
+      "crash_level": {
+        "Clear": 440,
+        "Cloudy": 62,
+        "Rain": 12,
+        "Fog": 3,
+        "Unknown": 3
+      },
+      "dominant_crash_level": {
+        "category": "Clear",
+        "count": 440,
+        "percent": 84.6,
+        "of": 520
+      },
+      "rider_rows": {
+        "Clear": 441,
+        "Cloudy": 63,
+        "Rain": 12,
+        "Fog": 3,
+        "Unknown": 3
+      },
+      "dominant_rider_rows": {
+        "category": "Clear",
+        "count": 441,
+        "percent": 84.5,
+        "of": 522
+      }
+    },
+    "surface": {
+      "crash_level": {
+        "Dry": 488,
+        "Wet": 29,
+        "Unknown": 3
+      },
+      "dominant_crash_level": {
+        "category": "Dry",
+        "count": 488,
+        "percent": 93.8,
+        "of": 520
+      },
+      "rider_rows": {
+        "Dry": 489,
+        "Wet": 30,
+        "Unknown": 3
+      },
+      "dominant_rider_rows": {
+        "category": "Dry",
+        "count": 489,
+        "percent": 93.7,
+        "of": 522
+      }
+    },
+    "helmet": {
+      "rider_rows": {
+        "Not Applicable": 502,
+        "missing": 20
+      },
+      "not_applicable": 502,
+      "any_informative_value": 0
+    },
+    "alcohol_test": {
+      "rider_rows": {
+        "missing": 516,
+        "2.0": 4,
+        "1.0": 2
+      },
+      "result_present": 6,
+      "code_note": "raw CRIS codes; no code lookup is held in the repository, so meanings are not attached here"
+    },
+    "drug_test": {
+      "rider_rows": {
+        "97.0": 497,
+        "missing": 20,
+        "1.0": 4,
+        "2.0": 1
+      },
+      "result_present_excluding_97": 5,
+      "code_note": "raw CRIS codes; 97 is the most frequent code; no lookup is held in the repository"
+    },
+    "rider_age_by_class": {
+      "O": {
+        "n_known": 56,
+        "q1": 18.0,
+        "median": 24.0,
+        "q3": 33.2
+      },
+      "BC": {
+        "n_known": 355,
+        "q1": 17.0,
+        "median": 22.0,
+        "q3": 33.0
+      },
+      "KA": {
+        "n_known": 77,
+        "q1": 19.0,
+        "median": 28.0,
+        "q3": 40.0
+      },
+      "all": {
+        "n_known": 488,
+        "q1": 18.0,
+        "median": 23.0,
+        "q3": 34.0
+      }
+    },
+    "rider_age_quantile_method": "numpy.percentile, linear interpolation; unknown ages excluded",
+    "fusion": {
+      "n_flagged_narratives": 47,
+      "flagged_ids_file_count": 47,
+      "band": [
+        0.2,
+        0.8
+      ],
+      "band_used": [
+        0.2,
+        0.8
+      ],
+      "narrow_band_if_cap_exceeded": [
+        0.3,
+        0.7
+      ],
+      "flag_cap": 120,
+      "cap_exceeded": false
+    },
+    "validation_flagged_overlap": 10,
+    "validation_sample_size": 150,
+    "flagged_not_in_validation": 37,
+    "batch2_human_labelled": 37,
+    "identity_check_flagged_minus_overlap_equals_batch2": true
+  },
+  "multiple_imputation": {
+    "settings": {
+      "m": 20,
+      "seed": 20261005,
+      "seed_scheme": "numpy SeedSequence(seed).spawn(m)",
+      "cycles_per_chain": 10,
+      "pmm_donors": 5,
+      "ridge_linear": 1e-05,
+      "ridge_logit": 0.1,
+      "kr_draws_per_imputation": 1000,
+      "kr_seed": "20260917 + imputation index (0..19)",
+      "pooling": "Rubin's rules; total variance W + (1 + 1/m) B; t intervals with Barnard-Rubin degrees of freedom; complete-data df 488 (n minus parameters)",
+      "fmi_definition": "(r + 2/(df + 3)) / (r + 1), r = (1 + 1/m) B / W"
+    },
+    "imputation_models": {
+      "rider_age": "predictive mean matching, 5 donors, on a Bayesian linear regression draw (rider_age, years)",
+      "posted_speed_limit": "predictive mean matching, 5 donors, on a Bayesian linear regression draw (Crash_Speed_Limit; -1 and missing treated as missing), so imputed values are posted limits that occur in the data",
+      "gender": "binary logit (female vs male), ridge 0.1 on slopes, parameters drawn from the normal approximation; Unknown and missing treated as missing",
+      "ethnicity": "multinomial logit over white, black, hispanic, other (Asian, other, American Indian), ridge 0.1 on slopes, parameters drawn from the normal approximation; Unknown and missing treated as missing",
+      "predictors_every_model": [
+        "light_dark_or_unknown",
+        "veh_other_unknown",
+        "veh_pickup_truck_van",
+        "veh_suv",
+        "coll_other",
+        "coll_single_mv_straight",
+        "coll_turning",
+        "intx_intersection_or_driveway",
+        "ctrl_signal",
+        "ctrl_stop_sign",
+        "road_not_city_street",
+        "weekend",
+        "nighttime",
+        "coord_missing",
+        "road_density_km_100m",
+        "poverty_share",
+        "urban_area_200k",
+        "cf_rider_failed_to_yield",
+        "cf_driver_inattention",
+        "sidewalk_transition",
+        "failure_to_yield",
+        "signal_violation",
+        "vehicle_turning_across",
+        "lane_positioning",
+        "sev3 = BC",
+        "sev3 = KA"
+      ],
+      "predictors_cross": "each model also uses the current values of the other three imputed fields (age and speed standardized, female, ethnicity dummies)",
+      "visit_order": [
+        "age",
+        "speed",
+        "gender",
+        "ethnicity"
+      ],
+      "initialization": "random draws from the observed values"
+    },
+    "missing_counts": {
+      "age": 34,
+      "speed": 41,
+      "gender": 26,
+      "eth": 37
+    },
+    "missing_by_severity": {
+      "age": {
+        "O": 21,
+        "BC": 8,
+        "KA": 5
+      },
+      "speed": {
+        "O": 6,
+        "BC": 33,
+        "KA": 2
+      },
+      "gender": {
+        "O": 17,
+        "BC": 6,
+        "KA": 3
+      },
+      "eth": {
+        "O": 23,
+        "BC": 10,
+        "KA": 4
+      }
+    },
+    "rows_with_any_imputed_field": 81,
+    "rows": 522,
+    "band_coding": {
+      "age": "under 25; 25 to 54 (ref); 45 and over (threshold of the primary)",
+      "speed": "30 or less (ref); 35 to 40; 45 and over",
+      "gender": "male (ref); female",
+      "ethnicity": "white (ref); black; hispanic; other. With unknown imputed, the primary's other-or-unknown level becomes other alone. It is kept as its own level although it fails the 10-event rule, because section 4 offers no other merge and pooling it into White is not permitted.",
+      "dropped": [
+        "speed_unknown",
+        "gender_unknown",
+        "age_unknown"
+      ],
+      "kept_unimputed_indicators": [
+        "coord_missing",
+        "veh_other_unknown"
+      ]
+    },
+    "band_cells_across_imputations": {
+      "age_under25": {
+        "mean_by_severity": {
+          "O": 38.4,
+          "BC": 201.9,
+          "KA": 32.2
+        },
+        "min_by_severity": {
+          "O": 35,
+          "BC": 200,
+          "KA": 30
+        },
+        "meets_event_rule_in_every_imputation": true
+      },
+      "age_45plus": {
+        "mean_by_severity": {
+          "O": 14.2,
+          "BC": 39.0,
+          "KA": 16.0
+        },
+        "min_by_severity": {
+          "O": 11,
+          "BC": 38,
+          "KA": 15
+        },
+        "meets_event_rule_in_every_imputation": true
+      },
+      "speed_35to40": {
+        "mean_by_severity": {
+          "O": 21.4,
+          "BC": 112.0,
+          "KA": 22.4
+        },
+        "min_by_severity": {
+          "O": 20,
+          "BC": 109,
+          "KA": 22
+        },
+        "meets_event_rule_in_every_imputation": true
+      },
+      "speed_ge45": {
+        "mean_by_severity": {
+          "O": 16.4,
+          "BC": 41.9,
+          "KA": 22.0
+        },
+        "min_by_severity": {
+          "O": 16,
+          "BC": 39,
+          "KA": 22
+        },
+        "meets_event_rule_in_every_imputation": true
+      },
+      "gender_female": {
+        "mean_by_severity": {
+          "O": 14.5,
+          "BC": 91.8,
+          "KA": 24.9
+        },
+        "min_by_severity": {
+          "O": 12,
+          "BC": 90,
+          "KA": 24
+        },
+        "meets_event_rule_in_every_imputation": true
+      },
+      "eth_black": {
+        "mean_by_severity": {
+          "O": 20.3,
+          "BC": 98.5,
+          "KA": 16.6
+        },
+        "min_by_severity": {
+          "O": 17,
+          "BC": 97,
+          "KA": 16
+        },
+        "meets_event_rule_in_every_imputation": true
+      },
+      "eth_hispanic": {
+        "mean_by_severity": {
+          "O": 23.0,
+          "BC": 98.5,
+          "KA": 15.7
+        },
+        "min_by_severity": {
+          "O": 18,
+          "BC": 96,
+          "KA": 15
+        },
+        "meets_event_rule_in_every_imputation": true
+      },
+      "eth_other": {
+        "mean_by_severity": {
+          "O": 4.9,
+          "BC": 27.5,
+          "KA": 7.2
+        },
+        "min_by_severity": {
+          "O": 3,
+          "BC": 27,
+          "KA": 7
+        },
+        "meets_event_rule_in_every_imputation": false
+      }
+    },
+    "imputed_values_summary": {
+      "ethnicity_of_imputed_mean_counts": {
+        "white": 14.8,
+        "hispanic": 10.2,
+        "black": 9.4,
+        "other": 2.5
+      },
+      "female_share_of_imputed_gender_mean": 0.237,
+      "median_imputed_age_mean_across_m": 24.9,
+      "median_imputed_speed_mean_across_m": 29.8
+    },
+    "fits_converged": 20,
+    "fits_flagging_separation": 0,
+    "columns": [
+      "speed_35to40",
+      "speed_ge45",
+      "light_dark_or_unknown",
+      "eth_black",
+      "eth_hispanic",
+      "eth_other",
+      "gender_female",
+      "age_45plus",
+      "age_under25",
+      "veh_other_unknown",
+      "veh_pickup_truck_van",
+      "veh_suv",
+      "coll_other",
+      "coll_single_mv_straight",
+      "coll_turning",
+      "intx_intersection_or_driveway",
+      "ctrl_signal",
+      "ctrl_stop_sign",
+      "road_not_city_street",
+      "weekend",
+      "nighttime",
+      "coord_missing",
+      "road_density_km_100m",
+      "poverty_share",
+      "urban_area_200k",
+      "cf_rider_failed_to_yield",
+      "cf_driver_inattention",
+      "sidewalk_transition",
+      "failure_to_yield",
+      "signal_violation",
+      "vehicle_turning_across",
+      "lane_positioning"
+    ],
+    "coefficients_pooled": {
+      "speed_35to40": {
+        "estimate": -0.0577,
+        "se": 0.2414,
+        "ci95": [
+          -0.5323,
+          0.4169
+        ],
+        "excludes_zero": false,
+        "df": 413.2,
+        "lambda": 0.0647,
+        "fmi": 0.0692
+      },
+      "speed_ge45": {
+        "estimate": -0.0039,
+        "se": 0.3536,
+        "ci95": [
+          -0.6987,
+          0.6909
+        ],
+        "excludes_zero": false,
+        "df": 456.1,
+        "lambda": 0.0343,
+        "fmi": 0.0385
+      },
+      "light_dark_or_unknown": {
+        "estimate": 0.2554,
+        "se": 0.2741,
+        "ci95": [
+          -0.2831,
+          0.794
+        ],
+        "excludes_zero": false,
+        "df": 484.9,
+        "lambda": 0.0022,
+        "fmi": 0.0063
+      },
+      "eth_black": {
+        "estimate": -0.3461,
+        "se": 0.2676,
+        "ci95": [
+          -0.8731,
+          0.181
+        ],
+        "excludes_zero": false,
+        "df": 259.4,
+        "lambda": 0.163,
+        "fmi": 0.1693
+      },
+      "eth_hispanic": {
+        "estimate": -0.3369,
+        "se": 0.278,
+        "ci95": [
+          -0.8851,
+          0.2112
+        ],
+        "excludes_zero": false,
+        "df": 202.8,
+        "lambda": 0.2102,
+        "fmi": 0.2179
+      },
+      "eth_other": {
+        "estimate": 0.1608,
+        "se": 0.4251,
+        "ci95": [
+          -0.6767,
+          0.9982
+        ],
+        "excludes_zero": false,
+        "df": 237.9,
+        "lambda": 0.1795,
+        "fmi": 0.1863
+      },
+      "gender_female": {
+        "estimate": 0.3484,
+        "se": 0.2369,
+        "ci95": [
+          -0.1177,
+          0.8145
+        ],
+        "excludes_zero": false,
+        "df": 318.4,
+        "lambda": 0.1229,
+        "fmi": 0.1283
+      },
+      "age_45plus": {
+        "estimate": 0.0261,
+        "se": 0.3688,
+        "ci95": [
+          -0.7018,
+          0.7541
+        ],
+        "excludes_zero": false,
+        "df": 170.9,
+        "lambda": 0.2439,
+        "fmi": 0.2526
+      },
+      "age_under25": {
+        "estimate": -0.1754,
+        "se": 0.2452,
+        "ci95": [
+          -0.6585,
+          0.3077
+        ],
+        "excludes_zero": false,
+        "df": 224.7,
+        "lambda": 0.1905,
+        "fmi": 0.1976
+      },
+      "veh_other_unknown": {
+        "estimate": -0.4339,
+        "se": 0.3814,
+        "ci95": [
+          -1.1832,
+          0.3154
+        ],
+        "excludes_zero": false,
+        "df": 484.8,
+        "lambda": 0.0023,
+        "fmi": 0.0064
+      },
+      "veh_pickup_truck_van": {
+        "estimate": 0.0673,
+        "se": 0.2673,
+        "ci95": [
+          -0.4579,
+          0.5925
+        ],
+        "excludes_zero": false,
+        "df": 483.3,
+        "lambda": 0.0049,
+        "fmi": 0.009
+      },
+      "veh_suv": {
+        "estimate": -0.0247,
+        "se": 0.2365,
+        "ci95": [
+          -0.4893,
+          0.4399
+        ],
+        "excludes_zero": false,
+        "df": 482.6,
+        "lambda": 0.0061,
+        "fmi": 0.0102
+      },
+      "coll_other": {
+        "estimate": -0.0411,
+        "se": 0.31,
+        "ci95": [
+          -0.6503,
+          0.568
+        ],
+        "excludes_zero": false,
+        "df": 484.7,
+        "lambda": 0.0025,
+        "fmi": 0.0066
+      },
+      "coll_single_mv_straight": {
+        "estimate": -0.1857,
+        "se": 0.2738,
+        "ci95": [
+          -0.7236,
+          0.3522
+        ],
+        "excludes_zero": false,
+        "df": 482.6,
+        "lambda": 0.0061,
+        "fmi": 0.0102
+      },
+      "coll_turning": {
+        "estimate": -0.144,
+        "se": 0.3193,
+        "ci95": [
+          -0.7714,
+          0.4834
+        ],
+        "excludes_zero": false,
+        "df": 485.1,
+        "lambda": 0.0018,
+        "fmi": 0.0059
+      },
+      "intx_intersection_or_driveway": {
+        "estimate": -0.2928,
+        "se": 0.282,
+        "ci95": [
+          -0.847,
+          0.2614
+        ],
+        "excludes_zero": false,
+        "df": 481.8,
+        "lambda": 0.0073,
+        "fmi": 0.0114
+      },
+      "ctrl_signal": {
+        "estimate": 0.0858,
+        "se": 0.2905,
+        "ci95": [
+          -0.485,
+          0.6567
+        ],
+        "excludes_zero": false,
+        "df": 484.1,
+        "lambda": 0.0036,
+        "fmi": 0.0077
+      },
+      "ctrl_stop_sign": {
+        "estimate": -0.0717,
+        "se": 0.28,
+        "ci95": [
+          -0.6219,
+          0.4785
+        ],
+        "excludes_zero": false,
+        "df": 483.5,
+        "lambda": 0.0046,
+        "fmi": 0.0087
+      },
+      "road_not_city_street": {
+        "estimate": 0.1295,
+        "se": 0.2884,
+        "ci95": [
+          -0.4371,
+          0.6961
+        ],
+        "excludes_zero": false,
+        "df": 482.1,
+        "lambda": 0.0069,
+        "fmi": 0.011
+      },
+      "weekend": {
+        "estimate": -0.3298,
+        "se": 0.2432,
+        "ci95": [
+          -0.8076,
+          0.148
+        ],
+        "excludes_zero": false,
+        "df": 485.3,
+        "lambda": 0.0015,
+        "fmi": 0.0056
+      },
+      "nighttime": {
+        "estimate": 0.2517,
+        "se": 0.3646,
+        "ci95": [
+          -0.4647,
+          0.9681
+        ],
+        "excludes_zero": false,
+        "df": 481.9,
+        "lambda": 0.0072,
+        "fmi": 0.0113
+      },
+      "coord_missing": {
+        "estimate": -0.6613,
+        "se": 0.3983,
+        "ci95": [
+          -1.444,
+          0.1214
+        ],
+        "excludes_zero": false,
+        "df": 484.4,
+        "lambda": 0.003,
+        "fmi": 0.0071
+      },
+      "road_density_km_100m": {
+        "estimate": -0.0504,
+        "se": 0.2708,
+        "ci95": [
+          -0.5824,
+          0.4817
+        ],
+        "excludes_zero": false,
+        "df": 484.5,
+        "lambda": 0.0028,
+        "fmi": 0.0069
+      },
+      "poverty_share": {
+        "estimate": -1.7497,
+        "se": 0.4972,
+        "ci95": [
+          -2.7266,
+          -0.7727
+        ],
+        "excludes_zero": true,
+        "df": 481.6,
+        "lambda": 0.0076,
+        "fmi": 0.0117
+      },
+      "urban_area_200k": {
+        "estimate": -0.3358,
+        "se": 0.2508,
+        "ci95": [
+          -0.8286,
+          0.157
+        ],
+        "excludes_zero": false,
+        "df": 482.7,
+        "lambda": 0.0059,
+        "fmi": 0.01
+      },
+      "cf_rider_failed_to_yield": {
+        "estimate": 0.1542,
+        "se": 0.3042,
+        "ci95": [
+          -0.4434,
+          0.7519
+        ],
+        "excludes_zero": false,
+        "df": 480.8,
+        "lambda": 0.0088,
+        "fmi": 0.0129
+      },
+      "cf_driver_inattention": {
+        "estimate": 0.1041,
+        "se": 0.2575,
+        "ci95": [
+          -0.4019,
+          0.6101
+        ],
+        "excludes_zero": false,
+        "df": 482.1,
+        "lambda": 0.0069,
+        "fmi": 0.011
+      },
+      "sidewalk_transition": {
+        "estimate": 0.1499,
+        "se": 0.2452,
+        "ci95": [
+          -0.3319,
+          0.6317
+        ],
+        "excludes_zero": false,
+        "df": 483.9,
+        "lambda": 0.004,
+        "fmi": 0.0081
+      },
+      "failure_to_yield": {
+        "estimate": -0.0135,
+        "se": 0.2216,
+        "ci95": [
+          -0.4489,
+          0.422
+        ],
+        "excludes_zero": false,
+        "df": 484.5,
+        "lambda": 0.0029,
+        "fmi": 0.007
+      },
+      "signal_violation": {
+        "estimate": -0.0499,
+        "se": 0.2955,
+        "ci95": [
+          -0.6305,
+          0.5308
+        ],
+        "excludes_zero": false,
+        "df": 484.6,
+        "lambda": 0.0027,
+        "fmi": 0.0068
+      },
+      "vehicle_turning_across": {
+        "estimate": -0.1026,
+        "se": 0.2725,
+        "ci95": [
+          -0.638,
+          0.4327
+        ],
+        "excludes_zero": false,
+        "df": 485.6,
+        "lambda": 0.0009,
+        "fmi": 0.0049
+      },
+      "lane_positioning": {
+        "estimate": 0.2814,
+        "se": 0.263,
+        "ci95": [
+          -0.2354,
+          0.7982
+        ],
+        "excludes_zero": false,
+        "df": 481.8,
+        "lambda": 0.0073,
+        "fmi": 0.0114
+      }
+    },
+    "ame_pooled": {
+      "speed_35to40": {
+        "O": {
+          "estimate": 0.0069,
+          "se": 0.02799,
+          "ci95": [
+            -0.04812,
+            0.06192
+          ],
+          "excludes_zero": false,
+          "df": 421.2,
+          "lambda": 0.0595,
+          "fmi": 0.0639
+        },
+        "BC": {
+          "estimate": 0.00034,
+          "se": 0.0043,
+          "ci95": [
+            -0.00811,
+            0.0088
+          ],
+          "excludes_zero": false,
+          "df": 482.7,
+          "lambda": 0.0059,
+          "fmi": 0.01
+        },
+        "KA": {
+          "estimate": -0.00724,
+          "se": 0.02885,
+          "ci95": [
+            -0.06395,
+            0.04946
+          ],
+          "excludes_zero": false,
+          "df": 423.1,
+          "lambda": 0.0583,
+          "fmi": 0.0627
+        }
+      },
+      "speed_ge45": {
+        "O": {
+          "estimate": -0.00151,
+          "se": 0.04027,
+          "ci95": [
+            -0.08065,
+            0.07762
+          ],
+          "excludes_zero": false,
+          "df": 464.3,
+          "lambda": 0.0272,
+          "fmi": 0.0313
+        },
+        "BC": {
+          "estimate": -0.00026,
+          "se": 0.00964,
+          "ci95": [
+            -0.0192,
+            0.01868
+          ],
+          "excludes_zero": false,
+          "df": 483.6,
+          "lambda": 0.0044,
+          "fmi": 0.0085
+        },
+        "KA": {
+          "estimate": 0.00177,
+          "se": 0.04369,
+          "ci95": [
+            -0.08407,
+            0.08762
+          ],
+          "excludes_zero": false,
+          "df": 463.8,
+          "lambda": 0.0276,
+          "fmi": 0.0318
+        }
+      },
+      "light_dark_or_unknown": {
+        "O": {
+          "estimate": -0.02938,
+          "se": 0.03169,
+          "ci95": [
+            -0.09165,
+            0.03289
+          ],
+          "excludes_zero": false,
+          "df": 485.0,
+          "lambda": 0.002,
+          "fmi": 0.0061
+        },
+        "BC": {
+          "estimate": -0.00443,
+          "se": 0.00855,
+          "ci95": [
+            -0.02122,
+            0.01237
+          ],
+          "excludes_zero": false,
+          "df": 485.4,
+          "lambda": 0.0013,
+          "fmi": 0.0054
+        },
+        "KA": {
+          "estimate": 0.03381,
+          "se": 0.03783,
+          "ci95": [
+            -0.04052,
+            0.10814
+          ],
+          "excludes_zero": false,
+          "df": 485.0,
+          "lambda": 0.002,
+          "fmi": 0.0061
+        }
+      },
+      "eth_black": {
+        "O": {
+          "estimate": 0.03122,
+          "se": 0.03078,
+          "ci95": [
+            -0.02936,
+            0.09179
+          ],
+          "excludes_zero": false,
+          "df": 298.7,
+          "lambda": 0.1356,
+          "fmi": 0.1413
+        },
+        "BC": {
+          "estimate": 0.00396,
+          "se": 0.00745,
+          "ci95": [
+            -0.01069,
+            0.01862
+          ],
+          "excludes_zero": false,
+          "df": 356.3,
+          "lambda": 0.0996,
+          "fmi": 0.1046
+        },
+        "KA": {
+          "estimate": -0.03518,
+          "se": 0.02959,
+          "ci95": [
+            -0.0934,
+            0.02304
+          ],
+          "excludes_zero": false,
+          "df": 300.8,
+          "lambda": 0.1342,
+          "fmi": 0.1399
+        }
+      },
+      "eth_hispanic": {
+        "O": {
+          "estimate": 0.03079,
+          "se": 0.03274,
+          "ci95": [
+            -0.03375,
+            0.09533
+          ],
+          "excludes_zero": false,
+          "df": 208.6,
+          "lambda": 0.2048,
+          "fmi": 0.2123
+        },
+        "BC": {
+          "estimate": 0.00228,
+          "se": 0.00699,
+          "ci95": [
+            -0.01146,
+            0.01601
+          ],
+          "excludes_zero": false,
+          "df": 402.7,
+          "lambda": 0.0713,
+          "fmi": 0.0759
+        },
+        "KA": {
+          "estimate": -0.03307,
+          "se": 0.0314,
+          "ci95": [
+            -0.09496,
+            0.02882
+          ],
+          "excludes_zero": false,
+          "df": 217.4,
+          "lambda": 0.1968,
+          "fmi": 0.2041
+        }
+      },
+      "eth_other": {
+        "O": {
+          "estimate": -0.03706,
+          "se": 0.0415,
+          "ci95": [
+            -0.11878,
+            0.04465
+          ],
+          "excludes_zero": false,
+          "df": 263.7,
+          "lambda": 0.1598,
+          "fmi": 0.1661
+        },
+        "BC": {
+          "estimate": -0.00996,
+          "se": 0.02572,
+          "ci95": [
+            -0.06056,
+            0.04064
+          ],
+          "excludes_zero": false,
+          "df": 315.0,
+          "lambda": 0.125,
+          "fmi": 0.1305
+        },
+        "KA": {
+          "estimate": 0.04702,
+          "se": 0.06208,
+          "ci95": [
+            -0.07525,
+            0.16929
+          ],
+          "excludes_zero": false,
+          "df": 252.2,
+          "lambda": 0.1683,
+          "fmi": 0.1749
+        }
+      },
+      "gender_female": {
+        "O": {
+          "estimate": -0.03895,
+          "se": 0.0259,
+          "ci95": [
+            -0.0899,
+            0.01199
+          ],
+          "excludes_zero": false,
+          "df": 333.1,
+          "lambda": 0.1137,
+          "fmi": 0.119
+        },
+        "BC": {
+          "estimate": -0.00831,
+          "se": 0.00996,
+          "ci95": [
+            -0.02789,
+            0.01127
+          ],
+          "excludes_zero": false,
+          "df": 366.9,
+          "lambda": 0.0931,
+          "fmi": 0.098
+        },
+        "KA": {
+          "estimate": 0.04726,
+          "se": 0.0336,
+          "ci95": [
+            -0.01884,
+            0.11337
+          ],
+          "excludes_zero": false,
+          "df": 319.4,
+          "lambda": 0.1222,
+          "fmi": 0.1277
+        }
+      },
+      "age_45plus": {
+        "O": {
+          "estimate": -0.01344,
+          "se": 0.03931,
+          "ci95": [
+            -0.09108,
+            0.06419
+          ],
+          "excludes_zero": false,
+          "df": 161.3,
+          "lambda": 0.2555,
+          "fmi": 0.2646
+        },
+        "BC": {
+          "estimate": -0.00227,
+          "se": 0.01276,
+          "ci95": [
+            -0.02738,
+            0.02283
+          ],
+          "excludes_zero": false,
+          "df": 305.9,
+          "lambda": 0.1309,
+          "fmi": 0.1365
+        },
+        "KA": {
+          "estimate": 0.01572,
+          "se": 0.04707,
+          "ci95": [
+            -0.07724,
+            0.10868
+          ],
+          "excludes_zero": false,
+          "df": 157.8,
+          "lambda": 0.2599,
+          "fmi": 0.2691
+        }
+      },
+      "age_under25": {
+        "O": {
+          "estimate": 0.021,
+          "se": 0.02772,
+          "ci95": [
+            -0.03363,
+            0.07564
+          ],
+          "excludes_zero": false,
+          "df": 218.0,
+          "lambda": 0.1963,
+          "fmi": 0.2035
+        },
+        "BC": {
+          "estimate": 0.00208,
+          "se": 0.00505,
+          "ci95": [
+            -0.00785,
+            0.01201
+          ],
+          "excludes_zero": false,
+          "df": 440.8,
+          "lambda": 0.0461,
+          "fmi": 0.0504
+        },
+        "KA": {
+          "estimate": -0.02308,
+          "se": 0.03002,
+          "ci95": [
+            -0.08226,
+            0.03609
+          ],
+          "excludes_zero": false,
+          "df": 218.3,
+          "lambda": 0.196,
+          "fmi": 0.2033
+        }
+      },
+      "veh_other_unknown": {
+        "O": {
+          "estimate": 0.05878,
+          "se": 0.05439,
+          "ci95": [
+            -0.04808,
+            0.16565
+          ],
+          "excludes_zero": false,
+          "df": 485.0,
+          "lambda": 0.002,
+          "fmi": 0.0061
+        },
+        "BC": {
+          "estimate": -0.00854,
+          "se": 0.02087,
+          "ci95": [
+            -0.04955,
+            0.03246
+          ],
+          "excludes_zero": false,
+          "df": 485.4,
+          "lambda": 0.0013,
+          "fmi": 0.0053
+        },
+        "KA": {
+          "estimate": -0.05024,
+          "se": 0.0386,
+          "ci95": [
+            -0.12608,
+            0.02561
+          ],
+          "excludes_zero": false,
+          "df": 485.0,
+          "lambda": 0.002,
+          "fmi": 0.0061
+        }
+      },
+      "veh_pickup_truck_van": {
+        "O": {
+          "estimate": -0.01287,
+          "se": 0.02958,
+          "ci95": [
+            -0.07099,
+            0.04525
+          ],
+          "excludes_zero": false,
+          "df": 483.7,
+          "lambda": 0.0043,
+          "fmi": 0.0084
+        },
+        "BC": {
+          "estimate": -0.00128,
+          "se": 0.00756,
+          "ci95": [
+            -0.01615,
+            0.01358
+          ],
+          "excludes_zero": false,
+          "df": 484.8,
+          "lambda": 0.0023,
+          "fmi": 0.0064
+        },
+        "KA": {
+          "estimate": 0.01415,
+          "se": 0.03444,
+          "ci95": [
+            -0.05353,
+            0.08183
+          ],
+          "excludes_zero": false,
+          "df": 483.6,
+          "lambda": 0.0045,
+          "fmi": 0.0086
+        }
+      },
+      "veh_suv": {
+        "O": {
+          "estimate": -5e-05,
+          "se": 0.02719,
+          "ci95": [
+            -0.05348,
+            0.05337
+          ],
+          "excludes_zero": false,
+          "df": 482.5,
+          "lambda": 0.0062,
+          "fmi": 0.0103
+        },
+        "BC": {
+          "estimate": 0.00069,
+          "se": 0.00488,
+          "ci95": [
+            -0.0089,
+            0.01027
+          ],
+          "excludes_zero": false,
+          "df": 485.3,
+          "lambda": 0.0014,
+          "fmi": 0.0055
+        },
+        "KA": {
+          "estimate": -0.00064,
+          "se": 0.02927,
+          "ci95": [
+            -0.05814,
+            0.05687
+          ],
+          "excludes_zero": false,
+          "df": 482.5,
+          "lambda": 0.0063,
+          "fmi": 0.0104
+        }
+      },
+      "coll_other": {
+        "O": {
+          "estimate": -0.00553,
+          "se": 0.03073,
+          "ci95": [
+            -0.06592,
+            0.05485
+          ],
+          "excludes_zero": false,
+          "df": 484.7,
+          "lambda": 0.0025,
+          "fmi": 0.0066
+        },
+        "BC": {
+          "estimate": 0.00015,
+          "se": 0.00726,
+          "ci95": [
+            -0.01411,
+            0.01442
+          ],
+          "excludes_zero": false,
+          "df": 485.4,
+          "lambda": 0.0013,
+          "fmi": 0.0054
+        },
+        "KA": {
+          "estimate": 0.00538,
+          "se": 0.0348,
+          "ci95": [
+            -0.063,
+            0.07377
+          ],
+          "excludes_zero": false,
+          "df": 484.6,
+          "lambda": 0.0026,
+          "fmi": 0.0067
+        }
+      },
+      "coll_single_mv_straight": {
+        "O": {
+          "estimate": 0.01631,
+          "se": 0.03019,
+          "ci95": [
+            -0.04302,
+            0.07564
+          ],
+          "excludes_zero": false,
+          "df": 482.9,
+          "lambda": 0.0057,
+          "fmi": 0.0097
+        },
+        "BC": {
+          "estimate": 0.00127,
+          "se": 0.00558,
+          "ci95": [
+            -0.00969,
+            0.01223
+          ],
+          "excludes_zero": false,
+          "df": 485.9,
+          "lambda": 0.0002,
+          "fmi": 0.0043
+        },
+        "KA": {
+          "estimate": -0.01758,
+          "se": 0.03019,
+          "ci95": [
+            -0.0769,
+            0.04173
+          ],
+          "excludes_zero": false,
+          "df": 482.7,
+          "lambda": 0.0059,
+          "fmi": 0.01
+        }
+      },
+      "coll_turning": {
+        "O": {
+          "estimate": 0.01073,
+          "se": 0.03401,
+          "ci95": [
+            -0.0561,
+            0.07756
+          ],
+          "excludes_zero": false,
+          "df": 485.3,
+          "lambda": 0.0014,
+          "fmi": 0.0055
+        },
+        "BC": {
+          "estimate": 0.00104,
+          "se": 0.00581,
+          "ci95": [
+            -0.01037,
+            0.01246
+          ],
+          "excludes_zero": false,
+          "df": 485.9,
+          "lambda": 0.0003,
+          "fmi": 0.0044
+        },
+        "KA": {
+          "estimate": -0.01177,
+          "se": 0.03545,
+          "ci95": [
+            -0.08142,
+            0.05788
+          ],
+          "excludes_zero": false,
+          "df": 485.3,
+          "lambda": 0.0014,
+          "fmi": 0.0055
+        }
+      },
+      "intx_intersection_or_driveway": {
+        "O": {
+          "estimate": 0.03327,
+          "se": 0.03163,
+          "ci95": [
+            -0.02888,
+            0.09542
+          ],
+          "excludes_zero": false,
+          "df": 482.0,
+          "lambda": 0.007,
+          "fmi": 0.0111
+        },
+        "BC": {
+          "estimate": 0.00608,
+          "se": 0.01029,
+          "ci95": [
+            -0.01415,
+            0.0263
+          ],
+          "excludes_zero": false,
+          "df": 482.8,
+          "lambda": 0.0058,
+          "fmi": 0.0098
+        },
+        "KA": {
+          "estimate": -0.03935,
+          "se": 0.03949,
+          "ci95": [
+            -0.11694,
+            0.03824
+          ],
+          "excludes_zero": false,
+          "df": 481.7,
+          "lambda": 0.0075,
+          "fmi": 0.0116
+        }
+      },
+      "ctrl_signal": {
+        "O": {
+          "estimate": -0.0119,
+          "se": 0.03256,
+          "ci95": [
+            -0.07588,
+            0.05208
+          ],
+          "excludes_zero": false,
+          "df": 483.3,
+          "lambda": 0.0049,
+          "fmi": 0.009
+        },
+        "BC": {
+          "estimate": -0.00134,
+          "se": 0.00794,
+          "ci95": [
+            -0.01694,
+            0.01425
+          ],
+          "excludes_zero": false,
+          "df": 484.7,
+          "lambda": 0.0024,
+          "fmi": 0.0065
+        },
+        "KA": {
+          "estimate": 0.01324,
+          "se": 0.03746,
+          "ci95": [
+            -0.06036,
+            0.08685
+          ],
+          "excludes_zero": false,
+          "df": 483.2,
+          "lambda": 0.0051,
+          "fmi": 0.0092
+        }
+      },
+      "ctrl_stop_sign": {
+        "O": {
+          "estimate": 0.01083,
+          "se": 0.03333,
+          "ci95": [
+            -0.05466,
+            0.07633
+          ],
+          "excludes_zero": false,
+          "df": 482.6,
+          "lambda": 0.0061,
+          "fmi": 0.0102
+        },
+        "BC": {
+          "estimate": 0.00047,
+          "se": 0.00557,
+          "ci95": [
+            -0.01047,
+            0.01141
+          ],
+          "excludes_zero": false,
+          "df": 486.0,
+          "lambda": 0.0001,
+          "fmi": 0.0042
+        },
+        "KA": {
+          "estimate": -0.0113,
+          "se": 0.03345,
+          "ci95": [
+            -0.07702,
+            0.05442
+          ],
+          "excludes_zero": false,
+          "df": 482.5,
+          "lambda": 0.0062,
+          "fmi": 0.0103
+        }
+      },
+      "road_not_city_street": {
+        "O": {
+          "estimate": -0.01523,
+          "se": 0.03436,
+          "ci95": [
+            -0.08274,
+            0.05227
+          ],
+          "excludes_zero": false,
+          "df": 482.3,
+          "lambda": 0.0066,
+          "fmi": 0.0107
+        },
+        "BC": {
+          "estimate": -0.00162,
+          "se": 0.00634,
+          "ci95": [
+            -0.01408,
+            0.01084
+          ],
+          "excludes_zero": false,
+          "df": 484.0,
+          "lambda": 0.0037,
+          "fmi": 0.0078
+        },
+        "KA": {
+          "estimate": 0.01685,
+          "se": 0.03828,
+          "ci95": [
+            -0.05836,
+            0.09207
+          ],
+          "excludes_zero": false,
+          "df": 482.1,
+          "lambda": 0.0068,
+          "fmi": 0.0109
+        }
+      },
+      "weekend": {
+        "O": {
+          "estimate": 0.04148,
+          "se": 0.03307,
+          "ci95": [
+            -0.0235,
+            0.10647
+          ],
+          "excludes_zero": false,
+          "df": 485.3,
+          "lambda": 0.0015,
+          "fmi": 0.0055
+        },
+        "BC": {
+          "estimate": -0.0013,
+          "se": 0.00754,
+          "ci95": [
+            -0.01612,
+            0.01352
+          ],
+          "excludes_zero": false,
+          "df": 485.5,
+          "lambda": 0.0011,
+          "fmi": 0.0052
+        },
+        "KA": {
+          "estimate": -0.04018,
+          "se": 0.02912,
+          "ci95": [
+            -0.09741,
+            0.01704
+          ],
+          "excludes_zero": false,
+          "df": 485.4,
+          "lambda": 0.0012,
+          "fmi": 0.0053
+        }
+      },
+      "nighttime": {
+        "O": {
+          "estimate": -0.0282,
+          "se": 0.04035,
+          "ci95": [
+            -0.10749,
+            0.05109
+          ],
+          "excludes_zero": false,
+          "df": 482.3,
+          "lambda": 0.0065,
+          "fmi": 0.0106
+        },
+        "BC": {
+          "estimate": -0.00596,
+          "se": 0.016,
+          "ci95": [
+            -0.03739,
+            0.02547
+          ],
+          "excludes_zero": false,
+          "df": 482.9,
+          "lambda": 0.0056,
+          "fmi": 0.0097
+        },
+        "KA": {
+          "estimate": 0.03416,
+          "se": 0.05213,
+          "ci95": [
+            -0.06827,
+            0.13659
+          ],
+          "excludes_zero": false,
+          "df": 481.8,
+          "lambda": 0.0073,
+          "fmi": 0.0114
+        }
+      },
+      "coord_missing": {
+        "O": {
+          "estimate": 0.09101,
+          "se": 0.06107,
+          "ci95": [
+            -0.02898,
+            0.21101
+          ],
+          "excludes_zero": false,
+          "df": 484.3,
+          "lambda": 0.0033,
+          "fmi": 0.0074
+        },
+        "BC": {
+          "estimate": -0.01789,
+          "se": 0.02548,
+          "ci95": [
+            -0.06796,
+            0.03219
+          ],
+          "excludes_zero": false,
+          "df": 484.6,
+          "lambda": 0.0028,
+          "fmi": 0.0069
+        },
+        "KA": {
+          "estimate": -0.07313,
+          "se": 0.0399,
+          "ci95": [
+            -0.15152,
+            0.00526
+          ],
+          "excludes_zero": false,
+          "df": 484.5,
+          "lambda": 0.0029,
+          "fmi": 0.007
+        }
+      },
+      "road_density_km_100m": {
+        "O": {
+          "estimate": 0.00599,
+          "se": 0.03301,
+          "ci95": [
+            -0.05887,
+            0.07086
+          ],
+          "excludes_zero": false,
+          "df": 484.6,
+          "lambda": 0.0027,
+          "fmi": 0.0068
+        },
+        "BC": {
+          "estimate": 0.00048,
+          "se": 0.00432,
+          "ci95": [
+            -0.00801,
+            0.00896
+          ],
+          "excludes_zero": false,
+          "df": 485.5,
+          "lambda": 0.001,
+          "fmi": 0.0051
+        },
+        "KA": {
+          "estimate": -0.00647,
+          "se": 0.03514,
+          "ci95": [
+            -0.07551,
+            0.06257
+          ],
+          "excludes_zero": false,
+          "df": 484.6,
+          "lambda": 0.0028,
+          "fmi": 0.0069
+        }
+      },
+      "poverty_share": {
+        "O": {
+          "estimate": 0.20827,
+          "se": 0.06013,
+          "ci95": [
+            0.09013,
+            0.32642
+          ],
+          "excludes_zero": true,
+          "df": 481.5,
+          "lambda": 0.0078,
+          "fmi": 0.0119
+        },
+        "BC": {
+          "estimate": 0.01653,
+          "se": 0.02527,
+          "ci95": [
+            -0.03312,
+            0.06618
+          ],
+          "excludes_zero": false,
+          "df": 485.6,
+          "lambda": 0.0009,
+          "fmi": 0.005
+        },
+        "KA": {
+          "estimate": -0.2248,
+          "se": 0.06521,
+          "ci95": [
+            -0.35294,
+            -0.09667
+          ],
+          "excludes_zero": true,
+          "df": 481.3,
+          "lambda": 0.008,
+          "fmi": 0.0121
+        }
+      },
+      "urban_area_200k": {
+        "O": {
+          "estimate": 0.03758,
+          "se": 0.02766,
+          "ci95": [
+            -0.01677,
+            0.09193
+          ],
+          "excludes_zero": false,
+          "df": 483.1,
+          "lambda": 0.0053,
+          "fmi": 0.0094
+        },
+        "BC": {
+          "estimate": 0.00806,
+          "se": 0.01078,
+          "ci95": [
+            -0.01313,
+            0.02925
+          ],
+          "excludes_zero": false,
+          "df": 482.8,
+          "lambda": 0.0058,
+          "fmi": 0.0099
+        },
+        "KA": {
+          "estimate": -0.04564,
+          "se": 0.03608,
+          "ci95": [
+            -0.11654,
+            0.02526
+          ],
+          "excludes_zero": false,
+          "df": 482.6,
+          "lambda": 0.0062,
+          "fmi": 0.0102
+        }
+      },
+      "cf_rider_failed_to_yield": {
+        "O": {
+          "estimate": -0.01767,
+          "se": 0.03487,
+          "ci95": [
+            -0.08618,
+            0.05085
+          ],
+          "excludes_zero": false,
+          "df": 481.3,
+          "lambda": 0.0081,
+          "fmi": 0.0122
+        },
+        "BC": {
+          "estimate": -0.00285,
+          "se": 0.01103,
+          "ci95": [
+            -0.02452,
+            0.01882
+          ],
+          "excludes_zero": false,
+          "df": 483.6,
+          "lambda": 0.0044,
+          "fmi": 0.0085
+        },
+        "KA": {
+          "estimate": 0.02051,
+          "se": 0.0422,
+          "ci95": [
+            -0.0624,
+            0.10343
+          ],
+          "excludes_zero": false,
+          "df": 481.1,
+          "lambda": 0.0084,
+          "fmi": 0.0125
+        }
+      },
+      "cf_driver_inattention": {
+        "O": {
+          "estimate": -0.01211,
+          "se": 0.03046,
+          "ci95": [
+            -0.07196,
+            0.04773
+          ],
+          "excludes_zero": false,
+          "df": 482.4,
+          "lambda": 0.0064,
+          "fmi": 0.0105
+        },
+        "BC": {
+          "estimate": -0.00157,
+          "se": 0.00731,
+          "ci95": [
+            -0.01594,
+            0.0128
+          ],
+          "excludes_zero": false,
+          "df": 484.0,
+          "lambda": 0.0037,
+          "fmi": 0.0078
+        },
+        "KA": {
+          "estimate": 0.01368,
+          "se": 0.03492,
+          "ci95": [
+            -0.05493,
+            0.0823
+          ],
+          "excludes_zero": false,
+          "df": 482.1,
+          "lambda": 0.0068,
+          "fmi": 0.0109
+        }
+      },
+      "sidewalk_transition": {
+        "O": {
+          "estimate": -0.01735,
+          "se": 0.02827,
+          "ci95": [
+            -0.07291,
+            0.0382
+          ],
+          "excludes_zero": false,
+          "df": 484.0,
+          "lambda": 0.0038,
+          "fmi": 0.0079
+        },
+        "BC": {
+          "estimate": -0.00243,
+          "se": 0.00702,
+          "ci95": [
+            -0.01622,
+            0.01136
+          ],
+          "excludes_zero": false,
+          "df": 484.4,
+          "lambda": 0.003,
+          "fmi": 0.0071
+        },
+        "KA": {
+          "estimate": 0.01978,
+          "se": 0.03307,
+          "ci95": [
+            -0.0452,
+            0.08476
+          ],
+          "excludes_zero": false,
+          "df": 483.8,
+          "lambda": 0.0042,
+          "fmi": 0.0083
+        }
+      },
+      "failure_to_yield": {
+        "O": {
+          "estimate": 0.00161,
+          "se": 0.02744,
+          "ci95": [
+            -0.05231,
+            0.05552
+          ],
+          "excludes_zero": false,
+          "df": 484.6,
+          "lambda": 0.0027,
+          "fmi": 0.0068
+        },
+        "BC": {
+          "estimate": 0.00012,
+          "se": 0.00385,
+          "ci95": [
+            -0.00746,
+            0.00769
+          ],
+          "excludes_zero": false,
+          "df": 485.7,
+          "lambda": 0.0007,
+          "fmi": 0.0048
+        },
+        "KA": {
+          "estimate": -0.00172,
+          "se": 0.02906,
+          "ci95": [
+            -0.05883,
+            0.05538
+          ],
+          "excludes_zero": false,
+          "df": 484.6,
+          "lambda": 0.0028,
+          "fmi": 0.0069
+        }
+      },
+      "signal_violation": {
+        "O": {
+          "estimate": 0.006,
+          "se": 0.03701,
+          "ci95": [
+            -0.06671,
+            0.07871
+          ],
+          "excludes_zero": false,
+          "df": 484.7,
+          "lambda": 0.0026,
+          "fmi": 0.0067
+        },
+        "BC": {
+          "estimate": 0.00033,
+          "se": 0.0071,
+          "ci95": [
+            -0.01362,
+            0.01428
+          ],
+          "excludes_zero": false,
+          "df": 486.0,
+          "lambda": 0.0001,
+          "fmi": 0.0042
+        },
+        "KA": {
+          "estimate": -0.00633,
+          "se": 0.03788,
+          "ci95": [
+            -0.08076,
+            0.06809
+          ],
+          "excludes_zero": false,
+          "df": 484.6,
+          "lambda": 0.0027,
+          "fmi": 0.0067
+        }
+      },
+      "vehicle_turning_across": {
+        "O": {
+          "estimate": 0.01236,
+          "se": 0.03374,
+          "ci95": [
+            -0.05393,
+            0.07865
+          ],
+          "excludes_zero": false,
+          "df": 485.6,
+          "lambda": 0.0008,
+          "fmi": 0.0049
+        },
+        "BC": {
+          "estimate": 0.00068,
+          "se": 0.00471,
+          "ci95": [
+            -0.00858,
+            0.00994
+          ],
+          "excludes_zero": false,
+          "df": 486.0,
+          "lambda": 0.0001,
+          "fmi": 0.0042
+        },
+        "KA": {
+          "estimate": -0.01304,
+          "se": 0.03464,
+          "ci95": [
+            -0.0811,
+            0.05503
+          ],
+          "excludes_zero": false,
+          "df": 485.6,
+          "lambda": 0.0008,
+          "fmi": 0.0049
+        }
+      },
+      "lane_positioning": {
+        "O": {
+          "estimate": -0.03164,
+          "se": 0.02894,
+          "ci95": [
+            -0.0885,
+            0.02522
+          ],
+          "excludes_zero": false,
+          "df": 482.1,
+          "lambda": 0.0069,
+          "fmi": 0.011
+        },
+        "BC": {
+          "estimate": -0.0064,
+          "se": 0.01075,
+          "ci95": [
+            -0.02753,
+            0.01472
+          ],
+          "excludes_zero": false,
+          "df": 482.8,
+          "lambda": 0.0058,
+          "fmi": 0.0099
+        },
+        "KA": {
+          "estimate": 0.03804,
+          "se": 0.03734,
+          "ci95": [
+            -0.03532,
+            0.11141
+          ],
+          "excludes_zero": false,
+          "df": 481.7,
+          "lambda": 0.0074,
+          "fmi": 0.0115
+        }
+      }
+    },
+    "requested_ka_comparison": {
+      "poverty_share": {
+        "mi_ka": {
+          "estimate": -0.2248,
+          "ci95": [
+            -0.35294,
+            -0.09667
+          ],
+          "excludes_zero": true,
+          "fmi": 0.0121
+        },
+        "primary_ka": {
+          "ame": -0.21195,
+          "ci95": [
+            -0.34473,
+            -0.09128
+          ],
+          "excludes_zero": true
+        },
+        "primary_column": "poverty_share",
+        "significance_changes": false
+      },
+      "coord_missing": {
+        "mi_ka": {
+          "estimate": -0.07313,
+          "ci95": [
+            -0.15152,
+            0.00526
+          ],
+          "excludes_zero": false,
+          "fmi": 0.007
+        },
+        "primary_ka": {
+          "ame": -0.08035,
+          "ci95": [
+            -0.14749,
+            0.01352
+          ],
+          "excludes_zero": false
+        },
+        "primary_column": "coord_missing",
+        "significance_changes": false
+      },
+      "age_under25": {
+        "mi_ka": {
+          "estimate": -0.02308,
+          "ci95": [
+            -0.08226,
+            0.03609
+          ],
+          "excludes_zero": false,
+          "fmi": 0.2033
+        },
+        "primary_ka": {
+          "ame": -0.02933,
+          "ci95": [
+            -0.07981,
+            0.02593
+          ],
+          "excludes_zero": false
+        },
+        "primary_column": "age_under25",
+        "significance_changes": false
+      },
+      "age_45plus": {
+        "mi_ka": {
+          "estimate": 0.01572,
+          "ci95": [
+            -0.07724,
+            0.10868
+          ],
+          "excludes_zero": false,
+          "fmi": 0.2691
+        },
+        "primary_ka": {
+          "ame": 0.02504,
+          "ci95": [
+            -0.05369,
+            0.13046
+          ],
+          "excludes_zero": false
+        },
+        "primary_column": "age_45plus",
+        "significance_changes": false
+      },
+      "gender_female": {
+        "mi_ka": {
+          "estimate": 0.04726,
+          "ci95": [
+            -0.01884,
+            0.11337
+          ],
+          "excludes_zero": false,
+          "fmi": 0.1277
+        },
+        "primary_ka": {
+          "ame": 0.04475,
+          "ci95": [
+            -0.01546,
+            0.11671
+          ],
+          "excludes_zero": false
+        },
+        "primary_column": "gender_female",
+        "significance_changes": false
+      },
+      "eth_black": {
+        "mi_ka": {
+          "estimate": -0.03518,
+          "ci95": [
+            -0.0934,
+            0.02304
+          ],
+          "excludes_zero": false,
+          "fmi": 0.1399
+        },
+        "primary_ka": {
+          "ame": -0.02772,
+          "ci95": [
+            -0.07561,
+            0.02947
+          ],
+          "excludes_zero": false
+        },
+        "primary_column": "eth_black",
+        "significance_changes": false
+      },
+      "eth_hispanic": {
+        "mi_ka": {
+          "estimate": -0.03307,
+          "ci95": [
+            -0.09496,
+            0.02882
+          ],
+          "excludes_zero": false,
+          "fmi": 0.2041
+        },
+        "primary_ka": {
+          "ame": -0.03384,
+          "ci95": [
+            -0.08822,
+            0.02673
+          ],
+          "excludes_zero": false
+        },
+        "primary_column": "eth_hispanic",
+        "significance_changes": false
+      },
+      "eth_other": {
+        "mi_ka": {
+          "estimate": 0.04702,
+          "ci95": [
+            -0.07525,
+            0.16929
+          ],
+          "excludes_zero": false,
+          "fmi": 0.1749
+        },
+        "primary_ka": {
+          "ame": -0.00858,
+          "ci95": [
+            -0.07888,
+            0.09329
+          ],
+          "excludes_zero": false
+        },
+        "primary_column": "eth_other_or_unknown",
+        "significance_changes": false
+      },
+      "speed_35to40": {
+        "mi_ka": {
+          "estimate": -0.00724,
+          "ci95": [
+            -0.06395,
+            0.04946
+          ],
+          "excludes_zero": false,
+          "fmi": 0.0627
+        },
+        "primary_ka": {
+          "ame": -0.01125,
+          "ci95": [
+            -0.06714,
+            0.04285
+          ],
+          "excludes_zero": false
+        },
+        "primary_column": "speed_35to40",
+        "significance_changes": false
+      },
+      "speed_ge45": {
+        "mi_ka": {
+          "estimate": 0.00177,
+          "ci95": [
+            -0.08407,
+            0.08762
+          ],
+          "excludes_zero": false,
+          "fmi": 0.0318
+        },
+        "primary_ka": {
+          "ame": 0.00242,
+          "ci95": [
+            -0.07548,
+            0.10257
+          ],
+          "excludes_zero": false
+        },
+        "primary_column": "speed_ge45",
+        "significance_changes": false
+      },
+      "sidewalk_transition": {
+        "mi_ka": {
+          "estimate": 0.01978,
+          "ci95": [
+            -0.0452,
+            0.08476
+          ],
+          "excludes_zero": false,
+          "fmi": 0.0083
+        },
+        "primary_ka": {
+          "ame": 0.01287,
+          "ci95": [
+            -0.04706,
+            0.08385
+          ],
+          "excludes_zero": false
+        },
+        "primary_column": "sidewalk_transition",
+        "significance_changes": false
+      },
+      "failure_to_yield": {
+        "mi_ka": {
+          "estimate": -0.00172,
+          "ci95": [
+            -0.05883,
+            0.05538
+          ],
+          "excludes_zero": false,
+          "fmi": 0.0069
+        },
+        "primary_ka": {
+          "ame": -0.00074,
+          "ci95": [
+            -0.05551,
+            0.05515
+          ],
+          "excludes_zero": false
+        },
+        "primary_column": "failure_to_yield",
+        "significance_changes": false
+      },
+      "signal_violation": {
+        "mi_ka": {
+          "estimate": -0.00633,
+          "ci95": [
+            -0.08076,
+            0.06809
+          ],
+          "excludes_zero": false,
+          "fmi": 0.0067
+        },
+        "primary_ka": {
+          "ame": 0.00147,
+          "ci95": [
+            -0.06227,
+            0.08882
+          ],
+          "excludes_zero": false
+        },
+        "primary_column": "signal_violation",
+        "significance_changes": false
+      },
+      "vehicle_turning_across": {
+        "mi_ka": {
+          "estimate": -0.01304,
+          "ci95": [
+            -0.0811,
+            0.05503
+          ],
+          "excludes_zero": false,
+          "fmi": 0.0049
+        },
+        "primary_ka": {
+          "ame": -0.00683,
+          "ci95": [
+            -0.06905,
+            0.06582
+          ],
+          "excludes_zero": false
+        },
+        "primary_column": "vehicle_turning_across",
+        "significance_changes": false
+      },
+      "lane_positioning": {
+        "mi_ka": {
+          "estimate": 0.03804,
+          "ci95": [
+            -0.03532,
+            0.11141
+          ],
+          "excludes_zero": false,
+          "fmi": 0.0115
+        },
+        "primary_ka": {
+          "ame": 0.02933,
+          "ci95": [
+            -0.03812,
+            0.10537
+          ],
+          "excludes_zero": false
+        },
+        "primary_column": "lane_positioning",
+        "significance_changes": false
+      }
+    },
+    "ka_excludes_zero": {
+      "mi": [
+        "poverty_share"
+      ],
+      "primary": [
+        "age_unknown",
+        "poverty_share"
+      ]
+    },
+    "excludes_zero_all_outcomes": {
+      "mi": {
+        "O": [
+          "poverty_share"
+        ],
+        "BC": [],
+        "KA": [
+          "poverty_share"
+        ]
+      },
+      "primary": {
+        "O": [
+          "age_unknown",
+          "poverty_share"
+        ],
+        "BC": [
+          "age_under25"
+        ],
+        "KA": [
+          "age_unknown",
+          "poverty_share"
+        ]
+      }
+    },
+    "fmi_range_coefficients": [
+      0.0049,
+      0.2526
+    ],
+    "fmi_range_ka_ame": [
+      0.0049,
+      0.2691
+    ],
+    "mar_caveat": "Imputation assumes the fields are missing at random given the predictors, including severity. The three person-field unknowns co-occur and concentrate in the O class, which is the pattern expected if reporting completeness depends on the injury itself; conditioning on severity carries that dependence into the imputation, but missingness that depends on the unrecorded value itself is not repaired."
+  },
+  "spatial_indicator": {
+    "fields_available": {
+      "Rural_Fl": {
+        "N": 459,
+        "Y": 63
+      },
+      "Rural_Urban_Type_ID": {
+        "missing": 415,
+        "Urbanized (200,000+)": 72,
+        "Large Urban (50,000-199,999)": 16,
+        "Small Urban (5000-49,999)": 11,
+        "Rural (<5000)": 8
+      },
+      "Pop_Group_ID": {
+        "250,000 Pop And Over": 291,
+        "100,000 - 249,999 Pop": 67,
+        "Rural": 56,
+        "50,000 - 99,999 Pop": 42,
+        "10,000 - 24,999 Pop": 33,
+        "25,000 - 49,999 Pop": 21,
+        "5,000 - 9,999 Pop": 5,
+        "Town Under 2,499 Pop": 4,
+        "2,500 - 4,999 Pop": 3
+      }
+    },
+    "prespec_indicator": "prespec section 2.1 'Urbanized': 1 if the crash point falls inside a 2020 Census Urban Area of population 200,000 or more, city lookup where coordinates are absent. It is not in model_frame.csv and was not among the screened candidates; it is built here from tl_2020_us_uac20 and ua_list_all.txt.",
+    "note_rural_fl": "Rural_Fl is the CRIS rural flag, complete for all rows; Rural_Urban_Type_ID is missing for 415 of 522 rows and cannot carry a split.",
+    "rural_vs_nonrural_test": {
+      "testable": true,
+      "severity_counts": {
+        "rural": {
+          "O": 8,
+          "BC": 44,
+          "KA": 11
+        },
+        "non_rural": {
+          "O": 69,
+          "BC": 319,
+          "KA": 71
+        }
+      },
+      "covariates_tested": 2,
+      "covariates_dropped": {
+        "speed_35to40": "rural: smallest cell 0",
+        "speed_ge45": "rural: smallest cell 1",
+        "speed_unknown": "rural: smallest cell 0; non_rural: smallest cell 2",
+        "light_dark_or_unknown": "rural: smallest cell 0",
+        "eth_black": "rural: smallest cell 2",
+        "eth_hispanic": "rural: smallest cell 1",
+        "eth_other_or_unknown": "rural: smallest cell 2",
+        "gender_female": "rural: smallest cell 1",
+        "gender_unknown": "rural: smallest cell 0; non_rural: smallest cell 3",
+        "age_45plus": "rural: smallest cell 0",
+        "age_under25": "rural: smallest cell 3",
+        "age_unknown": "rural: smallest cell 1; non_rural: smallest cell 4",
+        "veh_other_unknown": "rural: smallest cell 0",
+        "veh_pickup_truck_van": "rural: smallest cell 3",
+        "veh_suv": "rural: smallest cell 1",
+        "coll_other": "rural: smallest cell 1",
+        "coll_single_mv_straight": "rural: smallest cell 3",
+        "coll_turning": "rural: smallest cell 1",
+        "intx_intersection_or_driveway": "rural: smallest cell 0",
+        "ctrl_signal": "rural: smallest cell 0",
+        "ctrl_stop_sign": "rural: smallest cell 2",
+        "road_not_city_street": "rural: smallest cell 0",
+        "weekend": "rural: smallest cell 3",
+        "nighttime": "rural: smallest cell 0",
+        "coord_missing": "rural: smallest cell 0; non_rural: smallest cell 3",
+        "urban_area_200k": "rural: smallest cell 4",
+        "cf_rider_failed_to_yield": "rural: smallest cell 1",
+        "cf_driver_inattention": "rural: smallest cell 1",
+        "sidewalk_transition": "rural: smallest cell 1",
+        "failure_to_yield": "rural: smallest cell 3",
+        "signal_violation": "rural: smallest cell 1",
+        "vehicle_turning_across": "rural: smallest cell 1",
+        "lane_positioning": "rural: smallest cell 2"
+      },
+      "lr_statistic": 0.745,
+      "df": 4,
+      "p_asymptotic": 0.94572,
+      "bootstrap_replications_usable": 500,
+      "p_bootstrap": 0.93812,
+      "bootstrap_null_median": 3.44,
+      "rejects_at_5pct_bootstrap": false,
+      "note": "The bootstrap p-value governs. The asymptotic reference assumes a sample size this design does not have, and where the two disagree the asymptotic one is the optimistic one.",
+      "n_rural": 63,
+      "n_non_rural": 459,
+      "both_sides_converged": true,
+      "estimable_parameters_per_side": 4,
+      "function": "transferability.temporal_test on a 0/1 split column (replications 500, seed 20260914, subsample minimum cell 5)",
+      "covariates_tested_names": [
+        "road_density_km_100m",
+        "poverty_share"
+      ]
+    },
+    "urbanized_area_indicator": {
+      "ua_population_threshold": 200000,
+      "urban_areas_at_or_above_threshold_nationally": 179,
+      "located_rows": 446,
+      "located_inside": 345,
+      "located_outside": 101,
+      "unlocated_rows": 76,
+      "unlocated_resolved_by_city_lookup": 58,
+      "unlocated_unresolved_fallback_rural_flag": 18,
+      "city_lookup_rule": "a record without coordinates takes 1 if at least half the located records of its City_ID fall inside a qualifying urban area; 'Not Listed' or a city with no located record falls back to the CRIS rural flag",
+      "urban_areas_hit": {
+        "Houston, TX": 94,
+        "Austin, TX": 80,
+        "Dallas--Fort Worth--Arlington, TX": 71,
+        "San Antonio, TX": 53,
+        "Lubbock, TX": 13,
+        "Denton--Lewisville, TX": 11,
+        "El Paso, TX--NM": 8,
+        "Corpus Christi, TX": 6,
+        "Killeen, TX": 4,
+        "McAllen, TX": 3,
+        "Laredo, TX": 2
+      },
+      "counts_by_severity": {
+        "inside_ua_200k": {
+          "O": 62,
+          "BC": 282,
+          "KA": 60
+        },
+        "outside": {
+          "O": 15,
+          "BC": 81,
+          "KA": 22
+        }
+      },
+      "crosstab_ua200k_by_rural_fl": {
+        "ua200k=0": {
+          "rural_fl=0": 85,
+          "rural_fl=1": 33
+        },
+        "ua200k=1": {
+          "rural_fl=0": 374,
+          "rural_fl=1": 30
+        }
+      }
+    },
+    "ua200k_test": {
+      "testable": true,
+      "severity_counts": {
+        "inside_ua200k": {
+          "O": 62,
+          "BC": 282,
+          "KA": 60
+        },
+        "outside_ua200k": {
+          "O": 15,
+          "BC": 81,
+          "KA": 22
+        }
+      },
+      "covariates_tested": 6,
+      "covariates_dropped": {
+        "speed_35to40": "outside_ua200k: smallest cell 0",
+        "speed_ge45": "outside_ua200k: smallest cell 3",
+        "speed_unknown": "inside_ua200k: smallest cell 0; outside_ua200k: smallest cell 0",
+        "light_dark_or_unknown": "outside_ua200k: smallest cell 3",
+        "eth_black": "outside_ua200k: smallest cell 3",
+        "eth_hispanic": "outside_ua200k: smallest cell 1",
+        "eth_other_or_unknown": "outside_ua200k: smallest cell 2",
+        "gender_female": "outside_ua200k: smallest cell 2",
+        "gender_unknown": "inside_ua200k: smallest cell 2; outside_ua200k: smallest cell 1",
+        "age_45plus": "outside_ua200k: smallest cell 2",
+        "age_unknown": "inside_ua200k: smallest cell 3; outside_ua200k: smallest cell 2",
+        "veh_other_unknown": "outside_ua200k: smallest cell 0",
+        "veh_suv": "outside_ua200k: smallest cell 3",
+        "coll_other": "outside_ua200k: smallest cell 2",
+        "coll_single_mv_straight": "outside_ua200k: smallest cell 4",
+        "coll_turning": "outside_ua200k: smallest cell 4",
+        "intx_intersection_or_driveway": "outside_ua200k: smallest cell 4",
+        "ctrl_signal": "outside_ua200k: smallest cell 1",
+        "ctrl_stop_sign": "outside_ua200k: smallest cell 3",
+        "weekend": "outside_ua200k: smallest cell 4",
+        "nighttime": "outside_ua200k: smallest cell 2",
+        "coord_missing": "inside_ua200k: smallest cell 2; outside_ua200k: smallest cell 1",
+        "urban_area_200k": "inside_ua200k: smallest cell 60; outside_ua200k: smallest cell 15",
+        "cf_rider_failed_to_yield": "outside_ua200k: smallest cell 1",
+        "cf_driver_inattention": "outside_ua200k: smallest cell 2",
+        "sidewalk_transition": "outside_ua200k: smallest cell 1",
+        "failure_to_yield": "outside_ua200k: smallest cell 4",
+        "signal_violation": "outside_ua200k: smallest cell 2",
+        "lane_positioning": "outside_ua200k: smallest cell 2"
+      },
+      "lr_statistic": 7.297,
+      "df": 8,
+      "p_asymptotic": 0.50494,
+      "bootstrap_replications_usable": 500,
+      "p_bootstrap": 0.51098,
+      "bootstrap_null_median": 7.42,
+      "rejects_at_5pct_bootstrap": false,
+      "note": "The bootstrap p-value governs. The asymptotic reference assumes a sample size this design does not have, and where the two disagree the asymptotic one is the optimistic one.",
+      "n_inside_ua200k": 404,
+      "n_outside_ua200k": 118,
+      "both_sides_converged": true,
+      "estimable_parameters_per_side": 8,
+      "function": "transferability.temporal_test on a 0/1 split column (replications 500, seed 20260914, subsample minimum cell 5)",
+      "covariates_tested_names": [
+        "age_under25",
+        "veh_pickup_truck_van",
+        "road_not_city_street",
+        "road_density_km_100m",
+        "poverty_share",
+        "vehicle_turning_across"
+      ],
+      "mask_note": "first side (the split mask) is inside the urban areas"
+    },
+    "three_way": {
+      "rule": "six major cities = City_ID in Austin, Houston, San Antonio, Dallas, Fort Worth, El Paso, taking precedence; rural = CRIS Rural_Fl Y among the rest; other urban = the remainder",
+      "groups": {
+        "six_major_cities": {
+          "n": 257,
+          "counts": {
+            "O": 43,
+            "BC": 182,
+            "KA": 32
+          },
+          "share_percent": {
+            "O": 16.7,
+            "BC": 70.8,
+            "KA": 12.5
+          }
+        },
+        "other_urban": {
+          "n": 202,
+          "counts": {
+            "O": 26,
+            "BC": 137,
+            "KA": 39
+          },
+          "share_percent": {
+            "O": 12.9,
+            "BC": 67.8,
+            "KA": 19.3
+          }
+        },
+        "rural": {
+          "n": 63,
+          "counts": {
+            "O": 8,
+            "BC": 44,
+            "KA": 11
+          },
+          "share_percent": {
+            "O": 12.7,
+            "BC": 69.8,
+            "KA": 17.5
+          }
+        }
+      },
+      "six_city_rows_flagged_rural": 0
+    },
+    "reproduction_check_six_cities": {
+      "lr_statistic": 28.257,
+      "p_bootstrap": 0.10778,
+      "stored_lr_statistic": 28.257,
+      "stored_p_bootstrap": 0.10778,
+      "matches": true
+    }
+  }
+}

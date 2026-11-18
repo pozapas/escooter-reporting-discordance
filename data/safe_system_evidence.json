@@ -1,0 +1,569 @@
+{
+  "generated": "2026-10-06",
+  "script": "src/safe_system_evidence.py",
+  "inputs": [
+    "data/model_frame.csv",
+    "data/base_frame.csv",
+    "data/E_Scooter_IDYes2017_2025a.xlsx",
+    "data/screening.json"
+  ],
+  "krinsky_robb": {
+    "draws": 1000,
+    "seed": 20260917
+  },
+  "statutory_speed": {
+    "descriptive": {
+      "statutory_limit_mph": 35,
+      "riders_with_recorded_limit": 481,
+      "riders_above_limit": 125,
+      "riders_above_limit_percent_of_recorded": 26.0,
+      "posted_limits_above": {
+        "40": 48,
+        "45": 54,
+        "50": 10,
+        "55": 9,
+        "60": 3,
+        "70": 1
+      },
+      "above_limit_at_intersection_or_driveway": 99,
+      "above_limit_at_intersection_or_driveway_percent": 79.2,
+      "severity_mix_above": {
+        "n": 125,
+        "O": {
+          "count": 23,
+          "percent": 18.4
+        },
+        "BC": {
+          "count": 71,
+          "percent": 56.8
+        },
+        "KA": {
+          "count": 31,
+          "percent": 24.8
+        }
+      },
+      "severity_mix_at_or_below": {
+        "n": 356,
+        "O": {
+          "count": 48,
+          "percent": 13.5
+        },
+        "BC": {
+          "count": 259,
+          "percent": 72.8
+        },
+        "KA": {
+          "count": 49,
+          "percent": 13.8
+        }
+      },
+      "chi2_test": {
+        "chi2": 11.7217,
+        "p": 0.0028,
+        "df": 2
+      }
+    },
+    "prespecified_bands_holm_form": {
+      "covariates": [
+        "speed_35to40",
+        "speed_ge45",
+        "speed_unknown",
+        "light_dark_or_unknown",
+        "eth_black",
+        "eth_hispanic",
+        "eth_other_or_unknown",
+        "gender_female",
+        "gender_unknown",
+        "age_45plus",
+        "age_under25",
+        "age_unknown",
+        "veh_other_unknown",
+        "veh_pickup_truck_van",
+        "veh_suv",
+        "coll_other",
+        "coll_single_mv_straight",
+        "coll_turning",
+        "intx_intersection_or_driveway",
+        "ctrl_signal",
+        "ctrl_stop_sign",
+        "road_not_city_street",
+        "weekend",
+        "nighttime",
+        "coord_missing",
+        "road_density_km_100m",
+        "poverty_share",
+        "urban_area_200k",
+        "cf_rider_failed_to_yield",
+        "cf_driver_inattention",
+        "sidewalk_transition",
+        "failure_to_yield",
+        "signal_violation",
+        "vehicle_turning_across",
+        "lane_positioning"
+      ],
+      "freed": [
+        "age_unknown",
+        "speed_ge45"
+      ],
+      "focal": "speed_ge45",
+      "ordered_logit_coef": -0.052,
+      "rows_crossing_unconstrained": 7,
+      "unconstrained": {
+        "fit": "unconstrained",
+        "loglik": -380.348,
+        "n_params": 39,
+        "bic_minus_ordered_logit": -14.6,
+        "cut1_BC_or_KA_vs_O": {
+          "coef": -0.959,
+          "se": 0.425,
+          "z": -2.25,
+          "p": 0.0242,
+          "ci95": [
+            -1.792,
+            -0.125
+          ],
+          "excludes_zero": true
+        },
+        "cut2_KA_vs_O_or_BC": {
+          "coef": 0.594,
+          "se": 0.384,
+          "z": 1.54,
+          "p": 0.1224,
+          "ci95": [
+            -0.159,
+            1.347
+          ],
+          "excludes_zero": false
+        },
+        "difference_wald_chi2": 14.004,
+        "difference_wald_p": 0.0002,
+        "ames": {
+          "O": {
+            "ame": 0.10864,
+            "ci95": [
+              0.00563,
+              0.23258
+            ],
+            "excludes_zero": true
+          },
+          "BC": {
+            "ame": -0.20404,
+            "ci95": [
+              -0.32995,
+              -0.09061
+            ],
+            "excludes_zero": true
+          },
+          "KA": {
+            "ame": 0.0954,
+            "ci95": [
+              -0.00651,
+              0.21382
+            ],
+            "excludes_zero": false
+          }
+        },
+        "ame_crossing": {
+          "counterfactual_rows_crossing_at_estimate": 34,
+          "draws_with_any_crossing": 564,
+          "n_draws": 1000
+        }
+      },
+      "noncrossing": {
+        "fit": "noncrossing",
+        "loglik": -380.36,
+        "n_params": 39,
+        "bic_minus_ordered_logit": -14.6,
+        "cut1_BC_or_KA_vs_O": {
+          "coef": -0.935,
+          "se": 0.427,
+          "z": -2.19,
+          "p": 0.0283,
+          "ci95": [
+            -1.771,
+            -0.099
+          ],
+          "excludes_zero": true
+        },
+        "cut2_KA_vs_O_or_BC": {
+          "coef": 0.575,
+          "se": 0.385,
+          "z": 1.49,
+          "p": 0.1351,
+          "ci95": [
+            -0.179,
+            1.33
+          ],
+          "excludes_zero": false
+        },
+        "difference_wald_chi2": 13.106,
+        "difference_wald_p": 0.0003,
+        "ames": {
+          "O": {
+            "ame": 0.10532,
+            "ci95": [
+              0.00516,
+              0.23771
+            ],
+            "excludes_zero": true
+          },
+          "BC": {
+            "ame": -0.1977,
+            "ci95": [
+              -0.3317,
+              -0.08492
+            ],
+            "excludes_zero": true
+          },
+          "KA": {
+            "ame": 0.09238,
+            "ci95": [
+              -0.01107,
+              0.21828
+            ],
+            "excludes_zero": false
+          }
+        },
+        "ame_crossing": {
+          "counterfactual_rows_crossing_at_estimate": 0,
+          "draws_with_any_crossing": 501,
+          "n_draws": 1000
+        },
+        "converged": true
+      },
+      "reported": "noncrossing"
+    },
+    "statutory_line_holm_form": {
+      "covariates": [
+        "speed_unknown",
+        "light_dark_or_unknown",
+        "eth_black",
+        "eth_hispanic",
+        "eth_other_or_unknown",
+        "gender_female",
+        "gender_unknown",
+        "age_45plus",
+        "age_under25",
+        "age_unknown",
+        "veh_other_unknown",
+        "veh_pickup_truck_van",
+        "veh_suv",
+        "coll_other",
+        "coll_single_mv_straight",
+        "coll_turning",
+        "intx_intersection_or_driveway",
+        "ctrl_signal",
+        "ctrl_stop_sign",
+        "road_not_city_street",
+        "weekend",
+        "nighttime",
+        "coord_missing",
+        "road_density_km_100m",
+        "poverty_share",
+        "urban_area_200k",
+        "cf_rider_failed_to_yield",
+        "cf_driver_inattention",
+        "sidewalk_transition",
+        "failure_to_yield",
+        "signal_violation",
+        "vehicle_turning_across",
+        "lane_positioning",
+        "speed_above35"
+      ],
+      "freed": [
+        "age_unknown",
+        "speed_above35"
+      ],
+      "focal": "speed_above35",
+      "ordered_logit_coef": 0.056,
+      "rows_crossing_unconstrained": 0,
+      "unconstrained": {
+        "fit": "unconstrained",
+        "loglik": -381.05,
+        "n_params": 38,
+        "bic_minus_ordered_logit": -13.5,
+        "cut1_BC_or_KA_vs_O": {
+          "coef": -0.664,
+          "se": 0.339,
+          "z": -1.96,
+          "p": 0.05,
+          "ci95": [
+            -1.327,
+            -0.0
+          ],
+          "excludes_zero": true
+        },
+        "cut2_KA_vs_O_or_BC": {
+          "coef": 0.61,
+          "se": 0.305,
+          "z": 2.0,
+          "p": 0.0457,
+          "ci95": [
+            0.012,
+            1.209
+          ],
+          "excludes_zero": true
+        },
+        "difference_wald_chi2": 11.696,
+        "difference_wald_p": 0.0006,
+        "ames": {
+          "O": {
+            "ame": 0.07028,
+            "ci95": [
+              -0.00423,
+              0.15797
+            ],
+            "excludes_zero": false
+          },
+          "BC": {
+            "ame": -0.15931,
+            "ci95": [
+              -0.26583,
+              -0.06757
+            ],
+            "excludes_zero": true
+          },
+          "KA": {
+            "ame": 0.08904,
+            "ci95": [
+              0.01054,
+              0.19006
+            ],
+            "excludes_zero": true
+          }
+        },
+        "ame_crossing": {
+          "counterfactual_rows_crossing_at_estimate": 0,
+          "draws_with_any_crossing": 402,
+          "n_draws": 1000
+        }
+      },
+      "reported": "unconstrained"
+    },
+    "status": "exploratory: the statutory split was not pre-specified; it is recorded in prespec_deviations.md"
+  },
+  "striking_vehicle_block": {
+    "covariates": [
+      "veh_pickup_truck_van",
+      "veh_suv",
+      "veh_other_unknown"
+    ],
+    "lr_test": {
+      "lr_chi2": 2.7775,
+      "df": 3,
+      "p": 0.427218
+    }
+  },
+  "record_coverage": {
+    "crashes": 520,
+    "scooter_unit": {
+      "Veh_Make_ID": 0,
+      "Veh_Mod_ID": 0,
+      "Veh_Body_Styl_ID": 0,
+      "Veh_Mod_Year": 0
+    },
+    "striking_vehicle": {
+      "Veh_Make_ID_2": 477,
+      "Veh_Mod_ID_2": 452,
+      "Veh_Body_Styl_ID_2": 492,
+      "Veh_Mod_Year_2": 460
+    },
+    "scooter_unit_description": {
+      "Motorized Conveyance": 425,
+      "Other (Explain In Narrative)": 95
+    },
+    "note": "a value counts as recorded when it is present and not 'Unknown'; unit 1 is the scooter and unit 2 the motor vehicle in every modeled crash"
+  },
+  "cue_exposure": {
+    "vehicle_turning_across": {
+      "riders": 171,
+      "percent": 32.8,
+      "severity_mix": {
+        "n": 171,
+        "O": {
+          "count": 25,
+          "percent": 14.6
+        },
+        "BC": {
+          "count": 123,
+          "percent": 71.9
+        },
+        "KA": {
+          "count": 23,
+          "percent": 13.5
+        }
+      }
+    },
+    "sidewalk_transition": {
+      "riders": 112,
+      "percent": 21.5,
+      "severity_mix": {
+        "n": 112,
+        "O": {
+          "count": 10,
+          "percent": 8.9
+        },
+        "BC": {
+          "count": 89,
+          "percent": 79.5
+        },
+        "KA": {
+          "count": 13,
+          "percent": 11.6
+        }
+      }
+    },
+    "driveway_alley": {
+      "riders": 110,
+      "percent": 21.1,
+      "severity_mix": {
+        "n": 110,
+        "O": {
+          "count": 5,
+          "percent": 4.5
+        },
+        "BC": {
+          "count": 95,
+          "percent": 86.4
+        },
+        "KA": {
+          "count": 10,
+          "percent": 9.1
+        }
+      }
+    },
+    "distraction_impairment": {
+      "riders": 72,
+      "percent": 13.8,
+      "severity_mix": {
+        "n": 72,
+        "O": {
+          "count": 6,
+          "percent": 8.3
+        },
+        "BC": {
+          "count": 48,
+          "percent": 66.7
+        },
+        "KA": {
+          "count": 18,
+          "percent": 25.0
+        }
+      }
+    },
+    "failure_to_yield": {
+      "riders": 170,
+      "percent": 32.6,
+      "severity_mix": {
+        "n": 170,
+        "O": {
+          "count": 24,
+          "percent": 14.1
+        },
+        "BC": {
+          "count": 119,
+          "percent": 70.0
+        },
+        "KA": {
+          "count": 27,
+          "percent": 15.9
+        }
+      }
+    },
+    "signal_violation": {
+      "riders": 89,
+      "percent": 17.0,
+      "severity_mix": {
+        "n": 89,
+        "O": {
+          "count": 14,
+          "percent": 15.7
+        },
+        "BC": {
+          "count": 62,
+          "percent": 69.7
+        },
+        "KA": {
+          "count": 13,
+          "percent": 14.6
+        }
+      }
+    },
+    "lane_positioning": {
+      "riders": 107,
+      "percent": 20.5,
+      "severity_mix": {
+        "n": 107,
+        "O": {
+          "count": 16,
+          "percent": 15.0
+        },
+        "BC": {
+          "count": 68,
+          "percent": 63.6
+        },
+        "KA": {
+          "count": 23,
+          "percent": 21.5
+        }
+      }
+    },
+    "swerve_loss_control": {
+      "riders": 47,
+      "percent": 9.0,
+      "severity_mix": {
+        "n": 47,
+        "O": {
+          "count": 9,
+          "percent": 19.1
+        },
+        "BC": {
+          "count": 37,
+          "percent": 78.7
+        },
+        "KA": {
+          "count": 1,
+          "percent": 2.1
+        }
+      }
+    },
+    "wrong_way": {
+      "riders": 36,
+      "percent": 6.9,
+      "severity_mix": {
+        "n": 36,
+        "O": {
+          "count": 10,
+          "percent": 27.8
+        },
+        "BC": {
+          "count": 21,
+          "percent": 58.3
+        },
+        "KA": {
+          "count": 5,
+          "percent": 13.9
+        }
+      }
+    },
+    "dooring": {
+      "riders": 2,
+      "percent": 0.4,
+      "severity_mix": {
+        "n": 2,
+        "O": {
+          "count": 1,
+          "percent": 50.0
+        },
+        "BC": {
+          "count": 0,
+          "percent": 0.0
+        },
+        "KA": {
+          "count": 1,
+          "percent": 50.0
+        }
+      }
+    }
+  }
+}

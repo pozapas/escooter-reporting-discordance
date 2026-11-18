@@ -1,0 +1,382 @@
+{
+  "moderate": {
+    "prior_set": "moderate",
+    "priors": {
+      "n_diag": 4.0,
+      "n_off": 1.0,
+      "shift_sd": 1.0,
+      "class_sd": 3.0
+    },
+    "dependence_fixed_at": 0.0,
+    "dependence_posterior": null,
+    "n": 522,
+    "diagnostics": {
+      "max_r_hat": 1.0042,
+      "min_ess_bulk": 1200,
+      "min_ess_tail": 1410,
+      "divergences": 0,
+      "n_parameters_summarized": 22,
+      "healthy": true
+    },
+    "fit_against_raw_table": {
+      "max_abs_count_error": 6.68,
+      "total_abs_count_error": 56.37,
+      "max_abs_pearson_residual": 2.224,
+      "observed": [
+        [
+          50,
+          21,
+          6,
+          0
+        ],
+        [
+          69,
+          7,
+          26,
+          1
+        ],
+        [
+          185,
+          16,
+          51,
+          8
+        ],
+        [
+          43,
+          0,
+          17,
+          11
+        ],
+        [
+          2,
+          0,
+          0,
+          9
+        ]
+      ],
+      "implied": [
+        [
+          48.5,
+          15.5,
+          11.4,
+          1.4
+        ],
+        [
+          69.5,
+          12.6,
+          19.3,
+          2.0
+        ],
+        [
+          179.1,
+          14.6,
+          56.2,
+          7.1
+        ],
+        [
+          43.5,
+          2.4,
+          13.8,
+          12.5
+        ],
+        [
+          4.8,
+          0.4,
+          1.4,
+          5.9
+        ]
+      ],
+      "reproduces_raw_table": false,
+      "note": "A Pearson residual above about 2 in any cell means the measurement layer cannot represent the observed table, which is a parameterization problem and not a finding."
+    },
+    "class_alignment": {
+      "kabco_measurement": {
+        "O": {
+          "O": 0.4048,
+          "BC": 0.568,
+          "KA": 0.0272
+        },
+        "BC": {
+          "O": 0.0984,
+          "BC": 0.7629,
+          "KA": 0.1387
+        },
+        "KA": {
+          "O": 0.0026,
+          "BC": 0.1189,
+          "KA": 0.8785
+        }
+      },
+      "kabco_measurement_five_level": {
+        "O": {
+          "O": 0.4048,
+          "C": 0.3001,
+          "B": 0.268,
+          "A": 0.0259,
+          "K": 0.0014
+        },
+        "BC": {
+          "O": 0.0984,
+          "C": 0.1858,
+          "B": 0.5771,
+          "A": 0.1308,
+          "K": 0.0079
+        },
+        "KA": {
+          "O": 0.0026,
+          "C": 0.0068,
+          "B": 0.1121,
+          "A": 0.5707,
+          "K": 0.3078
+        }
+      },
+      "p_severe_given_class": {
+        "O": 0.0272,
+        "BC": 0.1387,
+        "KA": 0.8785
+      },
+      "p_no_injury_given_class": {
+        "O": 0.4048,
+        "BC": 0.0984,
+        "KA": 0.0026
+      },
+      "severity_ordering_holds": true,
+      "class_with_most_severe_mass": "KA",
+      "aligned": true
+    },
+    "latent_prevalence": {
+      "O": {
+        "mean": 0.1876,
+        "ci95": [
+          0.0805,
+          0.3794
+        ]
+      },
+      "BC": {
+        "mean": 0.7498,
+        "ci95": [
+          0.5599,
+          0.8622
+        ]
+      },
+      "KA": {
+        "mean": 0.0626,
+        "ci95": [
+          0.0316,
+          0.1111
+        ]
+      }
+    },
+    "narrative_measurement": {
+      "O": {
+        "no cue": 0.5058,
+        "O-consistent": 0.4209,
+        "BC-consistent": 0.054,
+        "KA-consistent": 0.0194
+      },
+      "BC": {
+        "no cue": 0.7213,
+        "O-consistent": 0.0184,
+        "BC-consistent": 0.2417,
+        "KA-consistent": 0.0185
+      },
+      "KA": {
+        "no cue": 0.2715,
+        "O-consistent": 0.0283,
+        "BC-consistent": 0.0681,
+        "KA-consistent": 0.6321
+      }
+    },
+    "labels_are_preliminary": true
+  },
+  "weak": {
+    "prior_set": "weak",
+    "priors": {
+      "n_diag": 1.5,
+      "n_off": 1.0,
+      "shift_sd": 2.5,
+      "class_sd": 3.0
+    },
+    "dependence_fixed_at": 0.0,
+    "dependence_posterior": null,
+    "n": 522,
+    "diagnostics": {
+      "max_r_hat": 1.0031,
+      "min_ess_bulk": 1152,
+      "min_ess_tail": 1310,
+      "divergences": 0,
+      "n_parameters_summarized": 22,
+      "healthy": true
+    },
+    "fit_against_raw_table": {
+      "max_abs_count_error": 6.82,
+      "total_abs_count_error": 52.71,
+      "max_abs_pearson_residual": 2.415,
+      "observed": [
+        [
+          50,
+          21,
+          6,
+          0
+        ],
+        [
+          69,
+          7,
+          26,
+          1
+        ],
+        [
+          185,
+          16,
+          51,
+          8
+        ],
+        [
+          43,
+          0,
+          17,
+          11
+        ],
+        [
+          2,
+          0,
+          0,
+          9
+        ]
+      ],
+      "implied": [
+        [
+          48.0,
+          15.1,
+          11.9,
+          1.5
+        ],
+        [
+          69.5,
+          12.5,
+          19.2,
+          2.0
+        ],
+        [
+          181.0,
+          14.7,
+          54.5,
+          7.1
+        ],
+        [
+          43.2,
+          2.6,
+          14.2,
+          12.5
+        ],
+        [
+          4.1,
+          0.4,
+          1.7,
+          6.3
+        ]
+      ],
+      "reproduces_raw_table": false,
+      "note": "A Pearson residual above about 2 in any cell means the measurement layer cannot represent the observed table, which is a parameterization problem and not a finding."
+    },
+    "class_alignment": {
+      "kabco_measurement": {
+        "O": {
+          "O": 0.403,
+          "BC": 0.5689,
+          "KA": 0.0281
+        },
+        "BC": {
+          "O": 0.098,
+          "BC": 0.7583,
+          "KA": 0.1436
+        },
+        "KA": {
+          "O": 0.0025,
+          "BC": 0.114,
+          "KA": 0.8834
+        }
+      },
+      "kabco_measurement_five_level": {
+        "O": {
+          "O": 0.403,
+          "C": 0.2987,
+          "B": 0.2702,
+          "A": 0.0267,
+          "K": 0.0014
+        },
+        "BC": {
+          "O": 0.098,
+          "C": 0.1831,
+          "B": 0.5752,
+          "A": 0.1352,
+          "K": 0.0084
+        },
+        "KA": {
+          "O": 0.0025,
+          "C": 0.0066,
+          "B": 0.1074,
+          "A": 0.5598,
+          "K": 0.3236
+        }
+      },
+      "p_severe_given_class": {
+        "O": 0.0281,
+        "BC": 0.1436,
+        "KA": 0.8834
+      },
+      "p_no_injury_given_class": {
+        "O": 0.403,
+        "BC": 0.098,
+        "KA": 0.0025
+      },
+      "severity_ordering_holds": true,
+      "class_with_most_severe_mass": "KA",
+      "aligned": true
+    },
+    "latent_prevalence": {
+      "O": {
+        "mean": 0.189,
+        "ci95": [
+          0.0672,
+          0.4373
+        ]
+      },
+      "BC": {
+        "mean": 0.7531,
+        "ci95": [
+          0.5076,
+          0.88
+        ]
+      },
+      "KA": {
+        "mean": 0.058,
+        "ci95": [
+          0.0293,
+          0.1063
+        ]
+      }
+    },
+    "narrative_measurement": {
+      "O": {
+        "no cue": 0.4665,
+        "O-consistent": 0.4333,
+        "BC-consistent": 0.0778,
+        "KA-consistent": 0.0225
+      },
+      "BC": {
+        "no cue": 0.7319,
+        "O-consistent": 0.0194,
+        "BC-consistent": 0.2299,
+        "KA-consistent": 0.0188
+      },
+      "KA": {
+        "no cue": 0.1745,
+        "O-consistent": 0.0345,
+        "BC-consistent": 0.0986,
+        "KA-consistent": 0.6924
+      }
+    },
+    "labels_are_preliminary": true
+  }
+}

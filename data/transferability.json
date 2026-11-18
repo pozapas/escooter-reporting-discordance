@@ -1,0 +1,383 @@
+{
+  "annual": {
+    "counts": {
+      "2021": {
+        "O": 0,
+        "BC": 24,
+        "KA": 6
+      },
+      "2022": {
+        "O": 17,
+        "BC": 50,
+        "KA": 12
+      },
+      "2023": {
+        "O": 18,
+        "BC": 79,
+        "KA": 17
+      },
+      "2024": {
+        "O": 18,
+        "BC": 87,
+        "KA": 22
+      },
+      "2025": {
+        "O": 24,
+        "BC": 123,
+        "KA": 25
+      }
+    },
+    "totals": {
+      "2021": 30,
+      "2022": 79,
+      "2023": 114,
+      "2024": 127,
+      "2025": 172
+    },
+    "severity_share_percent": {
+      "2021": {
+        "O": 0.0,
+        "BC": 80.0,
+        "KA": 20.0
+      },
+      "2022": {
+        "O": 21.5,
+        "BC": 63.3,
+        "KA": 15.2
+      },
+      "2023": {
+        "O": 15.8,
+        "BC": 69.3,
+        "KA": 14.9
+      },
+      "2024": {
+        "O": 14.2,
+        "BC": 68.5,
+        "KA": 17.3
+      },
+      "2025": {
+        "O": 14.0,
+        "BC": 71.5,
+        "KA": 14.5
+      }
+    },
+    "principal_covariate_means": {
+      "nighttime": {
+        "2021": 0.3,
+        "2022": 0.228,
+        "2023": 0.167,
+        "2024": 0.126,
+        "2025": 0.105
+      },
+      "weekend": {
+        "2021": 0.233,
+        "2022": 0.304,
+        "2023": 0.281,
+        "2024": 0.244,
+        "2025": 0.192
+      },
+      "speed_ge45": {
+        "2021": 0.0,
+        "2022": 0.127,
+        "2023": 0.149,
+        "2024": 0.165,
+        "2025": 0.169
+      },
+      "intx_intersection_or_driveway": {
+        "2021": 0.7,
+        "2022": 0.772,
+        "2023": 0.623,
+        "2024": 0.756,
+        "2025": 0.791
+      },
+      "age_under25": {
+        "2021": 0.333,
+        "2022": 0.38,
+        "2023": 0.561,
+        "2024": 0.48,
+        "2025": 0.529
+      },
+      "gender_female": {
+        "2021": 0.2,
+        "2022": 0.215,
+        "2023": 0.228,
+        "2024": 0.252,
+        "2025": 0.256
+      },
+      "coord_missing": {
+        "2021": 0.2,
+        "2022": 0.127,
+        "2023": 0.219,
+        "2024": 0.126,
+        "2025": 0.11
+      },
+      "poverty_share": {
+        "2021": 0.224,
+        "2022": 0.158,
+        "2023": 0.171,
+        "2024": 0.199,
+        "2025": 0.2
+      }
+    },
+    "note": "2021 carries no O-coded crash at all. That is reported rather than smoothed, and it is the reason the 2021/2022 breakpoint is untestable."
+  },
+  "untestable_breakpoints": {
+    "2022": "2021 contains 30 crashes and none coded O, so a 2021/2022 split has an empty outcome category in the earlier period and no ordered model can be fitted to it. Reported as untestable rather than forced by merging categories."
+  },
+  "temporal": {
+    "2023": {
+      "breakpoint": 2023,
+      "testable": true,
+      "n_before": 109,
+      "n_after": 413,
+      "severity_counts": {
+        "before": {
+          "O": 17,
+          "BC": 74,
+          "KA": 18
+        },
+        "after": {
+          "O": 60,
+          "BC": 289,
+          "KA": 64
+        }
+      },
+      "covariates_tested": 9,
+      "covariates_dropped": {
+        "speed_35to40": "before: smallest cell 3",
+        "speed_ge45": "before: smallest cell 2",
+        "speed_unknown": "before: smallest cell 0; after: smallest cell 2",
+        "eth_black": "before: smallest cell 1",
+        "eth_hispanic": "before: smallest cell 3",
+        "eth_other_or_unknown": "before: smallest cell 3",
+        "gender_female": "before: smallest cell 3",
+        "gender_unknown": "before: smallest cell 1; after: smallest cell 1",
+        "age_45plus": "before: smallest cell 2",
+        "age_under25": "before: smallest cell 3",
+        "age_unknown": "before: smallest cell 1; after: smallest cell 3",
+        "veh_other_unknown": "before: smallest cell 1",
+        "veh_pickup_truck_van": "before: smallest cell 2",
+        "coll_other": "before: smallest cell 3",
+        "coll_single_mv_straight": "before: smallest cell 4",
+        "coll_turning": "before: smallest cell 4",
+        "intx_intersection_or_driveway": "before: smallest cell 4",
+        "ctrl_stop_sign": "before: smallest cell 3",
+        "weekend": "before: smallest cell 4",
+        "coord_missing": "before: smallest cell 0; after: smallest cell 3",
+        "urban_area_200k": "before: smallest cell 2",
+        "cf_rider_failed_to_yield": "before: smallest cell 2",
+        "cf_driver_inattention": "before: smallest cell 2",
+        "sidewalk_transition": "before: smallest cell 0",
+        "signal_violation": "before: smallest cell 3",
+        "vehicle_turning_across": "before: smallest cell 3"
+      },
+      "estimable_parameters_per_period": 11,
+      "both_periods_converged": true,
+      "lr_statistic": 0.855,
+      "df": 11,
+      "p_asymptotic": 0.99998,
+      "bootstrap_replications_usable": 500,
+      "p_bootstrap": 1.0,
+      "bootstrap_null_median": 11.05,
+      "rejects_at_5pct_bootstrap": false,
+      "note": "The bootstrap p-value governs. The asymptotic reference assumes a sample size this design does not have, and where the two disagree the asymptotic one is the optimistic one.",
+      "city_composition": {
+        "breakpoint": 2023,
+        "n_before": 109,
+        "n_after": 413,
+        "share_before_percent": {
+          "Austin": 26.6,
+          "Houston": 11.9,
+          "San Antonio": 11.0,
+          "Not Listed": 7.3,
+          "Dallas": 3.7,
+          "College Station": 2.8
+        },
+        "share_after_percent": {
+          "Austin": 11.9,
+          "Houston": 14.3,
+          "San Antonio": 10.9,
+          "Not Listed": 11.6,
+          "Dallas": 5.8,
+          "College Station": 3.9
+        },
+        "distinct_cities_before": 32,
+        "distinct_cities_after": 95
+      }
+    },
+    "2024": {
+      "breakpoint": 2024,
+      "testable": true,
+      "n_before": 223,
+      "n_after": 299,
+      "severity_counts": {
+        "before": {
+          "O": 35,
+          "BC": 153,
+          "KA": 35
+        },
+        "after": {
+          "O": 42,
+          "BC": 210,
+          "KA": 47
+        }
+      },
+      "covariates_tested": 21,
+      "covariates_dropped": {
+        "speed_unknown": "before: smallest cell 0; after: smallest cell 2",
+        "eth_black": "before: smallest cell 1",
+        "eth_other_or_unknown": "after: smallest cell 4",
+        "gender_female": "after: smallest cell 4",
+        "gender_unknown": "before: smallest cell 2; after: smallest cell 0",
+        "age_unknown": "before: smallest cell 2; after: smallest cell 2",
+        "veh_other_unknown": "before: smallest cell 3; after: smallest cell 4",
+        "ctrl_stop_sign": "before: smallest cell 4",
+        "nighttime": "after: smallest cell 4",
+        "coord_missing": "before: smallest cell 0; after: smallest cell 3",
+        "urban_area_200k": "before: smallest cell 4",
+        "cf_rider_failed_to_yield": "after: smallest cell 3",
+        "sidewalk_transition": "before: smallest cell 3",
+        "signal_violation": "before: smallest cell 4"
+      },
+      "estimable_parameters_per_period": 23,
+      "both_periods_converged": true,
+      "lr_statistic": 16.013,
+      "df": 23,
+      "p_asymptotic": 0.85472,
+      "bootstrap_replications_usable": 500,
+      "p_bootstrap": 0.90419,
+      "bootstrap_null_median": 24.31,
+      "rejects_at_5pct_bootstrap": false,
+      "note": "The bootstrap p-value governs. The asymptotic reference assumes a sample size this design does not have, and where the two disagree the asymptotic one is the optimistic one.",
+      "city_composition": {
+        "breakpoint": 2024,
+        "n_before": 223,
+        "n_after": 299,
+        "share_before_percent": {
+          "Austin": 17.9,
+          "Houston": 14.3,
+          "San Antonio": 12.6,
+          "Not Listed": 8.1,
+          "Dallas": 4.9,
+          "College Station": 1.8
+        },
+        "share_after_percent": {
+          "Austin": 12.7,
+          "Houston": 13.4,
+          "San Antonio": 9.7,
+          "Not Listed": 12.7,
+          "Dallas": 5.7,
+          "College Station": 5.0
+        },
+        "distinct_cities_before": 57,
+        "distinct_cities_after": 77
+      }
+    },
+    "2025": {
+      "breakpoint": 2025,
+      "testable": true,
+      "n_before": 350,
+      "n_after": 172,
+      "severity_counts": {
+        "before": {
+          "O": 53,
+          "BC": 240,
+          "KA": 57
+        },
+        "after": {
+          "O": 24,
+          "BC": 123,
+          "KA": 25
+        }
+      },
+      "covariates_tested": 16,
+      "covariates_dropped": {
+        "speed_ge45": "after: smallest cell 4",
+        "speed_unknown": "before: smallest cell 2; after: smallest cell 0",
+        "eth_hispanic": "after: smallest cell 4",
+        "eth_other_or_unknown": "after: smallest cell 2",
+        "gender_female": "after: smallest cell 2",
+        "gender_unknown": "before: smallest cell 3; after: smallest cell 0",
+        "age_45plus": "after: smallest cell 2",
+        "age_unknown": "before: smallest cell 4; after: smallest cell 1",
+        "veh_other_unknown": "after: smallest cell 2",
+        "veh_pickup_truck_van": "after: smallest cell 3",
+        "veh_suv": "after: smallest cell 4",
+        "coll_other": "after: smallest cell 3",
+        "coll_single_mv_straight": "after: smallest cell 4",
+        "ctrl_stop_sign": "after: smallest cell 4",
+        "nighttime": "after: smallest cell 3",
+        "coord_missing": "before: smallest cell 1; after: smallest cell 2",
+        "cf_rider_failed_to_yield": "after: smallest cell 3",
+        "cf_driver_inattention": "after: smallest cell 2",
+        "signal_violation": "after: smallest cell 3"
+      },
+      "estimable_parameters_per_period": 18,
+      "both_periods_converged": true,
+      "lr_statistic": 12.673,
+      "df": 18,
+      "p_asymptotic": 0.81062,
+      "bootstrap_replications_usable": 500,
+      "p_bootstrap": 0.82236,
+      "bootstrap_null_median": 18.79,
+      "rejects_at_5pct_bootstrap": false,
+      "note": "The bootstrap p-value governs. The asymptotic reference assumes a sample size this design does not have, and where the two disagree the asymptotic one is the optimistic one.",
+      "city_composition": {
+        "breakpoint": 2025,
+        "n_before": 350,
+        "n_after": 172,
+        "share_before_percent": {
+          "Austin": 18.0,
+          "Houston": 14.6,
+          "San Antonio": 12.9,
+          "Not Listed": 9.1,
+          "Dallas": 4.6,
+          "College Station": 2.6
+        },
+        "share_after_percent": {
+          "Austin": 8.7,
+          "Houston": 12.2,
+          "San Antonio": 7.0,
+          "Not Listed": 14.0,
+          "Dallas": 7.0,
+          "College Station": 5.8
+        },
+        "distinct_cities_before": 80,
+        "distinct_cities_after": 55
+      }
+    }
+  },
+  "spatial": {
+    "split": "six most populous cities against the rest",
+    "exploratory": true,
+    "n_large_city": 257,
+    "n_rest": 265,
+    "covariates_tested": 17,
+    "covariates_dropped": {
+      "speed_35to40": "after: smallest cell 4",
+      "speed_ge45": "before: smallest cell 4",
+      "speed_unknown": "before: smallest cell 0; after: smallest cell 2",
+      "eth_black": "before: smallest cell 4",
+      "gender_female": "after: smallest cell 3",
+      "gender_unknown": "before: smallest cell 2; after: smallest cell 1",
+      "age_unknown": "before: smallest cell 3; after: smallest cell 2",
+      "veh_other_unknown": "after: smallest cell 2",
+      "coll_other": "after: smallest cell 4",
+      "road_not_city_street": "before: smallest cell 3",
+      "nighttime": "after: smallest cell 3",
+      "coord_missing": "before: smallest cell 0; after: smallest cell 3",
+      "urban_area_200k": "before: smallest cell 32",
+      "cf_rider_failed_to_yield": "after: smallest cell 4",
+      "cf_driver_inattention": "before: smallest cell 2; after: smallest cell 4",
+      "sidewalk_transition": "before: smallest cell 3; after: smallest cell 4",
+      "signal_violation": "after: smallest cell 4",
+      "lane_positioning": "after: smallest cell 4"
+    },
+    "both_converged": true,
+    "lr_statistic": 28.257,
+    "df": 19,
+    "p_asymptotic": 0.0786,
+    "p_bootstrap": 0.10778,
+    "rejects_at_5pct_bootstrap": false
+  }
+}

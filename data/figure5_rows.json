@@ -1,0 +1,36 @@
+{
+  "generated": "2026-10-07T19:45:37",
+  "script": "src/build_figures_main.py figure5",
+  "inputs": [
+    "data/numbers.json",
+    "data/model_frame.csv"
+  ],
+  "covariates_shown": 24,
+  "covariates_in_m1": 35,
+  "rows": [
+    "coord_missing",
+    "speed_unknown",
+    "gender_unknown",
+    "age_unknown",
+    "lane_positioning",
+    "vehicle_turning_across",
+    "signal_violation",
+    "failure_to_yield",
+    "sidewalk_transition",
+    "age_45plus",
+    "age_under25",
+    "eth_other_or_unknown",
+    "eth_hispanic",
+    "eth_black",
+    "gender_female",
+    "poverty_share",
+    "road_density_km_100m",
+    "urban_area_200k",
+    "ctrl_signal",
+    "road_not_city_street",
+    "light_dark_or_unknown",
+    "nighttime",
+    "speed_35to40",
+    "speed_ge45"
+  ]
+}

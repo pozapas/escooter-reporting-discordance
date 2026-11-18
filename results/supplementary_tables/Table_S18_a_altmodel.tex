@@ -1,0 +1,75 @@
+% Generated table; it uses the manuscript preamble's macros (\hltint, \hcell, \altrow, PanelBg).
+\begin{xltabular}{\textwidth}{>{\raggedright\arraybackslash}X rrr rrr >{\centering\arraybackslash}p{2.9cm} r}
+\caption{\hltint{HlM}{Alternative language model, masking and rerun variation.}}\label{tab:a_altmodel}\\
+\toprule
+\headerrow
+\hcell{Label} & \hcell{P} & \hcell{R} & \hcell{$F_1$} & \hcell{P} & \hcell{R} & \hcell{$F_1$} & \hcell{$\Delta F_1$ [95\% CI]} & \hcell{$p$} \\
+\midrule
+\endfirsthead
+\multicolumn{9}{l}{\cellcolor{HeaderGold}\textcolor{HeaderText}{\textbf{\tablename\ \thetable{} \textit{(continued)}}}} \\
+\toprule
+\endhead
+\midrule
+\multicolumn{9}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\multicolumn{9}{p{0.97\linewidth}}{\footnotesize \textit{Note:} Panel A scores both models on the ten pre-crash cues of the 150 validation narratives, with $\Delta F_1$ the first model minus the second and $p$ the exact McNemar test of the paired decisions. A difference in Panel B is the first run minus the second, and every interval is a paired percentile bootstrap from 2000 resamples. One validation narrative has no label in the masked rerun, which is why the same-period comparisons hold one narrative fewer. Panel C tests the five cues of M1 with labels from each run on every rider.}\\
+\endlastfoot
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{9}{l}{\textbf{Panel A. llama-3.3-70b-instruct (first three columns) against qwen-2.5-72b-instruct (next three)}} \\
+\addlinespace[2pt]
+Wrong-way riding & 0.71 & 1.00 & 0.83 & 0.75 & 0.90 & 0.82 & 0.015 [$-$0.070, 0.112] & $>0.99$ \\
+\altrow
+Sidewalk to roadway transition & 0.25 & 1.00 & 0.40 & 0.26 & 0.90 & 0.41 & $-$0.009 [$-$0.107, 0.090] & 0.481 \\
+Driveway or alley entry & 0.93 & 0.98 & 0.95 & 0.88 & 1.00 & 0.93 & 0.020 [$-$0.034, 0.075] & 0.688 \\
+\altrow
+Failure to yield & 0.48 & 1.00 & 0.64 & 0.74 & 1.00 & 0.85 & $-$0.208 [$-$0.305, $-$0.118] & $<0.001$ \\
+Signal violation & 0.81 & 0.96 & 0.88 & 0.59 & 0.92 & 0.72 & 0.161 [0.079, 0.262] & $<0.001$ \\
+\altrow
+Swerve or loss of control & 0.83 & 0.79 & 0.81 & 0.56 & 0.92 & 0.70 & 0.110 [$-$0.016, 0.235] & 0.021 \\
+Dooring & 0.50 & 1.00 & 0.67 & 1.00 & 1.00 & 1.00 & $-$0.333 [$-$0.667, 0.000] & 0.500 \\
+\altrow
+Distraction or impairment & 0.66 & 0.85 & 0.74 & 0.71 & 0.56 & 0.63 & 0.117 [$-$0.025, 0.293] & 0.815 \\
+Vehicle turning across & 0.83 & 1.00 & 0.91 & 0.74 & 1.00 & 0.85 & 0.056 [0.008, 0.110] & 0.065 \\
+\altrow
+Lane positioning & 0.98 & 0.93 & 0.95 & 0.95 & 0.93 & 0.94 & 0.011 [$-$0.054, 0.073] & $>0.99$ \\
+\midrule
+\textit{Macro $F_1$} & \multicolumn{3}{c}{0.778 [0.726, 0.828]} & \multicolumn{3}{c}{0.785 [0.739, 0.816]} & $-$0.006 [$-$0.053, 0.049] & \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{9}{l}{\textbf{Panel B. Masked against unmasked narratives, macro $F_1$ on the pre-crash cues}} \\
+\addlinespace[2pt]
+\midrule
+\headerrow
+\hcell{Comparison} & \hcell{$n$} & \multicolumn{2}{c}{\hcell{First run}} & \multicolumn{2}{c}{\hcell{Second run}} & \multicolumn{2}{c}{\hcell{Difference [95\% CI]}} & \hcell{} \\
+\midrule
+Unmasked against masked rerun, same period & 149 & \multicolumn{2}{c}{0.767} & \multicolumn{2}{c}{0.768} & \multicolumn{2}{c}{$-$0.0003 [$-$0.0107, 0.0084]} & \\
+\altrow
+The same, narratives changed by masking & 78 & \multicolumn{2}{c}{0.807} & \multicolumn{2}{c}{0.800} & \multicolumn{2}{c}{0.0073 [$-$0.0034, 0.0201]} & \\
+Unmasked run against masked reference run & 150 & \multicolumn{2}{c}{0.767} & \multicolumn{2}{c}{0.778} & \multicolumn{2}{c}{$-$0.0111 [$-$0.0220, $-$0.0017]} & \\
+\altrow
+Masked rerun against masked reference run & 149 & \multicolumn{2}{c}{0.768} & \multicolumn{2}{c}{0.778} & \multicolumn{2}{c}{$-$0.0108 [$-$0.0207, $-$0.0008]} & \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{9}{l}{\textbf{Panel C. Cue block of the severity model, M0c against M1}} \\
+\addlinespace[2pt]
+\midrule
+\headerrow
+\hcell{Label source} & \multicolumn{2}{c}{\hcell{$\chi^2$}} & \multicolumn{2}{c}{\hcell{d.f.}} & \multicolumn{2}{c}{\hcell{$p$}} & \hcell{} & \hcell{} \\
+\midrule
+Masked narratives, reference run & \multicolumn{2}{c}{1.11} & \multicolumn{2}{c}{5} & \multicolumn{2}{c}{0.954} & & \\
+\altrow
+Unmasked narratives & \multicolumn{2}{c}{1.55} & \multicolumn{2}{c}{5} & \multicolumn{2}{c}{0.907} & & \\
+\addlinespace
+\rowcolor{PanelBg}
+\multicolumn{9}{l}{\textbf{Panel D. Variation between runs with identical prompts}} \\
+\addlinespace[2pt]
+\midrule
+\headerrow
+\hcell{Comparison} & \multicolumn{2}{c}{\hcell{Decisions}} & \multicolumn{2}{c}{\hcell{Differing}} & \multicolumn{2}{c}{\hcell{Share (\%)}} & \hcell{} & \hcell{} \\
+\midrule
+Masked rerun against reference run, validation narratives & \multicolumn{2}{c}{1490} & \multicolumn{2}{c}{23} & \multicolumn{2}{c}{1.5} & & \\
+\altrow
+Unmasked against masked run, narratives masking leaves unchanged & \multicolumn{2}{c}{2480} & \multicolumn{2}{c}{47} & \multicolumn{2}{c}{1.9} & & \\
+\end{xltabular}
